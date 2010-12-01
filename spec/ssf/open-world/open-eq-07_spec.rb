@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#open-eq-07
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "open-world" do
     before :all do
       @data = %q{
@@ -52,90 +51,91 @@ describe "W3C test " do
 }
     end
 
-    it "open-eq-07" do
+    example "open-eq-07" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'open-world-open-eq-07'
       results = [
           { 
-              "x1" => RDF::URI('http://example/x1'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x1'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x1'),
+              :x2 => RDF::URI('http://example/x1'),
           },
           { 
-              "x1" => RDF::URI('http://example/x1'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x4'),
-              "v2" => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :x1 => RDF::URI('http://example/x1'),
+              :x2 => RDF::URI('http://example/x4'),
           },
           { 
-              "x1" => RDF::URI('http://example/x2'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x2'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x2'),
+              :x2 => RDF::URI('http://example/x2'),
           },
           { 
-              "x1" => RDF::URI('http://example/x2'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x3'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x2'),
+              :x2 => RDF::URI('http://example/x3'),
           },
           { 
-              "x1" => RDF::URI('http://example/x3'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x2'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x3'),
+              :x2 => RDF::URI('http://example/x2'),
           },
           { 
-              "x1" => RDF::URI('http://example/x3'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x3'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x3'),
+              :x2 => RDF::URI('http://example/x3'),
           },
           { 
-              "x1" => RDF::URI('http://example/x4'),
-              "v1" => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
-              "x2" => RDF::URI('http://example/x1'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x4'),
+              :x2 => RDF::URI('http://example/x1'),
           },
           { 
-              "x1" => RDF::URI('http://example/x4'),
-              "v1" => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
-              "x2" => RDF::URI('http://example/x4'),
-              "v2" => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v1 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v2 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :x1 => RDF::URI('http://example/x4'),
+              :x2 => RDF::URI('http://example/x4'),
           },
           { 
-              "x1" => RDF::URI('http://example/x5'),
-              "v1" => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              "x2" => RDF::URI('http://example/x5'),
-              "v2" => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v1 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v2 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :x1 => RDF::URI('http://example/x5'),
+              :x2 => RDF::URI('http://example/x5'),
           },
           { 
-              "x1" => RDF::URI('http://example/x6'),
-              "v1" => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://example/unknown')),
-              "x2" => RDF::URI('http://example/x6'),
-              "v2" => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://example/unknown')),
+              :v1 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://example/unknown')),
+              :v2 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://example/unknown')),
+              :x1 => RDF::URI('http://example/x6'),
+              :x2 => RDF::URI('http://example/x6'),
           },
           { 
-              "x1" => RDF::URI('http://example/x7'),
-              "v1" => RDF::Node.new('b0'),
-              "x2" => RDF::URI('http://example/x7'),
-              "v2" => RDF::Node.new('b0'),
+              :v1 => RDF::Node.new('b0'),
+              :v2 => RDF::Node.new('b0'),
+              :x1 => RDF::URI('http://example/x7'),
+              :x2 => RDF::URI('http://example/x7'),
           },
           { 
-              "x1" => RDF::URI('http://example/x8'),
-              "v1" => RDF::URI('http://example/xyz'),
-              "x2" => RDF::URI('http://example/x8'),
-              "v2" => RDF::URI('http://example/xyz'),
+              :v1 => RDF::URI('http://example/xyz'),
+              :v2 => RDF::URI('http://example/xyz'),
+              :x1 => RDF::URI('http://example/x8'),
+              :x2 => RDF::URI('http://example/x8'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

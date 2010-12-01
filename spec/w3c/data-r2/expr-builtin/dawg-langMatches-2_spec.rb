@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-langMatches-2
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
-#
-describe "W3C test " do
+describe "W3C test" do
   context "expr-builtin" do
     before :all do
       @data = %q{
@@ -37,26 +36,27 @@ SELECT *
 }
     end
 
-    it "LangMatches-2" do
+    example "LangMatches-2" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'expr-builtin-dawg-langMatches-2'
       results = [
           { 
-              "p" => RDF::URI('http://example.org/#p3'),
-              "v" => RDF::Literal.new('abc' ),
+              :p => RDF::URI('http://example.org/#p3'),
+              :v => RDF::Literal.new('abc' ),
           },
           { 
-              "v" => RDF::Literal.new('abc' ),
-              "p" => RDF::URI('http://example.org/#p4'),
+              :p => RDF::URI('http://example.org/#p4'),
+              :v => RDF::Literal.new('abc' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

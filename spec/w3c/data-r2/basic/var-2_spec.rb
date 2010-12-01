@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#var-2
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0060/2007-08-07-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0060/2007-08-07-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "basic" do
     before :all do
       @data = %q{
@@ -35,26 +34,27 @@ SELECT * { :x ?p $v . :x ?p ?v }
 }
     end
 
-    it "Basic - Var 2" do
+    example "Basic - Var 2" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'basic-var-2'
       results = [
           { 
-              "p" => RDF::URI('http://example.org/ns#p2'),
-              "v" => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example.org/ns#p2'),
+              :v => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              "p" => RDF::URI('http://example.org/ns#p1'),
-              "v" => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example.org/ns#p1'),
+              :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

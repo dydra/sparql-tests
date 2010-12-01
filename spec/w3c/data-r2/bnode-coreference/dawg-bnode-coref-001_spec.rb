@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-bnode-coref-001
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
-#
-describe "W3C test " do
+describe "W3C test" do
   context "bnode-coreference" do
     before :all do
       @data = %q{
@@ -62,30 +61,31 @@ WHERE {
 }
     end
 
-    it "dawg-bnode-coreference" do
+    example "dawg-bnode-coreference" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'bnode-coreference-dawg-bnode-coref-001'
       results = [
           { 
-              "x" => RDF::Node.new('b10'),
-              "y" => RDF::Node.new('b1f'),
+              :x => RDF::Node.new('b10'),
+              :y => RDF::Node.new('b1f'),
           },
           { 
-              "x" => RDF::Node.new('b1f'),
-              "y" => RDF::Node.new('b10'),
+              :x => RDF::Node.new('b1f'),
+              :y => RDF::Node.new('b10'),
           },
           { 
-              "x" => RDF::Node.new('b20'),
-              "y" => RDF::Node.new('b21'),
+              :x => RDF::Node.new('b20'),
+              :y => RDF::Node.new('b21'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

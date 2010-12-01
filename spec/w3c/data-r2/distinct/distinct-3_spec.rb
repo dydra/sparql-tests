@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#distinct-3
 #
+# This test is approved: 
+# http://www.w3.org/2007/07/17-dawg-minutes
 #
-# 
-# This test is approved: http://www.w3.org/2007/07/17-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "distinct" do
     before :all do
       @data = %q{
@@ -42,24 +41,25 @@ SELECT DISTINCT ?v
 }
     end
 
-    it "Nodes: Distinct" do
+    example "Nodes: Distinct" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'distinct-distinct-3'
       results = [
           { 
-              "v" => RDF::Node.new('b0'),
+              :v => RDF::Node.new('b0'),
           },
           { 
-              "v" => RDF::URI('http://example/z1'),
+              :v => RDF::URI('http://example/z1'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

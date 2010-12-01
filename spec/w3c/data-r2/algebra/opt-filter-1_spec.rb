@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#opt-filter-1
 #
+# This test is approved: 
+# http://www.w3.org/2007/06/19-dawg-minutes.html
 #
-# 
-# This test is approved: http://www.w3.org/2007/06/19-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "algebra" do
     before :all do
       @data = %q{
@@ -46,34 +45,35 @@ SELECT *
 }
     end
 
-    it "Optional-filter - 1" do
+    example "Optional-filter - 1" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'algebra-opt-filter-1'
       results = [
           { 
-              "x" => RDF::URI('http://example/x2'),
-              "v" => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              "y" => RDF::URI('http://example/x3'),
-              "w" => RDF::Literal.new('4' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :w => RDF::Literal.new('4' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :x => RDF::URI('http://example/x2'),
+              :y => RDF::URI('http://example/x3'),
           },
           { 
-              "x" => RDF::URI('http://example/x2'),
-              "v" => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              "y" => RDF::URI('http://example/x3'),
-              "w" => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :w => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :x => RDF::URI('http://example/x2'),
+              :y => RDF::URI('http://example/x3'),
           },
           { 
-              "x" => RDF::URI('http://example/x1'),
-              "v" => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :x => RDF::URI('http://example/x1'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

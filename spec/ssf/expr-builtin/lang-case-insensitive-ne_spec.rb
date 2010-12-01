@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#lang-case-insensitive-ne
 #
+# This test is approved: 
+# http://www.w3.org/2007/06/19-dawg-minutes.html
 #
-# 
-# This test is approved: http://www.w3.org/2007/06/19-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "expr-builtin" do
     before :all do
       @data = %q{
@@ -39,18 +38,19 @@ describe "W3C test " do
 }
     end
 
-    it "lang-case-insensitive-ne" do
+    example "lang-case-insensitive-ne" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'expr-builtin-lang-case-insensitive-ne'
       results = [
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

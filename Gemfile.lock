@@ -73,6 +73,7 @@ GEM
       promise (>= 0.3.0)
       rdf (>= 0.2.3)
       rdf-isomorphic (>= 0.3.0)
+    syntax (1.0.0)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     uuid (2.3.1)
@@ -94,4 +95,5 @@ DEPENDENCIES
   s3
   sparql-client!
   spira
+  syntax
   uuid

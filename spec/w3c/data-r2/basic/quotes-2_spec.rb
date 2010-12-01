@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#quotes-2
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0060/2007-08-07-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0060/2007-08-07-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "basic" do
     before :all do
       @data = %q{
@@ -44,21 +43,22 @@ SELECT ?x
 }
     end
 
-    it "Basic - Quotes 2" do
+    example "Basic - Quotes 2" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'basic-quotes-2'
       results = [
           { 
-              "x" => RDF::URI('http://example.org/ns#x1'),
+              :x => RDF::URI('http://example.org/ns#x1'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#eq-graph-5
 #
+# This test is approved: 
+# http://www.w3.org/2007/06/19-dawg-minutes.html
 #
-# 
-# This test is approved: http://www.w3.org/2007/06/19-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "expr-equals" do
     before :all do
       @data = %q{
@@ -53,21 +52,22 @@ describe "W3C test " do
 }
     end
 
-    it "Equality 1-5 -- graph" do
+    example "Equality 1-5 -- graph" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'expr-equals-eq-graph-5'
       results = [
           { 
-              "x" => RDF::URI('http://example.org/things#xu'),
+              :x => RDF::URI('http://example.org/things#xu'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

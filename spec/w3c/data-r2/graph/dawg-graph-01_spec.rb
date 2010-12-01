@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-graph-01
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "graph" do
     before :all do
       @data = %q{
@@ -34,28 +33,29 @@ SELECT * { ?s ?p ?o }
 }
     end
 
-    it "graph-01" do
+    example "graph-01" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'graph-dawg-graph-01'
       results = [
           { 
-              "p" => RDF::URI('http://example/p'),
-              "s" => RDF::URI('http://example/a'),
-              "o" => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/p'),
+              :s => RDF::URI('http://example/a'),
           },
           { 
-              "s" => RDF::URI('http://example/x'),
-              "p" => RDF::URI('http://example/p'),
-              "o" => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/p'),
+              :s => RDF::URI('http://example/x'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

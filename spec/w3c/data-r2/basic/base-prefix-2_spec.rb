@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#base-prefix-2
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0060/2007-08-07-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0060/2007-08-07-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "basic" do
     before :all do
       @data = %q{
@@ -38,22 +37,23 @@ SELECT * WHERE { :x ?p ?v }
 }
     end
 
-    it "Basic - Prefix/Base 2" do
+    example "Basic - Prefix/Base 2" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'basic-base-prefix-2'
       results = [
           { 
-              "v" => RDF::Literal.new('z:x z:p' ),
-              "p" => RDF::URI('http://example.org/x/#p'),
+              :p => RDF::URI('http://example.org/x/#p'),
+              :v => RDF::Literal.new('z:x z:p' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-sort-3
 #
+# This test is approved: 
+# http://www.w3.org/2007/06/26-dawg-minutes
 #
-# 
-# This test is approved: http://www.w3.org/2007/06/26-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "sort" do
     before :all do
       @data = %q{
@@ -49,33 +48,34 @@ ORDER BY ASC(?mbox)
 }
     end
 
-    it "sort-3" do
+    example "sort-3" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'sort-dawg-sort-3'
       results = [
           { 
-              "name" => RDF::Literal.new('Bob' ),
+              :name => RDF::Literal.new('Bob' ),
           },
           { 
-              "name" => RDF::Literal.new('Alice' ),
-              "mbox" => RDF::URI('mailto:alice@work.example'),
+              :mbox => RDF::URI('mailto:alice@work.example'),
+              :name => RDF::Literal.new('Alice' ),
           },
           { 
-              "name" => RDF::Literal.new('Eve' ),
-              "mbox" => RDF::URI('mailto:eve@work.example'),
+              :mbox => RDF::URI('mailto:eve@work.example'),
+              :name => RDF::Literal.new('Eve' ),
           },
           { 
-              "name" => RDF::Literal.new('Fred' ),
-              "mbox" => RDF::URI('mailto:fred@work.example'),
+              :mbox => RDF::URI('mailto:fred@work.example'),
+              :name => RDF::Literal.new('Fred' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

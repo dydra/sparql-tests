@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#open-eq-05
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "open-world" do
     before :all do
       @data = %q{
@@ -46,22 +45,23 @@ describe "W3C test " do
 }
     end
 
-    it "open-eq-05" do
+    example "open-eq-05" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'open-world-open-eq-05'
       results = [
           { 
-              "x" => RDF::URI('http://example/ns#x1'),
-              "v" => RDF::Literal.new('a' , :datatype => RDF::URI('http://example/t#type1')),
+              :v => RDF::Literal.new('a' , :datatype => RDF::URI('http://example/t#type1')),
+              :x => RDF::URI('http://example/ns#x1'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-optional-002
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
-#
-describe "W3C test " do
+describe "W3C test" do
   context "optional" do
     before :all do
       @data = %q{
@@ -44,31 +43,32 @@ _:e foaf:nick   "DuckSoup" .
 }
     end
 
-    it "Two optional clauses" do
+    example "Two optional clauses" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'optional-dawg-optional-002'
       results = [
           { 
-              "mbox" => RDF::URI('mailto:eve@example.net'),
-              "nick" => RDF::Literal.new('DuckSoup' ),
+              :mbox => RDF::URI('mailto:eve@example.net'),
+              :nick => RDF::Literal.new('DuckSoup' ),
           },
           { 
-              "mbox" => RDF::URI('mailto:alice@example.net'),
-              "name" => RDF::Literal.new('Alice' ),
-              "nick" => RDF::Literal.new('WhoMe?' ),
+              :mbox => RDF::URI('mailto:alice@example.net'),
+              :name => RDF::Literal.new('Alice' ),
+              :nick => RDF::Literal.new('WhoMe?' ),
           },
           { 
-              "mbox" => RDF::URI('mailto:bert@example.net'),
-              "name" => RDF::Literal.new('Bert' ),
+              :mbox => RDF::URI('mailto:bert@example.net'),
+              :name => RDF::Literal.new('Bert' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#reduced-1
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007OctDec/att-0069/13-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007OctDec/att-0069/13-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "reduced" do
     before :all do
       @data = %q{
@@ -39,30 +38,31 @@ describe "W3C test " do
 }
     end
 
-    it "SELECT REDUCED *" do
+    example "SELECT REDUCED *" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'reduced-reduced-1'
       results = [
           { 
-              "s" => RDF::URI('http://example/x1'),
-              "o" => RDF::Literal.new('abc' ),
+              :o => RDF::Literal.new('abc' ),
+              :s => RDF::URI('http://example/x1'),
           },
           { 
-              "s" => RDF::URI('http://example/x1'),
-              "o" => RDF::Literal.new('abc' ),
+              :o => RDF::Literal.new('abc' ),
+              :s => RDF::URI('http://example/x1'),
           },
           { 
-              "s" => RDF::URI('http://example/x2'),
-              "o" => RDF::Literal.new('abc' ),
+              :o => RDF::Literal.new('abc' ),
+              :s => RDF::URI('http://example/x2'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

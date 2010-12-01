@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-optional-filter-004
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007OctDec/att-0006/02-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007OctDec/att-0006/02-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "optional-filter" do
     before :all do
       @data = %q{
@@ -48,27 +47,28 @@ WHERE
 }
     end
 
-    it "OPTIONAL - Inner FILTER with negative EBV for outer variables" do
+    example "OPTIONAL - Inner FILTER with negative EBV for outer variables" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'optional-filter-dawg-optional-filter-004'
       results = [
           { 
-              "title" => RDF::Literal.new('TITLE 1' ),
+              :title => RDF::Literal.new('TITLE 1' ),
           },
           { 
-              "title" => RDF::Literal.new('TITLE 3' ),
+              :title => RDF::Literal.new('TITLE 3' ),
           },
           { 
-              "title" => RDF::Literal.new('TITLE 2' ),
+              :title => RDF::Literal.new('TITLE 2' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

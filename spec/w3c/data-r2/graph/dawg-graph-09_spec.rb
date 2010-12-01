@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-graph-09
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "graph" do
     before :all do
       @data = %q{
@@ -24,6 +23,14 @@ describe "W3C test " do
 
 _:x :p "1"^^xsd:integer .
 _:a :p "9"^^xsd:integer .
+
+}
+       # data-g4.ttl
+       @graph0 = %q{
+@prefix : <http://example/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+_:x :q "2"^^xsd:integer .
 
 }
       @query = %q{
@@ -38,18 +45,20 @@ SELECT *
 }
     end
 
-    it "graph-09" do
+    example "graph-09" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
+      graphs[RDF::URI('data-g4.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'graph-dawg-graph-09'
       results = [
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

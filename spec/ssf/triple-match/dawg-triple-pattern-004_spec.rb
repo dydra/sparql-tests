@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-triple-pattern-004
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2005JanMar/0358
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2005JanMar/0358
-#
-describe "W3C test " do
+describe "W3C test" do
   context "triple-match" do
     before :all do
       @data = %q{
@@ -60,27 +59,28 @@ _:fred
 }
     end
 
-    it "dawg-triple-pattern-004" do
+    example "dawg-triple-pattern-004" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'triple-match-dawg-triple-pattern-004'
       results = [
           { 
-              "name" => RDF::Literal.new('Bob' ),
+              :name => RDF::Literal.new('Bob' ),
           },
           { 
-              "name" => RDF::Literal.new('Alice' ),
+              :name => RDF::Literal.new('Alice' ),
           },
           { 
-              "name" => RDF::Literal.new('Eve' ),
+              :name => RDF::Literal.new('Eve' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-sort-10
 #
+# This test is approved: 
+# http://www.w3.org/2007/06/26-dawg-minutes
 #
-# 
-# This test is approved: http://www.w3.org/2007/06/26-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "sort" do
     before :all do
       @data = %q{
@@ -40,30 +39,31 @@ _:e foaf:name "Bob"^^xsd:string .
 }
     end
 
-    it "sort-10" do
+    example "sort-10" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'sort-dawg-sort-10'
       results = [
           { 
-              "name" => RDF::Literal.new('Fred' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :name => RDF::Literal.new('Fred' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              "name" => RDF::Literal.new('Eve' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :name => RDF::Literal.new('Eve' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              "name" => RDF::Literal.new('Bob' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :name => RDF::Literal.new('Bob' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              "name" => RDF::Literal.new('Alice' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :name => RDF::Literal.new('Alice' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

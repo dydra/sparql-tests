@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#type-promotion-24
 #
+# This test is approved: 
+# http://www.w3.org/2007/07/17-dawg-minutes
 #
-# 
-# This test is approved: http://www.w3.org/2007/07/17-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "type-promotion" do
     before :all do
       @data = %q{
@@ -60,16 +59,17 @@ t:dateTime1		rdf:value	"2005-01-14T12:34:56"^^xsd:dateTime .
 }
     end
 
-    it "tP-byte-short-fail" do
+    example "tP-byte-short-fail" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'type-promotion-type-promotion-24'
+      result = false
 
-
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :ask)
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :ask).should == result
     end
   end
 end

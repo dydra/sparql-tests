@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#lang-case-insensitive-eq
 #
+# This test is approved: 
+# http://www.w3.org/2007/06/19-dawg-minutes.html
 #
-# 
-# This test is approved: http://www.w3.org/2007/06/19-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "expr-builtin" do
     before :all do
       @data = %q{
@@ -44,42 +43,43 @@ SELECT *
 }
     end
 
-    it "lang-case-insensitive-eq" do
+    example "lang-case-insensitive-eq" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'expr-builtin-lang-case-insensitive-eq'
       results = [
           { 
-              "x1" => RDF::URI('http://example/x2'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x2'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x2'),
+              :x2 => RDF::URI('http://example/x2'),
           },
           { 
-              "x1" => RDF::URI('http://example/x2'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x3'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x2'),
+              :x2 => RDF::URI('http://example/x3'),
           },
           { 
-              "x1" => RDF::URI('http://example/x3'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x2'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x3'),
+              :x2 => RDF::URI('http://example/x2'),
           },
           { 
-              "x1" => RDF::URI('http://example/x3'),
-              "v1" => RDF::Literal.new('xyz' ),
-              "x2" => RDF::URI('http://example/x3'),
-              "v2" => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
+              :x1 => RDF::URI('http://example/x3'),
+              :x2 => RDF::URI('http://example/x3'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

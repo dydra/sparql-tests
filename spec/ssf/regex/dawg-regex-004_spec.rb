@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-regex-004
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0029.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0029.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "regex" do
     before :all do
       @data = %q{
@@ -35,24 +34,25 @@ ex:foo rdf:value "abcDEFghiJKL" , "ABCdefGHIjkl", "0123456789",
 }
     end
 
-    it "regex-query-004" do
+    example "regex-query-004" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'regex-dawg-regex-004'
       results = [
           { 
-              "val" => RDF::Literal.new('http://example.com/literal' ),
+              :val => RDF::Literal.new('http://example.com/literal' ),
           },
           { 
-              "val" => RDF::URI('http://example.com/uri'),
+              :val => RDF::URI('http://example.com/uri'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

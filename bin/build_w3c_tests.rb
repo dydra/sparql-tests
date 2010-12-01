@@ -47,6 +47,17 @@ def select_results_snippet(test)
 end
 
 def ask_results_snippet(test)
+  if File.extname(test.result.path) == '.srx'
+    SPARQL::Client.new("").parse_xml_bindings(File.read(test.result.path))
+  else
+    expected_repository = RDF::Repository.new 
+    Spira.add_repository!(:results, expected_repository)
+    expected_repository.load(test.result.path)
+    if ResultBindings.each.first.boolean.nil?
+      raise "Couldn't parse ask bindings for #{test.result.path}" # just an assertion, is there another case?
+    end
+    "      result = #{ResultBindings.each.first.boolean}"
+  end
 end
 
 def describe_results_snippet(test)
@@ -77,7 +88,9 @@ tests.each do |test|
   end
 
   results_snippet = results_snippet_for(test)
- 
+
+  graphs = test.action.graphData.to_a
+
   filename = filename_for(w3c_dir, test)
   begin Dir.mkdir(File.dirname(filename)) rescue nil end
   query_file = test.action.query_file.path

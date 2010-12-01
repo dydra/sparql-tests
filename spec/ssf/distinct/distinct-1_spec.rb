@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#distinct-1
 #
+# This test is approved: 
+# http://www.w3.org/2007/07/17-dawg-minutes
 #
-# 
-# This test is approved: http://www.w3.org/2007/07/17-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "distinct" do
     before :all do
       @data = %q{
@@ -65,45 +64,46 @@ describe "W3C test " do
 }
     end
 
-    it "Numbers: Distinct" do
+    example "Numbers: Distinct" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'distinct-distinct-1'
       results = [
           { 
-              "v" => RDF::Literal.new('1.3e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#float')),
+              :v => RDF::Literal.new('1.3e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#float')),
           },
           { 
-              "v" => RDF::Literal.new('1.3e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
+              :v => RDF::Literal.new('1.3e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
           { 
-              "v" => RDF::Literal.new('+1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v => RDF::Literal.new('+1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              "v" => RDF::Literal.new('01.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+              :v => RDF::Literal.new('01.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
           },
           { 
-              "v" => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              "v" => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
+              :v => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
           { 
-              "v" => RDF::Literal.new('+1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+              :v => RDF::Literal.new('+1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
           },
           { 
-              "v" => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              "v" => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+              :v => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

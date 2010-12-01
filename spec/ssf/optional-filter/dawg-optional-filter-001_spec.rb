@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-optional-filter-001
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "optional-filter" do
     before :all do
       @data = %q{
@@ -44,28 +43,29 @@ describe "W3C test " do
 }
     end
 
-    it "OPTIONAL-FILTER" do
+    example "OPTIONAL-FILTER" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'optional-filter-dawg-optional-filter-001'
       results = [
           { 
-              "title" => RDF::Literal.new('TITLE 1' ),
-              "price" => RDF::Literal.new('10' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :price => RDF::Literal.new('10' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :title => RDF::Literal.new('TITLE 1' ),
           },
           { 
-              "title" => RDF::Literal.new('TITLE 3' ),
+              :title => RDF::Literal.new('TITLE 3' ),
           },
           { 
-              "title" => RDF::Literal.new('TITLE 2' ),
+              :title => RDF::Literal.new('TITLE 2' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

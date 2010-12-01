@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#prefix-name-1
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0087/14-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0087/14-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "basic" do
     before :all do
       @data = %q{
@@ -35,21 +34,22 @@ SELECT ?p {
 }
     end
 
-    it "Prefix name 1" do
+    example "Prefix name 1" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'basic-prefix-name-1'
       results = [
           { 
-              "p" => RDF::URI('http://example.org/ns#p1'),
+              :p => RDF::URI('http://example.org/ns#p1'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

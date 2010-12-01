@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#no-distinct-2
 #
+# This test is approved: 
+# http://www.w3.org/2007/07/17-dawg-minutes
 #
-# 
-# This test is approved: http://www.w3.org/2007/07/17-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "distinct" do
     before :all do
       @data = %q{
@@ -59,72 +58,73 @@ SELECT ?v
 }
     end
 
-    it "Strings: No distinct" do
+    example "Strings: No distinct" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'distinct-no-distinct-2'
       results = [
           { 
-              "v" => RDF::Literal.new('ABC' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v => RDF::Literal.new('ABC' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              "v" => RDF::Literal.new('ABC' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v => RDF::Literal.new('ABC' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              "v" => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              "v" => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              "v" => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC' ),
           },
           { 
-              "v" => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC' ),
           },
           { 
-              "v" => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC' ),
           },
           { 
-              "v" => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC' ),
           },
           { 
-              "v" => RDF::Literal.new('' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v => RDF::Literal.new('' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              "v" => RDF::Literal.new('' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v => RDF::Literal.new('' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              "v" => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc' ),
           },
           { 
-              "v" => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc' ),
           },
           { 
-              "v" => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('' ),
           },
           { 
-              "v" => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('' ),
           },
           { 
-              "v" => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc' ),
           },
           { 
-              "v" => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc' ),
           },
           { 
-              "v" => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('' ),
           },
           { 
-              "v" => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

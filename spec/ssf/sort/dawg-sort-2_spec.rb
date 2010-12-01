@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-sort-2
 #
+# This test is approved: 
+# http://www.w3.org/2007/06/26-dawg-minutes
 #
-# 
-# This test is approved: http://www.w3.org/2007/06/26-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "sort" do
     before :all do
       @data = %q{
@@ -37,30 +36,31 @@ _:e foaf:name "Bob" .
 }
     end
 
-    it "sort-2" do
+    example "sort-2" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'sort-dawg-sort-2'
       results = [
           { 
-              "name" => RDF::Literal.new('Fred' ),
+              :name => RDF::Literal.new('Fred' ),
           },
           { 
-              "name" => RDF::Literal.new('Eve' ),
+              :name => RDF::Literal.new('Eve' ),
           },
           { 
-              "name" => RDF::Literal.new('Bob' ),
+              :name => RDF::Literal.new('Bob' ),
           },
           { 
-              "name" => RDF::Literal.new('Alice' ),
+              :name => RDF::Literal.new('Alice' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

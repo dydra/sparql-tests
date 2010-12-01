@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#join-combo-2
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0096/21-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0096/21-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "algebra" do
     before :all do
       @data = %q{
@@ -36,6 +35,15 @@ describe "W3C test " do
 :x1 :z :p .
 
 }
+       # join-combo-graph-1.ttl
+       @graph0 = %q{
+@prefix : <http://example/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+ :b :p "1"^^xsd:integer .
+_:a :p "9"^^xsd:integer .
+
+}
       @query = %q{
 (select (?x ?y ?z)
         (project (?x ?y ?z)
@@ -49,22 +57,24 @@ describe "W3C test " do
 }
     end
 
-    it "Join operator with Graph and Union" do
+    example "Join operator with Graph and Union" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
+      graphs[RDF::URI('join-combo-graph-1.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'algebra-join-combo-2'
       results = [
           { 
-              "x" => RDF::URI('http://example/b'),
-              "z" => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'),
+              :x => RDF::URI('http://example/b'),
+              :z => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-graph-06
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "graph" do
     before :all do
       @data = %q{
@@ -26,6 +25,14 @@ describe "W3C test " do
 :a :p "9"^^xsd:integer .
 
 }
+       # data-g2.ttl
+       @graph0 = %q{
+@prefix : <http://example/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+:x :q "2"^^xsd:integer .
+
+}
       @query = %q{
 (select (?g ?s ?p ?o)
   (graph ?g
@@ -34,24 +41,26 @@ describe "W3C test " do
 }
     end
 
-    it "graph-06" do
+    example "graph-06" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
+      graphs[RDF::URI('data-g2.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'graph-dawg-graph-06'
       results = [
           { 
-              "p" => RDF::URI('http://example/q'),
-              "o" => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              "g" => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g2.ttl'),
-              "s" => RDF::URI('http://example/x'),
+              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g2.ttl'),
+              :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/q'),
+              :s => RDF::URI('http://example/x'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

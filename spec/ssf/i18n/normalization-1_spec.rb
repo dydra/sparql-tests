@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#normalization-1
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0118/04-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0118/04-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "i18n" do
     before :all do
       @data = %q{
@@ -55,24 +54,25 @@ describe "W3C test " do
 }
     end
 
-    it "normalization-01" do
+    example "normalization-01" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'i18n-normalization-1'
       results = [
           { 
-              "name" => RDF::Literal.new('Eve' ),
+              :name => RDF::Literal.new('Eve' ),
           },
           { 
-              "name" => RDF::Literal.new('Bob' ),
+              :name => RDF::Literal.new('Bob' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

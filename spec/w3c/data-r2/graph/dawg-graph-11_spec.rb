@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-graph-11
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "graph" do
     before :all do
       @data = %q{
@@ -24,6 +23,40 @@ describe "W3C test " do
 
 :x :p "1"^^xsd:integer .
 :a :p "9"^^xsd:integer .
+
+}
+       # data-g1.ttl
+       @graph0 = %q{
+@prefix : <http://example/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+:x :p "1"^^xsd:integer .
+:a :p "9"^^xsd:integer .
+
+}
+       # data-g2.ttl
+       @graph1 = %q{
+@prefix : <http://example/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+:x :q "2"^^xsd:integer .
+
+}
+       # data-g3.ttl
+       @graph2 = %q{
+@prefix : <http://example/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+_:x :p "1"^^xsd:integer .
+_:a :p "9"^^xsd:integer .
+
+}
+       # data-g4.ttl
+       @graph3 = %q{
+@prefix : <http://example/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+_:x :q "2"^^xsd:integer .
 
 }
       @query = %q{
@@ -39,64 +72,69 @@ SELECT *
 }
     end
 
-    it "graph-11" do
+    example "graph-11" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
+      graphs[RDF::URI('data-g1.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('data-g2.ttl')] = { :data => @graph1, :format => :ttl }
+      graphs[RDF::URI('data-g3.ttl')] = { :data => @graph2, :format => :ttl }
+      graphs[RDF::URI('data-g4.ttl')] = { :data => @graph3, :format => :ttl }
 
       repository = 'graph-dawg-graph-11'
       results = [
           { 
-              "g" => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g3.ttl'),
-              "o" => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              "s" => RDF::Node.new('g12718990'),
-              "p" => RDF::URI('http://example/p'),
+              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g3.ttl'),
+              :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/p'),
+              :s => RDF::Node.new('g13376260'),
           },
           { 
-              "p" => RDF::URI('http://example/p'),
-              "o" => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              "g" => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g1.ttl'),
-              "s" => RDF::URI('http://example/x'),
+              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g1.ttl'),
+              :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/p'),
+              :s => RDF::URI('http://example/x'),
           },
           { 
-              "g" => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g1.ttl'),
-              "s" => RDF::URI('http://example/a'),
-              "p" => RDF::URI('http://example/p'),
-              "o" => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g1.ttl'),
+              :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/p'),
+              :s => RDF::URI('http://example/a'),
           },
           { 
-              "s" => RDF::URI('http://example/x'),
-              "o" => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              "p" => RDF::URI('http://example/q'),
-              "g" => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g2.ttl'),
+              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g2.ttl'),
+              :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/q'),
+              :s => RDF::URI('http://example/x'),
           },
           { 
-              "s" => RDF::URI('http://example/x'),
-              "p" => RDF::URI('http://example/p'),
-              "o" => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/p'),
+              :s => RDF::URI('http://example/x'),
           },
           { 
-              "g" => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g4.ttl'),
-              "o" => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              "s" => RDF::Node.new('g12613930'),
-              "p" => RDF::URI('http://example/q'),
+              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g4.ttl'),
+              :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/q'),
+              :s => RDF::Node.new('g13303220'),
           },
           { 
-              "s" => RDF::Node.new('g12602710'),
-              "o" => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              "g" => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g3.ttl'),
-              "p" => RDF::URI('http://example/p'),
+              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g3.ttl'),
+              :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/p'),
+              :s => RDF::Node.new('g13295390'),
           },
           { 
-              "s" => RDF::URI('http://example/a'),
-              "p" => RDF::URI('http://example/p'),
-              "o" => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :p => RDF::URI('http://example/p'),
+              :s => RDF::URI('http://example/a'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

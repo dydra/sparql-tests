@@ -42,6 +42,7 @@ Bundler.require(:default)
 def sparql_query(opts)
 
   raise "Cannot run query without data" if (opts[:graphs].nil? || opts[:graphs].empty?) && !opts[:allow_empty]
+  raise "No graph import method available yet" if (opts[:graphs].keys.size > 1)
   raise "Please assign a repository to upload test data to" if opts[:repository].nil?
   raise "A query is required to be run" if opts[:query].nil?
 
@@ -75,7 +76,7 @@ def sparql_query(opts)
   log "JSON-parsed results:"
   # FIXME: handle non-select forms
   log SPARQL::Client.new("").parse_json_bindings(result).inspect
-  SPARQL::Client.new("").parse_json_bindings(result)
+  SPARQL::Client.new("").parse_json_bindings(result).map { | result | result.to_hash }
 end
 
 def importing?

@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#ge-1
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0087/14-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0087/14-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "expr-ops" do
     before :all do
       @data = %q{
@@ -37,24 +36,25 @@ describe "W3C test " do
 }
     end
 
-    it "Greater-than or equals" do
+    example "Greater-than or equals" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'expr-ops-ge-1'
       results = [
           { 
-              "s" => RDF::URI('http://example.org/x3'),
+              :s => RDF::URI('http://example.org/x3'),
           },
           { 
-              "s" => RDF::URI('http://example.org/x4'),
+              :s => RDF::URI('http://example.org/x4'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

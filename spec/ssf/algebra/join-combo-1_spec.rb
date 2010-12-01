@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#join-combo-1
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0096/21-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0096/21-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "algebra" do
     before :all do
       @data = %q{
@@ -52,28 +51,29 @@ describe "W3C test " do
 }
     end
 
-    it "Join operator with OPTs, BGPs, and UNIONs" do
+    example "Join operator with OPTs, BGPs, and UNIONs" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'algebra-join-combo-1'
       results = [
           { 
-              "a" => RDF::URI('http://example/x1'),
-              "y" => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'),
-              "d" => RDF::Literal.new('4' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :a => RDF::URI('http://example/x1'),
+              :d => RDF::Literal.new('4' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :y => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'),
           },
           { 
-              "a" => RDF::URI('http://example/x1'),
-              "z" => RDF::URI('http://example/z'),
-              "d" => RDF::Literal.new('4' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :a => RDF::URI('http://example/x1'),
+              :d => RDF::Literal.new('4' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :z => RDF::URI('http://example/z'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

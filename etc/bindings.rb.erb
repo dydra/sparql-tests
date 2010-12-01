@@ -1,8 +1,8 @@
       results = [
         <% results.each do |result| %>
           { 
-            <% result.each do |var, binding| %>
-              "<%= var %>" => <%= binding.to_ruby %>,
+            <% result.sort { |t, o| t.first <=> o.first }.each do |var, binding| %>
+              :<%= var %> => <%= binding.to_ruby %>,
             <% end %> 
           },
         <% end %> 

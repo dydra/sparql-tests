@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#ask-7
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0060/2007-08-07-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0060/2007-08-07-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "ask" do
     before :all do
       @data = %q{
@@ -38,16 +37,17 @@ ASK { :x :p ?x }
 }
     end
 
-    it "ASK-7 (SPARQL XML results)" do
+    example "ASK-7 (SPARQL XML results)" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'ask-ask-7'
+true
 
-
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :ask)
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :ask).should == result
     end
   end
 end

@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#date-4
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "open-world" do
     before :all do
       @data = %q{
@@ -45,30 +44,31 @@ describe "W3C test " do
 }
     end
 
-    it "date-4" do
+    example "date-4" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'open-world-date-4'
       results = [
           { 
-              "x" => RDF::URI('http://example/d8'),
-              "date" => RDF::Literal.new('2000-01-01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :date => RDF::Literal.new('2000-01-01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :x => RDF::URI('http://example/d8'),
           },
           { 
-              "x" => RDF::URI('http://example/d6'),
-              "date" => RDF::Literal.new('2006-08-23' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :date => RDF::Literal.new('2006-08-23' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :x => RDF::URI('http://example/d6'),
           },
           { 
-              "x" => RDF::URI('http://example/d7'),
-              "date" => RDF::Literal.new('2006-08-24Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :date => RDF::Literal.new('2006-08-24Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :x => RDF::URI('http://example/d7'),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

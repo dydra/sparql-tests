@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-sort-4
 #
+# This test is approved: 
+# http://www.w3.org/2007/06/26-dawg-minutes
 #
-# 
-# This test is approved: http://www.w3.org/2007/06/26-dawg-minutes
-#
-describe "W3C test " do
+describe "W3C test" do
   context "sort" do
     before :all do
       @data = %q{
@@ -56,38 +55,39 @@ ORDER BY ASC(?emp)
 }
     end
 
-    it "sort-4" do
+    example "sort-4" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'sort-dawg-sort-4'
       results = [
           { 
-              "name" => RDF::Literal.new('Eve' ),
-              "emp" => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :emp => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :name => RDF::Literal.new('Eve' ),
           },
           { 
-              "name" => RDF::Literal.new('Bob' ),
-              "emp" => RDF::Literal.new('23' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :emp => RDF::Literal.new('23' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :name => RDF::Literal.new('Bob' ),
           },
           { 
-              "name" => RDF::Literal.new('Fred' ),
-              "emp" => RDF::Literal.new('27' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :emp => RDF::Literal.new('27' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :name => RDF::Literal.new('Fred' ),
           },
           { 
-              "name" => RDF::Literal.new('Alice' ),
-              "emp" => RDF::Literal.new('29' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :emp => RDF::Literal.new('29' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :name => RDF::Literal.new('Alice' ),
           },
           { 
-              "name" => RDF::Literal.new('Bob' ),
-              "emp" => RDF::Literal.new('30' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :emp => RDF::Literal.new('30' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :name => RDF::Literal.new('Bob' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end

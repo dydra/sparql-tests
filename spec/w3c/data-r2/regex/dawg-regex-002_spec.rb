@@ -11,11 +11,10 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-regex-002
 #
+# This test is approved: 
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0029.html
 #
-# 
-# This test is approved: http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0029.html
-#
-describe "W3C test " do
+describe "W3C test" do
   context "regex" do
     before :all do
       @data = %q{
@@ -39,24 +38,25 @@ WHERE {
 }
     end
 
-    it "regex-query-002" do
+    example "regex-query-002" do
     
-      graphs = { :default => { :data => @data, :format => :ttl} }
+      graphs = {}
+      graphs[:default] = { :data => @data, :format => :ttl}
+
 
       repository = 'regex-dawg-regex-002'
       results = [
           { 
-              "val" => RDF::Literal.new('ABCdefGHIjkl' ),
+              :val => RDF::Literal.new('ABCdefGHIjkl' ),
           },
           { 
-              "val" => RDF::Literal.new('abcDEFghiJKL' ),
+              :val => RDF::Literal.new('abcDEFghiJKL' ),
           },
       ]
 
 
-      
-      sparql_query(:graphs => graphs, :query => @query, 
-                   :repository => repository, :form => :select)
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ results
     end
   end
 end
