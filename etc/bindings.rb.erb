@@ -1,0 +1,9 @@
+      results = [
+        <% results.each do |result| %>
+          { 
+            <% result.each do |var, binding| %>
+              "<%= var %>" => <%= binding.to_ruby %>,
+            <% end %> 
+          },
+        <% end %> 
+      ]
