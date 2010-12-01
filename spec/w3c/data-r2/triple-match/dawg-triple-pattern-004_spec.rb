@@ -51,11 +51,14 @@ _:fred
 
 }
       @query = %q{
-(select (?name)
-        (project (?name)
-                 (bgp
-                  (triple ?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person>)
-                  (triple ?x <http://xmlns.com/foaf/0.1/name> ?name))))
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  foaf:       <http://xmlns.com/foaf/0.1/>
+
+SELECT ?name
+WHERE {
+  ?x rdf:type foaf:Person .
+  ?x foaf:name ?name .
+}
 
 }
     end

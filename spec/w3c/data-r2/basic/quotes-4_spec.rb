@@ -34,9 +34,15 @@ y"""^^:someType .
 
 }
       @query = %q{
-(select (?x)
-  (project (?x)
-    (bgp (triple ?x ?p "x\ny"^^<http://example.org/ns#someType>))))
+# This query uses UNIX line end conventions.
+# It is in CVS in binary.
+PREFIX : <http://example.org/ns#>
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#> 
+
+SELECT ?x
+{ ?x ?p """x
+y"""^^:someType
+}
 
 }
     end

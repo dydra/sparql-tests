@@ -26,8 +26,10 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?p ?q)
-        (bgp (triple <http://example.org/data/x> ?p ?q)))
+PREFIX : <http://example.org/data/>
+
+SELECT *
+WHERE { :x ?p ?q . }
 
 }
     end

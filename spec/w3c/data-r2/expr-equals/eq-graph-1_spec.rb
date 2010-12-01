@@ -45,9 +45,12 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x)
-  (project (?x)
-    (bgp (triple ?x <http://example.org/things#p> 1))))
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  : <http://example.org/things#>
+SELECT  ?x
+WHERE
+    { ?x :p 1 . 
+    }
 
 }
     end

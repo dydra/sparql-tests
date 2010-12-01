@@ -36,10 +36,15 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x)
-  (project (?x)
-    (filter (!= (datatype ?v) <http://example/NotADataTypeIRI>)
-      (bgp (triple ?x <http://example/p> ?v)))))
+# Which literals have a datatype and which are errors.
+
+PREFIX : <http://example/> 
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?x
+{ ?x :p ?v . 
+  FILTER(  datatype(?v) != <http://example/NotADataTypeIRI> ) 
+}
 
 }
     end

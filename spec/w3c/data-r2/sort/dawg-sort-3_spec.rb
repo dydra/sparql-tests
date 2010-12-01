@@ -39,12 +39,12 @@ _:e foaf:name "Bob" .
 
 }
       @query = %q{
-(select (?name ?mbox)
-  (project (?name ?mbox)
-    (order ((asc ?mbox))
-      (leftjoin
-        (bgp (triple ?x <http://xmlns.com/foaf/0.1/name> ?name))
-        (bgp (triple ?x <http://xmlns.com/foaf/0.1/mbox> ?mbox))))))
+PREFIX foaf:       <http://xmlns.com/foaf/0.1/>
+SELECT ?name ?mbox
+WHERE { ?x foaf:name ?name .
+           OPTIONAL { ?x foaf:mbox ?mbox }
+      }
+ORDER BY ASC(?mbox)
 
 }
     end

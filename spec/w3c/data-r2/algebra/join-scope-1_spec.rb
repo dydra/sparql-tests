@@ -37,12 +37,14 @@ _:B4 :phone "888-4537".
 
 }
       @query = %q{
-(select (?X ?Y ?Z)
-  (join
-    (bgp (triple ?X <http://example/name> "paul"))
-    (leftjoin
-      (bgp (triple ?Y <http://example/name> "george"))
-      (bgp (triple ?X <http://example/email> ?Z)))))
+PREFIX : <http://example/>
+
+SELECT *
+{ 
+  ?X  :name "paul"
+  {?Y :name "george" . OPTIONAL { ?X :email ?Z } }
+}
+
 
 }
     end

@@ -36,8 +36,10 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?p)
-        (bgp (triple <http://example.org/ns#x> ?p true)))
+PREFIX :     <http://example.org/ns#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+SELECT * { :x ?p true . }
 
 }
     end

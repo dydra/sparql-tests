@@ -30,9 +30,11 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?p)
-  (project (?p)
-    (bgp (triple <http://example.org/ns#x> ?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil>))))
+PREFIX : <http://example.org/ns#>
+
+SELECT ?p
+{ :x ?p () . }
+
 
 }
     end

@@ -30,8 +30,10 @@ z:x z:p   "z:x z:p" .
 
 }
       @query = %q{
-(select (?v)
-  (bgp (triple <http://example.org/x/x> <http://example.org/ns#p> ?v)))
+PREFIX ns: <http://example.org/ns#>
+PREFIX x:  <http://example.org/x/>
+
+SELECT * WHERE { x:x ns:p ?v } 
 
 }
     end

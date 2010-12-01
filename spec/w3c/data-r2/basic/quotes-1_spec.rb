@@ -34,9 +34,12 @@ y"""^^:someType .
 
 }
       @query = %q{
-(select (?x)
-  (project (?x)
-    (bgp (triple ?x ?p "x"))))
+PREFIX : <http://example.org/ns#>
+
+SELECT ?x
+{ ?x ?p '''x''' }
+
+
 
 }
     end

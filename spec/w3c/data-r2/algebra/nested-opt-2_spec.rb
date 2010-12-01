@@ -29,14 +29,16 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v ?w)
-        (leftjoin
-         (leftjoin
-          (bgp (triple <http://example/x1> <http://example/p> ?v))
-          (bgp (triple <http://example/x3> <http://example/q> ?w)))
-         (bgp
-          (triple <http://example/x3> <http://example/q> ?w)
-          (triple <http://example/x2> <http://example/p> ?v))))
+PREFIX :    <http://example/>
+
+## The nested optional example, rewritten to a form that is the same
+## for the SPARQL algebra and the declarative semantics.
+SELECT *
+{ 
+    :x1 :p ?v .
+    OPTIONAL { :x3 :q ?w }
+    OPTIONAL { :x3 :q ?w  . :x2 :p ?v }
+}
 
 }
     end

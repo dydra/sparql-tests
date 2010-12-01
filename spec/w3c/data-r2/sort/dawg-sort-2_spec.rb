@@ -29,10 +29,10 @@ _:e foaf:name "Bob" .
 
 }
       @query = %q{
-(select (?name)
-  (project (?name)
-    (order ((desc ?name))
-      (bgp (triple ?x <http://xmlns.com/foaf/0.1/name> ?name)))))
+PREFIX foaf:       <http://xmlns.com/foaf/0.1/>
+SELECT ?name
+WHERE { ?x foaf:name ?name }
+ORDER BY DESC(?name)
 
 }
     end

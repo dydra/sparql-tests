@@ -30,9 +30,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v ?p)
-  (filter (langMatches (lang ?v) "de-de")
-    (bgp (triple <http://example.org/#x> ?p ?v))))
+# q-langMatches-de-de.rq
+# $Id: q-langMatches-de-de.rq,v 1.1 2007/08/11 18:32:04 eric Exp $
+
+PREFIX : <http://example.org/#>
+
+SELECT *
+{ :x ?p ?v . FILTER langMatches(lang(?v), "de-de") . }
 
 }
     end

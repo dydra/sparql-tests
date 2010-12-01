@@ -42,10 +42,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x ?v)
-  (project (?x ?v)
-    (filter (isURI ?v)
-      (bgp (triple ?x <http://example.org/things#p> ?v)))))
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  : <http://example.org/things#>
+SELECT  ?x ?v
+WHERE
+    { ?x :p ?v . 
+      FILTER isURI(?v) .
+    }
 
 }
     end

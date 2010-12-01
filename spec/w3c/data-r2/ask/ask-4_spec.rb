@@ -31,8 +31,9 @@ describe "W3C test " do
 
 }
       @query = %q{
-(ask ()
-  (bgp (triple <http://example/x> <http://example/p> 99)))
+PREFIX :   <http://example/>
+
+ASK { :x :p 99 }
 
 }
     end

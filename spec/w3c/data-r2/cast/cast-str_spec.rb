@@ -31,10 +31,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?s)
-  (project (?s)
-    (filter (= (datatype (<http://www.w3.org/2001/XMLSchema#string> ?v)) <http://www.w3.org/2001/XMLSchema#string>)
-      (bgp (triple ?s <http://example.org/p> ?v)))))
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?s WHERE {
+    ?s :p ?v .
+    FILTER(datatype(xsd:string(?v)) = xsd:string) .
+}
 
 }
     end

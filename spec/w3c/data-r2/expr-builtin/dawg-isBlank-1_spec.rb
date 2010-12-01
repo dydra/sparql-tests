@@ -42,10 +42,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x ?v)
-  (project (?x ?v)
-    (filter (isBlank ?v)
-      (bgp (triple ?x <http://example.org/things#p> ?v)))))
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  : <http://example.org/things#>
+SELECT  ?x ?v
+WHERE
+    { ?x :p ?v . 
+      FILTER isBlank(?v) .
+    }
 
 }
     end
@@ -58,7 +61,7 @@ describe "W3C test " do
       results = [
           { 
               "x" => RDF::URI('http://example.org/things#xb'),
-              "v" => RDF::Node.new('g12036110'),
+              "v" => RDF::Node.new('g12227210'),
           },
       ]
 

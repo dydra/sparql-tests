@@ -54,23 +54,22 @@ _:g rdf:type foaf:Person;
 
 }
       @query = %q{
-(select (?id ?ssn)
-        (project (?id ?ssn)
-                 (leftjoin
-                  (join
-                   (bgp
-                    (triple ?person <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person>)
-                    (triple ?person <http://xmlns.com/foaf/0.1/name> ?name)
-                    )
-                   (graph ?x
-                          (bgp
-                           (triple ??0 <http://xmlns.com/foaf/0.1/name> ?name)
-                           (triple ??0 <http://xmlns.com/foaf/0.1/nick> ?nick)
-                           )))
-                  (union
-                   (bgp (triple ?person <http://example.org/things#empId> ?id))
-                   (bgp (triple ?person <http://example.org/things#ssn> ?ssn))))))
-
+PREFIX  foaf:   <http://xmlns.com/foaf/0.1/>
+PREFIX    ex:   <http://example.org/things#>
+SELECT ?id ?ssn
+WHERE 
+{ 
+    ?person 
+        a foaf:Person;
+        foaf:name ?name . 
+    GRAPH ?x { 
+        [] foaf:name ?name;
+           foaf:nick ?nick
+    } 
+    OPTIONAL { 
+        { ?person ex:empId ?id } UNION { ?person ex:ssn ?ssn } 
+    } 
+} 
 }
     end
 

@@ -27,9 +27,10 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?p)
-  (project (?p)
-    (bgp (triple <http://example.org/ns#x> ?p 1))))
+PREFIX ex: <http://example.org/ns#x> 
+SELECT ?p {
+  ex: ?p 1 .
+}
 
 }
     end

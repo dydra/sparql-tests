@@ -22,7 +22,7 @@ describe "W3C test " do
 <%= IO.read(test.action.test_data.path) %>
 }
       @query = %q{
-<%= IO.read(test.action.query_file.path.sub(/\.rq/,'.ssf')) %>
+<%= IO.read(query_file) %>
 }
     end
 

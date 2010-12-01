@@ -51,10 +51,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v)
-  (reduced
-    (project (?v)
-      (bgp (triple ?x ?p ?v)))))
+PREFIX :      <http://example/> 
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+SELECT REDUCED ?v
+{
+    ?x ?p ?v .
+}
 
 }
     end

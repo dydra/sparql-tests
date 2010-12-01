@@ -39,9 +39,20 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v ?x)
-  (filter (!= ?v 1)
-    (bgp (triple ?x <http://example/ns#p> ?v))))
+# SPARQL FILTER test by value.
+# A processor knows about XSD integer
+# so 1 and 01 are excluded by the filter
+
+PREFIX  :       <http://example/ns#>
+PREFIX  t:      <http://example/t#>
+PREFIX  rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX  rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT *
+{ ?x :p ?v 
+  FILTER ( ?v != 1 )
+}
 
 }
     end

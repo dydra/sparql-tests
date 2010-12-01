@@ -36,10 +36,11 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x)
-  (project (?x)
-    (filter true
-      (bgp (triple ?x <http://example.org/ns#p> "foo")))))
+prefix : <http://example.org/ns#>
+select ?x where {
+    ?x :p "foo" .
+    FILTER (true) .
+}
 
 }
     end

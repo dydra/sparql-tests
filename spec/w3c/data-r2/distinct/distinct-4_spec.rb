@@ -35,12 +35,14 @@ _:a :q  :s .
 
 }
       @query = %q{
-(select (?v)
-        (distinct
-         (project (?v)
-                  (leftjoin
-                   (bgp (triple <http://example/x1> ?p ?o))
-                   (bgp (triple ?o <http://example/q> ?v))))))
+PREFIX :      <http://example/> 
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?v
+{
+    :x1 ?p ?o
+    OPTIONAL { ?o :q ?v }
+}
 
 }
     end

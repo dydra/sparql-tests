@@ -33,14 +33,14 @@ _:e foaf:nick   "DuckSoup" .
 
 }
       @query = %q{
-(select (?mbox ?name)
-        (project (?mbox ?name)
-                 (union
-                  (bgp (triple ?x <http://xmlns.com/foaf/0.1/mbox> ?mbox))
-                  (bgp
-                   (triple ?x <http://xmlns.com/foaf/0.1/mbox> ?mbox)
-                   (triple ?x <http://xmlns.com/foaf/0.1/name> ?name)
-                   ))))
+PREFIX  foaf:   <http://xmlns.com/foaf/0.1/>
+
+SELECT ?mbox ?name
+   {
+     { ?x foaf:mbox ?mbox }
+   UNION 
+     { ?x foaf:mbox ?mbox . ?x foaf:name  ?name }
+   }
 
 }
     end

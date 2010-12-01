@@ -52,33 +52,49 @@ end
 def describe_results_snippet(test)
 end
 
-dest_dir = ENV['DEST_DIR'] || File.join(File.expand_path(File.dirname(__FILE__)), '..', 'spec', 'w3c', 'data-r2')
-puts "saving to #{dest_dir}"
-
-begin Dir.mkdir(dest_dir) rescue nil end
-
-tests = load_w3c_tests
-skipped = existed = count = 0
-tests.each do |test|
-  count += 1
-  if test.action.test_data.nil? || !File.exists?(test.action.query_file.path.sub(/\.rq/,'.ssf'))
-    skipped += 1
-    next
-  end
-  next if test.action.test_data.nil?
-  filename = File.join( dest_dir,
+def filename_for(directory, test)
+  filename = File.join( directory,
                         File.basename(File.dirname(test.action.test_data.path)),
                         File.basename(test.subject.fragment)) 
   filename += '_spec.rb'
-                        
+end
 
-  begin Dir.mkdir(File.dirname(filename)) rescue nil end
+
+w3c_dir = ENV['DEST_DIR'] || File.join(File.expand_path(File.dirname(__FILE__)), '..', 'spec', 'w3c', 'data-r2')
+ssf_dir = ENV['DEST_DIR'] || File.join(File.expand_path(File.dirname(__FILE__)), '..', 'spec', 'ssf')
+
+begin Dir.mkdir(w3c_dir) rescue nil end
+begin Dir.mkdir(ssf_dir) rescue nil end
+
+tests = load_w3c_tests
+skipped = ssf_skipped = existed = count = 0
+test_template = Erubis::Eruby.new(File.read(File.join(File.dirname(__FILE__), '..', 'etc', 'test.rb.erb')))
+tests.each do |test|
+  count += 1
+  if test.action.test_data.nil?
+    skipped += 1
+    next
+  end
+
   results_snippet = results_snippet_for(test)
-  existed += 1 if File.exists?(filename)
-  template = Erubis::Eruby.new(File.read(File.join(File.dirname(__FILE__), '..', 'etc', 'test.rb.erb')))
+ 
+  filename = filename_for(w3c_dir, test)
+  begin Dir.mkdir(File.dirname(filename)) rescue nil end
+  query_file = test.action.query_file.path
   File.open(filename, 'w+') do |f|
-    f.write template.result(binding)
+    f.write test_template.result(binding)
+  end
+
+  filename = filename_for(ssf_dir, test)
+  begin Dir.mkdir(File.dirname(filename)) rescue nil end
+  query_file = test.action.query_file.path.sub(/\.rq/,'.ssf')
+  if !File.exists?(test.action.query_file.path.sub(/\.rq/,'.ssf'))
+    ssf_skipped += 1
+    next
+  end
+  File.open(filename, 'w+') do |f|
+    f.write test_template.result(binding)
   end
 end
 
-puts "skipped #{skipped} tests for not having data files, #{existed} tests appeared in manifests twice, and there were #{count} total tests"
+puts "skipped #{skipped} tests for not having data files, #{ssf_skipped} for not having SSF files, and there were #{count} total tests"

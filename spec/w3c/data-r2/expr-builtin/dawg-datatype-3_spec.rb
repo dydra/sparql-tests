@@ -36,10 +36,15 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x)
-  (project (?x)
-    (filter (= (datatype ?v) <http://www.w3.org/2001/XMLSchema#string>)
-      (bgp (triple ?x <http://example/p> ?v)))))
+# Whichliterals have xsd:string as a datatype
+
+PREFIX : <http://example/> 
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?x
+{ ?x :p ?v . 
+  FILTER( datatype(?v) = xsd:string ) 
+}
 
 }
     end

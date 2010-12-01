@@ -51,9 +51,13 @@ _:fred
 
 }
       @query = %q{
-(select (?x ?y)
-  (project (?x ?y)
-    (bgp (triple ?x <http://xmlns.com/foaf/0.1/knows> ?y))))
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  foaf:       <http://xmlns.com/foaf/0.1/>
+
+SELECT ?x ?y
+WHERE {
+  ?x foaf:knows ?y .
+}
 
 }
     end

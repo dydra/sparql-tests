@@ -27,8 +27,9 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?s ?p ?o)
-  (bgp (triple ?s ?p ?o)))
+PREFIX : <http://example/> 
+
+SELECT * { ?s ?p ?o }
 
 }
     end

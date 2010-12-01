@@ -31,11 +31,17 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x ?v ?y ?w)
-        (leftjoin
-         (bgp (triple ?x <http://example/p> ?v))
-         (bgp (triple ?y <http://example/q> ?w))
-         (= ?v 2)))
+PREFIX :    <http://example/>
+
+SELECT *
+{ 
+  ?x :p ?v .
+  OPTIONAL
+  { 
+    ?y :q ?w .
+    FILTER(?v=2)
+  }
+}
 
 }
     end

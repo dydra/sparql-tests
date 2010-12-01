@@ -29,9 +29,10 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v ?p)
-  (filter (langMatches (lang ?v) "en-GB")
-    (bgp (triple <http://example.org/#x> ?p ?v))))
+PREFIX : <http://example.org/#>
+
+SELECT *
+{ :x ?p ?v . FILTER langMatches(lang(?v), "en-GB") . }
 
 }
     end

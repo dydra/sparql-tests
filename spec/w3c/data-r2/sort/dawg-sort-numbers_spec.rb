@@ -29,13 +29,10 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?s)
-  (project (?s)
-    (order ((+ ?o1 ?o2))
-      (bgp
-        (triple ?s <http://example.org/p> ?o1)
-        (triple ?s <http://example.org/q> ?o2)
-      ))))
+PREFIX : <http://example.org/>
+SELECT ?s WHERE {
+  ?s :p ?o1 ; :q ?o2 .
+} ORDER BY (?o1 + ?o2)
 
 }
     end

@@ -29,8 +29,8 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?a ?b)
-        (bgp (triple ?a ?a ?b)))
+SELECT *
+WHERE { ?a ?a ?b . }
 
 }
     end

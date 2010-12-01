@@ -30,9 +30,14 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?S)
-  (project (?S)
-    (bgp (triple ?S <http://example/vocab#p> <eXAMPLE://a/b/%63/%7bfoo%7d#xyz>))))
+# Example 1 from
+# http://lists.w3.org/Archives/Public/public-rdf-dawg/2005JulSep/0096
+# $Id: normalization-02.rq,v 1.1 2005/08/09 14:35:26 eric Exp $
+PREFIX : <http://example/vocab#>
+PREFIX p1: <eXAMPLE://a/./b/../b/%63/%7bfoo%7d#>
+
+SELECT ?S WHERE { ?S :p p1:xyz }
+
 
 }
     end

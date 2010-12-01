@@ -42,11 +42,17 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x1 ?v1 ?x2 ?v2)
-    (bgp
-      (triple ?x1 <http://example.org/things#p> ?v1)
-      (triple ?x2 <http://example.org/things#p> ?v2)
-    )))
+# Test: !sameTerm and eq
+# $Id: sameTerm-not-eq.rq,v 1.1 2007/08/31 14:01:57 eric Exp $
+
+PREFIX     :    <http://example.org/things#>
+
+SELECT *
+{
+    ?x1 :p ?v1 .
+    ?x2 :p ?v2 .
+    FILTER ( !sameTerm(?v1, ?v2) && ?v1 = ?v2 )
+}
 
 }
     end

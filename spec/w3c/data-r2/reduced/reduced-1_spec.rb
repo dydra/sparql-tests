@@ -30,11 +30,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?s ?o)
-  (reduced
-    (union
-      (bgp (triple ?s <http://example/p> ?o))
-      (bgp (triple ?s <http://example/q> ?o)))))
+PREFIX :         <http://example/> 
+PREFIX xsd:      <http://www.w3.org/2001/XMLSchema#> 
+SELECT REDUCED * 
+WHERE { 
+  { ?s :p ?o } UNION { ?s :q ?o }
+}
+
 
 }
     end

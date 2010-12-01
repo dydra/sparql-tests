@@ -36,10 +36,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x)
-  (project (?x)
-    (filter (isLiteral ?v)
-      (bgp (triple ?x <http://example/p> ?v)))))
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  : <http://example/>
+SELECT  ?x 
+WHERE
+    { ?x :p ?v . 
+      FILTER isLiteral(?v) .
+    }
 
 }
     end

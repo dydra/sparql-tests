@@ -41,12 +41,15 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?a ?w)
-  (project (?a ?w)
-    (filter (! ?w)
-      (leftjoin
-        (bgp (triple ?a <http://example.org/ns#p> ?v))
-        (bgp (triple ?a <http://example.org/ns#q> ?w))))))
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  : <http://example.org/ns#>
+SELECT  ?a ?w
+WHERE
+    { ?a :p ?v . 
+      OPTIONAL
+        { ?a :q ?w } . 
+      FILTER ( ! ?w ) .
+    }
 
 }
     end

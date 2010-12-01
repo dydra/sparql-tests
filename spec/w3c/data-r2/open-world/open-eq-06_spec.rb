@@ -39,9 +39,18 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v ?x)
-  (filter (!= ?v "a"^^<http://example/t#type1>)
-    (bgp (triple ?x <http://example/ns#p> ?v))))
+# SPARQL FILTER test by value for known types.
+# Nothing is known to be not the same value as  "a"^^t:type1
+#  "b"^^t:type1 might be a different lexical form for the same value
+#  "a"^^t:type2 might have overlapping value spaces for this lexicial form.
+
+PREFIX  :       <http://example/ns#>
+PREFIX  t:      <http://example/t#>
+
+SELECT *
+{ ?x :p ?v 
+  FILTER ( ?v != "a"^^t:type1 )
+}
 
 }
     end

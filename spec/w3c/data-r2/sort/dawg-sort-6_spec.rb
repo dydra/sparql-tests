@@ -42,10 +42,11 @@ _:e foaf:name "Bob" ;
 
 }
       @query = %q{
-(select (?address)
-  (project (?address)
-    (order ((asc ?address))
-      (bgp (triple ?x <http://example.org/things#address> ?address)))))
+PREFIX ex:      <http://example.org/things#> 
+
+SELECT ?address
+WHERE { ?x ex:address ?address }
+ORDER BY ASC(?address)
 
 }
     end

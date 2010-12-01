@@ -29,12 +29,17 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v ?w)
-        (leftjoin
-         (bgp (triple <http://example/x1> <http://example/p> ?v))
-         (leftjoin
-          (bgp (triple <http://example/x3> <http://example/q> ?w))
-          (bgp (triple <http://example/x2> <http://example/p> ?v)))))
+PREFIX :    <http://example/>
+
+SELECT *
+{ 
+    :x1 :p ?v .
+    OPTIONAL
+    {
+      :x3 :q ?w .
+      OPTIONAL { :x2 :p ?v }
+    }
+}
 
 }
     end

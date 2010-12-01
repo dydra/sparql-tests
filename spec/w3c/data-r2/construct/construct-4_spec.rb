@@ -39,11 +39,15 @@ _:bob
 
 }
       @query = %q{
-(construct ((triple _:a <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> ?s)
-            (triple _:a <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> ?p)
-            (triple _:a <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?o))
-  (project (?s ?p ?o)
-    (bgp (triple ?s ?p ?o))))
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  foaf:       <http://xmlns.com/foaf/0.1/>
+
+CONSTRUCT { _:a rdf:subject ?s ;
+                rdf:predicate ?p ;
+                rdf:object ?o  . }
+WHERE {
+  ?s ?p ?o .
+}
 
 }
     end

@@ -31,10 +31,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v)
-        (distinct
-         (project (?v)
-                  (bgp (triple ?x ?p ?v)))))
+PREFIX :      <http://example/> 
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?v
+{
+    ?x ?p ?v .
+}
 
 }
     end

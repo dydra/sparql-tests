@@ -40,9 +40,13 @@ _:bob
 
 }
       @query = %q{
-(construct ((triple ?s <http://xmlns.com/foaf/0.1/name> ?o))
-  (project (?s ?o)
-    (bgp (triple ?s <http://xmlns.com/foaf/0.1/name> ?o))))
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX  foaf:       <http://xmlns.com/foaf/0.1/>
+
+CONSTRUCT { ?s foaf:name ?o . }
+WHERE {
+  ?s foaf:name ?o .
+}
 
 }
     end

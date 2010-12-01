@@ -33,12 +33,15 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v ?w)
-        (project (?v ?w)
-                 (filter (exprlist (= ?v 2) (= ?w 3))
-                         (bgp
-                          (triple ?s <http://example/p> ?v)
-                          (triple ?s <http://example/q> ?w)))))
+PREFIX : <http://example/>
+
+SELECT ?v ?w
+{ 
+    FILTER (?v = 2)
+    FILTER (?w = 3)
+    ?s :p ?v . 
+    ?s :q ?w .
+}
 
 }
     end

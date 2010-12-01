@@ -28,10 +28,11 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?s)
-  (project (?s)
-    (order ((<http://www.w3.org/2001/XMLSchema#integer> ?o))
-      (bgp (triple ?s <http://example.org/p> ?o)))))
+PREFIX : <http://example.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?s WHERE {
+  ?s :p ?o .
+} ORDER BY xsd:integer(?o)
 
 }
     end

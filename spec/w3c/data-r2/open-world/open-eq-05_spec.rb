@@ -39,9 +39,17 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v ?x)
-  (filter (= ?v "a"^^<http://example/t#type1>)
-    (bgp (triple ?x <http://example/ns#p> ?v))))
+# SPARQL FILTER test by value.
+# Only one valus is known to be "a"^^t:type1
+# (others maybe but the processor does not positively know this)
+
+PREFIX  :       <http://example/ns#>
+PREFIX  t:      <http://example/t#>
+
+SELECT *
+{ ?x :p ?v 
+  FILTER ( ?v = "a"^^t:type1 )
+}
 
 }
     end

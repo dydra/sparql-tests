@@ -37,9 +37,14 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v ?x)
-  (filter (!= ?v "2006-08-23"^^<http://www.w3.org/2001/XMLSchema#date>)
-    (bgp (triple ?x <http://example/r> ?v))))
+PREFIX     :    <http://example/>
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT *
+{
+    ?x :r ?v .
+    FILTER ( ?v != "2006-08-23"^^xsd:date )
+}
 
 }
     end

@@ -43,19 +43,17 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?person ?nick ?page ?img ?name ?firstN)
-        (project (?person ?nick ?page ?img ?name ?firstN)
-                 (filter (|| (|| (bound ?page) (bound ?img)) (bound ?firstN))
-                         (leftjoin
-                          (leftjoin
-                           (bgp (triple ?person <http://xmlns.com/foaf/0.1/nick> ?nick))
-                           (bgp (triple ?person <http://xmlns.com/foaf/0.1/isPrimaryTopicOf> ?page)))
-                          (join
-                           (bgp (triple ?person <http://xmlns.com/foaf/0.1/name> ?name))
-                           (union
-                            (bgp (triple ?person <http://xmlns.com/foaf/0.1/depiction> ?img))
-                            (bgp (triple ?person <http://xmlns.com/foaf/0.1/firstName> ?firstN))))))))
-
+PREFIX  foaf:   <http://xmlns.com/foaf/0.1/>
+SELECT ?person ?nick ?page ?img ?name ?firstN
+{ 
+    ?person foaf:nick ?nick
+    OPTIONAL { ?person foaf:isPrimaryTopicOf ?page } 
+    OPTIONAL { 
+        ?person foaf:name ?name 
+        { ?person foaf:depiction ?img } UNION 
+        { ?person foaf:firstName ?firstN } 
+    } FILTER ( bound(?page) || bound(?img) || bound(?firstN) ) 
+} 
 }
     end
 

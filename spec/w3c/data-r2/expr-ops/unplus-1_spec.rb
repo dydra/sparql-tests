@@ -29,10 +29,11 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?s)
-  (project (?s)
-    (filter (= ?o +3)
-      (bgp (triple ?s <http://example.org/p> ?o)))))
+PREFIX : <http://example.org/>
+SELECT ?s WHERE {
+    ?s :p ?o .
+    FILTER(?o = +3) .
+}
 
 }
     end

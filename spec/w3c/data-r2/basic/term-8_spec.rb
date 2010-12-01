@@ -36,8 +36,11 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?p)
-        (bgp (triple <http://example.org/ns#x> ?p +5)))
+PREFIX :     <http://example.org/ns#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+# DOT is part of the decimal.
+SELECT * { :x ?p +5 }
 
 }
     end

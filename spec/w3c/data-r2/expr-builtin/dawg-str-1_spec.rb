@@ -42,10 +42,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x ?v)
-  (project (?x ?v)
-    (filter (= (str ?v) "1")
-      (bgp (triple ?x <http://example.org/things#p> ?v)))))
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  : <http://example.org/things#>
+SELECT  ?x ?v
+WHERE
+    { ?x :p ?v . 
+      FILTER ( str(?v) = "1" ) .
+    }
 
 }
     end

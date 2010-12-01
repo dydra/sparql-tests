@@ -27,12 +27,10 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v)
-        (project (?v)
-                 (join
-                  (bgp (triple <http://example/x> <http://example/p> ?v))
-                  (filter (= ?v 1)
-                          (table unit)))))
+PREFIX : <http://example/> 
+
+SELECT ?v
+{ :x :p ?v . { FILTER(?v = 1) } }
 
 }
     end

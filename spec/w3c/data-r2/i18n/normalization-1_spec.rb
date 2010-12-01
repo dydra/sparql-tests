@@ -45,12 +45,12 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?name)
-  (project (?name)
-    (bgp
-      (triple ??0 <http://xmlns.com/foaf/0.1/name> ?name)
-      (triple ??0 <http://www.w3.org/2001/sw/DataAccess/tests/data/i18n/normalization.ttl#resumé> ?resume)
-    )))
+# Figure out what happens with normalization form C.
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX HR: <http://www.w3.org/2001/sw/DataAccess/tests/data/i18n/normalization.ttl#>
+SELECT ?name
+ WHERE { [ foaf:name ?name; 
+           HR:resumé ?resume ] . }
 
 }
     end

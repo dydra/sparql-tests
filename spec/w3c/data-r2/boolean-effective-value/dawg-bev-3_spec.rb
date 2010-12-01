@@ -36,10 +36,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?a)
-  (project (?a)
-    (filter (&& true ?v)
-      (bgp (triple ?a <http://example.org/ns#p> ?v)))))
+PREFIX  xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  : <http://example.org/ns#>
+SELECT  ?a
+WHERE
+    { ?a :p ?v . 
+      FILTER ("true"^^xsd:boolean && ?v) .
+    }
 
 }
     end

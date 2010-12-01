@@ -34,11 +34,16 @@ describe "W3C test " do
 
 }
       @query = %q{
-(construct ((triple ?x <http://example/p2> ?v))
-  (project (?x ?o ?v)
-    (leftjoin
-      (bgp (triple ?x <http://example/p> ?o))
-      (bgp (triple ?o <http://example/q> ?v)))))
+PREFIX : <http://example/> 
+
+CONSTRUCT { ?x :p2 ?v }
+
+WHERE
+{
+  ?x :p ?o .
+  OPTIONAL {?o :q ?v }
+}
+
 
 }
     end

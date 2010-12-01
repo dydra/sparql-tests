@@ -29,12 +29,17 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v1 ?v2)
-  (filter (= ?v1 ?v2)
-    (bgp
-      (triple ?x1 <http://example/p> ?v1)
-      (triple ?x2 <http://example/p> ?v2)
-    )))
+# Test: 'xyz'@en = 'xyz'@EN
+# $Id: lang-case-sensitivity-eq.rq,v 1.1 2007/06/24 23:15:38 lfeigenb Exp $
+
+PREFIX     :    <http://example/>
+
+SELECT *
+{
+    ?x1 :p ?v1 .
+    ?x2 :p ?v2 .
+    FILTER ( ?v1 = ?v2 )
+}
 
 }
     end

@@ -37,10 +37,14 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x ?date)
-  (project (?x ?date)
-    (filter (= (datatype ?date) <http://www.w3.org/2001/XMLSchema#date>)
-      (bgp (triple ?x <http://example/s> ?date)))))
+PREFIX     :    <http://example/>
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?x ?date
+{
+    ?x :s ?date .
+    FILTER ( datatype(?date) = xsd:date )
+}
 
 }
     end

@@ -27,12 +27,14 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?a ?c)
-  (project (?a ?c)
-    (filter (! (bound ?e))
-      (leftjoin
-        (bgp (triple ?a <http://example.org/ns#b> ?c))
-        (bgp (triple ?c <http://example.org/ns#d> ?e))))))
+PREFIX  : <http://example.org/ns#>
+SELECT  ?a ?c
+WHERE
+    { ?a :b ?c . 
+      OPTIONAL
+        { ?c :d ?e } . 
+      FILTER (! bound(?e)) 
+    }
 
 }
     end

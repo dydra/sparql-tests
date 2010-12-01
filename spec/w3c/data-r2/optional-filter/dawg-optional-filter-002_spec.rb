@@ -34,12 +34,15 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?title ?price)
-        (project (?title ?price)
-                 (filter (< ?price 15)
-                         (leftjoin
-                          (bgp (triple ?book <http://purl.org/dc/elements/1.1/title> ?title))
-                          (bgp (triple ?book <http://example.org/ns#price> ?price))))))
+PREFIX  dc: <http://purl.org/dc/elements/1.1/>
+PREFIX  x: <http://example.org/ns#>
+SELECT  ?title ?price
+WHERE
+    { ?book dc:title ?title . 
+      OPTIONAL
+        { ?book x:price ?price } . 
+      FILTER (?price < 15)  .
+    }
 
 }
     end

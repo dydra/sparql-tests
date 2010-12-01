@@ -37,14 +37,12 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x ?y ?z)
-        (project (?x ?y ?z)
-                 (join
-                  (graph ?g
-                         (bgp (triple ?x ?p 1)))
-                  (union
-                   (bgp (triple ?x <http://example/p> ?y))
-                   (bgp (triple ?p <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?z))))))
+PREFIX :    <http://example/>
+
+SELECT ?x ?y ?z
+{ 
+    GRAPH ?g { ?x ?p 1 } { ?x :p ?y } UNION { ?p a ?z }
+}
 
 }
     end

@@ -36,10 +36,15 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x)
-  (project (?x)
-    (filter (!= (lang ?v) "@NotALangTag@")
-      (bgp (triple ?x <http://example/p> ?v)))))
+# Test which things have a lang tag of some form.
+
+PREFIX : <http://example/> 
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?x
+{ ?x :p ?v . 
+  FILTER ( lang(?v) != '@NotALangTag@' )
+}
 
 }
     end

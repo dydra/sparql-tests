@@ -39,8 +39,14 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x)
-  (bgp (triple ?x <http://example/ns#p> "a"^^<http://example/t#type1>)))
+# Test matching in a graph pattern
+# Unknown type
+
+PREFIX  :       <http://example/ns#>
+PREFIX  t:      <http://example/t#>
+
+SELECT *
+{ ?x :p "a"^^t:type1 }
 
 }
     end

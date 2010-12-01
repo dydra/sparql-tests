@@ -42,12 +42,15 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v1 ?v2 ?x ?y)
-  (filter (|| (!= ?v1 ?v2) (= ?v1 ?v2))
-    (bgp
-      (triple ?x <http://example/p> ?v1)
-      (triple ?y <http://example/q> ?v2)
-    )))
+PREFIX     :    <http://example/>
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT *
+{
+    ?x :p ?v1 .
+    ?y :q ?v2 .
+    FILTER ( ?v1 != ?v2 || ?v1 = ?v2 )
+}
 
 }
     end

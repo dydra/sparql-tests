@@ -40,12 +40,13 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?v)
-  (slice 100 1
-    (project (?v)
-      (order (?v)
-        (bgp (triple ??0 ?p ?v))))))
+PREFIX : <http://example.org/ns#>
 
+SELECT ?v
+WHERE { [] ?p ?v }
+ORDER BY ?v
+OFFSET 100
+LIMIT 1
 }
     end
 

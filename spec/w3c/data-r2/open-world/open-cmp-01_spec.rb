@@ -37,14 +37,14 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x ?v1 ?v2)
-  (project (?x ?v1 ?v2)
-    (filter (|| (< ?v1 ?v2) (> ?v1 ?v2))
-      (bgp
-        (triple ?x <http://example/p> ??0)
-        (triple ??0 <http://example/v1> ?v1)
-        (triple ??0 <http://example/v2> ?v2)
-      ))))
+PREFIX      :    <http://example/> 
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?x ?v1 ?v2
+{
+    ?x :p [ :v1 ?v1 ; :v2 ?v2 ] .
+    FILTER ( ?v1 < ?v2 || ?v1 > ?v2 )
+}
 
 }
     end

@@ -39,9 +39,19 @@ describe "W3C test " do
 
 }
       @query = %q{
-(select (?x)
-  (bgp (triple ?x <http://example/p> 001)))
+# SPARQL is defined over simple entailment so
+# only syntactic matches show.  
+# (Some systems may match because they do
+# value-based matching in the graph (D-entailment))
 
+# Does not strictly match "1"^xsd:integer
+
+PREFIX  :       <http://example/ns#>
+PREFIX  t:      <http://example/t#>
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+SELECT *
+{ ?x :p "001"^^xsd:integer }
 }
     end
 
