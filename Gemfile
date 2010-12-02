@@ -1,7 +1,7 @@
 
 source 'http://rubygems.org'
 gem "rspec"
-gem "rspec-core", :git => '/users/ben/repos/rspec-core', :branch => 'context-nesting' #"2.1.0"
+gem "rspec-core", :git => 'git://github.com/bhuga/rspec-core', :branch => 'context-nesting' #"2.1.0"
 gem 'syntax'
 gem 'rdf-isomorphic'
 gem 'rdf',        :git => 'git://github.com/bendiken/rdf.git'

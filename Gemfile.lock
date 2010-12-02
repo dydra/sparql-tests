@@ -1,11 +1,4 @@
 GIT
-  remote: /users/ben/repos/rspec-core
-  revision: 14eece47c901f2ef67b3b92aa879d58f9e18398b
-  branch: context-nesting
-  specs:
-    rspec-core (2.3.0.pre)
-
-GIT
   remote: git://github.com/bendiken/rdf-raptor.git
   revision: 0bb48accabcc458c62851fa5a93d778501caf1b9
   specs:
@@ -26,6 +19,13 @@ GIT
     sparql-client (0.0.7)
       json_pure (>= 1.4.2)
       rdf (= 0.3.0.pre)
+
+GIT
+  remote: git://github.com/bhuga/rspec-core
+  revision: 14eece47c901f2ef67b3b92aa879d58f9e18398b
+  branch: context-nesting
+  specs:
+    rspec-core (2.3.0.pre)
 
 GIT
   remote: git://github.com/gkellogg/rdf-n3.git
