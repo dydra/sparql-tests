@@ -61,12 +61,12 @@ SELECT *
 
 
       repository = 'open-world-open-eq-01'
-      results = [
+      expected = [
       ]
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

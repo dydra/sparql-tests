@@ -63,7 +63,7 @@ SELECT *
 
 
       repository = 'expr-builtin-sameTerm-eq'
-      results = [
+      expected = [
           { 
               :v1 => RDF::URI('http://example.org/things#z'),
               :v2 => RDF::URI('http://example.org/things#z'),
@@ -152,7 +152,7 @@ SELECT *
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

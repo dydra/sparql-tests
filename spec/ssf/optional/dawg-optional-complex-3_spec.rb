@@ -106,7 +106,7 @@ _:g rdf:type foaf:Person;
       graphs[RDF::URI('complex-data-1.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'optional-dawg-optional-complex-3'
-      results = [
+      expected = [
           { 
               :name => RDF::Literal.new('Alice' ),
               :nick => RDF::Literal.new('WhoMe?' ),
@@ -122,7 +122,7 @@ _:g rdf:type foaf:Person;
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

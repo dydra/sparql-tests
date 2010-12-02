@@ -59,7 +59,7 @@ WHERE
 
 
       repository = 'expr-builtin-dawg-str-1'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :x => RDF::URI('http://example.org/things#xd3'),
@@ -80,7 +80,7 @@ WHERE
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

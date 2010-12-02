@@ -104,7 +104,7 @@ WHERE
       graphs[RDF::URI('complex-data-1.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'optional-dawg-optional-complex-4'
-      results = [
+      expected = [
           { 
               :img => RDF::URI('http://example.com/alice.png'),
               :name => RDF::Literal.new('Alice' ),
@@ -130,7 +130,7 @@ WHERE
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

@@ -58,7 +58,7 @@ describe "W3C test" do
 
 
       repository = 'open-world-open-eq-07'
-      results = [
+      expected = [
           { 
               :v1 => RDF::Literal.new('xyz' ),
               :v2 => RDF::Literal.new('xyz' ),
@@ -135,7 +135,7 @@ describe "W3C test" do
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

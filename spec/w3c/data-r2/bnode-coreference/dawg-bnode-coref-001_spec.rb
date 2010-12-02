@@ -68,7 +68,7 @@ WHERE {
 
 
       repository = 'bnode-coreference-dawg-bnode-coref-001'
-      results = [
+      expected = [
           { 
               :x => RDF::Node.new('b10'),
               :y => RDF::Node.new('b1f'),
@@ -85,7 +85,7 @@ WHERE {
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

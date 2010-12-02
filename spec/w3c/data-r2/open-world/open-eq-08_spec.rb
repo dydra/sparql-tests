@@ -61,7 +61,7 @@ SELECT *
 
 
       repository = 'open-world-open-eq-08'
-      results = [
+      expected = [
           { 
               :v1 => RDF::Literal.new('xyz' ),
               :v2 => RDF::Literal.new('xyz' ),
@@ -318,7 +318,7 @@ SELECT *
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

@@ -53,7 +53,7 @@ SELECT DISTINCT ?v
 
 
       repository = 'distinct-distinct-4'
-      results = [
+      expected = [
           { 
               :v => RDF::URI('http://example/s'),
           },
@@ -66,7 +66,7 @@ SELECT DISTINCT ?v
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

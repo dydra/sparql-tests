@@ -53,7 +53,7 @@ SELECT ?a ?y ?d ?z
 
 
       repository = 'algebra-join-combo-1'
-      results = [
+      expected = [
           { 
               :a => RDF::URI('http://example/x1'),
               :d => RDF::Literal.new('4' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
@@ -68,7 +68,7 @@ SELECT ?a ?y ?d ?z
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

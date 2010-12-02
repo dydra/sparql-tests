@@ -110,7 +110,7 @@ SELECT ?v
 
 
       repository = 'distinct-no-distinct-9'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('ABC' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
@@ -247,7 +247,7 @@ SELECT ?v
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

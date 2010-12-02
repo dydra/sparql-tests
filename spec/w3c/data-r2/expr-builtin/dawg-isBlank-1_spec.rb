@@ -59,16 +59,16 @@ WHERE
 
 
       repository = 'expr-builtin-dawg-isBlank-1'
-      results = [
+      expected = [
           { 
-              :v => RDF::Node.new('g13453360'),
+              :v => RDF::Node.new('g13443240'),
               :x => RDF::URI('http://example.org/things#xb'),
           },
       ]
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

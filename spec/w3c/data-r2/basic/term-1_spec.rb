@@ -50,7 +50,7 @@ SELECT * { :x ?p true . }
 
 
       repository = 'basic-term-1'
-      results = [
+      expected = [
           { 
               :p => RDF::URI('http://example.org/ns#p1'),
           },
@@ -58,7 +58,7 @@ SELECT * { :x ?p true . }
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

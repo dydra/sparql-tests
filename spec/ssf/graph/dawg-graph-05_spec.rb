@@ -48,7 +48,7 @@ describe "W3C test" do
       graphs[RDF::URI('data-g2.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'graph-dawg-graph-05'
-      results = [
+      expected = [
           { 
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
@@ -63,7 +63,7 @@ describe "W3C test" do
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

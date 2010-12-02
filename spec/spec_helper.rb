@@ -2,6 +2,25 @@ require 'bundler'
 Bundler.setup
 Bundler.require(:default)
 
+
+module RSpec
+  module Matchers
+    class MatchArray
+      private
+      def safe_sort(array)
+        case
+          when array.all?{|item| item.respond_to?(:<=>) && !item.is_a?(Hash)}
+            array.sort
+          else
+            array
+        end
+      end
+    end
+  end
+end
+
+
+
 # This file defines the sparql query function, which makes a sparql query and returns results.
 # It respects the following environment variables, all either true or false (set or unset):
 # IMPORT

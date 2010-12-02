@@ -47,7 +47,7 @@ y"""^^:someType .
 
 
       repository = 'basic-quotes-4'
-      results = [
+      expected = [
           { 
               :x => RDF::URI('http://example.org/ns#x3'),
           },
@@ -55,7 +55,7 @@ y"""^^:someType .
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

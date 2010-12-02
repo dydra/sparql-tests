@@ -70,10 +70,10 @@ ASK
 
 
       repository = 'type-promotion-type-promotion-08'
-      result = true
+      expected = true
 
       sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :ask).should == result
+                   :repository => repository, :form => :ask).should == expected
     end
   end
 end

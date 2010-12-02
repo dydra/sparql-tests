@@ -45,7 +45,7 @@ SELECT ?v
 
 
       repository = 'distinct-no-distinct-3'
-      results = [
+      expected = [
           { 
               :v => RDF::Node.new('b0'),
           },
@@ -62,7 +62,7 @@ SELECT ?v
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

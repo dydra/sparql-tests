@@ -55,7 +55,7 @@ SELECT ?x ?date
 
 
       repository = 'open-world-date-4'
-      results = [
+      expected = [
           { 
               :date => RDF::Literal.new('2000-01-01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d8'),
@@ -72,7 +72,7 @@ SELECT ?x ?date
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

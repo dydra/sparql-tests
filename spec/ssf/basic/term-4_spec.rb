@@ -48,7 +48,7 @@ describe "W3C test" do
 
 
       repository = 'basic-term-4'
-      results = [
+      expected = [
           { 
               :p => RDF::URI('http://example.org/ns#n1'),
           },
@@ -56,7 +56,7 @@ describe "W3C test" do
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

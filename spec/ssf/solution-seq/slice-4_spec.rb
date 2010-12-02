@@ -55,7 +55,7 @@ describe "W3C test" do
 
 
       repository = 'solution-seq-slice-4'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
@@ -75,7 +75,7 @@ describe "W3C test" do
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

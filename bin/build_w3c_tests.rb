@@ -56,7 +56,7 @@ def ask_results_snippet(test)
     if ResultBindings.each.first.boolean.nil?
       raise "Couldn't parse ask bindings for #{test.result.path}" # just an assertion, is there another case?
     end
-    "      result = #{ResultBindings.each.first.boolean}"
+    "      expected = #{ResultBindings.each.first.boolean}"
   end
 end
 

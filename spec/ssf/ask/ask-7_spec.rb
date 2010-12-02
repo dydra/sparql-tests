@@ -46,7 +46,7 @@ describe "W3C test" do
 true
 
       sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :ask).should == result
+                   :repository => repository, :form => :ask).should == expected
     end
   end
 end

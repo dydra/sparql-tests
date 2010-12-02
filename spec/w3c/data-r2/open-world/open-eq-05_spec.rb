@@ -60,7 +60,7 @@ SELECT *
 
 
       repository = 'open-world-open-eq-05'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('a' , :datatype => RDF::URI('http://example/t#type1')),
               :x => RDF::URI('http://example/ns#x1'),
@@ -69,7 +69,7 @@ SELECT *
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

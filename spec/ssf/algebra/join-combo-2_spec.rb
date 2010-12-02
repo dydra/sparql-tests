@@ -65,7 +65,7 @@ _:a :p "9"^^xsd:integer .
       graphs[RDF::URI('join-combo-graph-1.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'algebra-join-combo-2'
-      results = [
+      expected = [
           { 
               :x => RDF::URI('http://example/b'),
               :z => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'),
@@ -74,7 +74,7 @@ _:a :p "9"^^xsd:integer .
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

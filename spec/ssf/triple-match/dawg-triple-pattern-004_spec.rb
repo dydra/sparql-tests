@@ -66,7 +66,7 @@ _:fred
 
 
       repository = 'triple-match-dawg-triple-pattern-004'
-      results = [
+      expected = [
           { 
               :name => RDF::Literal.new('Bob' ),
           },
@@ -80,7 +80,7 @@ _:fred
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

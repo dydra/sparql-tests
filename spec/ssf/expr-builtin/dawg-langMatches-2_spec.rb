@@ -42,7 +42,7 @@ describe "W3C test" do
 
 
       repository = 'expr-builtin-dawg-langMatches-2'
-      results = [
+      expected = [
           { 
               :p => RDF::URI('http://example.org/#p3'),
               :v => RDF::Literal.new('abc' ),
@@ -55,7 +55,7 @@ describe "W3C test" do
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

@@ -42,7 +42,7 @@ z:x z:p   "z:x z:p" .
 
 
       repository = 'basic-base-prefix-1'
-      results = [
+      expected = [
           { 
               :p => RDF::URI('http://example.org/ns#p'),
               :v => RDF::Literal.new('d:x ns:p' ),
@@ -55,7 +55,7 @@ z:x z:p   "z:x z:p" .
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

@@ -59,7 +59,7 @@ SELECT ?name ?food WHERE {
 
 
       repository = 'i18n-kanji-1'
-      results = [
+      expected = [
           { 
               :food => RDF::URI('http://www.w3.org/2001/sw/DataAccess/tests/data/i18n/kanji.ttl#海老'),
               :name => RDF::Literal.new('Bob' ),
@@ -72,7 +72,7 @@ SELECT ?name ?food WHERE {
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

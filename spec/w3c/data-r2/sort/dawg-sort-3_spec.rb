@@ -55,7 +55,7 @@ ORDER BY ASC(?mbox)
 
 
       repository = 'sort-dawg-sort-3'
-      results = [
+      expected = [
           { 
               :name => RDF::Literal.new('Bob' ),
           },
@@ -75,7 +75,7 @@ ORDER BY ASC(?mbox)
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

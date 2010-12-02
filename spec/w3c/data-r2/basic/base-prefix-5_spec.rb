@@ -43,7 +43,7 @@ SELECT * WHERE { <#x> <#p> ?v }
 
 
       repository = 'basic-base-prefix-5'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('z:x z:p' ),
           },
@@ -51,7 +51,7 @@ SELECT * WHERE { <#x> <#p> ?v }
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

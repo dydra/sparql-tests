@@ -46,7 +46,7 @@ _:e foaf:name "Bob"^^xsd:string .
 
 
       repository = 'sort-dawg-sort-10'
-      results = [
+      expected = [
           { 
               :name => RDF::Literal.new('Fred' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
@@ -63,7 +63,7 @@ _:e foaf:name "Bob"^^xsd:string .
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

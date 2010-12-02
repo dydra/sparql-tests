@@ -44,7 +44,7 @@ SELECT ?s WHERE {
 
 
       repository = 'expr-ops-unplus-1'
-      results = [
+      expected = [
           { 
               :s => RDF::URI('http://example.org/x3'),
           },
@@ -52,7 +52,7 @@ SELECT ?s WHERE {
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

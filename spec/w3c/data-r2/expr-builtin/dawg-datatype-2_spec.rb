@@ -55,7 +55,7 @@ SELECT ?x
 
 
       repository = 'expr-builtin-dawg-datatype-2'
-      results = [
+      expected = [
           { 
               :x => RDF::URI('http://example/x1'),
           },
@@ -72,7 +72,7 @@ SELECT ?x
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

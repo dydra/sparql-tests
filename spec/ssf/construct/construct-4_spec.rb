@@ -56,7 +56,7 @@ _:bob
       repository = 'construct-construct-4'
 
 
-        true.should == false
+        raise NotImplementedError("This test form is not yet implemented")
     end
   end
 end

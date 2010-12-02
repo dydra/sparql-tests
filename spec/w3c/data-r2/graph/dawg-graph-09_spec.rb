@@ -53,12 +53,12 @@ SELECT *
       graphs[RDF::URI('data-g4.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'graph-dawg-graph-09'
-      results = [
+      expected = [
       ]
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

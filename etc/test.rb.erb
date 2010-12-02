@@ -49,12 +49,12 @@ describe "W3C test" do
       <% case test.form %>
         <% when :select %>
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :<%= test.form %>).should =~ results
+                   :repository => repository, :form => :<%= test.form %>).should =~ expected
         <% when :ask %>
       sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :<%= test.form %>).should == result
+                   :repository => repository, :form => :<%= test.form %>).should == expected
         <% else %>
-        true.should == false
+        raise NotImplementedError("This test form is not yet implemented")
       <% end %>
     end
   end

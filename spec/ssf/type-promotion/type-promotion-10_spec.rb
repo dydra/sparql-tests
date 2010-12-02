@@ -66,10 +66,10 @@ t:dateTime1		rdf:value	"2005-01-14T12:34:56"^^xsd:dateTime .
 
 
       repository = 'type-promotion-type-promotion-10'
-      result = true
+      expected = true
 
       sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :ask).should == result
+                   :repository => repository, :form => :ask).should == expected
     end
   end
 end

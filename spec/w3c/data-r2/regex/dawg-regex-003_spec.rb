@@ -45,7 +45,7 @@ WHERE {
 
 
       repository = 'regex-dawg-regex-003'
-      results = [
+      expected = [
           { 
               :val => RDF::Literal.new('http://example.com/literal' ),
           },
@@ -53,7 +53,7 @@ WHERE {
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

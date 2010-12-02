@@ -52,7 +52,7 @@ describe "W3C test" do
 
 
       repository = 'open-world-open-eq-03'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :x => RDF::URI('http://example/ns#z2'),
@@ -65,7 +65,7 @@ describe "W3C test" do
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

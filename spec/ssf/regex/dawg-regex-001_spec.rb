@@ -41,7 +41,7 @@ ex:foo rdf:value "abcDEFghiJKL" , "ABCdefGHIjkl", "0123456789",
 
 
       repository = 'regex-dawg-regex-001'
-      results = [
+      expected = [
           { 
               :val => RDF::Literal.new('ABCdefGHIjkl' ),
           },
@@ -49,7 +49,7 @@ ex:foo rdf:value "abcDEFghiJKL" , "ABCdefGHIjkl", "0123456789",
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

@@ -47,7 +47,7 @@ ASK { :x :p 1 }
 true
 
       sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :ask).should == result
+                   :repository => repository, :form => :ask).should == expected
     end
   end
 end

@@ -57,7 +57,7 @@ ORDER BY ASC(?address)
 
 
       repository = 'sort-dawg-sort-6'
-      results = [
+      expected = [
           { 
               :address => RDF::URI('http://example.org/eve'),
           },
@@ -74,7 +74,7 @@ ORDER BY ASC(?address)
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

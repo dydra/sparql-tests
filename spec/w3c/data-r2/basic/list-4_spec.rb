@@ -45,7 +45,7 @@ SELECT ?p ?v ?w
 
 
       repository = 'basic-list-4'
-      results = [
+      expected = [
           { 
               :p => RDF::URI('http://example.org/ns#list2'),
               :v => RDF::Literal.new('11' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
@@ -55,7 +55,7 @@ SELECT ?p ?v ?w
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

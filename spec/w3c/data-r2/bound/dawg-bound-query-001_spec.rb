@@ -45,7 +45,7 @@ WHERE
 
 
       repository = 'bound-dawg-bound-query-001'
-      results = [
+      expected = [
           { 
               :a => RDF::URI('http://example.org/ns#c2'),
               :c => RDF::URI('http://example.org/ns#f'),
@@ -58,7 +58,7 @@ WHERE
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

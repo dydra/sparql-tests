@@ -56,7 +56,7 @@ OFFSET 1
 
 
       repository = 'solution-seq-offset-1'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
@@ -82,7 +82,7 @@ OFFSET 1
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

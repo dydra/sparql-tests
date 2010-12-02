@@ -55,7 +55,7 @@ SELECT ?x ?v1 ?v2
 
 
       repository = 'open-world-open-cmp-01'
-      results = [
+      expected = [
           { 
               :v1 => RDF::Literal.new('v1' ),
               :v2 => RDF::Literal.new('v2' ),
@@ -65,7 +65,7 @@ SELECT ?x ?v1 ?v2
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

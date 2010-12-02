@@ -44,7 +44,7 @@ describe "W3C test" do
 
 
       repository = 'i18n-normalization-3'
-      results = [
+      expected = [
           { 
               :S => RDF::URI('http://example/vocab#s3'),
           },
@@ -52,7 +52,7 @@ describe "W3C test" do
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

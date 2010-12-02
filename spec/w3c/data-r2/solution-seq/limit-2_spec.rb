@@ -57,7 +57,7 @@ LIMIT 100
 
 
       repository = 'solution-seq-limit-2'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('1.5' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
           },
@@ -86,7 +86,7 @@ LIMIT 100
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

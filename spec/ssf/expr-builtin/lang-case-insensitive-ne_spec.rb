@@ -45,12 +45,12 @@ describe "W3C test" do
 
 
       repository = 'expr-builtin-lang-case-insensitive-ne'
-      results = [
+      expected = [
       ]
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

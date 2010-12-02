@@ -50,7 +50,7 @@ describe "W3C test" do
 
 
       repository = 'open-world-date-3'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('2006-08-23+00:00' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d3'),
@@ -67,7 +67,7 @@ describe "W3C test" do
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

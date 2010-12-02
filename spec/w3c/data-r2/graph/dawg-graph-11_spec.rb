@@ -83,12 +83,12 @@ SELECT *
       graphs[RDF::URI('data-g4.ttl')] = { :data => @graph3, :format => :ttl }
 
       repository = 'graph-dawg-graph-11'
-      results = [
+      expected = [
           { 
               :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g3.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
-              :s => RDF::Node.new('g13376260'),
+              :s => RDF::Node.new('g13371220'),
           },
           { 
               :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g1.ttl'),
@@ -117,13 +117,13 @@ SELECT *
               :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g4.ttl'),
               :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/q'),
-              :s => RDF::Node.new('g13303220'),
+              :s => RDF::Node.new('g13297780'),
           },
           { 
               :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g3.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
-              :s => RDF::Node.new('g13295390'),
+              :s => RDF::Node.new('g13289920'),
           },
           { 
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
@@ -134,7 +134,7 @@ SELECT *
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

@@ -51,7 +51,7 @@ SELECT ?mbox ?name ?nick
 
 
       repository = 'optional-dawg-optional-002'
-      results = [
+      expected = [
           { 
               :mbox => RDF::URI('mailto:eve@example.net'),
               :nick => RDF::Literal.new('DuckSoup' ),
@@ -69,7 +69,7 @@ SELECT ?mbox ?name ?nick
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

@@ -54,7 +54,7 @@ WHERE
 
 
       repository = 'optional-filter-dawg-optional-filter-001'
-      results = [
+      expected = [
           { 
               :price => RDF::Literal.new('10' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :title => RDF::Literal.new('TITLE 1' ),
@@ -69,7 +69,7 @@ WHERE
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

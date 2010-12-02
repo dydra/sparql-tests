@@ -41,7 +41,7 @@ WHERE { ?x :p ?q . }
 
 
       repository = 'triple-match-dawg-triple-pattern-002'
-      results = [
+      expected = [
           { 
               :q => RDF::URI('http://example.org/data/v2'),
               :x => RDF::URI('http://example.org/data/x'),
@@ -54,7 +54,7 @@ WHERE { ?x :p ?q . }
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

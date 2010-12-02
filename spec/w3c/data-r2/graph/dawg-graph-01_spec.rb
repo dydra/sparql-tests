@@ -40,7 +40,7 @@ SELECT * { ?s ?p ?o }
 
 
       repository = 'graph-dawg-graph-01'
-      results = [
+      expected = [
           { 
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
@@ -55,7 +55,7 @@ SELECT * { ?s ?p ?o }
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

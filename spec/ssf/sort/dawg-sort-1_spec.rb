@@ -43,7 +43,7 @@ _:e foaf:name "Bob" .
 
 
       repository = 'sort-dawg-sort-1'
-      results = [
+      expected = [
           { 
               :name => RDF::Literal.new('Alice' ),
           },
@@ -60,7 +60,7 @@ _:e foaf:name "Bob" .
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

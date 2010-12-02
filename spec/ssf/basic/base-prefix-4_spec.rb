@@ -42,7 +42,7 @@ z:x z:p   "z:x z:p" .
 
 
       repository = 'basic-base-prefix-4'
-      results = [
+      expected = [
           { 
               :v => RDF::Literal.new('x:x x:p' ),
           },
@@ -50,7 +50,7 @@ z:x z:p   "z:x z:p" .
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

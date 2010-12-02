@@ -43,7 +43,7 @@ SELECT *
 
 
       repository = 'expr-builtin-dawg-langMatches-3'
-      results = [
+      expected = [
           { 
               :p => RDF::URI('http://example.org/#p3'),
               :v => RDF::Literal.new('abc' ),
@@ -60,7 +60,7 @@ SELECT *
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

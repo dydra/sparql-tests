@@ -48,7 +48,7 @@ SELECT ?S WHERE { ?S :p p1:xyz }
 
 
       repository = 'i18n-normalization-2'
-      results = [
+      expected = [
           { 
               :S => RDF::URI('http://example/vocab#s2'),
           },
@@ -56,7 +56,7 @@ SELECT ?S WHERE { ?S :p p1:xyz }
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

@@ -61,7 +61,7 @@ WHERE
 
 
       repository = 'expr-equals-eq-graph-4'
-      results = [
+      expected = [
           { 
               :x => RDF::URI('http://example.org/things#xp1'),
           },
@@ -69,7 +69,7 @@ WHERE
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

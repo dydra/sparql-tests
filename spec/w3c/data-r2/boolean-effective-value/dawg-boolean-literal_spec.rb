@@ -51,7 +51,7 @@ select ?x where {
 
 
       repository = 'boolean-effective-value-dawg-boolean-literal'
-      results = [
+      expected = [
           { 
               :x => RDF::URI('http://example.org/ns#x2'),
           },
@@ -59,7 +59,7 @@ select ?x where {
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

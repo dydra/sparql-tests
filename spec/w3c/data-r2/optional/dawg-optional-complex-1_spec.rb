@@ -63,7 +63,7 @@ SELECT ?person ?nick ?page ?img ?name ?firstN
 
 
       repository = 'optional-dawg-optional-complex-1'
-      results = [
+      expected = [
           { 
               :img => RDF::URI('http://example.com/alice.png'),
               :name => RDF::Literal.new('Alice' ),
@@ -79,7 +79,7 @@ SELECT ?person ?nick ?page ?img ?name ?firstN
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ results
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end
