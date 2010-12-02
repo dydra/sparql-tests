@@ -2,6 +2,7 @@ require 'bundler'
 Bundler.setup
 Bundler.require(:default)
 
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f}
 
 module RSpec
   module Matchers
