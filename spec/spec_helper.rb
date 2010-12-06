@@ -1,6 +1,7 @@
 require 'bundler'
 Bundler.setup
 Bundler.require(:default)
+require 'rdf/cli'
 
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f}
 
@@ -83,20 +84,37 @@ def sparql_query(opts)
     log opts[:graphs][:default][:data]
     log "Running datagraph import #{repository_name} #{repository}"
     Datagraph::Command::Import.new.execute(repository_name, repository)
-    #`datagraph import #{repository_name} #{repository}`
   end
  
   log "Running datagraph query #{repository_name} '#{opts[:query]}'"
   result = capture_stdout do
     Datagraph::Command::Query.new.execute(repository_name, opts[:query])
   end.string
-  #result = `datagraph query #{repository_name} '#{opts[:query]}'`
   log "Raw results:"
   log result
-  log "JSON-parsed results:"
-  # FIXME: handle non-select forms
-  log SPARQL::Client.new("").parse_json_bindings(result).inspect
-  SPARQL::Client.new("").parse_json_bindings(result).map { | result | result.to_hash }
+  
+  result = case opts[:form]
+    when :ask
+      case result.strip
+        when 'true'
+          true
+        when 'false'
+          false
+        else
+          raise "Got something other than true or false for an ask query: '#{result}'"
+      end
+    when :select
+      SPARQL::Client.new("").parse_json_bindings(result).map { | result | result.to_hash }
+    when :describe
+      # TODO
+    when :construct
+      # TODO
+  end
+
+  log "parsed results:"
+  log result
+
+  result
 end
 
 def importing?
