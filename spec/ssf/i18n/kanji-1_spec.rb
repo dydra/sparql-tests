@@ -41,7 +41,7 @@ _:bob   foaf:name "Bob" ;
 
 }
       @query = %q{
-(select (?name)
+(select (?name ?food)
   (project (?name ?food)
     (bgp
       (triple ??0 <http://xmlns.com/foaf/0.1/name> ?name)
