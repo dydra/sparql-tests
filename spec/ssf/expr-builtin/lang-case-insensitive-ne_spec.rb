@@ -28,7 +28,7 @@ describe "W3C test" do
 
 }
       @query = %q{
-(select (?v1 ?v2)
+(select (?v1 ?v2 ?x1 ?x2)
   (filter (!= ?v1 ?v2)
     (bgp
       (triple ?x1 <http://example/p> ?v1)

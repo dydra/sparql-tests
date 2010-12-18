@@ -51,7 +51,7 @@ describe "W3C test" do
 }
     end
 
-    example "sameTerm-eq" do
+    example "sameTerm-eq", :arithmetic => 'boxed', :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

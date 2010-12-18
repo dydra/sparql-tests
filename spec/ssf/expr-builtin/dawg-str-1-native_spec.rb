@@ -14,6 +14,7 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
+# 20101218 jaa convered from dawg-str-1_spec.rb for native arithmetic
 describe "W3C test" do
   context "expr-builtin" do
     before :all do
@@ -49,7 +50,7 @@ describe "W3C test" do
 }
     end
 
-    example "str-1", :arithmetic => 'boxed' do
+    example "str-1", :arithmetic => 'native' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -58,8 +59,8 @@ describe "W3C test" do
       repository = 'expr-builtin-dawg-str-1'
       expected = [
           { 
-              :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :x => RDF::URI('http://example.org/things#xd3'),
+              :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :x => RDF::URI('http://example.org/things#xi3'),
           },
           { 
               :v => RDF::Literal.new('1' ),

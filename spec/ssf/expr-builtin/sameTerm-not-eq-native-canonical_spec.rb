@@ -47,11 +47,10 @@ describe "W3C test" do
       (triple ?x1 :p ?v1)
       (triple ?x2 :p ?v2)
     )))
-
 }
     end
 
-    example "sameTerm-not-eq", :arithmetic => 'boxed' do
+    example "sameTerm-not-eq", :arithmetic => 'boxed', :blank_nodes => 'canonical' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -67,21 +66,9 @@ describe "W3C test" do
           },
           { 
               :v1 => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :v2 => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :x1 => RDF::URI('http://example.org/things#xd2'),
-              :x2 => RDF::URI('http://example.org/things#xd1'),
-          },
-          { 
-              :v1 => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :v2 => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :x1 => RDF::URI('http://example.org/things#xd2'),
               :x2 => RDF::URI('http://example.org/things#xi3'),
-          },
-          { 
-              :v1 => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :x1 => RDF::URI('http://example.org/things#xd2'),
-              :x2 => RDF::URI('http://example.org/things#xd3'),
           },
           { 
               :v1 => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
@@ -103,21 +90,9 @@ describe "W3C test" do
           },
           { 
               :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :v2 => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :x1 => RDF::URI('http://example.org/things#xi2'),
-              :x2 => RDF::URI('http://example.org/things#xi3'),
-          },
-          { 
-              :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :x1 => RDF::URI('http://example.org/things#xi2'),
               :x2 => RDF::URI('http://example.org/things#xd3'),
-          },
-          { 
-              :v1 => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :v2 => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :x1 => RDF::URI('http://example.org/things#xd1'),
-              :x2 => RDF::URI('http://example.org/things#xd2'),
           },
           { 
               :v1 => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
@@ -133,12 +108,6 @@ describe "W3C test" do
           },
           { 
               :v1 => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :x1 => RDF::URI('http://example.org/things#xd1'),
-              :x2 => RDF::URI('http://example.org/things#xd3'),
-          },
-          { 
-              :v1 => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :x1 => RDF::URI('http://example.org/things#xd1'),
               :x2 => RDF::URI('http://example.org/things#xi1'),
@@ -148,12 +117,6 @@ describe "W3C test" do
               :v2 => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :x1 => RDF::URI('http://example.org/things#xi3'),
               :x2 => RDF::URI('http://example.org/things#xd2'),
-          },
-          { 
-              :v1 => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :x1 => RDF::URI('http://example.org/things#xi3'),
-              :x2 => RDF::URI('http://example.org/things#xi2'),
           },
           { 
               :v1 => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
@@ -168,28 +131,10 @@ describe "W3C test" do
               :x2 => RDF::URI('http://example.org/things#xd3'),
           },
           { 
-              :v1 => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :x1 => RDF::URI('http://example.org/things#xi3'),
-              :x2 => RDF::URI('http://example.org/things#xi1'),
-          },
-          { 
-              :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :v2 => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :x1 => RDF::URI('http://example.org/things#xd3'),
-              :x2 => RDF::URI('http://example.org/things#xd2'),
-          },
-          { 
               :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :x1 => RDF::URI('http://example.org/things#xd3'),
               :x2 => RDF::URI('http://example.org/things#xi2'),
-          },
-          { 
-              :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :v2 => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :x1 => RDF::URI('http://example.org/things#xd3'),
-              :x2 => RDF::URI('http://example.org/things#xd1'),
           },
           { 
               :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
@@ -214,12 +159,6 @@ describe "W3C test" do
               :v2 => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :x1 => RDF::URI('http://example.org/things#xi1'),
               :x2 => RDF::URI('http://example.org/things#xd1'),
-          },
-          { 
-              :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :v2 => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :x1 => RDF::URI('http://example.org/things#xi1'),
-              :x2 => RDF::URI('http://example.org/things#xi3'),
           },
           { 
               :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),

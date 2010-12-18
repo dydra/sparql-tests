@@ -28,7 +28,7 @@ describe "W3C test" do
 
 }
       @query = %q{
-(select (?v1 ?v2)
+(select (?v1 ?v2 ?x1 ?x2)
   (filter (= ?v1 ?v2)
     (bgp
       (triple ?x1 <http://example/p> ?v1)
@@ -47,26 +47,26 @@ describe "W3C test" do
       repository = 'expr-builtin-lang-case-insensitive-eq'
       expected = [
           { 
-              :v1 => RDF::Literal.new('xyz' ),
-              :v2 => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz', :language => 'en' ),
+              :v2 => RDF::Literal.new('xyz', :language => 'en' ),
               :x1 => RDF::URI('http://example/x2'),
               :x2 => RDF::URI('http://example/x2'),
           },
           { 
-              :v1 => RDF::Literal.new('xyz' ),
-              :v2 => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz', :language => 'en' ),
+              :v2 => RDF::Literal.new('xyz', :language => 'EN' ),
               :x1 => RDF::URI('http://example/x2'),
               :x2 => RDF::URI('http://example/x3'),
           },
           { 
-              :v1 => RDF::Literal.new('xyz' ),
-              :v2 => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz', :language => 'EN' ),
+              :v2 => RDF::Literal.new('xyz', :language => 'en' ),
               :x1 => RDF::URI('http://example/x3'),
               :x2 => RDF::URI('http://example/x2'),
           },
           { 
-              :v1 => RDF::Literal.new('xyz' ),
-              :v2 => RDF::Literal.new('xyz' ),
+              :v1 => RDF::Literal.new('xyz', :language => 'EN' ),
+              :v2 => RDF::Literal.new('xyz', :language => 'EN' ),
               :x1 => RDF::URI('http://example/x3'),
               :x2 => RDF::URI('http://example/x3'),
           },

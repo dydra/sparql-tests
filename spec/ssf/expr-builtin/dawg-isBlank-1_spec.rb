@@ -49,7 +49,7 @@ describe "W3C test" do
 }
     end
 
-    example "isBlank-1" do
+    example "isBlank-1", :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

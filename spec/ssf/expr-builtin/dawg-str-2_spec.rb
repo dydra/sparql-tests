@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
+# 20101218 jaa arithmetic taging
+
 describe "W3C test" do
   context "expr-builtin" do
     before :all do
@@ -49,7 +51,7 @@ describe "W3C test" do
 }
     end
 
-    example "str-2" do
+    example "str-2", :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

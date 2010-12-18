@@ -45,11 +45,11 @@ describe "W3C test" do
       expected = [
           { 
               :p => RDF::URI('http://example.org/#p3'),
-              :v => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc', :language => 'en'),
           },
           { 
               :p => RDF::URI('http://example.org/#p4'),
-              :v => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc', :language => 'en-gb' ),
           },
       ]
 
