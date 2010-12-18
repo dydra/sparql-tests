@@ -43,7 +43,7 @@ describe "W3C test" do
 
 
       repository = 'ask-ask-4'
-false
+      expected = false
 
       sparql_query(:graphs => graphs, :query => @query,
                    :repository => repository, :form => :ask).should == expected
