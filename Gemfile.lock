@@ -1,13 +1,14 @@
 GIT
   remote: git://github.com/bendiken/rdf-raptor.git
-  revision: 0bb48accabcc458c62851fa5a93d778501caf1b9
+  revision: 31ed166716f5ab3a2814d34870a6f8e9fa394f18
   specs:
     rdf-raptor (0.4.0)
+      ffi (>= 1.0)
       rdf (= 0.3.0.pre)
 
 GIT
   remote: git://github.com/bendiken/rdf.git
-  revision: 4114c1e7a2181e3e6786e3062fd006993e16f209
+  revision: 0bf61f4e8e34db9b3b733a63631b6d833b91f50a
   specs:
     rdf (0.3.0.pre)
       addressable (>= 2.2)
@@ -21,6 +22,14 @@ GIT
       rdf (= 0.3.0.pre)
 
 GIT
+  remote: git://github.com/bhuga/datagraph.git
+  revision: 31053d9b7edfd757f0033e775d85946b8d4b60c5
+  branch: xmlrpc-utf8-fix
+  specs:
+    datagraph (0.0.7)
+      rdf (>= 0.2.3)
+
+GIT
   remote: git://github.com/bhuga/rspec-core
   revision: 14eece47c901f2ef67b3b92aa879d58f9e18398b
   branch: context-nesting
@@ -29,18 +38,10 @@ GIT
 
 GIT
   remote: git://github.com/gkellogg/rdf-n3.git
-  revision: 2cf64086b095b03cbf747b838ecfef7bf562d67c
+  revision: 231437501e5ab607c211adcf6cc58bbb754dfabe
   specs:
     rdf-n3 (0.3.0.pre)
       rdf (= 0.3.0.pre)
-      treetop (>= 1.4.0)
-
-GIT
-  remote: git@datagraph.unfuddle.com:datagraph/datagraph-client.git
-  revision: 66a73bd10ec9ef10fa66b25ee1f51495408d6358
-  specs:
-    datagraph (0.0.7)
-      rdf (>= 0.2.3)
 
 GEM
   remote: http://rubygems.org/
@@ -50,23 +51,25 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    ffi (1.0.2)
+      rake (>= 0.8.7)
     json_pure (1.4.6)
     macaddr (1.0.0)
-    polyglot (0.3.1)
     promise (0.3.0)
     proxies (0.2.1)
+    rake (0.8.7)
     rdf-isomorphic (0.3.1)
       rdf (>= 0.2.4)
     rdf-json (0.1.0)
       json_pure (>= 1.2.3)
       rdf (>= 0.1.0)
-    rspec (2.2.0)
-      rspec-core (~> 2.2)
-      rspec-expectations (~> 2.2)
-      rspec-mocks (~> 2.2)
-    rspec-expectations (2.2.0)
+    rspec (2.3.0)
+      rspec-core (~> 2.3.0)
+      rspec-expectations (~> 2.3.0)
+      rspec-mocks (~> 2.3.0)
+    rspec-expectations (2.3.0)
       diff-lcs (~> 1.1.2)
-    rspec-mocks (2.2.0)
+    rspec-mocks (2.3.0)
     s3 (0.3.7)
       proxies
     spira (0.0.11)
@@ -74,8 +77,6 @@ GEM
       rdf (>= 0.2.3)
       rdf-isomorphic (>= 0.3.0)
     syntax (1.0.0)
-    treetop (1.4.9)
-      polyglot (>= 0.3.1)
     uuid (2.3.1)
       macaddr (~> 1.0)
 
