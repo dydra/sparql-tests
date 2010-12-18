@@ -124,7 +124,7 @@ describe "W3C test" do
               :v => RDF::Literal.new('1.3e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
           { 
-              :v => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC', :language => "en" ),
           },
           { 
               :v => RDF::Literal.new('+1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
@@ -148,19 +148,19 @@ describe "W3C test" do
               :v => RDF::Literal.new('+1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
           },
           { 
-              :v => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc', :language => "en" ),
           },
           { 
               :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              :v => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('', :language => "en" ),
           },
           { 
               :v => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
           },
           { 
-              :v => RDF::Node.new('b0'),
+              :v => RDF::Node.new('a'),
           },
           { 
               :v => RDF::URI('http://example/z1'),

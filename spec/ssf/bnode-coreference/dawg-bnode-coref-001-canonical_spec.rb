@@ -57,7 +57,7 @@ _:fred
 }
     end
 
-    example "dawg-bnode-coreference", :blank_nodes => 'unique'do
+    example "dawg-bnode-coreference", :blank_nodes => 'canonical' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -66,16 +66,16 @@ _:fred
       repository = 'bnode-coreference-dawg-bnode-coref-001'
       expected = [
           { 
-              :x => RDF::Node.new('b10'),
-              :y => RDF::Node.new('b1f'),
+              :x => RDF::Node.new('alice'),
+              :y => RDF::Node.new('bob'),
           },
           { 
-              :x => RDF::Node.new('b1f'),
-              :y => RDF::Node.new('b10'),
+              :x => RDF::Node.new('bob'),
+              :y => RDF::Node.new('alice'),
           },
           { 
-              :x => RDF::Node.new('b20'),
-              :y => RDF::Node.new('b21'),
+              :x => RDF::Node.new('eve'),
+              :y => RDF::Node.new('fred'),
           },
       ]
 

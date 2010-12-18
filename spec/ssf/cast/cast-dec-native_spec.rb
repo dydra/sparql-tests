@@ -38,7 +38,7 @@ describe "W3C test" do
 }
     end
 
-    example "Cast to xsd:decimal", :arithmetic => 'boxed' do
+    example "Cast to xsd:decimal (native)", :arithmetic => 'native' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -49,10 +49,7 @@ describe "W3C test" do
           { 
               :s => RDF::URI('http://example.org/decimal'),
           },
-          { 
-              :s => RDF::URI('http://example.org/int'),
-          },
-      ]
+       ]
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
