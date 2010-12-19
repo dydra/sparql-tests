@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/07/17-dawg-minutes
 #
+# 20101219 jaa : arithmetic indicator : native numbers reduce the solution field
+
 describe "W3C test" do
   context "distinct" do
     before :all do
@@ -103,7 +105,7 @@ describe "W3C test" do
 }
     end
 
-    example "All: Distinct" do
+    example "All: Distinct", :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

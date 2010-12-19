@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/07/17-dawg-minutes
 #
+# 20101219 jaa : blank_nodes indicator
+
 describe "W3C test" do
   context "distinct" do
     before :all do
@@ -102,7 +104,7 @@ describe "W3C test" do
 }
     end
 
-    example "All: No distinct" do
+    example "All: No distinct", :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -129,10 +131,10 @@ describe "W3C test" do
               :v => RDF::Literal.new('1.3e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
           { 
-              :v => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC', :language => 'en' ),
           },
           { 
-              :v => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC', :language => 'en'  ),
           },
           { 
               :v => RDF::Literal.new('+1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
@@ -183,22 +185,22 @@ describe "W3C test" do
               :v => RDF::Literal.new('+1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
           },
           { 
-              :v => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc', :language => 'en'  ),
           },
           { 
-              :v => RDF::Literal.new('abc' ),
-          },
-          { 
-              :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v => RDF::Literal.new('abc', :language => 'en'  ),
           },
           { 
               :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              :v => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              :v => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('', :language => 'en'  ),
+          },
+          { 
+              :v => RDF::Literal.new('', :language => 'en'  ),
           },
           { 
               :v => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),

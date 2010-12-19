@@ -38,7 +38,7 @@ describe "W3C test" do
 }
     end
 
-    example "SELECT REDUCED *" do
+    example "SELECT REDUCED *", :reduced => 'all'  do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -14,6 +14,9 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0096/21-dawg-minutes.html
 #
+# 20101218 jaa : bug : the solution field requires a place-holder for unbound variables
+# 20101219 jaa : unbound marker now supported
+
 describe "W3C test" do
   context "optional" do
     before :all do

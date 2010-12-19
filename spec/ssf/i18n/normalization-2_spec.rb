@@ -14,6 +14,9 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
+# 20101218 jaa : bug indicator : the puri package does alot of un/escaping and normalization.
+#  can be patched to disable, but ultimately, the iri should be opaque
+
 describe "W3C test" do
   context "i18n" do
     before :all do
@@ -31,12 +34,12 @@ describe "W3C test" do
       @query = %q{
 (select (?S)
   (project (?S)
-    (bgp (triple ?S <http://example/vocab#p> <eXAMPLE://a/b/%63/%7bfoo%7d#xyz>))))
+    (bgp (triple ?S <http://example/vocab#p> <eXAMPLE://a/./b/../b/%63/%7bfoo%7d#xyz>))))
 
 }
     end
 
-    example "normalization-02" do
+    example "normalization-02", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

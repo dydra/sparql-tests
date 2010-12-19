@@ -58,7 +58,7 @@ describe "W3C test" do
 }
     end
 
-    example "SELECT REDUCED ?x with strings" do
+    example "SELECT REDUCED ?x with strings", :reduced => 'all' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -79,10 +79,10 @@ describe "W3C test" do
               :v => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              :v => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC', :language => 'en' ),
           },
           { 
-              :v => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC', :language => 'en' ),
           },
           { 
               :v => RDF::Literal.new('ABC' ),
@@ -97,16 +97,16 @@ describe "W3C test" do
               :v => RDF::Literal.new('' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              :v => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc', :language => 'en' ),
           },
           { 
-              :v => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc', :language => 'en' ),
           },
           { 
-              :v => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('', :language => 'en' ),
           },
           { 
-              :v => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('', :language => 'en' ),
           },
           { 
               :v => RDF::Literal.new('abc' ),

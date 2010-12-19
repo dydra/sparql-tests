@@ -14,6 +14,9 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
 #
+# 20101218 jaa : bug : the solution field requires a place-holder for unbound variables
+# 20101219 jaa : unbound marker now supported
+
 describe "W3C test" do
   context "optional-filter" do
     before :all do
@@ -43,7 +46,7 @@ describe "W3C test" do
 }
     end
 
-    example "OPTIONAL-FILTER" do
+    example "OPTIONAL-FILTER"  do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

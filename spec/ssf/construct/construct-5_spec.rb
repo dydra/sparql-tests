@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
+# 20101219 jaa : bug indicator : construct not yet supported by the front-end
+
 describe "W3C test" do
   context "construct" do
     before :all do
@@ -42,7 +44,7 @@ describe "W3C test" do
 }
     end
 
-    example "dawg-construct-optional" do
+    example "dawg-construct-optional", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

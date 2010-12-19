@@ -51,7 +51,7 @@ describe "W3C test" do
 }
     end
 
-    example "Equality 1-1 -- graph" do
+    example "Equality 1-1 -- graph", :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

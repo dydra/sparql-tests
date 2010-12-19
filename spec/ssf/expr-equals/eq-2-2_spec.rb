@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/06/19-dawg-minutes.html
 #
+# 20101219 jaa : bug indicator : = operator failure semantics are unclear
+
 describe "W3C test" do
   context "expr-equals" do
     before :all do
@@ -46,7 +48,7 @@ describe "W3C test" do
       @query = %q{
 (select (?v1 ?v2)
   (project (?v1 ?v2)
-    (filter (= ?v1 ?v2)
+    (filter (!= ?v1 ?v2)
       (bgp
         (triple ?x1 <http://example.org/things#p> ?v1)
         (triple ?x2 <http://example.org/things#p> ?v2)
@@ -55,7 +57,8 @@ describe "W3C test" do
 }
     end
 
-    example "Equality - 2 var - test not equals " do
+    example "Equality - 2 var - test not equals ", :status => 'bug' do
+
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/07/17-dawg-minutes
 #
+# 20101218 jaa : arithmetic indicator : decimal 1 is natively represented as an integer
+
 describe "W3C test" do
   context "type-promotion" do
     before :all do
@@ -59,7 +61,7 @@ t:dateTime1		rdf:value	"2005-01-14T12:34:56"^^xsd:dateTime .
 }
     end
 
-    example "tP-decimal-decimal" do
+    example "tP-decimal-decimal", :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
