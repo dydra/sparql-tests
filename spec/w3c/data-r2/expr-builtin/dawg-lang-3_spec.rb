@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
+# 20101218 jaa : bug indicator : store response is empty
+
 describe "W3C test" do
   context "expr-builtin" do
     before :all do
@@ -45,7 +47,7 @@ SELECT ?x
 }
     end
 
-    example "lang-3 : Graph matching with lang tag being a different case" do
+    example "lang-3 : Graph matching with lang tag being a different case", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

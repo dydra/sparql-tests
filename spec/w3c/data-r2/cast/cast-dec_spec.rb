@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0087/14-dawg-minutes.html
 #
+# 20101220 jaa : arithmetic indicator
+
 describe "W3C test" do
   context "cast" do
     before :all do
@@ -41,7 +43,7 @@ SELECT ?s WHERE {
 }
     end
 
-    example "Cast to xsd:decimal" do
+    example "Cast to xsd:decimal", :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

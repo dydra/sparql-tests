@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
+# 20101218 jaa : blank_nodes indicator
+
 describe "W3C test" do
   context "bnode-coreference" do
     before :all do
@@ -61,7 +63,7 @@ WHERE {
 }
     end
 
-    example "dawg-bnode-coreference" do
+    example "dawg-bnode-coreference", :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

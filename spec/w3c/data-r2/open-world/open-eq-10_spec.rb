@@ -14,6 +14,9 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
 #
+# 20101219 jaa : add bug indicator : cannot reconcile the dawg's expected solution with the requirements
+#  for termEqual &co
+
 describe "W3C test" do
   context "open-world" do
     before :all do
@@ -54,7 +57,7 @@ SELECT *
 }
     end
 
-    example "open-eq-10" do
+    example "open-eq-10", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
