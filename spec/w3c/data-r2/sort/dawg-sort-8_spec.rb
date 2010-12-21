@@ -14,6 +14,10 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/06/26-dawg-minutes
 #
+# 20101219 jaa : bug indicator : the employee id for "John" is a store-generated blank node
+#  the front-end fails to match it to the solution, and since the node is generate
+#  it's not possible to adjust the solution
+
 describe "W3C test" do
   context "sort" do
     before :all do
@@ -46,7 +50,7 @@ ORDER BY ASC(?emp)
 }
     end
 
-    example "sort-8" do
+    example "sort-8", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

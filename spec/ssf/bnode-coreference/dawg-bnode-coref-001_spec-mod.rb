@@ -14,8 +14,6 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
-# 20101218 jaa : blank_nodes indicator
-
 describe "W3C test" do
   context "bnode-coreference" do
     before :all do
@@ -59,7 +57,7 @@ _:fred
 }
     end
 
-    example "dawg-bnode-coreference", :blank_nodes => 'unique' do
+    example "dawg-bnode-coreference", :blank_nodes => 'universal' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -68,16 +66,16 @@ _:fred
       repository = 'bnode-coreference-dawg-bnode-coref-001'
       expected = [
           { 
-              :x => RDF::Node.new('b10'),
-              :y => RDF::Node.new('b1f'),
+              :x => RDF::Node.new('alice'),
+              :y => RDF::Node.new('bob'),
           },
           { 
-              :x => RDF::Node.new('b1f'),
-              :y => RDF::Node.new('b10'),
+              :x => RDF::Node.new('bob'),
+              :y => RDF::Node.new('alice'),
           },
           { 
-              :x => RDF::Node.new('b20'),
-              :y => RDF::Node.new('b21'),
+              :x => RDF::Node.new('eve'),
+              :y => RDF::Node.new('fred'),
           },
       ]
 

@@ -14,7 +14,7 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0087/14-dawg-minutes.html
 #
-# 20101218 jaa : arithmetic indicator
+# 20101220 jaa : arithmetic indicator
 
 describe "W3C test" do
   context "cast" do
@@ -32,15 +32,18 @@ describe "W3C test" do
 
 }
       @query = %q{
-(select (?s)
-  (project (?s)
-    (filter (= (datatype (<http://www.w3.org/2001/XMLSchema#decimal> ?v)) <http://www.w3.org/2001/XMLSchema#decimal>)
-      (bgp (triple ?s <http://example.org/p> ?v)))))
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?s WHERE {
+    ?s :p ?v .
+    FILTER(datatype(xsd:decimal(?v)) = xsd:decimal) .
+}
 
 }
     end
 
-    example "Cast to xsd:decimal", :arithmetic => 'boxed' do
+    example "Cast to xsd:decimal", :arithmetic => 'native' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -50,9 +53,6 @@ describe "W3C test" do
       expected = [
           { 
               :s => RDF::URI('http://example.org/decimal'),
-          },
-          { 
-              :s => RDF::URI('http://example.org/int'),
           },
       ]
 

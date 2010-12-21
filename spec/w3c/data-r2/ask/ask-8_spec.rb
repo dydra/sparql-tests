@@ -44,7 +44,7 @@ ASK { :x :p ?x . FILTER(?x = 99) }
 
 
       repository = 'ask-ask-8'
-false
+      expected = false
 
       sparql_query(:graphs => graphs, :query => @query,
                    :repository => repository, :form => :ask).should == expected

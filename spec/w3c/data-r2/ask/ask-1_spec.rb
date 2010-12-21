@@ -44,7 +44,7 @@ ASK { :x :p 1 }
 
 
       repository = 'ask-ask-1'
-true
+      expected = true
 
       sparql_query(:graphs => graphs, :query => @query,
                    :repository => repository, :form => :ask).should == expected
