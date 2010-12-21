@@ -5,24 +5,6 @@ require 'rdf/cli'
 
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f}
 
-module RSpec
-  module Matchers
-    class MatchArray
-      private
-      def safe_sort(array)
-        case
-          when array.all?{|item| item.respond_to?(:<=>) && !item.is_a?(Hash)}
-            array.sort
-          else
-            array
-        end
-      end
-    end
-  end
-end
-
-
-
 # This file defines the sparql query function, which makes a sparql query and returns results.
 # It respects the following environment variables, all either true or false (set or unset):
 # IMPORT
@@ -77,11 +59,17 @@ def sparql_query(opts)
   end
 
   if importing?
-    repository = File.join(Dir.tmpdir, ('a'..'z').to_a.shuffle[0..4].join + ".#{opts[:graphs][:default][:format]}")
-    log "tempfile: #{repository}"
-    File.open(repository, 'w+') { |f| f.write(opts[:graphs][:default][:data]) }
+    repository = case
+      when opts[:graphs][:default][:url]
+        opts[:graphs][:default][:url]
+      else
+        repository = File.join(Dir.tmpdir, ('a'..'z').to_a.shuffle[0..4].join + ".#{opts[:graphs][:default][:format]}")
+        log "tempfile: #{repository}"
+        File.open(repository, 'w+') { |f| f.write(opts[:graphs][:default][:data]) }
+        repository
+    end
     log "importing data:"
-    log opts[:graphs][:default][:data]
+    log opts[:graphs][:default][:data] || opts[:graphs][:default][:url]
     log "Running datagraph import #{repository_name} #{repository}"
     Datagraph::Command::Import.new.execute(repository_name, repository)
   end
