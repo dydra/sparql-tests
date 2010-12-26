@@ -72,8 +72,8 @@ _:g foaf:name "Dirk" ;
       ]
 
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ expected
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :select).should == expected
     end
   end
 end
