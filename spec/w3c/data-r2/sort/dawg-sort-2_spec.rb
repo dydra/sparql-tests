@@ -59,7 +59,7 @@ ORDER BY DESC(?name)
       ]
 
 
-      sparql_query(:graphs => graphs, :query => @query,       # ordered sort comparison in rspec is ==
+      sparql_query(:graphs => graphs, :query => @query,
                    :repository => repository, :form => :select).should == expected
     end
   end
