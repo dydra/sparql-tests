@@ -14,7 +14,7 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
-# 20101218 jaa bug indicator as graphs are NYI
+# 20101218 jaa : bug indicator : graphs are NYI
 
 describe "W3C test" do
   context "graph" do

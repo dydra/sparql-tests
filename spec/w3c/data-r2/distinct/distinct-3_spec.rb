@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/07/17-dawg-minutes
 #
+# 20101219 jaa : blank_nodes indicator
+
 describe "W3C test" do
   context "distinct" do
     before :all do
@@ -41,7 +43,7 @@ SELECT DISTINCT ?v
 }
     end
 
-    example "Nodes: Distinct" do
+    example "Nodes: Distinct", :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

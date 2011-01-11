@@ -14,7 +14,6 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0060/2007-08-07-dawg-minutes.html
 #
-# 20101219 jaa : bug indicator : parsed list nodes incompatible with store response
 
 describe "W3C test" do
   context "basic" do
@@ -40,7 +39,7 @@ SELECT ?p ?v ?w
 }
     end
 
-    example "Basic - List 4", :status => 'bug'  do
+    example "Basic - List 4" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

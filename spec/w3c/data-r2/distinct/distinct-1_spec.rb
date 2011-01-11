@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/07/17-dawg-minutes
 #
+# 20101220 jaa : arithmetic indicator : native numbers reduce the solution field
+
 describe "W3C test" do
   context "distinct" do
     before :all do
@@ -50,7 +52,7 @@ describe "W3C test" do
 
 :z3 :p1 "1.3e0"^^xsd:double .
 :z3 :p2 "1.3e0"^^xsd:double .
-
+xo
 :z4 :p1 "1.3e0"^^xsd:double .
 :z5 :p1 "1.3e0"^^xsd:float .
 
@@ -67,7 +69,7 @@ SELECT DISTINCT ?v
 }
     end
 
-    example "Numbers: Distinct" do
+    example "Numbers: Distinct", :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

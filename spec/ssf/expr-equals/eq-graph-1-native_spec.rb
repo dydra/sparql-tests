@@ -14,7 +14,7 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/06/19-dawg-minutes.html
 #
-# 20101218 jaa : arithmetic indicator; bug inticator : store returns :xp2 as well as the numeric values
+# 20101218 jaa : arithmetic indicator; bug indicator : store returns :xp2 as well as the numeric values
 
 describe "W3C test" do
   context "expr-equals" do
@@ -53,7 +53,7 @@ describe "W3C test" do
 }
     end
 
-    example "Equality 1-1 -- graph", :arithmetic => 'boxed', :status => 'bug' do
+    example "Equality 1-1 -- graph", :arithmetic => 'native', :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

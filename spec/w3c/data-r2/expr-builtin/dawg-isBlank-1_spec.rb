@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
+# 20101218 jaa : canonical indicator
+
 describe "W3C test" do
   context "expr-builtin" do
     before :all do
@@ -52,7 +54,7 @@ WHERE
 }
     end
 
-    example "isBlank-1" do
+    example "isBlank-1", :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

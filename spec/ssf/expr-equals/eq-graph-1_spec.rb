@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/06/19-dawg-minutes.html
 #
+# 20101218 jaa : arithmetic indicator; bug inticator : store returns :xp2 as well as the numeric values
+
 describe "W3C test" do
   context "expr-equals" do
     before :all do

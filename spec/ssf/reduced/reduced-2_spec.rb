@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007OctDec/att-0069/13-dawg-minutes.html
 #
+# 20101218 jaa : reduced indicator
+
 describe "W3C test" do
   context "reduced" do
     before :all do

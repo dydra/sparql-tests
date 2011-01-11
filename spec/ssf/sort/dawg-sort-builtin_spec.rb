@@ -45,19 +45,19 @@ describe "W3C test" do
       repository = 'sort-dawg-sort-builtin'
       expected = [
           { 
+              :s => RDF::URI('http://example.org/s3'),
+          },
+          { 
               :s => RDF::URI('http://example.org/s1'),
           },
           { 
               :s => RDF::URI('http://example.org/s2'),
           },
-          { 
-              :s => RDF::URI('http://example.org/s3'),
-          },
       ]
 
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ expected
+      sparql_query(:graphs => graphs, :query => @query,       # ordered sort comparison in rspec is ==
+                   :repository => repository, :form => :select).should == expected
     end
   end
 end

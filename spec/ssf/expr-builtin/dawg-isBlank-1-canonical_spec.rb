@@ -14,7 +14,7 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
-# 20101218 jaa : canonicalization
+# 20101218 jaa : canonical indicator
 
 describe "W3C test" do
   context "expr-builtin" do

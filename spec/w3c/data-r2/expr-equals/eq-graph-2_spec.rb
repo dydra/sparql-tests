@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/06/19-dawg-minutes.html
 #
+# 20101220 jaa arithmetic marker;
+
 describe "W3C test" do
   context "expr-equals" do
     before :all do
@@ -54,7 +56,7 @@ WHERE
 }
     end
 
-    example "Equality 1-2 -- graph" do
+    example "Equality 1-2 -- graph", :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

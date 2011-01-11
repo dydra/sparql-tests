@@ -50,7 +50,6 @@ PREFIX HR: <http://www.w3.org/2001/sw/DataAccess/tests/data/i18n/normalization.t
 SELECT ?name
  WHERE { [ foaf:name ?name; 
            HR:resumé ?resume ] . }
-
 }
     end
 

@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0087/14-dawg-minutes.html
 #
 # 20101219 jaa : bug indicator : parse fails
+# 20101226 jaa : corrected
 
 describe "W3C test" do
   context "basic" do
@@ -36,7 +37,7 @@ SELECT ?p {
 }
     end
 
-    example "Prefix name 1", :status => 'bug' do
+    example "Prefix name 1" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

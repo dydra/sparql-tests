@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007OctDec/att-0069/13-dawg-minutes.html
 #
+# 20101220 jaa : reduced indicator
+
 describe "W3C test" do
   context "reduced" do
     before :all do
@@ -40,7 +42,7 @@ WHERE {
 }
     end
 
-    example "SELECT REDUCED *" do
+    example "SELECT REDUCED *", :reduced => 'all' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

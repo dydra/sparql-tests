@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
+# 20101218 jaa : arithmetic indicator 
+
 describe "W3C test" do
   context "expr-builtin" do
     before :all do
@@ -52,7 +54,7 @@ WHERE
 }
     end
 
-    example "str-1" do
+    example "str-1", :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

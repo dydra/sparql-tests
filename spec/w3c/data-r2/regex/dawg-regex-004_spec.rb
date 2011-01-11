@@ -31,7 +31,7 @@ PREFIX  ex: <http://example.com/#>
 SELECT ?val
 WHERE {
 	ex:foo rdf:value ?val .
-	FILTER regex(str(?val), "example\\.com")
+	FILTER regex(str(?val), "example\\\\.com")
 }
 
 }

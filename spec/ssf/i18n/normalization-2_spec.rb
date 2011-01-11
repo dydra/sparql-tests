@@ -16,6 +16,7 @@ require 'spec_helper'
 #
 # 20101218 jaa : bug indicator : the puri package does alot of un/escaping and normalization.
 #  can be patched to disable, but ultimately, the iri should be opaque
+# 20101216 jaa : modified prui to round-trip the original namestring
 
 describe "W3C test" do
   context "i18n" do
@@ -39,7 +40,7 @@ describe "W3C test" do
 }
     end
 
-    example "normalization-02", :status => 'bug' do
+    example "normalization-02" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -39,7 +39,7 @@ WHERE {
 )
     end
 
-    example "50k" do
+    example "sp2b-q7-50k" do
     
       graphs = {}
       graphs[:default] = { :url => @url, :format => :ttl}
@@ -48,7 +48,10 @@ WHERE {
       repository = 'sp2b-50k'
       expected = [
           {
-            # FIXME need successful test run output here
+           :title => RDF::Literal.new('sissies reprobate rethink', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+          },
+          {
+           :title => RDF::Literal.new('doorless chiasma alibiing', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
       ]
 

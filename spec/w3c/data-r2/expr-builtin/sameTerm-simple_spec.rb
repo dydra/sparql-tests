@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0118/04-dawg-minutes.html
 #
+# 20101220 jaa : arithmetic indicator
+
 describe "W3C test" do
   context "expr-builtin" do
     before :all do
@@ -56,7 +58,7 @@ SELECT *
 }
     end
 
-    example "sameTerm-simple" do
+    example "sameTerm-simple", :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
