@@ -22,14 +22,6 @@ GIT
       rdf (= 0.3.0.pre)
 
 GIT
-  remote: git://github.com/bhuga/datagraph.git
-  revision: 31053d9b7edfd757f0033e775d85946b8d4b60c5
-  branch: xmlrpc-utf8-fix
-  specs:
-    datagraph (0.0.7)
-      rdf (>= 0.2.3)
-
-GIT
   remote: git://github.com/bhuga/rspec-core
   revision: 14eece47c901f2ef67b3b92aa879d58f9e18398b
   branch: context-nesting
@@ -42,6 +34,13 @@ GIT
   specs:
     rdf-n3 (0.3.0.pre)
       rdf (= 0.3.0.pre)
+
+GIT
+  remote: git@datagraph.unfuddle.com:datagraph/datagraph-client.git
+  revision: c8c37821dcadc312df28baba826b87894a0203dc
+  specs:
+    dydra (0.0.7)
+      rdf (~> 0.3.0)
 
 GEM
   remote: http://rubygems.org/
@@ -84,7 +83,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  datagraph!
+  dydra!
   erubis
   rdf!
   rdf-isomorphic
