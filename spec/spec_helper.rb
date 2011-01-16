@@ -53,12 +53,20 @@ def sparql_query(opts)
 
   repository_name = "#{account}/#{opts[:repository]}"
 
+  # should work:
+  # Dydra.authenticate('jhacker','jhackers password')
+
   if creating?
+    # should be:
+    # Dydra::Repository.create(opts[:repository])
     log "Running datagraph create #{repository_name}"
-    Datagraph::Command::Create.new.execute(repository_name)
+    Dydra::Command::Create.new.execute(repository_name)
   end
 
   if importing?
+    # whole thing should be:
+    # Dydra::Repository.new(opts[:repository]).import(repository)
+    # should figure out if loading a URL, file, or string containing RDF, or an RDF::Enumerable
     repository = case
       when opts[:graphs][:default][:url]
         opts[:graphs][:default][:url]
@@ -71,16 +79,20 @@ def sparql_query(opts)
     log "importing data:"
     log opts[:graphs][:default][:data] || opts[:graphs][:default][:url]
     log "Running datagraph import #{repository_name} #{repository}"
-    Datagraph::Command::Import.new.execute(repository_name, repository)
+    Dydra::Command::Import.new.execute(repository_name, repository)
   end
- 
+
+  # should be:
+  # result = Dydra::Repository.query(opts[:repository], opts[:query])
+  # should figure out if query is a file or a string without the leading @
   log "Running datagraph query #{repository_name} '#{opts[:query]}'"
   result = capture_stdout do
-    Datagraph::Command::Query.new.execute(repository_name, opts[:query])
+    Dydra::Command::Query.new.execute(repository_name, opts[:query])
   end.string
   log "Raw results:"
   log result
-  
+ 
+  # result should already be parsed, much like below.
   result = case opts[:form]
     when :ask
       case result.strip
