@@ -1,25 +1,25 @@
 GIT
   remote: git://github.com/bendiken/rdf-raptor.git
-  revision: 31ed166716f5ab3a2814d34870a6f8e9fa394f18
+  revision: 8ac7c7e74fb64911b973784ac11188556debfe01
   specs:
-    rdf-raptor (0.4.0)
+    rdf-raptor (0.4.1)
       ffi (>= 1.0)
-      rdf (= 0.3.0.pre)
+      rdf (~> 0.3.0)
 
 GIT
   remote: git://github.com/bendiken/rdf.git
-  revision: 0bf61f4e8e34db9b3b733a63631b6d833b91f50a
+  revision: af21d4d9d01d009db67a677507705c6f8d49369c
   specs:
-    rdf (0.3.0.pre)
+    rdf (0.3.1)
       addressable (>= 2.2)
 
 GIT
   remote: git://github.com/bendiken/sparql-client.git
-  revision: d9434587eca9504f0510ce872d345de8fc22cd7d
+  revision: 71da0648cfc5d0d8d95f0e96b6979cdb1f50cdf8
   specs:
-    sparql-client (0.0.7)
+    sparql-client (0.0.8)
       json_pure (>= 1.4.2)
-      rdf (= 0.3.0.pre)
+      rdf (~> 0.3.0)
 
 GIT
   remote: git://github.com/bhuga/rspec-core
@@ -30,38 +30,38 @@ GIT
 
 GIT
   remote: git://github.com/gkellogg/rdf-n3.git
-  revision: 231437501e5ab607c211adcf6cc58bbb754dfabe
+  revision: ac7d0bd9f244d13e4a310caa236bbc2c92ad491b
   specs:
-    rdf-n3 (0.3.0.pre)
-      rdf (= 0.3.0.pre)
+    rdf-n3 (0.3.0)
+      rdf (>= 0.3.0)
 
 GIT
   remote: git@datagraph.unfuddle.com:datagraph/datagraph-client.git
-  revision: c8c37821dcadc312df28baba826b87894a0203dc
+  revision: ba18f1c5538e3ab02e6d10454abc4e371c583e65
   specs:
-    dydra (0.0.7)
+    dydra (0.0.0)
       rdf (~> 0.3.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
     abstract (1.0.0)
-    addressable (2.2.2)
+    addressable (2.2.3)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    ffi (1.0.2)
+    ffi (1.0.5)
       rake (>= 0.8.7)
     json_pure (1.4.6)
     macaddr (1.0.0)
     promise (0.3.0)
     proxies (0.2.1)
     rake (0.8.7)
-    rdf-isomorphic (0.3.1)
-      rdf (>= 0.2.4)
-    rdf-json (0.1.0)
-      json_pure (>= 1.2.3)
-      rdf (>= 0.1.0)
+    rdf-isomorphic (0.3.4)
+      rdf (>= 0.2.3)
+    rdf-json (0.3.0)
+      json_pure (>= 1.4.2)
+      rdf (~> 0.3.0)
     rspec (2.3.0)
       rspec-core (~> 2.3.0)
       rspec-expectations (~> 2.3.0)
