@@ -14,7 +14,7 @@ Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f}
 # DEBUG
 #   enable debug output
 # ACCOUNT
-#   The datagraph account to host data/query on.  defaults to jhacker.
+#   The dydra account to host data/query on.  defaults to jhacker.
 
 # run a sparql query against SPOCQ.
 # Options:
@@ -35,9 +35,9 @@ Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f}
 #   :query
 #     A sparql query, as a string
 #   :account
-#     The datagraph account hosting the queryable repository
+#     The dydra account hosting the queryable repository
 #   :repository
-#     The datagraph repository associated with the account to use
+#     The dydra repository associated with the account to use
 #   :ssf
 #     An SSF query, as a string #TODO
 #   :form
@@ -58,16 +58,17 @@ def sparql_query(opts)
 
   if creating?
     # should be:
-    # Dydra::Repository.create(opts[:repository])
-    log "Running datagraph create #{repository_name}"
-    Dydra::Command::Create.new.execute(repository_name)
+    log "Running dydra create #{repository_name}"
+    Dydra::Repository.create!(account, opts[:repository])
+    #Dydra::Command::Create.new.execute(repository_name)
+    #Dydra::Repository.new(account, opts[:repository]).create!
   end
 
   if importing?
     # whole thing should be:
     # Dydra::Repository.new(opts[:repository]).import(repository)
     # should figure out if loading a URL, file, or string containing RDF, or an RDF::Enumerable
-    repository = case
+    repository_file = case
       when opts[:graphs][:default][:url]
         opts[:graphs][:default][:url]
       else
@@ -78,15 +79,20 @@ def sparql_query(opts)
     end
     log "importing data:"
     log opts[:graphs][:default][:data] || opts[:graphs][:default][:url]
-    log "Running datagraph import #{repository_name} #{repository}"
-    Dydra::Command::Clear.new.execute(repository_name)
-    Dydra::Command::Import.new.execute(repository_name, repository)
+    repository = Dydra::Repository.new(account, opts[:repository])
+    log "Running dydra clear #{repository_name} #{repository}"
+    repository.clear!
+    log "Running dydra import #{repository_name} #{repository}"
+    p repository
+    import = repository.import!(repository_file)
+    p import.uuid
+    import.wait!
   end
 
   # should be:
   # result = Dydra::Repository.query(opts[:repository], opts[:query])
   # should figure out if query is a file or a string without the leading @
-  log "Running datagraph query #{repository_name} '#{opts[:query]}'"
+  log "Running dydra query #{repository_name} '#{opts[:query]}'"
   result = capture_stdout do
     Dydra::Command::Query.new.execute(repository_name, opts[:query])
   end.string
