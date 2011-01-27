@@ -11,7 +11,7 @@ gem 'sparql-client', :git => 'git://github.com/bendiken/sparql-client.git', :req
 gem 'dydra',  :git => 'git@datagraph.unfuddle.com:datagraph/datagraph-client.git'
   gem 's3'       # death to soft dependencies!
   gem 'uuid'     # death to soft dependencies!
-  gem 'rdf-json' # This is getting retarded
+  gem 'rdf-json', :require => 'rdf/json' # This is getting retarded
 
 group :build do
   gem 'erubis'
