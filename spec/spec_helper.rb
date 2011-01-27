@@ -79,6 +79,7 @@ def sparql_query(opts)
     log "importing data:"
     log opts[:graphs][:default][:data] || opts[:graphs][:default][:url]
     log "Running datagraph import #{repository_name} #{repository}"
+    Dydra::Command::Clear.new.execute(repository_name)
     Dydra::Command::Import.new.execute(repository_name, repository)
   end
 
