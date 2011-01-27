@@ -37,7 +37,7 @@ GIT
 
 GIT
   remote: git@datagraph.unfuddle.com:datagraph/datagraph-client.git
-  revision: ba18f1c5538e3ab02e6d10454abc4e371c583e65
+  revision: 0831f5b412ab433df25335cfe5dddb054795a97d
   specs:
     dydra (0.0.0)
       rdf (~> 0.3.0)
