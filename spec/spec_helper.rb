@@ -83,37 +83,16 @@ def sparql_query(opts)
     log "Running dydra clear #{repository_name} #{repository}"
     repository.clear!
     log "Running dydra import #{repository_name} #{repository}"
-    p repository
-    import = repository.import!(repository_file)
-    p import.uuid
-    import.wait!
+    repository.import!(repository_file).wait!
   end
 
   # should be:
-  # result = Dydra::Repository.query(opts[:repository], opts[:query])
-  # should figure out if query is a file or a string without the leading @
+  # TODO should figure out if query is a file or a string without the leading @
   log "Running dydra query #{repository_name} '#{opts[:query]}'"
-  result = capture_stdout do
-    Dydra::Command::Query.new.execute(repository_name, opts[:query])
-  end.string
-  log "Raw results:"
-  log result
- 
-  # result should already be parsed, much like below.
-  result = case opts[:form]
-    when :ask
-      SPARQL::Client.new("").parse_json_bindings(result).map { | result | result.to_hash }.first[:result]
-    when :select
-      SPARQL::Client.new("").parse_json_bindings(result).map { | result | result.to_hash }
-    when :describe
-      # TODO
-    when :construct
-      # TODO
-  end
+  result = Dydra::Repository.new(account, opts[:repository]).query_result(opts[:query])
 
-  log "parsed results:"
+  log "Result: "
   log result
-
   result
 end
 
