@@ -89,9 +89,12 @@ def sparql_query(opts)
   # should be:
   # TODO should figure out if query is a file or a string without the leading @
   log "Running dydra query #{repository_name} '#{opts[:query]}'"
-  result = Dydra::Repository.new(account, opts[:repository]).query_result(opts[:query])
-
-  log "Result: "
+  result = nil
+  taken = timer do
+    result = Dydra::Repository.new(account, opts[:repository]).query_result(opts[:query])
+  end
+   
+  log "Result: (query took #{taken} seconds)"
   log result
   result
 end
@@ -112,12 +115,8 @@ def log(what)
   puts what if debug?
 end
 
-def capture_stdout
-  out = StringIO.new
-  $stdout = out
+def timer
+  start = Time.now
   yield
-  return out
-ensure
-  $stdout = STDOUT
+  Time.now - start
 end
-
