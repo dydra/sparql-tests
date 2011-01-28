@@ -102,14 +102,7 @@ def sparql_query(opts)
   # result should already be parsed, much like below.
   result = case opts[:form]
     when :ask
-      case result.strip
-        when 'true'
-          true
-        when 'false'
-          false
-        else
-          raise "Got something other than true or false for an ask query: '#{result}'"
-      end
+      SPARQL::Client.new("").parse_json_bindings(result).map { | result | result.to_hash }.first[:result]
     when :select
       SPARQL::Client.new("").parse_json_bindings(result).map { | result | result.to_hash }
     when :describe
