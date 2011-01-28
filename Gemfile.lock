@@ -22,13 +22,6 @@ GIT
       rdf (~> 0.3.0)
 
 GIT
-  remote: git://github.com/bhuga/rspec-core
-  revision: 14eece47c901f2ef67b3b92aa879d58f9e18398b
-  branch: context-nesting
-  specs:
-    rspec-core (2.3.0.pre)
-
-GIT
   remote: git://github.com/gkellogg/rdf-n3.git
   revision: ac7d0bd9f244d13e4a310caa236bbc2c92ad491b
   specs:
@@ -37,7 +30,7 @@ GIT
 
 GIT
   remote: git@datagraph.unfuddle.com:datagraph/datagraph-client.git
-  revision: 9647a434e6d115490014b66814be77e609a78e72
+  revision: 242152fba93fce133043d5e292cb89501a1d6a12
   specs:
     dydra (0.0.0)
       rdf (~> 0.3.0)
@@ -62,13 +55,14 @@ GEM
     rdf-json (0.3.0)
       json_pure (>= 1.4.2)
       rdf (~> 0.3.0)
-    rspec (2.3.0)
-      rspec-core (~> 2.3.0)
-      rspec-expectations (~> 2.3.0)
-      rspec-mocks (~> 2.3.0)
-    rspec-expectations (2.3.0)
+    rspec (2.4.0)
+      rspec-core (~> 2.4.0)
+      rspec-expectations (~> 2.4.0)
+      rspec-mocks (~> 2.4.0)
+    rspec-core (2.4.0)
+    rspec-expectations (2.4.0)
       diff-lcs (~> 1.1.2)
-    rspec-mocks (2.3.0)
+    rspec-mocks (2.4.0)
     s3 (0.3.7)
       proxies
     spira (0.0.11)
@@ -91,7 +85,6 @@ DEPENDENCIES
   rdf-n3!
   rdf-raptor!
   rspec
-  rspec-core!
   s3
   sparql-client!
   spira
