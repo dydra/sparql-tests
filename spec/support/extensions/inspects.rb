@@ -8,7 +8,6 @@ class Array
       string = "[\n"
       each do |item|
         string += "  {\n"
-          puts item.keys.map(&:to_s).inspect
           item.keys.map(&:to_s).sort.each do |key|
             string += "      #{key}: #{item[key.to_sym].inspect}\n"
           end
