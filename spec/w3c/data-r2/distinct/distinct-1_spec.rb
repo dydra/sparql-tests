@@ -52,7 +52,7 @@ describe "W3C test" do
 
 :z3 :p1 "1.3e0"^^xsd:double .
 :z3 :p2 "1.3e0"^^xsd:double .
-xo
+
 :z4 :p1 "1.3e0"^^xsd:double .
 :z5 :p1 "1.3e0"^^xsd:float .
 
