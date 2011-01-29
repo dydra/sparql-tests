@@ -39,7 +39,7 @@ WHERE { ?type ?class ?v }
 }
     end
 
-    example "Count 1" do
+    example "Sum 1" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
