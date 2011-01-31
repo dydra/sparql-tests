@@ -21,6 +21,8 @@ class Manifest < Spira::Base
   def include_files!
     manifests.each do |manifest|
       RDF::List.new(manifest, self.class.repository).each do |file|
+        next if file.path =~ /(clear|drop|basic-update|delete|syntax)/ 
+        puts "Loading #{file.path}"
         self.class.repository.load(file.path, :context => file.path)
       end
     end
@@ -36,12 +38,14 @@ class SPARQLTest < Spira::Base
   property :approved_by, :predicate => DAWG.approvedBy
   property :manifest, :predicate => MF.manifest_file
 
+  has_many :tags, :predicate => MF.tag
+
   def approved?
     approval == DAWG.Approved
   end
 
   def form
-    query_data = IO.read(action.query_file.path)
+    query_data = begin IO.read(action.query_file.path) rescue nil end
     if query_data =~ /(ASK|CONSTRUCT|DESCRIBE|SELECT)/i
       case $1.upcase
         when 'ASK'
@@ -54,7 +58,7 @@ class SPARQLTest < Spira::Base
           :construct
       end
     else
-      raise "Couldn't determine query type for #{test.name} (reading #{query_data})"
+      raise "Couldn't determine query type for #{File.basename(subject)} (reading #{action.query_file})"
     end
   end
 end
@@ -153,11 +157,14 @@ def load_w3c_tests
       puts "building manifests..."
       test_repo = RDF::Repository.new
       Spira.add_repository(:default, test_repo)
-      test_repo.load("#{base_directory}/data-r2/manifest-evaluation.ttl", :base_uri => "#{base_directory}/data-r2/")
-      test_repo.load("#{base_directory}/data-r2/extended-manifest-evaluation.ttl", :base_uri => "#{base_directory}/data-r2/")
+      test_repo.load("#{base_directory}/sparql11-tests/data-sparql11/manifest-all.ttl", :base_uri => "#{base_directory}/sparql11-tests/data-sparql11/")
       Manifest.each do |manifest| manifest.include_files! end
-      tests = Manifest.each.map { |m| m.entries }.flatten.find_all { |t| t.approved? }
-      tests.each { |test| test.update!(:manifest => test.data.each_context.first) }
+      tests = Manifest.each.map { |m| m.entries }.flatten.find_all { |t| !t.result.nil? }
+      tests.each { |test|
+        test.tags << 'status:unverified'
+        test.tags << 'w3c_status:unapproved' unless test.approved?
+        test.update!(:manifest => test.data.each_context.first)
+      }
       File.open('./sparql-specs-cache.nt', 'w+') do |file|
         file.write RDF::Writer.for(:ntriples).dump(Spira.repository(:default))
       end

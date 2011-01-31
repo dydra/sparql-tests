@@ -15,11 +15,13 @@ require 'spec_helper'
 # <%= test.approved_by %>
 #
 describe "W3C test" do
-  context "<%= File.basename(File.dirname(test.action.test_data.path)) %>" do
+  context "<%= File.basename(File.dirname(test.manifest)) %>" do
     before :all do
+<% if !test.action.test_data.nil? %>
       @data = %q{
 <%= IO.read(test.action.test_data.path) %>
 }
+<% end %>
       <% graphs.each_with_index do | graph, index | %>
       <%# graph.basename works for the w3c tests, which are specified as relative URIs %>
        # <%= graph.basename %>
@@ -32,7 +34,7 @@ describe "W3C test" do
 }
     end
 
-    example "<%= test.name %>" do
+    example "<%= test.name %>"<%= test.tags.size > 0 ? ',' : '' %> <%= test.tags.map { |tag| (name, value) = tag.split(":") ; ":" + name + " => '#{value}'" }.join(', ')  %> do
     
       graphs = {}
       graphs[:default] = <%= test.action.test_data.nil? ? 'nil' 
@@ -42,7 +44,7 @@ describe "W3C test" do
       graphs[<%= RDF::URI(graph.basename).to_ruby %>] = { :data => @graph<%= index %>, :format => :<%= File.extname(graph.path).sub(/\./,'').to_sym %> }
       <% end %>
 
-      repository = '<%= File.join(File.basename(File.dirname(test.action.test_data.path)),
+      repository = '<%= File.join(File.basename(File.dirname(test.action.query_file.path)),
                         File.basename(test.subject.fragment)).gsub(/\//,'-') %>'
 <%= results_snippet %>
 
