@@ -1,0 +1,4 @@
+(select (?address)
+  (project (?address)
+    (order ((asc ?address))
+      (bgp (triple ?x <http://example.org/things#address> ?address)))))

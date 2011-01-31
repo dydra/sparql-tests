@@ -1,0 +1,6 @@
+(select (?name ?mbox)
+  (project (?name ?mbox)
+    (order ((asc ?mbox))
+      (leftjoin
+        (bgp (triple ?x <http://xmlns.com/foaf/0.1/name> ?name))
+        (bgp (triple ?x <http://xmlns.com/foaf/0.1/mbox> ?mbox))))))

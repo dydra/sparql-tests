@@ -1,0 +1,3 @@
+(select (?x)
+  (project (?x)
+    (bgp (triple ?x <http://example.org/things#p> "1"))))

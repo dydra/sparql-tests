@@ -1,0 +1,6 @@
+(select (?v)
+        (project (?v)
+                 (join
+                  (bgp (triple <http://example/x> <http://example/p> ?v))
+                  (filter (= ?v 1)
+                          (table unit)))))

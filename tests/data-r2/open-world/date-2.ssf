@@ -1,0 +1,3 @@
+(select (?v ?x)
+  (filter (!= ?v "2006-08-23"^^<http://www.w3.org/2001/XMLSchema#date>)
+    (bgp (triple ?x <http://example/r> ?v))))

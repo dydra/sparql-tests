@@ -1,0 +1,4 @@
+(prefix ((t: <http://example/t#>)
+         (: <http://example/ns#>))
+  (filter (= ?v "a"^^t:type1)
+    (bgp (triple ?x :p ?v))))

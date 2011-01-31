@@ -1,0 +1,3 @@
+(select (?subject ?predicate)
+  (project (?subject ?predicate)
+    (bgp (triple ?subject ?predicate <http://localhost/persons/Paul_Erdoes>))))

@@ -1,0 +1,10 @@
+(ask ()
+  (filter (= ?name1 ?name2)
+    (bgp
+      (triple ?article <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://localhost/vocabulary/bench/Article>)
+      (triple ?article <http://purl.org/dc/elements/1.1/creator> ?person1)
+      (triple ?inproc <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://localhost/vocabulary/bench/Inproceedings>)
+      (triple ?inproc <http://purl.org/dc/elements/1.1/creator> ?person2)
+      (triple ?person1 <http://xmlns.com/foaf/0.1/name> ?name1)
+      (triple ?person2 <http://xmlns.com/foaf/0.1/name> ?name2)
+    )))

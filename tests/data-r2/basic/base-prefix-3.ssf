@@ -1,0 +1,2 @@
+(select (?v)
+  (bgp (triple <http://example.org/x/x> <http://example.org/ns#p> ?v)))

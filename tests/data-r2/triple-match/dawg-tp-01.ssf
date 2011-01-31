@@ -1,0 +1,2 @@
+(select (?p ?q)
+        (bgp (triple <http://example.org/data/x> ?p ?q)))

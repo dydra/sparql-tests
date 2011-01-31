@@ -1,0 +1,5 @@
+(construct ((triple _:a <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> ?s)
+            (triple _:a <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> ?p)
+            (triple _:a <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?o))
+  (project (?s ?p ?o)
+    (bgp (triple ?s ?p ?o))))

@@ -1,0 +1,3 @@
+(prefix ((: <http://example/>))
+  (filter (= ?x 99)
+    (bgp (triple :x :p ?x))))

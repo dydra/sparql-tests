@@ -1,0 +1,4 @@
+(prefix ((p1: <eXAMPLE://a/b/%63/%7bfoo%7d#>)
+         (: <http://example/vocab#>))
+  (project (?S)
+    (bgp (triple ?S :p p1:xyz))))

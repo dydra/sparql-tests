@@ -1,0 +1,7 @@
+(select (?v ?w ?v2)
+        (join
+         (bgp (triple <http://example/x> <http://example/p> ?v))
+         (leftjoin
+          (bgp (triple <http://example/x> <http://example/q> ?w))
+          (bgp (triple <http://example/x> <http://example/p> ?v2))
+          (= ?v 1))))

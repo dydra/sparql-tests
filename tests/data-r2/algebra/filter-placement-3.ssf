@@ -1,0 +1,6 @@
+(select (?v ?w)
+        (project (?v ?w)
+                 (filter (exprlist (= ?v 2) (= ?w 3))
+                         (bgp
+                          (triple ?s <http://example/p> ?v)
+                          (triple ?s <http://example/q> ?w)))))

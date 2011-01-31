@@ -1,0 +1,6 @@
+(select (?x1 ?v1 ?x2 ?v2)
+  (filter (&& (sameTerm ?v1 ?v2) (= ?v1 ?v2))
+    (bgp
+      (triple ?x1 <http://example.org/things#p> ?v1)
+      (triple ?x2 <http://example.org/things#p> ?v2)
+    )))

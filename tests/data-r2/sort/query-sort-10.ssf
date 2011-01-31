@@ -1,0 +1,4 @@
+(select (?name)
+  (project (?name)
+    (order ((desc ?name))
+      (bgp (triple ?x <http://xmlns.com/foaf/0.1/name> ?name)))))

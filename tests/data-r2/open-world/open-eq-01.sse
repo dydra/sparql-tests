@@ -1,0 +1,4 @@
+(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
+         (t: <http://example/t#>)
+         (: <http://example/ns#>))
+  (bgp (triple ?x :p 001)))

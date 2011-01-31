@@ -1,0 +1,21 @@
+(ask ()
+  (join
+    (bgp
+      (triple ?erdoes <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person>)
+      (triple ?erdoes <http://xmlns.com/foaf/0.1/name> "Paul Erdoes"^^<http://www.w3.org/2001/XMLSchema#string>)
+    )
+    (union
+      (filter (&& (&& (&& (!= ?author ?erdoes) (!= ?document2 ?document)) (!= ?author2 ?erdoes)) (!= ?author2 ?author))
+        (bgp
+          (triple ?document <http://purl.org/dc/elements/1.1/creator> ?erdoes)
+          (triple ?document <http://purl.org/dc/elements/1.1/creator> ?author)
+          (triple ?document2 <http://purl.org/dc/elements/1.1/creator> ?author)
+          (triple ?document2 <http://purl.org/dc/elements/1.1/creator> ?author2)
+          (triple ?author2 <http://xmlns.com/foaf/0.1/name> ?name)
+        ))
+      (filter (!= ?author ?erdoes)
+        (bgp
+          (triple ?document <http://purl.org/dc/elements/1.1/creator> ?erdoes)
+          (triple ?document <http://purl.org/dc/elements/1.1/creator> ?author)
+          (triple ?author <http://xmlns.com/foaf/0.1/name> ?name)
+        )))))

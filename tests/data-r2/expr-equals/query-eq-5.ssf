@@ -1,0 +1,4 @@
+(select (?x)
+  (project (?x)
+    (filter (= ?v <http://example.org/things#z>)
+      (bgp (triple ?x <http://example.org/things#p> ?v)))))

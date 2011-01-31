@@ -1,0 +1,2 @@
+(ask ()
+  (bgp (triple <http://example/x> <http://example/p> 99)))

@@ -1,0 +1,8 @@
+(prefix ((ex: <http://example.org/things#>)
+         (foaf: <http://xmlns.com/foaf/0.1/>))
+  (project (?name ?emp)
+    (order (?name (desc ?emp))
+      (bgp
+        (triple ?x foaf:name ?name)
+        (triple ?x ex:empId ?emp)
+      ))))

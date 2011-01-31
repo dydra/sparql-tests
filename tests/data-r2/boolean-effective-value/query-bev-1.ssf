@@ -1,0 +1,4 @@
+(select (?a)
+  (project (?a)
+    (filter ?v
+      (bgp (triple ?a <http://example.org/ns#p> ?v)))))

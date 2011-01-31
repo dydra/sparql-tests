@@ -1,0 +1,2 @@
+(select (?s ?p ?o)
+  (bgp (triple ?s ?p ?o)))

@@ -1,0 +1,10 @@
+(select (?x ?v1 ?y ?v2)
+  (project (?x ?v1 ?y ?v2)
+    (filter (! (bound ?v3))
+      (leftjoin
+        (bgp
+          (triple ?x <http://example/p> ?v1)
+          (triple ?y <http://example/p> ?v2)
+        )
+        (bgp (triple ?y <http://example/p> ?v3))
+        (|| (!= ?v1 ?v3) (= ?v1 ?v3))))))
