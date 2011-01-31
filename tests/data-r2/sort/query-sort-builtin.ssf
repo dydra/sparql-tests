@@ -1,0 +1,4 @@
+(select (?s)
+  (project (?s)
+    (order ((str ?o))
+      (bgp (triple ?s <http://example.org/p> ?o)))))

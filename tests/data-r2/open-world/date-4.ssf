@@ -1,0 +1,4 @@
+(select (?x ?date)
+  (project (?x ?date)
+    (filter (= (datatype ?date) <http://www.w3.org/2001/XMLSchema#date>)
+      (bgp (triple ?x <http://example/s> ?date)))))

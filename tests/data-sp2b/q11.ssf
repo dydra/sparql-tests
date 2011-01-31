@@ -1,0 +1,5 @@
+(select (?ee)
+  (slice 50 10
+    (project (?ee)
+      (order (?ee)
+        (bgp (triple ?publication <http://www.w3.org/2000/01/rdf-schema#seeAlso> ?ee))))))

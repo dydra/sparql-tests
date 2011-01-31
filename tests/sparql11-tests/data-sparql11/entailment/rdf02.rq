@@ -1,0 +1,6 @@
+PREFIX ex: <http://example.org/ns#>
+SELECT ?x
+WHERE {
+  ?x rdf:type rdf:Property .
+}
+

@@ -1,0 +1,18 @@
+(select (?yr ?name ?document)
+  (project (?yr ?name ?document)
+    (filter (! (bound ?author2))
+      (leftjoin
+        (bgp
+          (triple ?class <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/foaf/0.1/Document>)
+          (triple ?document <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?class)
+          (triple ?document <http://purl.org/dc/terms/issued> ?yr)
+          (triple ?document <http://purl.org/dc/elements/1.1/creator> ?author)
+          (triple ?author <http://xmlns.com/foaf/0.1/name> ?name)
+        )
+        (bgp
+          (triple ?class2 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/foaf/0.1/Document>)
+          (triple ?document2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?class2)
+          (triple ?document2 <http://purl.org/dc/terms/issued> ?yr2)
+          (triple ?document2 <http://purl.org/dc/elements/1.1/creator> ?author2)
+        )
+        (&& (= ?author ?author2) (< ?yr2 ?yr))))))

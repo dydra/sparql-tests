@@ -1,0 +1,3 @@
+(select (?x ?v)
+  (filter (= ?v 1)
+    (bgp (triple ?x <http://example/ns#p> ?v))))

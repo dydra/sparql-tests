@@ -1,0 +1,4 @@
+(select (?val)
+  (project (?val)
+    (filter (regex ?val "GHI")
+      (bgp (triple <http://example.com/#foo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> ?val)))))

@@ -1,0 +1,4 @@
+(prefix ((p2: <http://example.com:80/#>)
+         (: <http://example/vocab#>))
+  (project (?S)
+    (bgp (triple ?S :p p2:abc))))

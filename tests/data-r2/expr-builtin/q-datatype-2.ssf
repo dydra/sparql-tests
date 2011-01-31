@@ -1,0 +1,4 @@
+(select (?x)
+  (project (?x)
+    (filter (!= (datatype ?v) <http://example/NotADataTypeIRI>)
+      (bgp (triple ?x <http://example/p> ?v)))))

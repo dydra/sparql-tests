@@ -1,0 +1,16 @@
+(select (?name ?nick ?plan ?dept)
+        (project (?name ?nick ?plan ?dept)
+                 (leftjoin
+                  (join
+                   (bgp
+                    (triple ?person <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person>)
+                    (triple ?person <http://xmlns.com/foaf/0.1/name> ?name)
+                    )
+                   (graph ?x
+                          (bgp
+                           (triple ??0 <http://xmlns.com/foaf/0.1/name> ?name)
+                           (triple ??0 <http://xmlns.com/foaf/0.1/nick> ?nick)
+                           )))
+                  (leftjoin
+                   (bgp (triple ?person <http://example.org/things#healthplan> ?plan))
+                   (bgp (triple ?person <http://example.org/things#department> ?dept))))))

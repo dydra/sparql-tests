@@ -1,0 +1,17 @@
+(prefix ((ex: <http://example.org/things#>)
+         (foaf: <http://xmlns.com/foaf/0.1/>))
+  (project (?id ?ssn)
+    (leftjoin
+      (join
+        (bgp
+          (triple ?person <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> foaf:Person)
+          (triple ?person foaf:name ?name)
+        )
+        (graph ?x
+          (bgp
+            (triple ??0 foaf:name ?name)
+            (triple ??0 foaf:nick ?nick)
+          )))
+      (union
+        (bgp (triple ?person ex:empId ?id))
+        (bgp (triple ?person ex:ssn ?ssn))))))

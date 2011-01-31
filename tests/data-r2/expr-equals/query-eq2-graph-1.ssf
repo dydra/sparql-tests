@@ -1,0 +1,6 @@
+(select (?x1 ?x2 ?v)
+  (project (?x1 ?x2 ?v)
+    (bgp
+      (triple ?x1 <http://example.org/things#p> ?v)
+      (triple ?x2 <http://example.org/things#p> ?v)
+    )))

@@ -1,0 +1,7 @@
+(select (?name ?emp)
+  (project (?name ?emp)
+    (order (?name (desc ?emp))
+      (bgp
+        (triple ?x <http://xmlns.com/foaf/0.1/name> ?name)
+        (triple ?x <http://example.org/things#empId> ?emp)
+      ))))

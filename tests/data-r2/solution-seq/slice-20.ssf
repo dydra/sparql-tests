@@ -1,0 +1,5 @@
+(select (?v)
+  (slice 1 1
+    (project (?v)
+      (order (?v)
+        (bgp (triple ??0 <http://example.org/ns#num> ?v))))))

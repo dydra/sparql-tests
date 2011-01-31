@@ -1,0 +1,6 @@
+(select (?name)
+  (project (?name ?food)
+    (bgp
+      (triple ??0 <http://xmlns.com/foaf/0.1/name> ?name)
+      (triple ??0 <http://www.w3.org/2001/sw/DataAccess/tests/data/i18n/kanji.ttl#食べる> ?food)
+    )))

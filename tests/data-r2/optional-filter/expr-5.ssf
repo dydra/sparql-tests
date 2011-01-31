@@ -1,0 +1,6 @@
+(select (?title ?price)
+        (project (?title ?price)
+                 (leftjoin
+                  (bgp (triple ?book <http://purl.org/dc/elements/1.1/title> ?title))
+                  (filter (= ?title "TITLE 2")
+                          (bgp (triple ?book <http://example.org/ns#price> ?price))))))

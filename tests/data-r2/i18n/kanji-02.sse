@@ -1,0 +1,7 @@
+(prefix ((食: <http://www.w3.org/2001/sw/DataAccess/tests/data/i18n/kanji.ttl#>)
+         (foaf: <http://xmlns.com/foaf/0.1/>))
+  (project (?name)
+    (bgp
+      (triple ??0 foaf:name ?name)
+      (triple ??0 食:食べる 食:海老)
+    )))

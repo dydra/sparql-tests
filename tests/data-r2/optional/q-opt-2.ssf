@@ -1,0 +1,7 @@
+(select (?mbox ?name ?nick)
+        (project (?mbox ?name ?nick)
+                 (leftjoin
+                  (leftjoin
+                   (bgp (triple ?x <http://xmlns.com/foaf/0.1/mbox> ?mbox))
+                   (bgp (triple ?x <http://xmlns.com/foaf/0.1/name> ?name)))
+                  (bgp (triple ?x <http://xmlns.com/foaf/0.1/nick> ?nick)))))

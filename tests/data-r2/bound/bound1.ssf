@@ -1,0 +1,6 @@
+(select (?a ?c)
+  (project (?a ?c)
+    (filter (! (bound ?e))
+      (leftjoin
+        (bgp (triple ?a <http://example.org/ns#b> ?c))
+        (bgp (triple ?c <http://example.org/ns#d> ?e))))))

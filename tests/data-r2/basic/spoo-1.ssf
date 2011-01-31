@@ -1,0 +1,5 @@
+(select (?s)
+  (project (?s)
+    (bgp
+      (triple ?s <http://example.org/ns#p1> 1)
+      (triple ?s <http://example.org/ns#p1> 2))))
