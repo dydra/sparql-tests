@@ -28,7 +28,7 @@ module RSpec
           @previous_groups ||= []
         end
 
-      end
+      end if defined? DocumentationFormatter
     end
   end
 end
