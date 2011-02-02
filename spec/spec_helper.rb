@@ -2,7 +2,6 @@ require 'bundler'
 Bundler.setup
 Bundler.require(:default)
 require 'rdf/cli'
-
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f}
 
 # This file defines the sparql query function, which makes a sparql query and returns results.
@@ -91,11 +90,12 @@ def sparql_query(opts)
   log "Running dydra query #{repository_name} '#{opts[:query]}'"
   result = nil
   taken = timer do
-    result = Dydra::Repository.new(account, opts[:repository]).query_result(opts[:query])
+    result = Dydra::Repository.new(account, opts[:repository]).query(opts[:query])
   end
    
   log "Result: (query took #{taken} seconds)"
   log result
+  result = ::SPARQL::Client.parse_json_bindings(result).map(&:to_hash)
   result
 end
 

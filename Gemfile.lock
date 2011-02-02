@@ -14,14 +14,6 @@ GIT
       addressable (>= 2.2)
 
 GIT
-  remote: git://github.com/bendiken/sparql-client.git
-  revision: 71da0648cfc5d0d8d95f0e96b6979cdb1f50cdf8
-  specs:
-    sparql-client (0.0.8)
-      json_pure (>= 1.4.2)
-      rdf (~> 0.3.0)
-
-GIT
   remote: git://github.com/gkellogg/rdf-n3.git
   revision: ac7d0bd9f244d13e4a310caa236bbc2c92ad491b
   specs:
@@ -30,16 +22,18 @@ GIT
 
 GIT
   remote: git@datagraph.unfuddle.com:datagraph/datagraph-client.git
-  revision: fe36c0f49657fb4945d3687b7d0dd208337e4716
+  revision: c221dbc10a47d343268e16012a4ee00bd1d17bab
   specs:
     dydra (0.0.0)
       rdf (~> 0.3.0)
+      rest-client (>= 1.6.1)
+      sparql-client (>= 0.0.9)
 
 GEM
   remote: http://rubygems.org/
   specs:
     abstract (1.0.0)
-    addressable (2.2.3)
+    addressable (2.2.4)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -47,6 +41,7 @@ GEM
       rake (>= 0.8.7)
     json_pure (1.4.6)
     macaddr (1.0.0)
+    mime-types (1.16)
     promise (0.3.0)
     proxies (0.2.1)
     rake (0.8.7)
@@ -55,6 +50,8 @@ GEM
     rdf-json (0.3.0)
       json_pure (>= 1.4.2)
       rdf (~> 0.3.0)
+    rest-client (1.6.1)
+      mime-types (>= 1.16)
     rspec (2.4.0)
       rspec-core (~> 2.4.0)
       rspec-expectations (~> 2.4.0)
@@ -65,6 +62,9 @@ GEM
     rspec-mocks (2.4.0)
     s3 (0.3.7)
       proxies
+    sparql-client (0.0.9)
+      json_pure (>= 1.4.2)
+      rdf (~> 0.3.0)
     spira (0.0.11)
       promise (>= 0.3.0)
       rdf (>= 0.2.3)
@@ -86,7 +86,7 @@ DEPENDENCIES
   rdf-raptor!
   rspec
   s3
-  sparql-client!
+  sparql-client (>= 0.0.9)
   spira
   syntax
   uuid
