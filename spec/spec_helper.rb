@@ -95,7 +95,10 @@ def sparql_query(opts)
    
   log "Result: (query took #{taken} seconds)"
   log result
-  result = ::SPARQL::Client.parse_json_bindings(result).map(&:to_hash)
+  result = ::SPARQL::Client.parse_json_bindings(result)
+  log result
+  result.map!(&:to_hash) if opts[:form] == :select
+  result = !!result if result.nil? && opts[:form] == :ask
   result
 end
 
