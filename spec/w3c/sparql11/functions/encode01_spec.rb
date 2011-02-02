@@ -70,7 +70,7 @@ SELECT ?s ?str (ENCODE_FOR_URI(?str) AS ?encoded) WHERE {
           { 
               :encoded => RDF::Literal.new('bar' ),
               :s => RDF::URI('http://example.org/s2'),
-              :str => RDF::Literal.new('bar' ),
+              :str => RDF::Literal.new('bar' , :language => 'en'),
           },
           { 
               :encoded => RDF::Literal.new('BAZ' ),

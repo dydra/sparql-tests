@@ -63,7 +63,7 @@ SELECT ?str (STRLEN(?str) AS ?len) WHERE {
       expected = [
           { 
               :len => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :str => RDF::Literal.new('bar' ),
+              :str => RDF::Literal.new('bar' , :language => 'en'),
           },
           { 
               :len => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),

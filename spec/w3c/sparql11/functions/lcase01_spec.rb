@@ -62,7 +62,7 @@ SELECT ?s (LCASE(?str) AS ?lstr) WHERE {
       repository = 'functions-lcase01'
       expected = [
           { 
-              :lstr => RDF::Literal.new('bar' ),
+              :lstr => RDF::Literal.new('bar' , :language => 'en'),
               :s => RDF::URI('http://example.org/s2'),
           },
           { 

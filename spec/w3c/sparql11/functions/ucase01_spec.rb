@@ -63,7 +63,7 @@ SELECT ?s (UCASE(?str) AS ?ustr) WHERE {
       expected = [
           { 
               :s => RDF::URI('http://example.org/s2'),
-              :ustr => RDF::Literal.new('BAR' ),
+              :ustr => RDF::Literal.new('BAR' , :language => 'en'),
           },
           { 
               :s => RDF::URI('http://example.org/s4'),

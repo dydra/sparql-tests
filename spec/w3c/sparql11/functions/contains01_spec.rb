@@ -65,7 +65,7 @@ SELECT ?s ?str WHERE {
       expected = [
           { 
               :s => RDF::URI('http://example.org/s2'),
-              :str => RDF::Literal.new('bar' ),
+              :str => RDF::Literal.new('bar' , :language => 'en'),
           },
           { 
               :s => RDF::URI('http://example.org/s6'),

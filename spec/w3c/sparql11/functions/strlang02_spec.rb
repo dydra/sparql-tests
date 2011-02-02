@@ -64,7 +64,7 @@ SELECT ?s (STRLANG(STR(?str),"en-US") AS ?s2) WHERE {
       expected = [
           { 
               :s => RDF::URI('http://example.org/s2'),
-              :s2 => RDF::Literal.new('bar' ),
+              :s2 => RDF::Literal.new('bar' , :language => 'en-US'),
           },
       ]
 

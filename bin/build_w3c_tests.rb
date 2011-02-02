@@ -12,7 +12,7 @@ end
 
 class RDF::Literal
   def to_ruby
-    "RDF::Literal.new('#{self.to_s}' #{", :datatype => #{self.datatype.to_ruby}" unless self.datatype.nil?})"
+    "RDF::Literal.new('#{self.to_s}' #{", :datatype => #{self.datatype.to_ruby}" unless self.datatype.nil?}#{", :language => '#{self.language.to_s}'" if self.has_language?})"
   end
 end
 

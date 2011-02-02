@@ -63,8 +63,8 @@ SELECT ?s ?str (SUBSTR(?str,2) AS ?substr) WHERE {
       expected = [
           { 
               :s => RDF::URI('http://example.org/s2'),
-              :str => RDF::Literal.new('bar' ),
-              :substr => RDF::Literal.new('ar' ),
+              :str => RDF::Literal.new('bar' , :language => 'en'),
+              :substr => RDF::Literal.new('ar' , :language => 'en'),
           },
           { 
               :s => RDF::URI('http://example.org/s4'),
