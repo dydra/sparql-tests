@@ -54,7 +54,7 @@ SELECT ?s (HOURS(?date) AS ?x) WHERE {
 }
     end
 
-    example "HOURS()", :tz => 'zoned',
+    example "HOURS()", :tz => 'zulu',
             :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
@@ -69,7 +69,7 @@ SELECT ?s (HOURS(?date) AS ?x) WHERE {
           },
           { 
               :s => RDF::URI('http://example.org/d2'),
-              :x => RDF::Literal.new('15' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :x => RDF::Literal.new('7' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
               :s => RDF::URI('http://example.org/d3'),
