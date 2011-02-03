@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
 # 20101219 jaa : bug indicator : construct not yet supported by the front-end
+# 20110203 jaa : ++ support for construct
 
 describe "W3C test" do
   context "construct" do
@@ -44,12 +45,10 @@ WHERE
   ?x :p ?o .
   OPTIONAL {?o :q ?v }
 }
-
-
 }
     end
 
-    example "dawg-construct-optional", :status => 'bug' do
+    example "dawg-construct-optional" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -57,8 +56,17 @@ WHERE
 
       repository = 'construct-construct-5'
 
+      expected = [
+          { 
+            :'s' => RDF::URI('http://example/x'),
+            :'p' => RDF::URI('http://example/p2'),
+            :'o' => RDF::Literal.new('2', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+          },
+      ]
 
-        raise NotImplementedError("This test form is not yet implemented")
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ expected
+
     end
   end
 end
