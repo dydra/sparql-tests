@@ -51,3 +51,11 @@ The REDUCED modifier may or may not reduce all results. The expectations for
 tests marked `reduced:all` are not reduced. Dydra.com passes tests which remove
 duplicates.
 
+###### values:lexical
+
+Dydra.com treats some input as the lexical representations of their real
+values. In particular, dates, times, and datetimes are always returned in Zulu
+time, regardless of their input format. Time zone information is not saved. In
+the same way, string literal language tags are normalized to a lowercase form.
+
+
