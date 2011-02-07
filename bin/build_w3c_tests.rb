@@ -1,3 +1,4 @@
+## TODO: ask results are just 'true' on the line, not 'expected = '
 #!/usr/bin/env ruby
 
 require_relative '../lib/sparql/models'

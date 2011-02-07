@@ -1,40 +1,13 @@
-GIT
-  remote: git://github.com/bendiken/rdf-raptor.git
-  revision: 8ac7c7e74fb64911b973784ac11188556debfe01
-  specs:
-    rdf-raptor (0.4.1)
-      ffi (>= 1.0)
-      rdf (~> 0.3.0)
-
-GIT
-  remote: git://github.com/bendiken/rdf.git
-  revision: af21d4d9d01d009db67a677507705c6f8d49369c
-  specs:
-    rdf (0.3.1)
-      addressable (>= 2.2)
-
-GIT
-  remote: git://github.com/gkellogg/rdf-n3.git
-  revision: ac7d0bd9f244d13e4a310caa236bbc2c92ad491b
-  specs:
-    rdf-n3 (0.3.0)
-      rdf (>= 0.3.0)
-
-GIT
-  remote: git@datagraph.unfuddle.com:datagraph/datagraph-client.git
-  revision: c221dbc10a47d343268e16012a4ee00bd1d17bab
-  specs:
-    dydra (0.0.0)
-      rdf (~> 0.3.0)
-      rest-client (>= 1.6.1)
-      sparql-client (>= 0.0.9)
-
 GEM
   remote: http://rubygems.org/
   specs:
     abstract (1.0.0)
     addressable (2.2.4)
     diff-lcs (1.1.2)
+    dydra (0.0.1)
+      rdf (~> 0.3.0)
+      rest-client (>= 1.6.1)
+      sparql-client (>= 0.0.9)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     ffi (1.0.5)
@@ -45,10 +18,17 @@ GEM
     promise (0.3.0)
     proxies (0.2.1)
     rake (0.8.7)
+    rdf (0.3.1)
+      addressable (>= 2.2)
     rdf-isomorphic (0.3.4)
       rdf (>= 0.2.3)
     rdf-json (0.3.0)
       json_pure (>= 1.4.2)
+      rdf (~> 0.3.0)
+    rdf-n3 (0.3.1)
+      rdf (>= 0.3.0)
+    rdf-raptor (0.4.1)
+      ffi (>= 1.0)
       rdf (~> 0.3.0)
     rest-client (1.6.1)
       mime-types (>= 1.16)
@@ -77,13 +57,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dydra!
+  dydra (>= 0.0.1)
   erubis
-  rdf!
+  rdf (>= 0.3.0)
   rdf-isomorphic
   rdf-json
-  rdf-n3!
-  rdf-raptor!
+  rdf-n3
+  rdf-raptor
   rspec
   s3
   sparql-client (>= 0.0.9)

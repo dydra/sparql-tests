@@ -13,7 +13,7 @@ Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f}
 # DEBUG
 #   enable debug output
 # ACCOUNT
-#   The dydra account to host data/query on.  defaults to jhacker.
+#   The dydra account to host data/query on.  defaults to sparql-tests.
 
 # run a sparql query against SPOCQ.
 # Options:
@@ -48,25 +48,15 @@ def sparql_query(opts)
   raise "Please assign a repository to upload test data to" if opts[:repository].nil?
   raise "A query is required to be run" if opts[:query].nil?
 
-  account = ENV['ACCOUNT'] || opts[:account] || 'jhacker'
-
-  repository_name = "#{account}/#{opts[:repository]}"
-
-  # should work:
-  # Dydra.authenticate('jhacker','jhackers password')
+  Dydra::Client.setup!
+  repository_name = "#{$dydra[:user]}/#{opts[:repository]}"
 
   if creating?
-    # should be:
     log "Running dydra create #{repository_name}"
-    Dydra::Repository.create!(account, opts[:repository])
-    #Dydra::Command::Create.new.execute(repository_name)
-    #Dydra::Repository.new(account, opts[:repository]).create!
+    Dydra::Repository.create!(opts[:repository])
   end
 
   if importing?
-    # whole thing should be:
-    # Dydra::Repository.new(opts[:repository]).import(repository)
-    # should figure out if loading a URL, file, or string containing RDF, or an RDF::Enumerable
     repository_file = case
       when opts[:graphs][:default][:url]
         opts[:graphs][:default][:url]
@@ -78,27 +68,22 @@ def sparql_query(opts)
     end
     log "importing data:"
     log opts[:graphs][:default][:data] || opts[:graphs][:default][:url]
-    repository = Dydra::Repository.new(account, opts[:repository])
+    repository = Dydra::Repository.new(opts[:repository])
     log "Running dydra clear #{repository_name} #{repository}"
     repository.clear!
     log "Running dydra import #{repository_name} #{repository}"
     repository.import!(repository_file).wait!
   end
 
-  # should be:
-  # TODO should figure out if query is a file or a string without the leading @
   log "Running dydra query #{repository_name} '#{opts[:query]}'"
   result = nil
   taken = timer do
-    result = Dydra::Repository.new(account, opts[:repository]).query(opts[:query])
+    result = Dydra::Repository.new(opts[:repository]).query(opts[:query], :parsed)
   end
    
   log "Result: (query took #{taken} seconds)"
   log result
-  result = ::SPARQL::Client.parse_json_bindings(result)
-  log result
   result.map!(&:to_hash) if opts[:form] == :select
-  result = !!result if result.nil? && opts[:form] == :ask
   result
 end
 
