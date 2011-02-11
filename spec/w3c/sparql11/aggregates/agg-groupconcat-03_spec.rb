@@ -43,7 +43,7 @@ ASK {
 
 
       repository = 'aggregates-agg-groupconcat-03'
-true
+      expected = true
 
       sparql_query(:graphs => graphs, :query => @query,
                    :repository => repository, :form => :ask).should == expected

@@ -50,7 +50,7 @@ ASK {
 
 
       repository = 'aggregates-agg-sample-01'
-true
+      expected = true
 
       sparql_query(:graphs => graphs, :query => @query,
                    :repository => repository, :form => :ask).should == expected

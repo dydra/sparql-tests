@@ -44,7 +44,7 @@ WHERE {
       expected_length = 0
 
       sparql_query(:graphs => graphs, :query => @query,       # test length only
-                   :repository => repository, :form => :select).length.should = expected_length
+                   :repository => repository, :form => :select).length.should == expected_length
     end
   end
 end

@@ -13,7 +13,8 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+# 20110211 : jaa : status bug as the semantics are not bottom-up reduction, but top-to-bottom propagation.
+
 describe "W3C test" do
   context "bind" do
     before :all do
@@ -38,7 +39,7 @@ SELECT ?s ?p ?o ?z
 }
     end
 
-    example "bind07 - BIND", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "bind07 - BIND", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

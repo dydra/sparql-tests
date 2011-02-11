@@ -13,7 +13,7 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-# 20110201 jaa : tz indicator : whether times are canonicalized to zulu
+# 20110201 jaa : tz zoned for time canonicalization
 
 describe "W3C test" do
   context "functions" do
@@ -54,8 +54,7 @@ SELECT ?s (HOURS(?date) AS ?x) WHERE {
 }
     end
 
-    example "HOURS()", :tz => 'zoned',
-            :status => 'unverified', :w3c_status => 'unapproved' do
+    example "HOURS()", :tz => 'zoned', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

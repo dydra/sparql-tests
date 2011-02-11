@@ -53,7 +53,7 @@ SELECT ?s (SECONDS(?date) AS ?x) WHERE {
 }
     end
 
-    example "SECONDS()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "SECONDS()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

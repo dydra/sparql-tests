@@ -42,7 +42,7 @@ order by ?sum
 }
     end
 
-    example "Reuse a project expression variable in order by", :status => 'unverified' do
+    example "Reuse a project expression variable in order by" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

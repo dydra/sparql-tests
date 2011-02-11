@@ -50,7 +50,7 @@ where {
 }
     end
 
-    example "sq07 - Subquery with from ", :status => 'unverified' do
+    example "sq07 - Subquery with from ", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = nil

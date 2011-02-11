@@ -13,7 +13,7 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+
 describe "W3C test" do
   context "functions" do
     before :all do
@@ -53,7 +53,7 @@ SELECT ?s ?str (SUBSTR(?str,2) AS ?substr) WHERE {
 }
     end
 
-    example "SUBSTRING() (2-argument)", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "SUBSTRING() (2-argument)", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

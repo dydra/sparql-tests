@@ -53,7 +53,7 @@ SELECT ?s (TIMEZONE(?date) AS ?x) WHERE {
 }
     end
 
-    example "TIMEZONE()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "TIMEZONE()", :tz => 'zoned', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

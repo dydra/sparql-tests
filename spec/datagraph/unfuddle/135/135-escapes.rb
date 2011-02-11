@@ -7,7 +7,7 @@ require 'spec_helper'
 #
 
 describe "unfuddle ticket" do
-  context "135-escapes" do
+  context "135" do
     before :all do
       @data = %q{
 # the first two sections from test.nt
@@ -43,10 +43,10 @@ LIMIT 2
 }
     end
 
-    example "135-escapes" do
+    example "escapes" do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :ttl}
+      graphs[:default] = { :data => @data, :format => :nt}
 
 
       repository = '135-escapes'

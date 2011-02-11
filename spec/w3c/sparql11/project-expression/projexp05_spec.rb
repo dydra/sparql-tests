@@ -39,7 +39,7 @@ select ?x ?l (datatype(?l) as ?dt) where {
 }
     end
 
-    example "Expression may return no value", :status => 'unverified' do
+    example "Expression may return no value" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

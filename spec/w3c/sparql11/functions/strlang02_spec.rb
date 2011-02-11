@@ -54,7 +54,7 @@ SELECT ?s (STRLANG(STR(?str),"en-US") AS ?s2) WHERE {
 }
     end
 
-    example "STRLANG(STR())", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "STRLANG(STR())", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

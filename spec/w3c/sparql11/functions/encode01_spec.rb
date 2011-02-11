@@ -54,7 +54,7 @@ SELECT ?s ?str (ENCODE_FOR_URI(?str) AS ?encoded) WHERE {
 }
     end
 
-    example "ENCODE_FOR_URI()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "ENCODE_FOR_URI()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

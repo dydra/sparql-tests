@@ -54,7 +54,7 @@ select * where {
 }
     end
 
-    example "sq09 - Nested Subqueries", :status => 'unverified' do
+    example "sq09 - Nested Subqueries", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :rdf}

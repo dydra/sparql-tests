@@ -39,7 +39,7 @@ GROUP BY ?s ?w
 }
     end
 
-    example "Group-5", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Group-5", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

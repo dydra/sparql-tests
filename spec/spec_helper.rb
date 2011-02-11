@@ -64,6 +64,7 @@ def sparql_query(opts)
         repository = File.join(Dir.tmpdir, ('a'..'z').to_a.shuffle[0..4].join + ".#{opts[:graphs][:default][:format]}")
         log "tempfile: #{repository}"
         File.open(repository, 'w+') { |f| f.write(opts[:graphs][:default][:data]) }
+        log IO.read(repository).to_s
         repository
     end
     log "importing data:"

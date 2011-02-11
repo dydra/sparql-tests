@@ -54,7 +54,7 @@ SELECT ?s ?num (CEIL(?num) AS ?ceil) WHERE {
 }
     end
 
-    example "CEIL()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "CEIL()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

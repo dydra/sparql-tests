@@ -13,7 +13,7 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-# 20110201 jaa : tz indicator : whether times are canonicalized to zulu
+# 20110201 jaa : tz zulu for time canonicalization
 
 describe "W3C test" do
   context "functions" do
@@ -44,6 +44,14 @@ describe "W3C test" do
 :d3 :date "2008-06-20T23:59:00Z"^^xsd:dateTime .
 :d4 :date "2011-02-01T01:02:03"^^xsd:dateTime .
 
+:d5a :date "2011-01-01T01:02:03-02:00"^^xsd:dateTime .
+:d5b :date "2011-01-01T01:02:03+00:00"^^xsd:dateTime .
+:d5c :date "2011-01-01T01:02:03+02:00"^^xsd:dateTime .
+
+:d6a :date "2011-12-31T23:24:25-02:00"^^xsd:dateTime .
+:d6b :date "2011-12-31T23:24:25+00:00"^^xsd:dateTime .
+:d6c :date "2011-12-31T23:24:25+02:00"^^xsd:dateTime .
+
 }
       @query = %q{
 PREFIX : <http://example.org/>
@@ -54,14 +62,13 @@ SELECT ?s (HOURS(?date) AS ?x) WHERE {
 }
     end
 
-    example "HOURS()", :tz => 'zulu',
-            :status => 'unverified', :w3c_status => 'unapproved' do
+    example "HOURS(zulu)", :tz => 'zulu', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'functions-hours'
+      repository = 'functions-hours-zulu'
       expected = [
           { 
               :s => RDF::URI('http://example.org/d1'),
@@ -69,7 +76,7 @@ SELECT ?s (HOURS(?date) AS ?x) WHERE {
           },
           { 
               :s => RDF::URI('http://example.org/d2'),
-              :x => RDF::Literal.new('7' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :x => RDF::Literal.new('23' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
               :s => RDF::URI('http://example.org/d3'),
@@ -78,6 +85,30 @@ SELECT ?s (HOURS(?date) AS ?x) WHERE {
           { 
               :s => RDF::URI('http://example.org/d4'),
               :x => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+          },
+          { 
+              :s => RDF::URI('http://example.org/d5a'),
+              :x => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+          },
+          { 
+              :s => RDF::URI('http://example.org/d5b'),
+              :x => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+          },
+          { 
+              :s => RDF::URI('http://example.org/d5c'),
+              :x => RDF::Literal.new('23' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+          },
+          { 
+              :s => RDF::URI('http://example.org/d6a'),
+              :x => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+          },
+          { 
+              :s => RDF::URI('http://example.org/d6b'),
+              :x => RDF::Literal.new('23' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+          },
+          { 
+              :s => RDF::URI('http://example.org/d6c'),
+              :x => RDF::Literal.new('21' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
       ]
 

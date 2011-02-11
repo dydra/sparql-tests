@@ -43,7 +43,7 @@ where {
 }
     end
 
-    example "Reuse a project expression variable in select", :status => 'unverified' do
+    example "Reuse a project expression variable in select", do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

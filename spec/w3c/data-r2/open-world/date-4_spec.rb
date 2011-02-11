@@ -14,8 +14,6 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/att-0082/2007-06-12-dawg-minutes.html
 #
-# This test is modified to expect zulu time in the results.
-# -ben 2/5/11
 describe "W3C test" do
   context "open-world" do
     before :all do
@@ -50,7 +48,7 @@ SELECT ?x ?date
 }
     end
 
-    example "date-4" do
+    example "date-4", :tz => 'zoned' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -59,11 +57,11 @@ SELECT ?x ?date
       repository = 'open-world-date-4'
       expected = [
           { 
-              :date => RDF::Literal.new('2000-01-01Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :date => RDF::Literal.new('2000-01-01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d8'),
           },
           { 
-              :date => RDF::Literal.new('2006-08-23Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :date => RDF::Literal.new('2006-08-23' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d6'),
           },
           { 

@@ -55,7 +55,7 @@ SELECT ?s (STRDT(STR(?str),xsd:string) AS ?str1) WHERE {
 }
     end
 
-    example "STRDT(STR())", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "STRDT(STR())", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -54,7 +54,7 @@ SELECT ?s ?num (ROUND(?num) AS ?round) WHERE {
 }
     end
 
-    example "ROUND()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "ROUND()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

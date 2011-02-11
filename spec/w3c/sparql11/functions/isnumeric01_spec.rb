@@ -54,7 +54,7 @@ SELECT ?s ?num WHERE {
 }
     end
 
-    example "isNumeric()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "isNumeric()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

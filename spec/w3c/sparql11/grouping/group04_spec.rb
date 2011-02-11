@@ -39,7 +39,7 @@ GROUP BY (COALESCE(?w, "1605-11-05"^^xsd:date) AS ?X)
 }
     end
 
-    example "Group-4", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Group-4", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

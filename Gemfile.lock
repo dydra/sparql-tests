@@ -1,18 +1,23 @@
+GIT
+  remote: git@github.com:/dydra/dydra.git
+  revision: 6a65d5e686a5542fa170fd171f4128802c6a3d37
+  specs:
+    dydra (0.0.4)
+      rdf (~> 0.3.0)
+      rest-client (>= 1.6.1)
+      sparql-client (>= 0.0.9)
+
 GEM
   remote: http://rubygems.org/
   specs:
     abstract (1.0.0)
     addressable (2.2.4)
     diff-lcs (1.1.2)
-    dydra (0.0.1)
-      rdf (~> 0.3.0)
-      rest-client (>= 1.6.1)
-      sparql-client (>= 0.0.9)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     ffi (1.0.5)
       rake (>= 0.8.7)
-    json_pure (1.4.6)
+    json_pure (1.5.1)
     macaddr (1.0.0)
     mime-types (1.16)
     promise (0.3.0)
@@ -32,14 +37,14 @@ GEM
       rdf (~> 0.3.0)
     rest-client (1.6.1)
       mime-types (>= 1.16)
-    rspec (2.4.0)
-      rspec-core (~> 2.4.0)
-      rspec-expectations (~> 2.4.0)
-      rspec-mocks (~> 2.4.0)
-    rspec-core (2.4.0)
-    rspec-expectations (2.4.0)
+    rspec (2.5.0)
+      rspec-core (~> 2.5.0)
+      rspec-expectations (~> 2.5.0)
+      rspec-mocks (~> 2.5.0)
+    rspec-core (2.5.1)
+    rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
-    rspec-mocks (2.4.0)
+    rspec-mocks (2.5.0)
     s3 (0.3.7)
       proxies
     sparql-client (0.0.9)
@@ -57,7 +62,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dydra (>= 0.0.1)
+  dydra!
   erubis
   rdf (>= 0.3.0)
   rdf-isomorphic

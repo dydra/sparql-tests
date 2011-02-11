@@ -13,7 +13,7 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+
 describe "W3C test" do
   context "functions" do
     before :all do
@@ -53,7 +53,7 @@ SELECT ?str (STRLEN(?str) AS ?len) WHERE {
 }
     end
 
-    example "STRLEN()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "STRLEN()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

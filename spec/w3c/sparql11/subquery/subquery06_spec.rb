@@ -49,7 +49,7 @@ where {
 }
     end
 
-    example "sq06 - Subquery with graph pattern, from named applies", :status => 'unverified' do
+    example "sq06 - Subquery with graph pattern, from named applies", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :rdf}

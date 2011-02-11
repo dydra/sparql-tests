@@ -41,7 +41,7 @@ select ?x ?y ?z ((?y = ?z) as ?eq) where {
 }
     end
 
-    example "Expression is equality", :status => 'unverified' do
+    example "Expression is equality" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -13,7 +13,8 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+# 20110206 jaa : canonical blank node indicator
+
 describe "W3C test" do
   context "functions" do
     before :all do
@@ -49,7 +50,7 @@ ORDER BY ?x ?y ?sum
 }
     end
 
-    example "plus-1", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "plus-1", :w3c_status => 'unapproved', :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

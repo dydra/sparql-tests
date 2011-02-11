@@ -41,7 +41,7 @@ select ?x (datatype(?l) as ?dt) where {
 }
     end
 
-    example "Expression has variable that may be unbound", :status => 'unverified' do
+    example "Expression has variable that may be unbound" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

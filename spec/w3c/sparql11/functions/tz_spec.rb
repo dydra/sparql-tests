@@ -13,7 +13,8 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+# 20110208 jaa : tz zoned for time canonicalization
+
 describe "W3C test" do
   context "functions" do
     before :all do
@@ -53,7 +54,7 @@ SELECT ?s (TZ(?date) AS ?x) WHERE {
 }
     end
 
-    example "TZ()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "TZ()", :tz => 'zoned', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

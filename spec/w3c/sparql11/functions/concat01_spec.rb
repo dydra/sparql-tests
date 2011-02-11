@@ -54,7 +54,7 @@ SELECT (CONCAT(?str1,?str2) AS ?str) WHERE {
 }
     end
 
-    example "CONCAT()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "CONCAT()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

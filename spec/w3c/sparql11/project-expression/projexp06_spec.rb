@@ -39,7 +39,7 @@ select  ?x ?l (datatype(?m) as ?dt) where {
 }
     end
 
-    example "Expression has undefined variable", :status => 'unverified' do
+    example "Expression has undefined variable", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

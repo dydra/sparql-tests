@@ -53,7 +53,7 @@ SELECT (SHA256(?l) AS ?hash) WHERE {
 }
     end
 
-    example "SHA256()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "SHA256()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

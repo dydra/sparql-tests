@@ -53,7 +53,7 @@ SELECT (SHA512(?l) AS ?hash) WHERE {
 }
     end
 
-    example "SHA512()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "SHA512()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

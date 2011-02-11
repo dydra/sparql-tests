@@ -13,7 +13,7 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+
 describe "W3C test" do
   context "functions" do
     before :all do
@@ -53,7 +53,7 @@ SELECT (MD5(?l) AS ?hash) WHERE {
 }
     end
 
-    example "MD5() over Unicode data", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "MD5() over Unicode data", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

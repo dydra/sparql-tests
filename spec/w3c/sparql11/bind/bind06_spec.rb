@@ -37,7 +37,7 @@ SELECT *
 }
     end
 
-    example "bind06 - BIND", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "bind06 - BIND", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

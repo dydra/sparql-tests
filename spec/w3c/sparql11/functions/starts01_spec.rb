@@ -55,7 +55,7 @@ SELECT ?s ?str WHERE {
 }
     end
 
-    example "STARTS()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "STARTS()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

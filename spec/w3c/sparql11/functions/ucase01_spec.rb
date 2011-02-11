@@ -13,7 +13,7 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+ 
 describe "W3C test" do
   context "functions" do
     before :all do
@@ -53,7 +53,7 @@ SELECT ?s (UCASE(?str) AS ?ustr) WHERE {
 }
     end
 
-    example "UCASE()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "UCASE()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

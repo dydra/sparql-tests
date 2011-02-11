@@ -54,7 +54,7 @@ SELECT ?s ?num (FLOOR(?num) AS ?floor) WHERE {
 }
     end
 
-    example "FLOOR()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "FLOOR()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

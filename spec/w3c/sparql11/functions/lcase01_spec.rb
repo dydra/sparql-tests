@@ -53,7 +53,7 @@ SELECT ?s (LCASE(?str) AS ?lstr) WHERE {
 }
     end
 
-    example "LCASE()", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "LCASE()", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

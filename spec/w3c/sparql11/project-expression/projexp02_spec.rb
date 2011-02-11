@@ -41,7 +41,7 @@ select ?x ?y ?z ((?y + ?z) as ?sum) where {
 }
     end
 
-    example "Expression raise an error", :status => 'unverified' do
+    example "Expression raise an error" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
