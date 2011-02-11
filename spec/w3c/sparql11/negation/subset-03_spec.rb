@@ -87,7 +87,7 @@ WHERE
 }
     end
 
-    example "Calculate proper subset", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Calculate proper subset", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

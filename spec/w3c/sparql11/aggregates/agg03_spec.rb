@@ -35,7 +35,7 @@ HAVING (COUNT(?O) > 2 )
 }
     end
 
-    example "COUNT 3", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "COUNT 3", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

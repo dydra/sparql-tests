@@ -36,7 +36,7 @@ ASK {
 }
     end
 
-    example "GROUP_CONCAT with SEPARATOR", :status => 'unverified' do
+    example "GROUP_CONCAT with SEPARATOR", :unverified => true do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

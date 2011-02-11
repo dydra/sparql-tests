@@ -38,7 +38,7 @@ WHERE {
 }
     end
 
-    example "SUM", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "SUM", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

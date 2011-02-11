@@ -42,7 +42,7 @@ in:a (ex:p1/ex:p2)+ ?x
 }
     end
 
-    example "Variable length path and two paths to same target node", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Variable length path and two paths to same target node", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

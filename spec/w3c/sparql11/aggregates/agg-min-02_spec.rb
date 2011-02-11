@@ -39,7 +39,7 @@ GROUP BY ?s
 }
     end
 
-    example "MIN with GROUP BY", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "MIN with GROUP BY", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -40,7 +40,7 @@ in:a ex:p1/ex:p2/ex:p3 ?x
 }
     end
 
-    example "Simple path", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Simple path", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -35,7 +35,7 @@ WHERE { ?x rdf:type :c . }
 }
     end
 
-    example "simple triple pattern match", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "simple triple pattern match", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

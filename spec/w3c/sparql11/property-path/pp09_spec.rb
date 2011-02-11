@@ -40,7 +40,7 @@ in:c ^(ex:p1/ex:p2) ?x
 }
     end
 
-    example "Reverse sequence path", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Reverse sequence path", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

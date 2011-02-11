@@ -33,7 +33,7 @@ ORDER BY ?X
 }
     end
 
-    example "Zero Length Paths with Literals", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Zero Length Paths with Literals", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

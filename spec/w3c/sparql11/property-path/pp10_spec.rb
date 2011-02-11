@@ -41,7 +41,7 @@ in:a !(ex:p1|ex:p2) ?x
 }
     end
 
-    example "Path with negation", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Path with negation", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

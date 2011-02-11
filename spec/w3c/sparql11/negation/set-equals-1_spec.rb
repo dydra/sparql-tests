@@ -78,7 +78,7 @@ WHERE
 }
     end
 
-    example "Calculate which sets have the same elements", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Calculate which sets have the same elements", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
