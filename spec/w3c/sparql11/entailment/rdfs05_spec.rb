@@ -38,7 +38,7 @@ WHERE { ?x rdf:type ?c . ?c rdfs:subClassOf :d }
 }
     end
 
-    example "RDFS inference test subClassOf", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "RDFS inference test subClassOf", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

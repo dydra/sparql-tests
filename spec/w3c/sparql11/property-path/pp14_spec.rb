@@ -38,7 +38,7 @@ ORDER BY ?X ?Y
 }
     end
 
-    example "Star path over foaf:knows", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Star path over foaf:knows", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

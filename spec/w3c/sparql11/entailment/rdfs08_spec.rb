@@ -37,7 +37,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test rdf:XMLLiteral subclass of rdfs:Literal", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "RDFS inference test rdf:XMLLiteral subclass of rdfs:Literal", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

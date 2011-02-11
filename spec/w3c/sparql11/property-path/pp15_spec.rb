@@ -31,7 +31,7 @@ WHERE { ?X :p{0} "o" .
 }
     end
 
-    example "Zero Length Paths on an empty graph", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Zero Length Paths on an empty graph", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

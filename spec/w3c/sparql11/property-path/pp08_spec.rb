@@ -39,7 +39,7 @@ in:b ^ex:p in:a
 }
     end
 
-    example "Reverse path", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Reverse path", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

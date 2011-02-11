@@ -53,7 +53,7 @@ graph ?g {in:a ex:p1/ex:p2 ?x}
 }
     end
 
-    example "Path with two graphs", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Path with two graphs", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = nil

@@ -38,7 +38,7 @@ WHERE {
 }
     end
 
-    example "MAX", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "MAX", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

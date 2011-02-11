@@ -48,7 +48,7 @@ WHERE {
 }
     end
 
-    example "OWL DS bnodes are not existentials", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "OWL DS bnodes are not existentials", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

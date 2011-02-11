@@ -39,7 +39,7 @@ SELECT (COUNT(*) AS ?c) {
 }
     end
 
-    example "GROUP_CONCAT 2", :status => 'unverified' do
+    example "GROUP_CONCAT 2", :unverified => true do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -40,7 +40,7 @@ HAVING (AVG(?o) <= 2.0)
 }
     end
 
-    example "AVG with GROUP BY", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "AVG with GROUP BY", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

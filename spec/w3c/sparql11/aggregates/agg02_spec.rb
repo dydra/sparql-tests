@@ -34,7 +34,7 @@ GROUP BY ?P
 }
     end
 
-    example "COUNT 2", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "COUNT 2", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

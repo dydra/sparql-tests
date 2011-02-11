@@ -37,7 +37,7 @@ select * where {
 }
     end
 
-    example "Diamond, with tail -- :p+", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Diamond, with tail -- :p+", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -79,7 +79,7 @@ WHERE
 }
     end
 
-    example "Calculate which sets are subsets of others (exclude A subsetOf A)", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Calculate which sets are subsets of others (exclude A subsetOf A)", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

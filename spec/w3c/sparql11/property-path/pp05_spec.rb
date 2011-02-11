@@ -45,7 +45,7 @@ select * where {
 }
     end
 
-    example "Zero length path", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Zero length path", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

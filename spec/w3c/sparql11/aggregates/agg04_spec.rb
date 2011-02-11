@@ -33,7 +33,7 @@ WHERE { ?S ?P ?O }
 }
     end
 
-    example "COUNT 4", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "COUNT 4", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

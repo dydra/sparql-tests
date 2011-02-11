@@ -33,7 +33,7 @@ SELECT ?animal {
 }
     end
 
-    example "Subsets by exclusion (NOT EXISTS)", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Subsets by exclusion (NOT EXISTS)", :unverified => true, :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
