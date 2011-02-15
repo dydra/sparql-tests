@@ -2,10 +2,6 @@
 #
 require 'spec_helper'
 
-# Test handling standard and non-standard escapes
-# 
-
-
 describe "unfuddle ticket" do
   context "spocq 102" do
     before :all do
@@ -31,12 +27,20 @@ describe <http://www.example.org/instance#a>
 
 
       repository = '102-describe'
-      expected = [
-      ]
+      expected = RDF::Graph.new do |graph|
+        graph << RDF::Statement.new(
+          :subject => RDF::URI('http://www.example.org/instance#a'),
+          :predicate => RDF::URI('http://www.example.org/schema#p'),
+          :object => RDF::Literal.new(1))
+        graph << RDF::Statement.new(
+          :subject => RDF::URI('http://www.example.org/instance#a'),
+          :predicate => RDF::URI('http://www.example.org/schema#q'),
+          :object => RDF::Literal.new(2))
 
+      end
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ expected
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :describe).should be_isomorphic_with expected
     end
   end
 end
