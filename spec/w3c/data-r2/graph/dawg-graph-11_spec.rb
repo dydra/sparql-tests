@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # graph-11
 # Data: default and named (several) / Query: get everything
-# /Users/ben/repos/datagraph/tests/tests/data-r2/graph/graph-11.rq
+# graph-11.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-graph-11
@@ -87,25 +87,25 @@ SELECT *
       repository = 'graph-dawg-graph-11'
       expected = [
           { 
-              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g3.ttl'),
+              :g => RDF::URI('data-g3.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::Node.new('g13371220'),
           },
           { 
-              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g1.ttl'),
+              :g => RDF::URI('data-g1.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g1.ttl'),
+              :g => RDF::URI('data-g1.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/a'),
           },
           { 
-              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g2.ttl'),
+              :g => RDF::URI('data-g2.ttl'),
               :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/q'),
               :s => RDF::URI('http://example/x'),
@@ -116,13 +116,13 @@ SELECT *
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g4.ttl'),
+              :g => RDF::URI('data-g4.ttl'),
               :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/q'),
               :s => RDF::Node.new('g13297780'),
           },
           { 
-              :g => RDF::URI('/Users/ben/repos/datagraph/tests/tests/data-r2/graph/data-g3.ttl'),
+              :g => RDF::URI('data-g3.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::Node.new('g13289920'),
