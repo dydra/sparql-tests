@@ -53,7 +53,11 @@ def sparql_query(opts)
 
   if creating?
     log "Running dydra create #{repository_name}"
-    Dydra::Repository.create!(opts[:repository])
+    begin
+      Dydra::Repository.create!(opts[:repository])
+    rescue RestClient::UnprocessableEntity
+      # already exists
+    end
   end
 
   if importing?
