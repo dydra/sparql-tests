@@ -61,56 +61,46 @@ WHERE {
 
       repository = 'construct-construct-1'
 
-      expected = [
-          { 
-            :'s' => RDF::Node.new('alice'),
-            :'p' => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
-            :'o' => RDF::URI('http://xmlns.com/foaf/0.1/Person'),
-          },
-          { 
-            :'s' => RDF::Node.new('alice'),
-            :'p' => RDF::URI('http://xmlns.com/foaf/0.1/name'),
-            :'o' => RDF::Literal('Alice'),
-          },
-          { 
-            :'s' => RDF::Node.new('alice'),
-            :'p' => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
-            :'o' => RDF::URI('mailto:alice@work'),
-          },
-          { 
-            :'s' => RDF::Node.new('alice'),
-            :'p' => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
-            :'o' => RDF::Node.new('bob'),
-          },
-          { 
-            :'s' => RDF::Node.new('bob'),
-            :'p' => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
-            :'o' => RDF::URI('http://xmlns.com/foaf/0.1/Person'),
-          },
-          { 
-            :'s' => RDF::Node.new('bob'),
-            :'p' => RDF::URI('http://xmlns.com/foaf/0.1/name'),
-            :'o' => RDF::Literal('Bob'),
-          },
-          { 
-            :'s' => RDF::Node.new('bob'),
-            :'p' => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
-            :'o' => RDF::Node.new('alice'),
-          },
-          { 
-            :'s' => RDF::Node.new('bob'),
-            :'p' => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
-            :'o' => RDF::URI('mailto:bob@work'),
-          },
-          { 
-            :'s' => RDF::Node.new('bob'),
-            :'p' => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
-            :'o' => RDF::URI('mailto:bob@home'),
-          },
-      ]
-
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ expected
+      expected = RDF::Graph.new do | graph |
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('alice'),
+            :predicate => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+            :object => RDF::URI('http://xmlns.com/foaf/0.1/Person'))
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('alice'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/name'),
+            :object => RDF::Literal('Alice'))
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('alice'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
+            :object => RDF::URI('mailto:alice@work'))
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('alice'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
+            :object => RDF::Node.new('bob'))
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('bob'),
+            :predicate => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+            :object => RDF::URI('http://xmlns.com/foaf/0.1/Person'))
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('bob'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/name'),
+            :object => RDF::Literal('Bob'))
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('bob'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
+            :object => RDF::Node.new('alice'))
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('bob'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
+            :object => RDF::URI('mailto:bob@work'))
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('bob'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
+            :object => RDF::URI('mailto:bob@home'))
+      end
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :construct).should be_isomorphic_with expected
 
     end
   end

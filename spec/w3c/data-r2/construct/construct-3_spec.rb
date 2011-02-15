@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
 # 20101219 jaa : bug indicator : construct not yet supported by the front-end
+# 20110215 ben : remove indicator, test passing
 
 describe "W3C test" do
   context "construct" do
@@ -51,18 +52,61 @@ WHERE {
 }
 
 }
+
+      @results = %q{
+@prefix foaf:       <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+[] rdf:subject _:gff ;
+  rdf:predicate rdf:type ;
+  rdf:object foaf:Person .
+
+[] rdf:subject _:gff ;
+  rdf:predicate foaf:name ;
+  rdf:object "Alice" .
+
+[] rdf:subject _:gff ;
+  rdf:predicate foaf:mbox ;
+  rdf:object <mailto:alice@work> .
+
+[] rdf:subject _:gff ;
+  rdf:predicate foaf:knows ;
+  rdf:object _:g2a .
+
+[] rdf:subject _:g2a ;
+  rdf:predicate rdf:type ;
+  rdf:object foaf:Person .
+
+[] rdf:subject _:g2a ;
+  rdf:predicate foaf:name ;
+  rdf:object "Bob" .
+
+[] rdf:subject _:g2a ;
+  rdf:predicate foaf:knows ;
+  rdf:object _:gff .
+
+[] rdf:subject _:g2a ;
+  rdf:predicate foaf:mbox ;
+  rdf:object <mailto:bob@home> .
+}
     end
 
-    example "dawg-construct-reification-1", :status => 'bug' do
-    
+    example "dawg-construct-reification-1" do
+
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
+      expected = RDF::Graph.new
 
-
+      RDF::Reader.for(:turtle).new(@results) do |reader|
+        reader.each_statement do |statement|
+          expected << statement
+        end
+      end
       repository = 'construct-construct-3'
 
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :construct).should be_isomorphic_with expected
 
-        raise NotImplementedError("This test form is not yet implemented")
     end
   end
 end

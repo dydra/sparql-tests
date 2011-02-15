@@ -56,16 +56,15 @@ WHERE
 
       repository = 'construct-construct-5'
 
-      expected = [
-          { 
-            :'s' => RDF::URI('http://example/x'),
-            :'p' => RDF::URI('http://example/p2'),
-            :'o' => RDF::Literal.new('2', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-          },
-      ]
+      expected = RDF::Graph.new do | graph |
+        graph << RDF::Statement.new(
+            :subject => RDF::URI('http://example/x'),
+            :predicate => RDF::URI('http://example/p2'),
+            :object => RDF::Literal.new('2', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')))
+      end
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ expected
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :construct).should be_isomorphic_with expected
 
     end
   end

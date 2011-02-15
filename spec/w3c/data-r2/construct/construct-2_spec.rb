@@ -61,21 +61,19 @@ WHERE {
 
       repository = 'construct-construct-2'
 
-      expected = [
-          { 
-            :'s' => RDF::Node.new('alice'),
-            :'p' => RDF::URI('http://xmlns.com/foaf/0.1/name'),
-            :'o' => RDF::Literal('Alice'),
-          },
-          { 
-            :'s' => RDF::Node.new('bob'),
-            :'p' => RDF::URI('http://xmlns.com/foaf/0.1/name'),
-            :'o' => RDF::Literal('Bob'),
-          },
-      ]
+      expected = RDF::Graph.new do | graph |
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('alice'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/name'),
+            :object => RDF::Literal('Alice'))
+        graph << RDF::Statement.new(
+            :subject => RDF::Node.new('bob'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/name'),
+            :object => RDF::Literal('Bob'))
+      end
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ expected
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :construct).should be_isomorphic_with expected
 
     end
   end
