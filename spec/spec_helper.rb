@@ -95,7 +95,12 @@ def sparql_query(opts)
     end
     raw_result = Dydra::Repository.new(account + '/' + opts[:repository]).query(opts[:query], format)
     log raw_result
-    result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result) if opts[:form] == :select || opts[:form] == :ask
+    if opts[:form] == :select || opts[:form] == :ask
+      result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result)
+      result = !!result if opts[:form] == :ask
+    elsif
+      result = raw_result
+    end
   end
    
   log "Result: (query took #{taken} seconds)"
