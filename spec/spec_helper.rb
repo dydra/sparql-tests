@@ -48,7 +48,8 @@ def sparql_query(opts)
   raise "A query is required to be run" if opts[:query].nil?
 
   Dydra::Client.setup!
-  repository_name = "#{$dydra[:user]}/#{opts[:repository]}"
+  account = ENV['ACCOUNT'] || $dydra[:user]
+  repository_name = "#{account}/#{opts[:repository]}"
   if creating?
     log "Running dydra create #{repository_name}"
     begin
@@ -59,7 +60,7 @@ def sparql_query(opts)
   end
 
   if importing?
-    base_uri = RDF::URI(Dydra::URI) / $dydra[:user] / opts[:repository]
+    base_uri = RDF::URI(Dydra::URI) / account / opts[:repository]
     repository = Dydra::Repository.new(opts[:repository])
     log "Running dydra clear #{repository_name} #{repository}"
     repository.clear!
@@ -82,13 +83,22 @@ def sparql_query(opts)
   end
 
   log "Running dydra query #{repository_name} '#{opts[:query]}'"
-  result = nil
+  result = raw_result = nil
   taken = timer do
-    result = Dydra::Repository.new(opts[:repository]).query(opts[:query], :parsed)
+    format = case
+      when opts[:form] == :construct || opts[:form] == :describe
+        :parsed
+      when ENV['DYDRA_XML']
+        :xml
+      else
+        :json
+    end
+    raw_result = Dydra::Repository.new(account + '/' + opts[:repository]).query(opts[:query], format)
+    result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result) if opts[:form] == :select || opts[:form] == :ask
   end
    
   log "Result: (query took #{taken} seconds)"
-  log result
+  log raw_result
   log result.each_statement.to_a.map {|s| "#{s.subject} #{s.predicate} #{s.object}" }.join("\n")if result.respond_to?(:each_statement)
   result.map!(&:to_hash) if opts[:form] == :select
   result
