@@ -94,11 +94,11 @@ def sparql_query(opts)
         :json
     end
     raw_result = Dydra::Repository.new(account + '/' + opts[:repository]).query(opts[:query], format)
+    log raw_result
     result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result) if opts[:form] == :select || opts[:form] == :ask
   end
    
   log "Result: (query took #{taken} seconds)"
-  log raw_result
   log result.each_statement.to_a.map {|s| "#{s.subject} #{s.predicate} #{s.object}" }.join("\n")if result.respond_to?(:each_statement)
   result.map!(&:to_hash) if opts[:form] == :select
   result
