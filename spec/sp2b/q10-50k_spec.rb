@@ -7,7 +7,7 @@ require 'spec_helper'
 describe "SP2B" do
   context "query 10" do
     before :all do
-      @url = 'http://public.datagraph.org.s3.amazonaws.com/sp2b-50k.n3'
+      @url = 'http://public.datagraph.org.s3.amazonaws.com/sp2b-50k.nt'
       
       @query = %q(
 PREFIX person: <http://localhost/persons/>

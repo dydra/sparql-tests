@@ -7,7 +7,7 @@ require 'spec_helper'
 describe "SP2B" do
   context "query 11" do
     before :all do
-      @url = 'http://public.datagraph.org.s3.amazonaws.com/sp2b-50k.n3'
+      @url = 'http://public.datagraph.org.s3.amazonaws.com/sp2b-50k.nt'
       
       @query = %q(
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
