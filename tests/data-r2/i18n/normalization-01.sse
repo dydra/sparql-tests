@@ -3,5 +3,5 @@
   (project (?name)
     (bgp
       (triple ??0 foaf:name ?name)
-      (triple ??0 <http://www.w3.org/2001/sw/DataAccess/tests/data/i18n/normalization.ttl#resumé> ?resume)
+      (triple ??0 HR:resumé ?resume)
     )))

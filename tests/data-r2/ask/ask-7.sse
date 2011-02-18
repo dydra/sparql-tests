@@ -1,2 +1,3 @@
 (prefix ((: <http://example/>))
-  (bgp (triple :x :p ?x)))
+  (ask
+    (bgp (triple :x :p ?x))))
