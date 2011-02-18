@@ -50,4 +50,7 @@ class CSVFormatter < RSpec::Core::Formatters::BaseTextFormatter
     example_group.ancestors.reverse
   end
 
+  def dump_summary(*args)
+  end
+
 end
