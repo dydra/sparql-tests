@@ -15,6 +15,7 @@ namespace :spec do
     t.rspec_opts << ['--tag', '~blank_nodes:unique']
     t.rspec_opts << ['--tag', '~reduced:all']
     t.rspec_opts << ['--tag', '~status:bug']
+    t.rspec_opts << ['--tag', '~tz:zoned']
     t.pattern = 'spec/w3c/data-r2/**/*.rb'
     t.verbose = false
   end
