@@ -56,7 +56,7 @@ _:fred
 }
     end
 
-    example "dawg-bnode-coreference", :blank_nodes => 'canonical' do
+    example "dawg-bnode-coreference (canonical)", :blank_nodes => 'canonical' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

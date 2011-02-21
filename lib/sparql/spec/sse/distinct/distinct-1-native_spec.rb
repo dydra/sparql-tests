@@ -66,7 +66,7 @@ describe "W3C test" do
 }
     end
 
-    example "Numbers: Distinct", :arithmetic => 'native' do
+    example "Numbers: Distinct (native)", :arithmetic => 'native' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

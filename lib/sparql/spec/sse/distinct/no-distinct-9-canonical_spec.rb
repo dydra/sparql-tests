@@ -102,7 +102,7 @@ describe "W3C test" do
 }
     end
 
-    example "All: No distinct", :blank_nodes => 'canonical' do
+    example "All: No distinct (canonical)", :blank_nodes => 'canonical' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
