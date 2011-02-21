@@ -36,7 +36,8 @@ y"""^^:someType .
         (prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
                  (: <http://example.org/ns#>))
           (project (?x)
-            (bgp (triple ?x ?p "x\ny"^^:someType))))}
+            (bgp (triple ?x ?p "x\ny"^^:someType))))
+      }
     end
 
     example "Basic - Quotes 4" do

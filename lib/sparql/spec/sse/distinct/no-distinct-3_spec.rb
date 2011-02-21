@@ -32,10 +32,8 @@ describe "W3C test" do
 
 }
       @query = %q{
-(select (?v)
         (project (?v)
-                 (bgp (triple ?x ?p ?v))))
-
+                 (bgp (triple ?x ?p ?v)))
 }
     end
 

@@ -36,7 +36,7 @@ describe "W3C test" do
                  (rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
                  (: <http://example.org/>))
           (project (?s)
-            (filter (= (datatype (xsd:dateTime ?v)) xsd:dateTime)
+            (filter (= (datatype (xsd:decimal ?v)) xsd:decimal)
               (bgp (triple ?s :p ?v)))))
 }
     end

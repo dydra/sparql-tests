@@ -41,11 +41,9 @@ describe "W3C test" do
 
 }
       @query = %q{
-(select (?x ?v)
   (project (?x ?v)
     (filter (isURI ?v)
-      (bgp (triple ?x <http://example.org/things#p> ?v)))))
-
+      (bgp (triple ?x <http://example.org/things#p> ?v))))
 }
     end
 

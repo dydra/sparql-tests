@@ -29,12 +29,12 @@ describe "W3C test" do
 
 }
       @query = %q{
-(select (?s ?o)
-        (distinct
-         (union
-          (bgp (triple ?s <http://example/p> ?o))
-          (bgp (triple ?s <http://example/q> ?o)))))
-
+        (prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
+                 (: <http://example/>))
+          (distinct
+            (union
+              (bgp (triple ?s :p ?o))
+              (bgp (triple ?s :q ?o)))))
 }
     end
 

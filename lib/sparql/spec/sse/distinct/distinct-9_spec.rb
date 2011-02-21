@@ -97,11 +97,9 @@ describe "W3C test" do
 
 }
       @query = %q{
-(select (?v)
         (distinct
          (project (?v)
                   (bgp (triple ?x ?p ?v)))))
-
 }
     end
 

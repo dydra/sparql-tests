@@ -34,13 +34,11 @@ _:a :q  :s .
 
 }
       @query = %q{
-(select (?v)
         (distinct
          (project (?v)
                   (leftjoin
                    (bgp (triple <http://example/x1> ?p ?o))
-                   (bgp (triple ?o <http://example/q> ?v))))))
-
+                   (bgp (triple ?o <http://example/q> ?v)))))
 }
     end
 
