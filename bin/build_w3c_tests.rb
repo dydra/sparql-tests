@@ -1,7 +1,9 @@
 ## TODO: ask results are just 'true' on the line, not 'expected = '
 #!/usr/bin/env ruby
 
-require_relative '../lib/sparql/models'
+$:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
+require 'sparql/spec/models'
 require 'sparql/client'
 require 'erubis'
 
@@ -83,7 +85,7 @@ w3c_dir = ENV['DEST_DIR'] || File.join(File.expand_path(File.dirname(__FILE__)),
 
 begin Dir.mkdir(w3c_dir) rescue nil end
 
-tests = load_w3c_tests
+tests = SPARQL::Spec.load_sparql1_1_tests
 skipped = ssf_skipped = existed = count = 0
 test_template = Erubis::Eruby.new(File.read(File.join(File.dirname(__FILE__), '..', 'etc', 'test.rb.erb')))
 tests.each do |test|
