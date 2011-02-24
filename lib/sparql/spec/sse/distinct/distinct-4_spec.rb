@@ -34,11 +34,13 @@ _:a :q  :s .
 
 }
       @query = %q{
-        (distinct
-         (project (?v)
-                  (leftjoin
-                   (bgp (triple <http://example/x1> ?p ?o))
-                   (bgp (triple ?o <http://example/q> ?v)))))
+        (prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
+                 (: <http://example/>))
+          (distinct
+            (project (?v)
+              (leftjoin
+                (bgp (triple :x1 ?p ?o))
+                (bgp (triple ?o :q ?v))))))
 }
     end
 

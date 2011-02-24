@@ -54,9 +54,7 @@ describe "W3C test" do
                  (: <http://example/>))
           (distinct
             (project (?v)
-              (leftjoin
-                (bgp (triple :x1 ?p ?o))
-                (bgp (triple ?o :q ?v))))))
+              (bgp (triple ?x ?p ?v)))))
 }
     end
 

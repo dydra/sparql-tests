@@ -32,7 +32,7 @@ describe "W3C test" do
         (project (?v ?w)
         (leftjoin
          (leftjoin
-          (bgp (triple :x1> :p ?v))
+          (bgp (triple :x1 :p ?v))
           (bgp (triple :x3 :q ?w)))
          (bgp
           (triple :x3 :q ?w)
