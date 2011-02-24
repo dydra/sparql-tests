@@ -52,7 +52,7 @@ describe "W3C test" do
 }
     end
 
-    example "sameTerm-simple", :arithmetic => 'boxed' do
+    example "sameTerm-simple", :arithmetic => 'native' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
