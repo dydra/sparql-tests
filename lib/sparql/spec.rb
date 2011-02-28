@@ -43,7 +43,6 @@ module SPARQL
     autoload :SPARQLBinding,  'sparql/spec/models'
     autoload :BindingSet,     'sparql/spec/models'
     autoload :ResultBindings, 'sparql/spec/models'
-    autoload :SSE,            'sparql/spec/sse'
 
     # Module functions
     def self.load_sparql1_0_tests
