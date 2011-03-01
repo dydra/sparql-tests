@@ -1,8 +1,8 @@
-require 'sparql/models'
+require 'sparql/spec/models'
 require 'sparql/client'
 
 
-dest_dir = ENV['DEST_DIR'] || File.join(File.expand_path(File.dirname(__FILE__)), '..', '..', 'spec', 'w3c')
+dest_dir = ENV['DEST_DIR'] || File.join(File.expand_path(File.dirname(__FILE__)), '..', '..', '..', 'spec', 'w3c')
 puts "saving to #{dest_dir}"
 
 begin Dir.mkdir(dest_dir) rescue nil end
