@@ -53,15 +53,15 @@ SELECT *
 
       repository = 'open-world-date-1'
       expected = [
-          { 
+          {
               :v => RDF::Literal.new('2006-08-23Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d1'),
-          }
+          },
           { 
               :v => RDF::Literal.new('2006-08-23Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d2'),
-          }
-          { 
+          },
+          {
               :v => RDF::Literal.new('2006-08-23Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d3'),
           }
