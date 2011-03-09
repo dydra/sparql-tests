@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007OctDec/att-0069/13-dawg-minutes.html
 #
 # 20101220 jaa : reduced indicator
+# 20110309 ben : add language tags, mark unverified
 
 describe "W3C test" do
   context "reduced" do
@@ -63,7 +64,7 @@ SELECT REDUCED ?v
 }
     end
 
-    example "SELECT REDUCED ?x with strings", :reduced => 'all' do
+    example "SELECT REDUCED ?x with strings", :status => 'unverified', :reduced => 'all' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -84,10 +85,10 @@ SELECT REDUCED ?v
               :v => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              :v => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC' , :language => 'en'),
           },
           { 
-              :v => RDF::Literal.new('ABC' ),
+              :v => RDF::Literal.new('ABC' , :language => 'en'),
           },
           { 
               :v => RDF::Literal.new('ABC' ),
@@ -102,16 +103,16 @@ SELECT REDUCED ?v
               :v => RDF::Literal.new('' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
           { 
-              :v => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc' , :language => 'en'),
           },
           { 
-              :v => RDF::Literal.new('abc' ),
+              :v => RDF::Literal.new('abc' , :language => 'en'),
           },
           { 
-              :v => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('' , :language => 'en'),
           },
           { 
-              :v => RDF::Literal.new('' ),
+              :v => RDF::Literal.new('' , :language => 'en'),
           },
           { 
               :v => RDF::Literal.new('abc' ),
