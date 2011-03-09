@@ -10,26 +10,31 @@ describe "SP2B" do
       @url = 'http://public.datagraph.org.s3.amazonaws.com/sp2b-50k.nt'
       
       @query = %q(
-PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
-PREFIX dc:      <http://purl.org/dc/elements/1.1/>
-PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dc:   <http://purl.org/dc/elements/1.1/>
 
-SELECT ?yr ?name ?document
+SELECT DISTINCT ?name
 WHERE {
-  ?class rdfs:subClassOf foaf:Document .
-  ?document rdf:type ?class .
-  ?document dcterms:issued ?yr .
-  ?document dc:creator ?author .
-  ?author foaf:name ?name
-  OPTIONAL {
-    ?class2 rdfs:subClassOf foaf:Document .
-    ?document2 rdf:type ?class2 .
-    ?document2 dcterms:issued ?yr2 .
-    ?document2 dc:creator ?author2 
-    FILTER (?author=?author2 && ?yr2<?yr)
-  } FILTER (!bound(?author2))
+  ?erdoes rdf:type foaf:Person .
+  ?erdoes foaf:name "Paul Erdoes"^^xsd:string .
+  {
+    ?document dc:creator ?erdoes .
+    ?document dc:creator ?author .
+    ?document2 dc:creator ?author .
+    ?document2 dc:creator ?author2 .
+    ?author2 foaf:name ?name
+    FILTER (?author!=?erdoes &&
+            ?document2!=?document &&
+            ?author2!=?erdoes &&
+            ?author2!=?author)
+  } UNION {
+    ?document dc:creator ?erdoes.
+    ?document dc:creator ?author.
+    ?author foaf:name ?name
+    FILTER (?author!=?erdoes)
+  }
 }
 )
     end
