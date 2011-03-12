@@ -18,6 +18,7 @@ To run only the tests that we would expect to pass:
         --tag '~arithmetic:boxed' \
         --tag '~blank_nodes:unique' \
         --tag '~status:bug' \
+        --tag '~tz:zoned' \
         spec/w3c/data-r2/
 
 Known buggy tests are skipped with `--tag '~status:bug'`, to enable them,
