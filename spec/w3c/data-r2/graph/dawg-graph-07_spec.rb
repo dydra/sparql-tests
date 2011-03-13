@@ -14,7 +14,7 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
-# 20101220 jaa : bug indicator : graphs are NYI
+# 20110312 jaa : bug indicator : rdfcache does not return contexts
 
 describe "W3C test" do
   context "graph" do

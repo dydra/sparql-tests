@@ -37,7 +37,7 @@ SELECT * {
 }
     end
 
-    example "graph-03", :status => 'unverified' do
+    example "graph-03", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = nil
@@ -47,13 +47,13 @@ SELECT * {
       repository = 'graph-dawg-graph-03'
       expected = [
           { 
-              :g => RDF::URI('/Users/ben/Repos/datagraph/tests/tests/data-r2/graph/data-g1.ttl'),
+              :g => RDF::URI('data-g1.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('/Users/ben/Repos/datagraph/tests/tests/data-r2/graph/data-g1.ttl'),
+              :g => RDF::URI('data-g1.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/a'),

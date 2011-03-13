@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/10/09-dawg-minutes.html
 #
+# 20110312 jaa : blank_nodes indicator
+
 describe "W3C test" do
   context "dataset" do
     before :all do
@@ -93,7 +95,7 @@ FROM NAMED <data-g4.ttl>
 }
     end
 
-    example "dataset-12b", :status => 'unverified' do
+    example "dataset-12b", :status => 'unverified', :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

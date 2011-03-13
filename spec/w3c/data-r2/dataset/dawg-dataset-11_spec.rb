@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0118/04-dawg-minutes.html
 #
+# 20110312 jaa : blank_nodes indicator
+
 describe "W3C test" do
   context "dataset" do
     before :all do
@@ -90,7 +92,7 @@ FROM NAMED <data-g4.ttl>
 }
     end
 
-    example "dataset-11", :status => 'unverified' do
+    example "dataset-11", :status => 'unverified', :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -103,25 +105,25 @@ FROM NAMED <data-g4.ttl>
       repository = 'dataset-dawg-dataset-11'
       expected = [
           { 
-              :g => RDF::URI('/Users/ben/Repos/datagraph/tests/tests/data-r2/dataset/data-g3.ttl'),
+              :g => RDF::URI('data-g3.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::Node.new('g882890'),
           },
           { 
-              :g => RDF::URI('/Users/ben/Repos/datagraph/tests/tests/data-r2/dataset/data-g1.ttl'),
+              :g => RDF::URI('data-g1.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('/Users/ben/Repos/datagraph/tests/tests/data-r2/dataset/data-g1.ttl'),
+              :g => RDF::URI('data-g1.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/a'),
           },
           { 
-              :g => RDF::URI('/Users/ben/Repos/datagraph/tests/tests/data-r2/dataset/data-g2.ttl'),
+              :g => RDF::URI('data-g2.ttl'),
               :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/q'),
               :s => RDF::URI('http://example/x'),
@@ -132,13 +134,13 @@ FROM NAMED <data-g4.ttl>
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('/Users/ben/Repos/datagraph/tests/tests/data-r2/dataset/data-g4.ttl'),
+              :g => RDF::URI('data-g4.ttl'),
               :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/q'),
               :s => RDF::Node.new('g375780'),
           },
           { 
-              :g => RDF::URI('/Users/ben/Repos/datagraph/tests/tests/data-r2/dataset/data-g3.ttl'),
+              :g => RDF::URI('data-g3.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::Node.new('g355860'),

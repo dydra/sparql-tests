@@ -99,7 +99,7 @@ FROM NAMED <data-g2.ttl>
       repository = 'dataset-dawg-dataset-06'
       expected = [
           { 
-              :g => RDF::URI('/Users/ben/Repos/datagraph/tests/tests/data-r2/dataset/data-g2.ttl'),
+              :g => RDF::URI('data-g2.ttl'),
               :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/q'),
               :s => RDF::URI('http://example/x'),

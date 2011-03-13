@@ -52,19 +52,19 @@ GROUP BY ( ?type )
       repository = 'aggregate-1'
       expected = [
           { 
-              :type => RDF::URI('http://www.w3.org/2001/XMLSchema#float')
+              :type => RDF::URI('http://www.w3.org/2001/XMLSchema#float'),
               :sum => RDF::Literal.new('20.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#float')),
           },
           { 
-              :type => RDF::URI('http://www.w3.org/2001/XMLSchema#double')
+              :type => RDF::URI('http://www.w3.org/2001/XMLSchema#double'),
               :sum => RDF::Literal.new('20.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
           { 
-              :type => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')
+              :type => RDF::URI('http://www.w3.org/2001/XMLSchema#integer'),
               :sum => RDF::Literal.new('80' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              :type => RDF::URI('http://www.w3.org/2001/XMLSchema#string')
+              :type => RDF::URI('http://www.w3.org/2001/XMLSchema#string'),
               :sum => RDF::Literal.new('0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
       ]
