@@ -50,7 +50,7 @@ SELECT ?x ?date
 }
     end
 
-    example "date-4", :tz => 'zulu' do
+    example "date-4 zulu", :tz => 'zulu' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
