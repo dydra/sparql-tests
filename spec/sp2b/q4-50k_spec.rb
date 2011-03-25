@@ -39,11 +39,10 @@ WHERE {
 
 
       repository = 'sp2b-50k'
-      expected = [
-      ]
+      expected_length = 104746
 
       sparql_query(:graphs => graphs, :query => @query,       # use unordered test
-                   :repository => repository, :form => :select).should =~ expected
+                   :repository => repository, :form => :select).length.should == expected_length
     end
   end
 end

@@ -34,7 +34,19 @@ WHERE {
 
       repository = 'sp2b-50k'
       expected = [
-      ]
+                  {
+                    :predicate => RDF::URI('http://purl.org/dc/elements/1.1/creator')
+                  },
+                  {
+                    :predicate => RDF::URI('http://swrc.ontoware.org/ontology#editor')
+                  },
+                  {
+                    :predicate => RDF::URI('http://xmlns.com/foaf/0.1/name')
+                  },
+                  {
+                    :predicate => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#type')
+                  },
+             ]
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
                    :repository => repository, :form => :select).should =~ expected

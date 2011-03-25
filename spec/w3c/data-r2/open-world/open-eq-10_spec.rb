@@ -17,6 +17,7 @@ require 'spec_helper'
 # 20101219 jaa : add bug indicator : cannot reconcile the dawg's expected solution with the requirements
 #  for termEqual &co
 # 20110309 ben : add unverified and language tags
+# 20110315 jaa: the blank nodes and the tag case were also issues
 
 describe "W3C test" do
   context "open-world" do
@@ -58,7 +59,7 @@ SELECT *
 }
     end
 
-    example "open-eq-10", :status => 'unverified' do
+    example "open-eq-10", :blank_nodes => 'unique', :values => 'lexical', :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

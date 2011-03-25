@@ -59,7 +59,7 @@ SELECT *
 }
     end
 
-    example "open-eq-07", :blank_nodes => 'unique', :values => 'literal' do
+    example "open-eq-07 canonical", :blank_nodes => 'canonical', :values => 'canonical'  do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -87,19 +87,19 @@ SELECT *
           },
           { 
               :v1 => RDF::Literal.new('xyz' , :language => 'en'),
-              :v2 => RDF::Literal.new('xyz' , :language => 'EN'),
+              :v2 => RDF::Literal.new('xyz' , :language => 'en'),
               :x1 => RDF::URI('http://example/x2'),
               :x2 => RDF::URI('http://example/x3'),
           },
           { 
-              :v1 => RDF::Literal.new('xyz' , :language => 'EN'),
+              :v1 => RDF::Literal.new('xyz' , :language => 'en'),
               :v2 => RDF::Literal.new('xyz' , :language => 'en'),
               :x1 => RDF::URI('http://example/x3'),
               :x2 => RDF::URI('http://example/x2'),
           },
           { 
-              :v1 => RDF::Literal.new('xyz' , :language => 'EN'),
-              :v2 => RDF::Literal.new('xyz' , :language => 'EN'),
+              :v1 => RDF::Literal.new('xyz' , :language => 'en'),
+              :v2 => RDF::Literal.new('xyz' , :language => 'en'),
               :x1 => RDF::URI('http://example/x3'),
               :x2 => RDF::URI('http://example/x3'),
           },
@@ -128,8 +128,8 @@ SELECT *
               :x2 => RDF::URI('http://example/x6'),
           },
           { 
-              :v1 => RDF::Node.new('b0'),
-              :v2 => RDF::Node.new('b0'),
+              :v1 => RDF::Node.new('xyz'),
+              :v2 => RDF::Node.new('xyz'),
               :x1 => RDF::URI('http://example/x7'),
               :x2 => RDF::URI('http://example/x7'),
           },

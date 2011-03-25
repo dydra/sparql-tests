@@ -27,10 +27,10 @@ ASK {
 
 
       repository = 'sp2b-50k'
-      expected = true
+      expected = false
 
       sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :select).should == expected
+                   :repository => repository, :form => :ask).should == expected
     end
   end
 end
