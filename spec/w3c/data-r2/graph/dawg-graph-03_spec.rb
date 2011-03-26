@@ -37,7 +37,7 @@ SELECT * {
 }
     end
 
-    example "graph-03", :status => 'bug' do
+    example "graph-03" do
     
       graphs = {}
       graphs[:default] = nil

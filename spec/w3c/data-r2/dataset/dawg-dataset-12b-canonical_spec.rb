@@ -95,7 +95,7 @@ FROM NAMED <data-g4.ttl>
 }
     end
 
-    example "dataset-12b", :status => 'unverified', :blank_nodes => 'canonical' do
+    example "dataset-12b canonical", :blank_nodes => 'canonical' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -86,7 +86,7 @@ FROM NAMED <data-g3.ttl>
 }
     end
 
-    example "dataset-10b", :status => 'unverified' do
+    example "dataset-10b" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
