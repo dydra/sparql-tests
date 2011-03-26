@@ -65,6 +65,7 @@ def sparql_query(opts)
     log "Running dydra clear #{repository_name} #{repository}"
     repository.clear!
     opts[:graphs].each do | graph, options |
+      next if options.nil?
       repository_file = case
         when options[:url]
           options[:url]
