@@ -31,6 +31,12 @@ OFFSET 50
       repository = 'sp2b-50k'
       expected = [
                   {
+                    :ee => RDF::Literal.new('http://www.advertisement.tld/ordainer/drabbed.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                  },
+                  {
+                    :ee => RDF::Literal.new('http://www.advised.tld/eyetooth/underseas.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                  },
+                  {
                     :ee => RDF::Literal.new('http://www.advocator.tld/contuses/fricassees.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
                   },
                   {
@@ -53,12 +59,6 @@ OFFSET 50
                   },
                   {
                     :ee => RDF::Literal.new('http://www.affirmativeness.tld/pistils/postmasters.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
-                  },
-                  {
-                    :ee => RDF::Literal.new('http://www.affirming.tld/gravelly/bovinely.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
-                  },
-                  {
-                    :ee => RDF::Literal.new('http://www.afforests.tld/sculptured/photosynthesizing.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
                   },
                  ]
 
