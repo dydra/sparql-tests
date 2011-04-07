@@ -95,7 +95,7 @@ FROM NAMED <data-g4.ttl>
 }
     end
 
-    example "dataset-12b", :status => 'unverified', :blank_nodes => 'unique' do
+    example "dataset-12b", :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

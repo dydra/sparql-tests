@@ -15,7 +15,6 @@ require 'spec_helper'
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0047/31-dawg-minutes
 #
 # 20110312 jaa : blank_nodes indicator
-# 20110312 jaa : bug indicator : rdfcache does not return contexts
 
 describe "W3C test" do
   context "graph" do
@@ -75,7 +74,7 @@ SELECT *
 }
     end
 
-    example "graph-11", :blank_nodes => 'unique', :status => 'bug' do
+    example "graph-11 canonical", :blank_nodes => 'canonical' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

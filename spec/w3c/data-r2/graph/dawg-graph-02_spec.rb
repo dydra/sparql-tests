@@ -34,7 +34,7 @@ SELECT * { ?s ?p ?o }
 }
     end
 
-    example "graph-02", :status => 'unverified' do
+    example "graph-02" do
     
       graphs = {}
       graphs[:default] = nil
