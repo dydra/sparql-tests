@@ -10,12 +10,10 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    abstract (1.0.0)
-    addressable (2.2.5)
+    addressable (2.2.4)
     diff-lcs (1.1.2)
-    erubis (2.6.6)
-      abstract (>= 1.0.0)
-    ffi (1.0.6)
+    erubis (2.7.0)
+    ffi (1.0.7)
       rake (>= 0.8.7)
     json_pure (1.5.1)
     macaddr (1.0.0)
@@ -30,7 +28,7 @@ GEM
     rdf-json (0.3.0)
       json_pure (>= 1.4.2)
       rdf (~> 0.3.0)
-    rdf-n3 (0.3.1.1)
+    rdf-n3 (0.3.1.3)
       rdf (>= 0.3.1)
     rdf-raptor (0.4.1)
       ffi (>= 1.0)
@@ -45,8 +43,8 @@ GEM
     rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.5.0)
-    s3 (0.3.7)
-      proxies
+    s3 (0.3.8)
+      proxies (~> 0.2.0)
     sparql-client (0.0.9)
       json_pure (>= 1.4.2)
       rdf (~> 0.3.0)
@@ -62,6 +60,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable (= 2.2.4)
   dydra!
   erubis
   rdf (>= 0.3.0)

@@ -4,6 +4,7 @@ gem "rspec"
 gem 'syntax'
 gem 'rdf-isomorphic', :require => 'rdf/isomorphic'
 gem 'rdf', ">= 0.3.0"
+gem 'addressable', '2.2.4'
 gem 'rdf-raptor', :require => 'rdf/raptor'
 gem 'rdf-n3'
 gem 'sparql-client', ">= 0.0.9", :require => 'sparql/client'
