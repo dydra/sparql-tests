@@ -48,7 +48,7 @@ ORDER BY ?yr
         when 'sp2b-10k'  then 147
         when 'sp2b-50k'  then 965
         when 'sp2b-250k' then 6197
-        when 'sp2b-1m'   then 32270
+        when 'sp2b-1m'   then 32770
         when 'sp2b-10m'  then -1 # not yet known
         when 'sp2b-25m'  then 1876999
         else raise "Invalid repository: #{repository}"
