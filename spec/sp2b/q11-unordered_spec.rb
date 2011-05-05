@@ -1,34 +1,40 @@
 # coding: utf-8
 #
 require 'spec_helper'
-repository = ENV['REPOSITORY'] || 'sp2b-50k'
 
 # SP2B Query 11 50k triples
 # 
 describe "SP2B" do
   context "query 11" do
     before :all do
-      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + repository + '.nt'
+      @repository = ENV['REPOSITORY'] || 'sp2b-50k'
+      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + @repository + '.nt'
       
       @query = %q(
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?ee
+SELECT ?publication ?ee
 WHERE {
   ?publication rdfs:seeAlso ?ee
 }
-ORDER BY ?ee
 LIMIT 10
 OFFSET 50
 )
     end
 
-    example "for #{repository}" do
+    example "sp2b-q11-50k" do
     
       graphs = {}
       graphs[:default] = { :url => @url, :format => :ttl}
-      expected_length = 10
+
+
       expected = [
+                  {
+                    :ee => RDF::Literal.new('http://www.advertisement.tld/ordainer/drabbed.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                  },
+                  {
+                    :ee => RDF::Literal.new('http://www.advised.tld/eyetooth/underseas.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                  },
                   {
                     :ee => RDF::Literal.new('http://www.advocator.tld/contuses/fricassees.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
                   },
@@ -53,20 +59,10 @@ OFFSET 50
                   {
                     :ee => RDF::Literal.new('http://www.affirmativeness.tld/pistils/postmasters.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
                   },
-                  {
-                    :ee => RDF::Literal.new('http://www.affirming.tld/gravelly/bovinely.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
-                  },
-                  {
-                    :ee => RDF::Literal.new('http://www.afforests.tld/sculptured/photosynthesizing.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
-                  },
                  ]
 
-      result = sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                            :repository => repository, :form => :select)
-      result.length.should == expected_length
-      if ( repository == "sp2b-50k" )
-        result.should =~ expected
-      end
+      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => @repository, :form => :select).should =~ expected
     end
   end
 end

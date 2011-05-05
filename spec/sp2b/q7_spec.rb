@@ -1,14 +1,14 @@
 # coding: utf-8
 #
 require 'spec_helper'
+repository = ENV['REPOSITORY'] || 'sp2b-50k'
 
 # SP2B Query 7 50k triples
 # 
 describe "SP2B" do
   context "query 7" do
     before :all do
-      @repository = ENV['REPOSITORY'] || 'sp2b-50k'
-      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + @repository + '.nt'
+      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + repository + '.nt'
       
       @query = %q(
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -40,13 +40,22 @@ WHERE {
 )
     end
 
-    example "sp2b-q7-50k" do
+    example "for #{repository}" do
     
       graphs = {}
       graphs[:default] = { :url => @url, :format => :ttl}
+      expected_length =
+        case repository
+        when 'sp2b-10k'  then 0
+        when 'sp2b-50k'  then 2
+        when 'sp2b-250k' then 62
+        when 'sp2b-1m'   then 292
+        when 'sp2b-10m'  then -1 # not yet known
+        when 'sp2b-25m'  then 5099
+        else raise "Invalid repository: #{repository}"
+        end
 
-
-      expected = [
+      expected_solutions = [
           {
            :title => RDF::Literal.new('sissies reprobate rethink', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
           },
@@ -55,8 +64,12 @@ WHERE {
           },
       ]
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => @repository, :form => :select).should =~ expected
+      result = sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                            :repository => repository, :form => :select)
+      result.length.should == expected_length
+      if ( repository == 'sp2b-50k' )
+        result.should =~ expected_solutions
+      end
     end
   end
 end
