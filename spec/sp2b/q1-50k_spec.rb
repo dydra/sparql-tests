@@ -39,7 +39,7 @@ WHERE {
       ]
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).should =~ expected
+                   :repository => repository, :form => :select, :user_id => 'sp2b-50k').should =~ expected
     end
   end
 end
