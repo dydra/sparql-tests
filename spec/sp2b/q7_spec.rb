@@ -64,7 +64,8 @@ WHERE {
           },
       ]
 
-      result = sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+      result = sparql_query(:user_id => "sp2b.q7.#{repository[5..-1]}",
+                            :graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
                             :repository => repository, :form => :select)
       result.length.should == expected_length
       if ( repository == 'sp2b-50k' )

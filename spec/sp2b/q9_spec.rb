@@ -47,7 +47,8 @@ WHERE {
                   },
              ]
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+      sparql_query(:user_id => "sp2b.q9.#{repository[5..-1]}",
+                   :graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
                    :repository => repository, :form => :select).should =~ expected
     end
   end

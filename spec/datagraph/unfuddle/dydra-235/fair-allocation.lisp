@@ -11,6 +11,11 @@
 ;;;
 ;;; (load "/development/source/library/org/datagraph/sparql-tests/spec/datagraph/unfuddle/dydra-235/fair-allocation.lisp")
 ;;; (in-package :cl-user)
+;;; w/proxy
+;;; (start-server-process t :broker-uri "amqp://HETZNERkopakooooooooo:HETZNERasdjfi2j3o4iajs@hetzner.dydra.com:5673")
+;;; (start-server-process nil :broker-uri "amqp://HETZNERkopakooooooooo:HETZNERasdjfi2j3o4iajs@hetzner.dydra.com:5673")
+;;; (start-client-process 5 :broker-uri "amqp://HETZNERkopakooooooooo:HETZNERasdjfi2j3o4iajs@hetzner.dydra.com:5673")
+;;; wo/proxy
 ;;; (start-server-process t :broker-uri "amqp://HETZNERkopakooooooooo:HETZNERasdjfi2j3o4iajs@hetzner.dydra.com")
 ;;; (start-server-process nil :broker-uri "amqp://HETZNERkopakooooooooo:HETZNERasdjfi2j3o4iajs@hetzner.dydra.com")
 ;;; (start-client-process 1 :broker-uri "amqp://HETZNERkopakooooooooo:HETZNERasdjfi2j3o4iajs@hetzner.dydra.com")
@@ -40,31 +45,37 @@
           (amqp:bind queue :exchange exchange :queue queue :routing-key routing-key)
           (amqp:qos basic :prefetch-count 1)
           (setf consumer-tag (amqp:consume queue :no-ack nil))
+	  (setf (amqp.u:channel-acknowledge-messages channel) nil)
           
           (labels ((handle-request (channel class method &rest args)
                      (declare (dynamic-extent args)
-                              (ignore channel method))
-                     (let ((request nil))
-                       (flet ((receive-message-content (stream content-type)
-                                (declare (ignore content-type))
-                                (let* ((length (amqp.i::device-body-length stream))
-				       (buffer (make-array length :element-type 'character)))
-                                  (read-sequence buffer stream :start 0 :end length)
-				  buffer)))
-                         (declare (dynamic-extent #'receive-message-content))
-                         (setf request (apply #'amqp:respond-to-deliver class
-                                              :body #'receive-message-content 
-                                              args))
-                         (format *trace-output* "~%[~a] @server received : ~s" pid request)
-			 (when delay
-			   (format *trace-output* " ... return to continue....")
-			   (finish-output *trace-output*)
-			   (read-line *terminal-io*))
-                         (publish-response (format nil (format nil "[response [~a.~a]]" pid  request))
-					   (amqp:basic-reply-to basic)))))
+                              (ignore method))
+		     (flet ((read-request (stream content-type)
+			      (declare (ignore content-type))
+			      (let* ((length (amqp.i::device-body-length stream))
+				     (buffer (make-array length :element-type 'character)))
+				(read-sequence buffer stream :start 0 :end length)
+				buffer)))
+			   (declare (dynamic-extent #'read-request))
+			   (let* ((request (apply #'amqp:respond-to-deliver class
+						  :body #'read-request
+						  args))
+				   (basic (amqp:basic channel))
+				   (tag (amqp:basic-delivery-tag basic)))
+			      (format *trace-output* "~%[~a] @server received : ~s" pid request)
+			      (when delay
+				(format *trace-output* " ... return to continue....")
+				(finish-output *trace-output*)
+				(read-line *terminal-io*))
+			      (publish-response (format nil (format nil "[response [~a.~a]]" pid  request))
+						(amqp:basic-reply-to basic))
+			      (when (typep tag '(integer 1 *))
+				(setf (amqp:basic-delivery-tag basic) 0)
+				(amqp::send-ack basic :delivery-tag tag :multiple 1))
+			      request)))
                    (publish-response (response key)
                      (amqp:publish channel :body response :exchange exchange :routing-key key)
-                     (format *trace-output* "~%[~a] @server sent: ~s" pid response)
+                     (format *trace-output* "~%[~a] @server sent: ~s -> ~s" pid response key)
 		     (finish-output *trace-output*)
                      t))
                   
@@ -83,7 +94,7 @@
    with a first message. each delivered response just triggers another publication."
 
   (loop
-    (warn "test client connecting to exchanges...")
+    (warn "test client connecting to exchanges as ~s ..." routing-key)
     (amqp:with-open-connection (connection :uri broker-uri)
       (amqp:with-open-channel (channel connection)
         (let ((queue (amqp:queue channel :queue queue))
@@ -115,14 +126,14 @@
                                                :body #'receive-message-content 
                                                args))
                          (format *trace-output* "~%[~a] client response: ~s" pid response)
-                         (publish-request)
 			 (format *trace-output* "~%[~a] sleep: ~d" pid delay)
 			 (finish-output *trace-output*)
 			 (sleep delay)
+                         (publish-request)
                          t)))
                    (publish-request ()
-                     (let ((request (format nil "[request [~a.~d]]" pid (incf count))))
-                       (format *trace-output* "~%[~a] @client request : ~s" pid request)
+                     (let ((request (format nil "[request [~a.~d]]" routing-key (incf count))))
+                       (format *trace-output* "~%[~a] @client request : ~s" routing-key request)
 		       (finish-output *trace-output*)
 		       (setf (amqp:basic-reply-to basic) routing-key)
                        (amqp:publish channel :body request

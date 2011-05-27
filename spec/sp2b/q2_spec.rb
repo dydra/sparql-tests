@@ -54,7 +54,8 @@ ORDER BY ?yr
         else raise "Invalid repository: #{repository}"
         end
 
-      sparql_query(:graphs => graphs, :query => @query,       # test just the length
+      sparql_query(:user_id => "sp2b.q2.#{repository[5..-1]}",
+                   :graphs => graphs, :query => @query,       # test just the length
                    :repository => repository, :form => :select).length.should == expected_length
     end
   end

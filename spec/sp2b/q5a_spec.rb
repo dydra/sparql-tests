@@ -29,7 +29,7 @@ WHERE {
 )
     end
 
-    example "for #{repository}; full join" do
+    example "for #{repository}; name = name2" do
     
       graphs = {}
       graphs[:default] = { :url => @url, :format => :ttl}
@@ -44,7 +44,8 @@ WHERE {
         else raise Error "Invalid repository: #{repository}"
         end
 
-      sparql_query(:graphs => graphs, :query => @query,       # test length only
+      sparql_query(:user_id => "sp2b.q1.#{repository[5..-1]}",
+                   :graphs => graphs, :query => @query,       # test length only
                    :repository => repository, :form => :select).length.should == expected_length
     end
   end

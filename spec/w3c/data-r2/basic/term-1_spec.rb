@@ -57,7 +57,8 @@ SELECT * { :x ?p true . }
       ]
 
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+      sparql_query(:user_id => "w3c.#{repository}",
+                   :graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
                    :repository => repository, :form => :select).should =~ expected
     end
   end

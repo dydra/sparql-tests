@@ -31,7 +31,8 @@ WHERE {
       expected = [
       ]
 
-      sparql_query(:graphs => graphs, :query => @query,       # use unordered test
+      sparql_query(:user_id => "sp2b.q3c.#{repository[5..-1]}",
+                   :graphs => graphs, :query => @query,       # use unordered test
                    :repository => repository, :form => :select).should =~ expected
     end
   end

@@ -47,7 +47,8 @@ WHERE {
         when 'sp2b-25m'  then 18362955
         else raise Error "Invalid repository: #{repository}"
         end
-      sparql_query(:graphs => graphs, :query => @query,       # use unordered test
+      sparql_query(:user_id => "sp2b.q4.#{repository[5..-1]}",
+                   :graphs => graphs, :query => @query,       # use unordered test
                    :repository => repository, :form => :select).length.should == expected_length
     end
   end

@@ -50,7 +50,8 @@ WHERE {
         else raise "Invalid repository: #{repository}"
         end
 
-      sparql_query(:graphs => graphs, :query => @query,       # test length only
+      sparql_query(:user_id => "sp2b.q6.#{repository[5..-1]}",
+                   :graphs => graphs, :query => @query,       # test length only
                    :repository => repository, :form => :select).length.should == expected_length
     end
   end
