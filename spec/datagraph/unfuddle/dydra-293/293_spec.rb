@@ -35,7 +35,7 @@ select distinct * where {
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'bsbm-pc100'
+      repository = 'dydra-293'
       expected_length = 9
 
       sparql_query(:graphs => graphs, :query => @query,
