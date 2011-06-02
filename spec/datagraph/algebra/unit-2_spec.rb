@@ -36,10 +36,10 @@ WHERE { }
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'table-unit arithmetic'
+      repository = 'table-unit-arithmetic'
       expected = [
           { 
-            x: "12"^^<http://www.w3.org/2001/XMLSchema#integer> R:L:(Integer)
+            :x => RDF::Literal.new('12' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer'))
           },
       ]
 

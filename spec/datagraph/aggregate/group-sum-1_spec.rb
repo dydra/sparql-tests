@@ -49,7 +49,7 @@ GROUP BY ( ?type )
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'aggregate-1'
+      repository = 'group-sum-1'
       expected = [
           { 
               :type => RDF::URI('http://www.w3.org/2001/XMLSchema#float'),

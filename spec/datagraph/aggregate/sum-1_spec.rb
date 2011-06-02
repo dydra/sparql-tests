@@ -45,7 +45,7 @@ WHERE { ?type ?class ?v }
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'aggregate-1'
+      repository = 'sum-1'
       expected = [
           { 
               :sum => RDF::Literal.new('60.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
