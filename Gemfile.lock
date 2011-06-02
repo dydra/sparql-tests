@@ -1,9 +1,9 @@
 GIT
   remote: git@github.com:/dydra/dydra.git
-  revision: c65ba5427f7e12e2f9274d867a3ea4e08e3f5c63
+  revision: 7b7f9f5fd4fdb45933db61ec3f5b562f1ba5ee95
   specs:
-    dydra (0.0.6)
-      rdf (~> 0.3.0)
+    dydra (0.0.8)
+      rdf (>= 0.3.0)
       rest-client (>= 1.6.1)
       sparql-client (>= 0.0.9)
 
@@ -21,8 +21,8 @@ GEM
     promise (0.3.0)
     proxies (0.2.1)
     rake (0.8.7)
-    rdf (0.3.2)
-      addressable (>= 2.2)
+    rdf (0.3.3)
+      addressable (= 2.2.4)
     rdf-isomorphic (0.3.4)
       rdf (>= 0.2.3)
     rdf-json (0.3.0)

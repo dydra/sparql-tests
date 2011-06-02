@@ -1,14 +1,14 @@
 # coding: utf-8
 #
 require 'spec_helper'
+repository = ENV['REPOSITORY'] || 'sp2b-50k'
 
 # SP2B Query 9 50k triples
 # 
 describe "SP2B" do
   context "query 9" do
     before :all do
-      @repository = ENV['REPOSITORY'] || 'sp2b-50k'
-      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + @repository + '.nt'
+      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + repository + '.nt'
       
       @query = %q(
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -27,11 +27,10 @@ WHERE {
 )
     end
 
-    example "sp2b-q9-50k" do
+    example "for #{repository}" do
     
       graphs = {}
       graphs[:default] = { :url => @url, :format => :ttl}
-
 
       expected = [
                   {
@@ -48,8 +47,9 @@ WHERE {
                   },
              ]
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => @repository, :form => :select).should =~ expected
+      sparql_query(:user_id => "sp2b.q9.#{repository[5..-1]}",
+                   :graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

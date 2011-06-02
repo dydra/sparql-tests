@@ -1,14 +1,14 @@
 # coding: utf-8
 #
 require 'spec_helper'
+repository = ENV['REPOSITORY'] || 'sp2b-50k'
 
 # SP2B Query 5a 50k triples
 # 
 describe "SP2B" do
   context "query 5a" do
     before :all do
-      @repository = ENV['REPOSITORY'] || 'sp2b-50k'
-      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + @repository + '.nt'
+      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + repository + '.nt'
       
       @query = %q(
 PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -29,16 +29,24 @@ WHERE {
 )
     end
 
-    example "sp2b-q5a-50k" do
+    example "for #{repository}; name = name2" do
     
       graphs = {}
       graphs[:default] = { :url => @url, :format => :ttl}
+      expected_length =
+        case repository
+        when 'sp2b-10k'  then 155
+        when 'sp2b-50k'  then 1085
+        when 'sp2b-250k' then 6904
+        when 'sp2b-1m'   then 35241
+        when 'sp2b-10m'  then -1 # not yet known
+        when 'sp2b-25m'  then 696681
+        else raise Error "Invalid repository: #{repository}"
+        end
 
-
-      expected_length = 1085
-
-      sparql_query(:graphs => graphs, :query => @query,       # test length only
-                   :repository => @repository, :form => :select).length.should == expected_length
+      sparql_query(:user_id => "sp2b.q1.#{repository[5..-1]}",
+                   :graphs => graphs, :query => @query,       # test length only
+                   :repository => repository, :form => :select).length.should == expected_length
     end
   end
 end

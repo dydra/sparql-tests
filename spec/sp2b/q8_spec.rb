@@ -1,14 +1,14 @@
 # coding: utf-8
 #
 require 'spec_helper'
+repository = ENV['REPOSITORY'] || 'sp2b-50k'
 
 # SP2B Query 8 50k triples
 # 
 describe "SP2B" do
   context "query 8" do
     before :all do
-      @repository = ENV['REPOSITORY'] || 'sp2b-50k'
-      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + @repository + '.nt'
+      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + repository + '.nt'
       
       @query = %q(
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> 
@@ -40,16 +40,24 @@ WHERE {
 )
     end
 
-    example "sp2b-q8-50k" do
+    example "for #{repository}" do
     
       graphs = {}
       graphs[:default] = { :url => @url, :format => :ttl}
+      expected_length =
+        case repository
+        when 'sp2b-10k'  then 184
+        when 'sp2b-50k'  then 264
+        when 'sp2b-250k' then 332
+        when 'sp2b-1m'   then 400
+        when 'sp2b-10m'  then 493
+        when 'sp2b-25m'  then 493
+        else raise "Invalid repository: #{repository}"
+        end
 
-
-      expected_length = 264
-
-      sparql_query(:graphs => graphs, :query => @query,       # test length only
-                   :repository => @repository, :form => :select).length.should == expected_length
+      sparql_query(:user_id => "sp2b.q8.#{repository[5..-1]}",
+                   :graphs => graphs, :query => @query,       # test length only
+                   :repository => repository, :form => :select).length.should == expected_length
     end
   end
 end

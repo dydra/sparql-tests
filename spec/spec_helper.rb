@@ -94,7 +94,7 @@ def sparql_query(opts)
       else
         :json
     end
-    raw_result = Dydra::Repository.new(account + '/' + opts[:repository]).query(opts[:query], format)
+    raw_result = Dydra::Repository.new(account + '/' + opts[:repository]).query(opts[:query], :format => format, :user_query_id => opts[:user_id])
     log raw_result
     if (opts[:form] == :select || opts[:form] == :ask) && comparing?
       result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result)

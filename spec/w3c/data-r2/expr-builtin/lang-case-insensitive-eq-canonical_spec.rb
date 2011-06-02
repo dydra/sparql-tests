@@ -14,6 +14,11 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/06/19-dawg-minutes.html
 #
+# This test is modified to expect lowercase language tags, which we currently
+# normalize. The test should arguably compare case-insensitively instead, as
+# language tags are case-insensitive as per RFC 3066, but this is what we do.
+# -ben 2/5/11
+
 describe "W3C test" do
   context "expr-builtin" do
     before :all do
@@ -43,7 +48,7 @@ SELECT *
 }
     end
 
-    example "lang-case-insensitive-eq", :values => 'lexical' do
+    example "lang-case-insensitive-eq", :values => 'canonical' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -59,19 +64,19 @@ SELECT *
           },
           {
               :v1 => RDF::Literal.new('xyz', :language => 'en' ),
-              :v2 => RDF::Literal.new('xyz', :language => 'EN' ),
+              :v2 => RDF::Literal.new('xyz', :language => 'en' ),
               :x1 => RDF::URI('http://example/x2'),
               :x2 => RDF::URI('http://example/x3'),
           },
           {
-              :v1 => RDF::Literal.new('xyz', :language => 'EN' ),
+              :v1 => RDF::Literal.new('xyz', :language => 'en' ),
               :v2 => RDF::Literal.new('xyz', :language => 'en' ),
               :x1 => RDF::URI('http://example/x3'),
               :x2 => RDF::URI('http://example/x2'),
           },
           {
-              :v1 => RDF::Literal.new('xyz', :language => 'EN' ),
-              :v2 => RDF::Literal.new('xyz', :language => 'EN' ),
+              :v1 => RDF::Literal.new('xyz', :language => 'en' ),
+              :v2 => RDF::Literal.new('xyz', :language => 'en' ),
               :x1 => RDF::URI('http://example/x3'),
               :x2 => RDF::URI('http://example/x3'),
           },
