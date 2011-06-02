@@ -43,7 +43,7 @@ GROUP BY ( ?type )
 }
     end
 
-    example "Count 1" do
+    example "Group Sum 1" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
