@@ -43,7 +43,7 @@ ASK {
 }
     end
 
-    example "SAMPLE", :unverified => true, :w3c_status => 'unapproved' do
+    example "SAMPLE", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

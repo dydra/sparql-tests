@@ -36,7 +36,7 @@ ASK {
 }
     end
 
-    example "GROUP_CONCAT 1", :unverified => true do
+    example "GROUP_CONCAT 1" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
