@@ -68,7 +68,7 @@ graph ?g {
 }
     end
 
-    example "sq04 - Subquery within graph pattern, default graph does not apply", :status => 'bug' do
+    example "sq04 - Subquery within graph pattern, default graph does not apply" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :rdf}

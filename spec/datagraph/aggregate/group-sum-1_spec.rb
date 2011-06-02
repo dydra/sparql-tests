@@ -22,22 +22,21 @@ describe "W3C test" do
 @prefix :    <http://example.org/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<xsd:float> :number  "10.0"^^xsd:float .
-<xsd:double> :number  "10.0"^^xsd:double .
-<xsd:integer> :number  "40"^^xsd:integer .
-<xsd:float> :number  "10.0"^^xsd:float .
-<xsd:double> :number  "10.0"^^xsd:double .
-<xsd:integer> :number  "40"^^xsd:integer .
-
-<xsd:string> :string "10" .
+xsd:float :number1  "10.0"^^xsd:float .
+xsd:double :number2  "10.0"^^xsd:double .
+xsd:integer :number3  "40"^^xsd:integer .
+xsd:float :number4  "10.0"^^xsd:float .
+xsd:double :number5  "10.0"^^xsd:double .
+xsd:integer :number6  "40"^^xsd:integer .
+xsd:string :string1 "10" .
 
 }
       @query = %q{
 PREFIX :    <http://example.org/ns#>
-PREFIX xsd: <http://example.org/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT (SAMPLE(?type) AS ?type) (SUM (?v) AS ?sum)
-WHERE { ?type ?class ?v }
+WHERE { ?type ?id ?v }
 GROUP BY ( ?type )
 
 }

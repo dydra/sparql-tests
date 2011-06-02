@@ -51,7 +51,7 @@ ORDER BY ?x ?y ?sum
 }
     end
 
-    example "plus-2", :w3c_status => 'unapproved', :blank_nodes => 'unique' do
+    example "plus-2", :w3c_status => 'unapproved', :blank_nodes => 'unique', :arithmetic => 'boxed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

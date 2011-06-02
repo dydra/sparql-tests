@@ -13,6 +13,8 @@ require 'spec_helper'
 #
 # This test is approved: 
 # http://www.w3.org/2009/sparql/meeting/2010-07-13#resolution_3
+# 20110602 : jaa : status bug : graph variable constriant requires propagation or
+#  outer binding rather than bottom-up evaluation
 #
 describe "W3C test" do
   context "subquery" do

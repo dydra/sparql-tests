@@ -52,7 +52,7 @@ ORDER BY ?x ?y ?sum
 }
     end
 
-    example "plus-2", :status => 'bug', :w3c_status => 'unapproved', :blank_nodes => 'canonical' do
+    example "plus-2", :status => 'bug', :w3c_status => 'unapproved', :blank_nodes => 'canonical', :arithmetic => 'native' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -85,7 +85,7 @@ ORDER BY ?x ?y ?sum
               :y => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              :x => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+              :x => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :y => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 

@@ -53,7 +53,7 @@ graph ?g {
 }
     end
 
-    example "sq05 - Subquery within graph pattern, from named applies", :status => 'bug' do
+    example "sq05 - Subquery within graph pattern, from named applies" do
     
       graphs = {}
       graphs[:default] = nil

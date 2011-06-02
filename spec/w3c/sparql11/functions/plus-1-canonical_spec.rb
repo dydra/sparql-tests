@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # 
 # 20110206 jaa : canonical blank node indicator
+# 20110602 jaa : native arithmetic indicator
+#   bug : result failes to match 
 
 describe "W3C test" do
   context "functions" do
@@ -50,7 +52,7 @@ ORDER BY ?x ?y ?sum
 }
     end
 
-    example "plus-1", :w3c_status => 'unapproved', :blank_nodes => 'canonical' do
+    example "plus-1", :status => 'bug', :w3c_status => 'unapproved', :blank_nodes => 'canonical', :arithmetic => 'native' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -84,8 +86,8 @@ ORDER BY ?x ?y ?sum
               :y => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              :sum => RDF::Literal.new('3.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
-              :x => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+              :sum => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :x => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :y => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
