@@ -45,7 +45,7 @@ select * where {
 }
     end
 
-    example "Zero length path", :blank_nodes => 'unique', :w3c_status => 'unapproved' do
+    example "Zero length path (canonical)", :blank_nodes => 'canonical', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -66,16 +66,16 @@ select * where {
               :y => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#nil'),
           },
           { 
-              :x => RDF::Node.new('b0'),
-              :y => RDF::Node.new('b0'),
-          },
-          { 
-              :x => RDF::Node.new('b0'),
-              :y => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#nil'),
+              :x => RDF::Node.new('b1'),
+              :y => RDF::Node.new('b1'),
           },
           { 
               :x => RDF::Node.new('b1'),
-              :y => RDF::Node.new('b1'),
+              :y => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#nil'),
+          },
+          { 
+              :x => RDF::Node.new('b2'),
+              :y => RDF::Node.new('b2'),
           },
       ]
 
