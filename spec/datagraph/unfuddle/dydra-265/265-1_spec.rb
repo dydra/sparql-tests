@@ -9,7 +9,7 @@ require 'spec_helper'
 describe "unfuddle ticket" do
   context "265" do
     before :all do
-     @url = 'http://dydra.com/mglcel/psw.nt'
+     @url = 'http://rdf.staging.dydra.com/ben/psw.ttl'
      @query = %q{
 SELECT * WHERE {
  <http://parisemantique.fr/entities/InsalubrityOrder/250> ?pf1 ?middle .
