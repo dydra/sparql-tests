@@ -9,6 +9,38 @@ require 'spec_helper'
 describe "unfuddle ticket" do
   context "281" do
     before :all do
+          @data = %q{
+          @prefix foaf:       <http://xmlns.com/foaf/0.1/> .
+          @prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+          @prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+
+          _:alice
+          rdf:type        foaf:Person ;
+          foaf:name       "Alice" ;
+          foaf:mbox       <mailto:alice@work> ;
+          foaf:knows      _:bob ;
+          .
+
+          _:bob
+          rdf:type        foaf:Person ;
+          foaf:name       "Bob" ; 
+          foaf:knows      _:alice ;
+          foaf:mbox       <mailto:bob@work> ;
+          foaf:mbox       <mailto:bob@home> ;
+          .
+
+
+          _:eve
+          rdf:type      foaf:Person ;
+          foaf:name     "Eve" ; 
+          foaf:knows    _:fred ;
+          .
+
+          _:fred
+          rdf:type      foaf:Person ;
+          foaf:mbox     <mailto:fred@edu> .
+}
+
       @query_by_subject = %q{
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX  foaf:       <http://xmlns.com/foaf/0.1/>
@@ -46,7 +78,7 @@ ORDER by ?y
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
-      repository = 'bnode-coreference-dawg-bnode-coref-001' # dawg test
+      repository = 'dydra-281' # dawg test
       expected = [
                   { :x => RDF::Node.new('alice') },
                   { :x => RDF::Node.new('bob') },
@@ -62,7 +94,7 @@ ORDER by ?y
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
-      repository = 'bnode-coreference-dawg-bnode-coref-001' # dawg test
+      repository = 'dydra-281' # dawg test
       expected = [
                   { :x => RDF::Node.new('alice'),
                     :y => RDF::URI('mailto:alice@work') },
@@ -82,7 +114,7 @@ ORDER by ?y
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
-      repository = 'bnode-coreference-dawg-bnode-coref-001' # dawg test
+      repository = 'dydra-281' # dawg test
       expected = [
                   { :x => RDF::Node.new('fred'), },
                   { :x => RDF::Node.new('bob'),
