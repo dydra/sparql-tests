@@ -65,7 +65,7 @@ GROUP BY ?s
           },
           { 
               :s => RDF::URI('http://www.example.org/mixed2'),
-              :sum => RDF::Literal.new('2.4E0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
+              :sum => RDF::Literal.new('2.4000000000000004' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
       ]
 

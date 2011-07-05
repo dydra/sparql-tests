@@ -53,7 +53,7 @@ HAVING (AVG(?o) <= 2.0)
               :s => RDF::URI('http://www.example.org/mixed1'),
           },
           { 
-              :avg => RDF::Literal.new('1.2E0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
+              :avg => RDF::Literal.new('1.2000000000000002' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :s => RDF::URI('http://www.example.org/mixed2'),
           },
           { 

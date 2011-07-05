@@ -53,7 +53,7 @@ def sparql_query(opts)
   if creating?
     log "Running dydra create #{repository_name}"
     begin
-      Dydra::Repository.create!(opts[:repository])
+      Dydra::Repository.create!(repository_name)
     rescue RestClient::UnprocessableEntity
       # already exists
     end
@@ -61,7 +61,7 @@ def sparql_query(opts)
 
   if importing?
     base_uri = RDF::URI(Dydra::URI) / account / opts[:repository]
-    repository = Dydra::Repository.new(opts[:repository])
+    repository = Dydra::Repository.new(repository_name)
     log "Running dydra clear #{repository_name} #{repository}"
     repository.clear!
     opts[:graphs].each do | graph, options |
@@ -94,7 +94,7 @@ def sparql_query(opts)
       else
         :json
     end
-    raw_result = Dydra::Repository.new(account + '/' + opts[:repository]).query(opts[:query], :format => format, :user_query_id => opts[:user_id])
+    raw_result = Dydra::Repository.new(repository_name).query(opts[:query], :format => format, :user_query_id => opts[:user_id])
     log raw_result
     if (opts[:form] == :select || opts[:form] == :ask) && comparing?
       result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result)
