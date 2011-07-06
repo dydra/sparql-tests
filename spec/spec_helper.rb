@@ -72,7 +72,7 @@ def sparql_query(opts)
         repository.import!(options[:url], :context => context, :base_uri => base_uri).wait!
         next
       end
-      this_graph = RDF::Graph.new(graph)
+      this_graph = RDF::Graph.new(context)
       log "importing for #{context} with format #{options[:format]}"
       reader = RDF::Format.content_types[RDF::Format.file_extensions[:ttl]].first.reader
       this_graph << reader.new(options[:data])
