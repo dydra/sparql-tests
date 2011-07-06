@@ -63,24 +63,22 @@ def sparql_query(opts)
     base_uri = RDF::URI(Dydra::URI) / account / opts[:repository]
     repository = Dydra::Repository.new(repository_name)
     log "Running dydra clear #{repository_name} #{repository}"
-    repository.clear!
+    repository.clear!.wait!
+    import_repo = RDF::Repository.new
     opts[:graphs].each do | graph, options |
       next if options.nil?
-      repository_file = case
-        when options[:url]
-          options[:url]
-        else
-          tempfile = File.join(Dir.tmpdir, ('a'..'z').to_a.shuffle[0..4].join + ".#{options[:format]}")
-          log "tempfile: #{tempfile}"
-          File.open(tempfile, 'w+') { |f| f.write(options[:data]) }
-          log IO.read(tempfile).to_s
-          tempfile
-      end
       context = graph == :default ? nil : graph
-      log "importing data into context #{context} "
-      log options[:data] || options[:url]
-      repository.import!(repository_file, :context => context, :base_uri => base_uri).wait!
+      if options[:url]
+        repository.import!(options[:url], :context => context, :base_uri => base_uri).wait!
+        next
+      end
+      this_graph = RDF::Graph.new(graph)
+      log "importing for #{context} with format #{options[:format]}"
+      reader = RDF::Format.content_types[RDF::Format.file_extensions[:ttl]].first.reader
+      this_graph << reader.new(options[:data])
+      import_repo << this_graph
     end
+    repository.insert(*import_repo) unless import_repo.empty?
   end
 
   log "Running dydra query #{repository_name} '#{opts[:query]}'"

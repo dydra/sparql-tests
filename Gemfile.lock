@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:/dydra/dydra.git
-  revision: 7b7f9f5fd4fdb45933db61ec3f5b562f1ba5ee95
+  revision: 5f97a854082787afe479e419566413b22fa11079
   specs:
     dydra (0.0.8)
       rdf (>= 0.3.0)
@@ -15,7 +15,7 @@ GEM
     erubis (2.7.0)
     ffi (1.0.7)
       rake (>= 0.8.7)
-    json_pure (1.5.1)
+    json_pure (1.5.3)
     macaddr (1.0.0)
     mime-types (1.16)
     promise (0.3.0)
@@ -33,7 +33,7 @@ GEM
     rdf-raptor (0.4.1)
       ffi (>= 1.0)
       rdf (~> 0.3.0)
-    rest-client (1.6.1)
+    rest-client (1.6.3)
       mime-types (>= 1.16)
     rspec (2.5.0)
       rspec-core (~> 2.5.0)
