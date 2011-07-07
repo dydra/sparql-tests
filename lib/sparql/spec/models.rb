@@ -6,6 +6,7 @@ require 'rdf/isomorphic'
 module SPARQL::Spec
   DAWG = RDF::Vocabulary.new('http://www.w3.org/2001/sw/DataAccess/tests/test-dawg#')
   MF = RDF::Vocabulary.new('http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#')
+  UT = RDF::Vocabulary.new('http://www.w3.org/2009/sparql/tests/test-update#')
   QT = RDF::Vocabulary.new('http://www.w3.org/2001/sw/DataAccess/tests/test-query#')
   RS = RDF::Vocabulary.new('http://www.w3.org/2001/sw/DataAccess/tests/result-set#')
 
@@ -16,13 +17,25 @@ module SPARQL::Spec
     property :comment,    :predicate => RDFS.comment
 
     def entries
-      RDF::List.new(entry_list, self.class.repository).map { |entry| entry.as(SPARQLTest) }
+      RDF::List.new(entry_list, self.class.repository).map do |entry|
+        type = self.class.repository.query(:subject => entry, :predicate => RDF.type).first.object
+        case type
+          when UT.UpdateEvaluationTest, MF.UpdateEvaluationTest
+            entry.as(UpdateTest)
+          when MF.QueryEvaluationTest
+            entry.as(QueryTest)
+          # known types to ignore
+          when MF.NegativeSyntaxTest11
+          else
+            warn "Unknown test type for #{entry}: #{type}"
+        end
+      end.compact
     end
 
     def include_files!
       manifests.each do |manifest|
         RDF::List.new(manifest, self.class.repository).each do |file|
-          next if file.path =~ /(clear|drop|basic-update|delete|syntax)/ 
+          next if file.path =~ /(syntax)/ 
           puts "Loading #{file.path}"
           self.class.repository.load(file.path, :context => file.path)
         end
@@ -33,8 +46,6 @@ module SPARQL::Spec
   class SPARQLTest < Spira::Base
     property :name, :predicate => MF.name
     property :comment, :predicate => RDFS.comment
-    property :action, :predicate => MF.action, :type => 'SPARQLAction'
-    property :result, :predicate => MF.result
     property :approval, :predicate => DAWG.approval
     property :approved_by, :predicate => DAWG.approvedBy
     property :manifest, :predicate => MF.manifest_file
@@ -44,6 +55,47 @@ module SPARQL::Spec
     def approved?
       approval == DAWG.Approved
     end
+  end
+
+  class UpdateTest < SPARQLTest
+    property :name, :predicate => MF.name
+    property :result, :predicate => MF.result, :type => 'UpdateResult'
+    property :action, :predicate => MF.action, :type => 'UpdateAction'
+    property :comment, :predicate => RDFS.comment
+    property :approval, :predicate => DAWG.approval
+    property :approved_by, :predicate => DAWG.approvedBy
+    has_many :tags, :predicate => MF.tag
+  end
+
+  class UpdateDataSet < Spira::Base
+    has_many :graphData, :predicate => UT.graphData, :type => 'UpdateGraphData'
+    property :data_file, :predicate => UT.data
+
+    def data
+      IO.read(data_file)
+    end
+
+    def data_format
+      File.extname data_file
+    end
+  end
+
+  class UpdateAction < UpdateDataSet
+    property :request, :predicate => UT.request
+  end
+
+  class UpdateResult < UpdateDataSet
+  end
+
+  class UpdateGraphData < Spira::Base
+    property :graph, :predicate => UT.graph
+    property :label, :predicate => RDFS.label
+  end
+
+  class QueryTest < SPARQLTest
+    property :action, :predicate => MF.action, :type => 'QueryAction'
+    property :result, :predicate => MF.result
+
 
     def form
       query_data = begin IO.read(action.query_file.path) rescue nil end
@@ -64,7 +116,7 @@ module SPARQL::Spec
     end
   end
 
-  class SPARQLAction < Spira::Base
+  class QueryAction < Spira::Base
     property :query_file, :predicate => QT.query
     property :test_data,  :predicate => QT.data
     has_many :graphData, :predicate => QT.graphData
