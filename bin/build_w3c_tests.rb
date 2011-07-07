@@ -99,15 +99,6 @@ tests.each do |test|
 
   results_snippet = results_snippet_for(test)
 
-  # dataset tests do not specify their graphs or default (and in fact default
-  # is 4 files and we made this custom default.ttl)
-  if test.subject =~ /dataset/
-    dataset_dir = RDF::URI(File.join(File.dirname(__FILE__), '..', 'tests/data-r2/dataset'))
-    test.action.test_data = dataset_dir / 'default.ttl'
-    test.action.graphData = ['data-g1.ttl', 'data-g2.ttl', 'data-g3.ttl', 'data-g4.ttl'].map do |graph|
-      dataset_dir / graph
-    end
-  end
   graphs = test.action.graphData.to_a
 
   filename = filename_for(w3c_dir, test)
