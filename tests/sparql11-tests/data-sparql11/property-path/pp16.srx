@@ -82,23 +82,7 @@
         <uri>http://example.org/d</uri>
       </binding>
       <binding name="Y">
-        <uri>http://example.org/e</uri>
-      </binding>
-    </result>
-    <result>
-      <binding name="X">
-        <uri>http://example.org/d</uri>
-      </binding>
-      <binding name="Y">
         <uri>http://example.org/f</uri>
-      </binding>
-    </result>
-    <result>
-      <binding name="X">
-        <uri>http://example.org/e</uri>
-      </binding>
-      <binding name="Y">
-        <uri>http://example.org/e</uri>
       </binding>
     </result>
     <result>
@@ -123,14 +107,6 @@
       </binding>
       <binding name="Y">
         <uri>http://example.org/e</uri>
-      </binding>
-    </result>
-    <result>
-      <binding name="X">
-        <uri>http://example.org/f</uri>
-      </binding>
-      <binding name="Y">
-        <uri>http://example.org/f</uri>
       </binding>
     </result>
     <result>

@@ -11,11 +11,6 @@
     </result>
     <result>
       <binding name="z">
-        <uri>http://example/c</uri>
-      </binding>
-    </result>
-    <result>
-      <binding name="z">
         <uri>http://example/z</uri>
       </binding>
     </result>

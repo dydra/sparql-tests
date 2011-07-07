@@ -10,7 +10,7 @@
     mf:entries
     ( 
     :group01
-    :group02
+##    :group02 # Now the same as group01
     :group03
     :group04
     :group05

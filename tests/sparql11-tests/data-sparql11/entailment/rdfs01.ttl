@@ -2,5 +2,5 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 ex:a ex:b1 ex:c .
-ex:b1 rdfs:rdfs:subPropertyOf ex:b2 .
+ex:b1 rdfs:subPropertyOf ex:b2 .
 

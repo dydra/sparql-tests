@@ -4,6 +4,7 @@
 @prefix mf:     <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
 @prefix qt:     <http://www.w3.org/2001/sw/DataAccess/tests/test-query#> .
 @prefix dawgt:   <http://www.w3.org/2001/sw/DataAccess/tests/test-dawg#> .
+@prefix sparql:  <http://www.w3.org/ns/sparql#> .
 
 <>  rdf:type mf:Manifest ;
     rdfs:label "Built-in Functions" ;
@@ -11,14 +12,17 @@
     ( 
 	:strdt01
 	:strdt02
+	:strdt03
 	:strlang01
 	:strlang02
+	:strlang03
 	:isnumeric01
 	:abs01
 	:ceil01
 	:floor01
 	:round01
 	:concat01
+	:concat02
 	:substring01
 	:substring02
 	:length01
@@ -45,11 +49,21 @@
 	:day
 	:timezone
 	:tz
+	:bnode01
+	:bnode02
+	:in01
+	:in02
+	:notin01
+	:notin02
+	:now01
+	:rand01
+	:iri01
  ) .
 
 
 :strdt01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "STRDT()" ;
+	mf:feature sparql:strdt ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <strdt01.rq> ;
@@ -59,6 +73,7 @@
 
 :strdt02 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "STRDT(STR())" ;
+	mf:feature sparql:strdt ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <strdt02.rq> ;
@@ -66,8 +81,19 @@
     mf:result  <strdt02.srx> ;
 	.
 
+:strdt03 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "STRDT() TypeErrors" ;
+	mf:feature sparql:strdt ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <strdt03.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <strdt03.srx> ;
+	.
+
 :strlang01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "STRLANG()" ;
+	mf:feature sparql:strlang ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <strlang01.rq> ;
@@ -77,6 +103,7 @@
 
 :strlang02 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "STRLANG(STR())" ;
+	mf:feature sparql:strlang ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <strlang02.rq> ;
@@ -84,8 +111,19 @@
     mf:result  <strlang02.srx> ;
 	.
 
+:strlang03 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "STRLANG() TypeErrors" ;
+	mf:feature sparql:strlang ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <strlang03.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <strlang03.srx> ;
+	.
+
 :isnumeric01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "isNumeric()" ;
+	mf:feature sparql:isnumeric ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <isnumeric01.rq> ;
@@ -95,6 +133,7 @@
 
 :abs01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "ABS()" ;
+	mf:feature sparql:abs ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <abs01.rq> ;
@@ -104,6 +143,7 @@
 
 :ceil01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "CEIL()" ;
+	mf:feature sparql:ceil ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <ceil01.rq> ;
@@ -113,6 +153,7 @@
 
 :floor01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "FLOOR()" ;
+	mf:feature sparql:floor ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <floor01.rq> ;
@@ -122,6 +163,7 @@
 
 :round01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "ROUND()" ;
+	mf:feature sparql:round ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <round01.rq> ;
@@ -131,6 +173,7 @@
 
 :concat01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "CONCAT()" ;
+	mf:feature sparql:concat ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <concat01.rq> ;
@@ -138,8 +181,19 @@
     mf:result  <concat01.srx> ;
 	.
 
+:concat02 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "CONCAT() 2" ;
+	mf:feature sparql:concat ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <concat02.rq> ;
+           qt:data   <data2.ttl> ] ;
+    mf:result  <concat02.srx> ;
+	.
+
 :substring01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "SUBSTRING() (3-argument)" ;
+	mf:feature sparql:substring ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <substring01.rq> ;
@@ -149,6 +203,7 @@
 
 :substring02 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "SUBSTRING() (2-argument)" ;
+	mf:feature sparql:substring ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <substring02.rq> ;
@@ -158,6 +213,7 @@
 
 :length01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "STRLEN()" ;
+	mf:feature sparql:strlen ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <length01.rq> ;
@@ -167,6 +223,7 @@
 
 :ucase01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "UCASE()" ;
+	mf:feature sparql:ucase ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <ucase01.rq> ;
@@ -176,6 +233,7 @@
 
 :lcase01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "LCASE()" ;
+	mf:feature sparql:lcase ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <lcase01.rq> ;
@@ -185,6 +243,7 @@
 
 :encode01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "ENCODE_FOR_URI()" ;
+	mf:feature sparql:encode_for_uri ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <encode01.rq> ;
@@ -194,6 +253,7 @@
 
 :contains01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "CONTAINS()" ;
+	mf:feature sparql:contains ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <contains01.rq> ;
@@ -203,6 +263,7 @@
 
 :starts01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "STARTS()" ;
+	mf:feature sparql:starts ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <starts01.rq> ;
@@ -212,6 +273,7 @@
 
 :ends01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "ENDS()" ;
+	mf:feature sparql:ends ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <ends01.rq> ;
@@ -241,6 +303,7 @@
 
 :md5-01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "MD5()" ;
+	mf:feature sparql:md5 ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <md5-01.rq> ;
@@ -250,6 +313,7 @@
 
 :md5-02 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "MD5() over Unicode data" ;
+	mf:feature sparql:md5 ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <md5-02.rq> ;
@@ -259,6 +323,7 @@
 
 :sha1-01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "SHA1()" ;
+	mf:feature sparql:sha1 ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <sha1-01.rq> ;
@@ -268,6 +333,7 @@
 
 :sha224-01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "SHA224()" ;
+	mf:feature sparql:sha224 ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <sha224-01.rq> ;
@@ -277,6 +343,7 @@
 
 :sha256-01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "SHA256()" ;
+	mf:feature sparql:sha256 ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <sha256-01.rq> ;
@@ -286,6 +353,7 @@
 
 :sha384-01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "SHA384()" ;
+	mf:feature sparql:sha384 ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <sha384-01.rq> ;
@@ -295,6 +363,7 @@
 
 :sha512-01 rdf:type mf:QueryEvaluationTest ;
 	mf:name    "SHA512()" ;
+	mf:feature sparql:sha512 ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <sha512-01.rq> ;
@@ -304,6 +373,7 @@
 
 :hours rdf:type mf:QueryEvaluationTest ;
 	mf:name    "HOURS()" ;
+	mf:feature sparql:hours ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <hours-01.rq> ;
@@ -313,6 +383,7 @@
 
 :minutes rdf:type mf:QueryEvaluationTest ;
 	mf:name    "MINUTES()" ;
+	mf:feature sparql:minutes ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <minutes-01.rq> ;
@@ -322,6 +393,7 @@
 
 :seconds rdf:type mf:QueryEvaluationTest ;
 	mf:name    "SECONDS()" ;
+	mf:feature sparql:seconds ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <seconds-01.rq> ;
@@ -331,6 +403,7 @@
 
 :year rdf:type mf:QueryEvaluationTest ;
 	mf:name    "YEAR()" ;
+	mf:feature sparql:year ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <year-01.rq> ;
@@ -340,6 +413,7 @@
 
 :month rdf:type mf:QueryEvaluationTest ;
 	mf:name    "MONTH()" ;
+	mf:feature sparql:month ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <month-01.rq> ;
@@ -349,6 +423,7 @@
 
 :day rdf:type mf:QueryEvaluationTest ;
 	mf:name    "DAY()" ;
+	mf:feature sparql:day ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <day-01.rq> ;
@@ -358,6 +433,7 @@
 
 :timezone rdf:type mf:QueryEvaluationTest ;
 	mf:name    "TIMEZONE()" ;
+	mf:feature sparql:timezone ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <timezone-01.rq> ;
@@ -367,10 +443,104 @@
 
 :tz rdf:type mf:QueryEvaluationTest ;
 	mf:name    "TZ()" ;
+	mf:feature sparql:tz ;
     dawgt:approval dawgt:NotClassified ;
     mf:action
          [ qt:query  <tz-01.rq> ;
            qt:data   <data.ttl> ] ;
     mf:result  <tz-01.srx> ;
+	.
+
+:bnode01 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "BNODE(str)" ;
+	mf:feature sparql:bnode ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <bnode01.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <bnode01.srx> ;
+	.
+
+:in01 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "IN 1" ;
+	mf:feature sparql:in ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <in01.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <in01.srx> ;
+	.
+
+:in02 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "IN 2" ;
+	mf:feature sparql:in ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <in02.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <in02.srx> ;
+	.
+
+:notin01 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "NOT IN 1" ;
+	mf:feature sparql:in ;
+	mf:feature sparql:not ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <notin01.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <notin01.srx> ;
+	.
+
+:notin02 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "NOT IN 2" ;
+	mf:feature sparql:in ;
+	mf:feature sparql:not ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <notin02.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <notin02.srx> ;
+	.
+
+:now01 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "NOW()" ;
+	mf:feature sparql:now ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <now01.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <now01.srx> ;
+	.
+
+:rand01 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "RAND()" ;
+	mf:feature sparql:rand ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <rand01.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <rand01.srx> ;
+	.
+
+:bnode02 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "BNODE()" ;
+	mf:feature sparql:bnode ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <bnode02.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <bnode02.srx> ;
+	.
+
+:iri01 rdf:type mf:QueryEvaluationTest ;
+	mf:name    "IRI()/URI()" ;
+	mf:feature sparql:iri ;
+	mf:feature sparql:uri ;
+    dawgt:approval dawgt:NotClassified ;
+    mf:action
+         [ qt:query  <iri01.rq> ;
+           qt:data   <data.ttl> ] ;
+    mf:result  <iri01.srx> ;
 	.
 

@@ -18,15 +18,6 @@
     dc:format        "RDF" ;
     dc:identifier    : ;
     .
-## ---- Class declarations ----
-
-:UpdateTest
-    rdfs:comment "The superclass of all SPARQL 1.1 Update tests" .
-
-:UpdateEvaluationTest a rdfs:Class ;
-    rdfs:comment "The class of all SPARQL 1.1 Update evaluation tests" .
-
-:UpdateEvaluationTest rdfs:subClassOf :UpdateTest.
 
 ## ---- Property declarations ----
 

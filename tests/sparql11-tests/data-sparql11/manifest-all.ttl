@@ -13,6 +13,7 @@
         <delete-data/manifest.ttl>
         <delete-where/manifest.ttl>
         <delete/manifest.ttl>
+        <delete-insert/manifest.ttl>
         <drop/manifest.ttl>
         <entailment/manifest.ttl>
         <functions/manifest.ttl>
@@ -24,4 +25,7 @@
         <syntax-query/manifest.ttl>
         <syntax-update-1/manifest.ttl>
         <syntax-update-2/manifest.ttl>
+
+        <json-res/manifest.ttl>
+        <construct/manifest.ttl>
     ).

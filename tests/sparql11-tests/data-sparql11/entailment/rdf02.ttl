@@ -1,5 +1,5 @@
 @prefix ex: <http://example.org/ns#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 ex:favourite-fruit a rdf:Seq .
 ex:favourite-fruit rdf:_1 ex:banana .

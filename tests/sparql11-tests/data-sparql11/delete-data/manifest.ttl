@@ -18,7 +18,7 @@
 	:dawg-delete-data-06
    ).
 
-:dawg-delete-data-01 a ut:UpdateEvaluationTest ;
+:dawg-delete-data-01 a mf:UpdateEvaluationTest ;
     mf:name    "Simple DELETE DATA 1" ;
     rdfs:comment "This is a simple delete of an existing triple from the default graph" ;
     dawgt:approval dawgt:NotClassified ;
@@ -28,7 +28,7 @@
     mf:result [ ut:data <delete-post-01s.ttl>
               ] .
 
-:dawg-delete-data-02 a ut:UpdateEvaluationTest ;
+:dawg-delete-data-02 a mf:UpdateEvaluationTest ;
     mf:name    "Simple DELETE DATA 2" ;
     rdfs:comment "This is a simple delete of an existing triple from a named graph" ;
     dawgt:approval dawgt:NotClassified ;
@@ -40,7 +40,7 @@
                                rdfs:label "http://example.org/g1" ]
               ] .
 
-:dawg-delete-data-03 a ut:UpdateEvaluationTest ;
+:dawg-delete-data-03 a mf:UpdateEvaluationTest ;
     mf:name    "Simple DELETE DATA 3" ;
     rdfs:comment "This is a simple delete of a non-existing triple from the default graph" ;
     dawgt:approval dawgt:NotClassified ;
@@ -50,7 +50,7 @@
     mf:result [ ut:data <delete-post-01f.ttl>
               ] .
 
-:dawg-delete-data-04 a ut:UpdateEvaluationTest ;
+:dawg-delete-data-04 a mf:UpdateEvaluationTest ;
     mf:name    "Simple DELETE DATA 4" ;
     rdfs:comment "This is a simple delete of a non-existing triple from a named graph" ;
     dawgt:approval dawgt:NotClassified ;
@@ -62,7 +62,7 @@
                                rdfs:label "http://example.org/g1" ] 
               ] .
 
-:dawg-delete-data-05 a ut:UpdateEvaluationTest ;
+:dawg-delete-data-05 a mf:UpdateEvaluationTest ;
     mf:name    "Graph-specific DELETE DATA 1" ;
     rdfs:comment "Test 1 for DELETE DATA only modifying the desired graph" ;
     dawgt:approval dawgt:NotClassified ;
@@ -80,7 +80,7 @@
                                rdfs:label "http://example.org/g3" ] 
               ] .
 
-:dawg-delete-data-06 a ut:UpdateEvaluationTest ;
+:dawg-delete-data-06 a mf:UpdateEvaluationTest ;
     mf:name    "Graph-specific DELETE DATA 2" ;
     rdfs:comment "Test 2 for DELETE DATA only modifying the desired graph" ;
     dawgt:approval dawgt:NotClassified ;
