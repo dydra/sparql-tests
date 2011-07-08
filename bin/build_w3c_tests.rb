@@ -72,7 +72,7 @@ end
 def ask_results_snippet(test)
   if File.extname(test.result.path) =~ /\.(srx|srj)/
     method = parse_method_for($1)
-    "expected = #{SPARQL::Client.__send__(method, File.read(test.result.path))}"
+    "      expected = #{SPARQL::Client.__send__(method, File.read(test.result.path))}"
   else
     expected_repository = RDF::Repository.new 
     Spira.add_repository!(:results, expected_repository)

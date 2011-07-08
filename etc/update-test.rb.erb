@@ -49,7 +49,7 @@ describe "W3C test" do
 <%= results_snippet %>
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :<%= test.form %>).to_a.should =~ expected.to_a
+                   :repository => repository, :form => :<%= test.form %>).should =~ expected
     end
   end
 end

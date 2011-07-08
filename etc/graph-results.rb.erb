@@ -1,4 +1,10 @@
-      expected = RDF::Repository.new
-   <% expected_repo.to_a.each do |result| %>
-      expected << <%= result.to_ruby %>
-   <% end %>
+      expected = [
+        <% expected_repo.each_statement do |statement| %>
+          { 
+            :s => <%= statement.subject.to_ruby %>,
+            :p => <%= statement.predicate.to_ruby %>,
+            :o => <%= statement.object.to_ruby %>,
+            <%= statement.has_context? ? ":g => #{statement.context.to_ruby}" : '' %>
+        <% end %> 
+          },
+      ]
