@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # OWL DS bnodes are not existentials with answer
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/owlds02.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/owlds02.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#owlds02
@@ -49,7 +49,7 @@ WHERE {
 }
     end
 
-    example "OWL DS bnodes are not existentials with answer", :unverified => true, :w3c_status => 'unapproved' do
+    example "OWL DS bnodes are not existentials with answer", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -58,12 +58,12 @@ WHERE {
       repository = 'entailment-owlds02'
       expected = [
           { 
-              :c => RDF::URI('http://example.org/x/y'),
               :x => RDF::URI('http://example.org/x/x'),
+              :y => RDF::URI('http://example.org/x/y'),
           },
           { 
               :x => RDF::URI('http://example.org/x/x'),
-              :y => RDF::URI('bnode://yy'),
+              :y => RDF::Node.new('y'),
           },
       ]
 

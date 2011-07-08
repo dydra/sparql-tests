@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # SUM with GROUP BY
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/aggregates/agg-sum-02.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/aggregates/agg-sum-02.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#agg-sum-02
@@ -25,7 +25,7 @@ describe "W3C test" do
 :decimals :dec 1.0, 2.2, 3.5 .
 :doubles :double 1.0E2, 2.0E3, 3.0E4 .
 :mixed1 :int 1 ; :dec 2.2 .
-:mixed2 :double 2E-1 ; :dec 2.2 .
+:mixed2 :double 2E-1 ; :dec 0.2 .
 
 }
       @query = %q{
@@ -39,7 +39,7 @@ GROUP BY ?s
 }
     end
 
-    example "SUM with GROUP BY", :w3c_status => 'unapproved' do
+    example "SUM with GROUP BY", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -65,7 +65,7 @@ GROUP BY ?s
           },
           { 
               :s => RDF::URI('http://www.example.org/mixed2'),
-              :sum => RDF::Literal.new('2.4000000000000004' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
+              :sum => RDF::Literal.new('4.0E-1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
       ]
 

@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # RDF inference test
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdf01.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdf01.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdf01
@@ -19,6 +19,11 @@ describe "W3C test" do
     before :all do
       @data = %q{
 @prefix ex: <http://example.org/ns#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+_:ont a owl:Ontology .
+ex:p a owl:DatatypeProperty .
 
 ex:a ex:b ex:c .
 
@@ -27,6 +32,8 @@ ex:a ex:b ex:c .
 }
       @query = %q{
 PREFIX ex: <http://example.org/ns#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
 SELECT ?x
 WHERE {
   ex:b ?x rdf:Property .
@@ -36,7 +43,7 @@ WHERE {
 }
     end
 
-    example "RDF inference test", :unverified => true, :w3c_status => 'unapproved' do
+    example "RDF inference test", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

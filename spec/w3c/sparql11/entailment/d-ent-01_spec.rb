@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # D-Entailment test to show that newly introduced surrogate blank nodes are not to be returned in query answers
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/d-ent-01.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/d-ent-01.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#d-ent-01
@@ -19,7 +19,10 @@ describe "W3C test" do
     before :all do
       @data = %q{
 @prefix ex: <http://example.org/ns#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
+ex:p a owl:DatatypeProperty .
 ex:s ex:p 1 .
 
 }
@@ -34,7 +37,7 @@ WHERE {
 }
     end
 
-    example "D-Entailment test to show that newly introduced surrogate blank nodes are not to be returned in query answers", :unverified => true, :w3c_status => 'unapproved' do
+    example "D-Entailment test to show that newly introduced surrogate blank nodes are not to be returned in query answers", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # RDFS inference test rdfs:subPropertyOf
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs01.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs01.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdfs01
@@ -22,7 +22,7 @@ describe "W3C test" do
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 ex:a ex:b1 ex:c .
-ex:b1 rdfs:rdfs:subPropertyOf ex:b2 .
+ex:b1 rdfs:subPropertyOf ex:b2 .
 
 
 }
@@ -37,7 +37,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test rdfs:subPropertyOf", :unverified => true, :w3c_status => 'unapproved' do
+    example "RDFS inference test rdfs:subPropertyOf", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # simple triple pattern match
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdf04.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdf04.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdf04
@@ -35,7 +35,7 @@ WHERE { ?x rdf:type :c . }
 }
     end
 
-    example "simple triple pattern match", :unverified => true, :w3c_status => 'unapproved' do
+    example "simple triple pattern match", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

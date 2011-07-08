@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # RDFS inference test rdf:XMLLiteral subclass of rdfs:Literal
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs08.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs08.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdfs08
@@ -20,6 +20,7 @@ describe "W3C test" do
       @data = %q{
 @prefix ex: <http://example.org/ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 ex:d rdfs:range rdf:XMLLiteral .
 
@@ -37,7 +38,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test rdf:XMLLiteral subclass of rdfs:Literal", :unverified => true, :w3c_status => 'unapproved' do
+    example "RDFS inference test rdf:XMLLiteral subclass of rdfs:Literal", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -50,6 +51,9 @@ WHERE {
           },
           { 
               :x => RDF::URI('http://www.w3.org/2000/01/rdf-schema#Literal'),
+          },
+          { 
+              :x => RDF::URI('http://www.w3.org/2000/01/rdf-schema#Resource'),
           },
       ]
 

@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # RDFS inference test subClassOf
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs05.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs05.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdfs05
@@ -38,7 +38,7 @@ WHERE { ?x rdf:type ?c . ?c rdfs:subClassOf :d }
 }
     end
 
-    example "RDFS inference test subClassOf", :unverified => true, :w3c_status => 'unapproved' do
+    example "RDFS inference test subClassOf", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
