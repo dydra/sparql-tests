@@ -56,7 +56,9 @@ module SPARQL
         base_uri = ENV['MANIFEST']
         manifest_file = ENV['MANIFEST']
         test_repo.load(manifest_file, :base_uri => base_uri, :context => ENV['MANIFEST'])
-        tests = Manifest.each.map { |m| m.entries }.flatten.find_all { |t| t.approved? }
+        #tests = Manifest.each.map { |m| m.entries }.flatten.find_all { |t| t.approved? }
+        # we'll just accept anything as a test these days, it seems
+        tests = Manifest.each.map { |m| m.entries }.flatten
         tests.each { |test| test.update!(:manifest => ENV['MANIFEST']) }
       else
         cache_file = 
@@ -109,6 +111,8 @@ module SPARQL
           test_repo.load("#{base_directory}/sparql11-tests/data-sparql11/manifest-all.ttl", :base_uri => "#{base_directory}/sparql11-tests/data-sparql11/")
           Manifest.each do |manifest| manifest.include_files! end
           tests = Manifest.each.map { |m| m.entries }.flatten.find_all { |t| !t.result.nil? }
+          # this test just isn't even in the repo. you stay classy, w3c.
+          tests.reject! { |t| t.name =~ /NOT IN 1/ }
           tests.each { |test|
             test.tags << 'status:unverified'
             test.tags << 'w3c_status:unapproved' unless test.approved?
@@ -123,9 +127,9 @@ module SPARQL
               end
             end
           }
-          File.open('./sparql-specs-cache.nt', 'w+') do |file|
-            file.write RDF::Writer.for(:ntriples).dump(Spira.repository(:default))
-          end
+          #File.open('./sparql-specs-cache.nt', 'w+') do |file|
+          #  file.write RDF::Writer.for(:ntriples).dump(Spira.repository(:default))
+          #end
         end
       end
       tests
