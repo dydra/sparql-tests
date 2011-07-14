@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:/dydra/dydra.git
-  revision: b4a3175cd6410b3ec9aba39e83dd3b6ed886f01c
+  revision: 25ada3776133a942aa15d2bd9655f405f3413cb2
   specs:
-    dydra (0.0.8)
+    dydra (0.0.9)
       rdf (>= 0.3.0)
       rest-client (>= 1.6.1)
       sparql-client (>= 0.0.9)
