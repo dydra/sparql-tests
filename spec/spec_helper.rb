@@ -97,7 +97,7 @@ def sparql_query(opts)
       result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result)
       result = !!result if opts[:form] == :ask
     elsif opts[:form] == :update
-      result = repository.query('select * where { graph ?g { ?s ?p ?o } union { ?s ?p ?o }}', :format => :parsed)
+      result = repository.query('select * where { { ?s ?p ?o } union { graph ?g { ?s ?p ?o} } }', :format => :parsed)
     else
       result = raw_result
     end
