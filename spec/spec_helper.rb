@@ -4,6 +4,22 @@ Bundler.require(:default)
 require 'rdf/cli'
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f}
 
+if ENV['DYDRA_URL']
+  puts "Testing against #{ENV['DYDRA_URL']}"
+else
+  puts "Testing against production."
+end
+
+credentials_file = ENV['HOME'] + "/.dydra/credentials"
+if File.exists?(credentials_file)
+  creds = YAML.load_file(credentials_file)
+  puts "Authenticating with token from #{credentials_file}. #{creds[:user].nil? ? "Token only auth." : "Credentials are for #{creds[:user]}" }"
+elsif ENV['DYDRA_TOKEN'].nil?
+  puts "Not sure how you're authenticating. I'll try anyway."
+else
+  puts "Authenticating with DYDRA_TOKEN environment variable."
+end
+
 # This file defines the sparql query function, which makes a sparql query and returns results.
 # It respects the following environment variables, all either true or false (set or unset):
 # IMPORT
