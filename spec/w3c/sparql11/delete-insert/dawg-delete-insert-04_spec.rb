@@ -57,7 +57,7 @@ WHERE
     example "DELETE INSERT 4", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :.ttl}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
 
       repository = 'delete-insert-dawg-delete-insert-04'

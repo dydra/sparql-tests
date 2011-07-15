@@ -44,9 +44,9 @@ INSERT {
     example "INSERT 03", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :.ttl}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
-      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :.ttl }
+      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :ttl }
 
       repository = 'basic-update-insert-where-03'
       expected = [

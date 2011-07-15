@@ -78,9 +78,9 @@ WHERE
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :.ttl }
-      graphs[RDF::URI('http://example.org/g2')] = { :data => @graph1, :format => :.ttl }
-      graphs[RDF::URI('http://example.org/g3')] = { :data => @graph2, :format => :.ttl }
+      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example.org/g2')] = { :data => @graph1, :format => :ttl }
+      graphs[RDF::URI('http://example.org/g3')] = { :data => @graph2, :format => :ttl }
 
       repository = 'delete-dawg-delete-using-05'
       expected = [

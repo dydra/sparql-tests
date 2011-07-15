@@ -68,10 +68,10 @@ DELETE DATA
     example "Graph-specific DELETE DATA 1", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :.ttl}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
-      graphs[RDF::URI('http://example.org/g2')] = { :data => @graph0, :format => :.ttl }
-      graphs[RDF::URI('http://example.org/g3')] = { :data => @graph1, :format => :.ttl }
+      graphs[RDF::URI('http://example.org/g2')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example.org/g3')] = { :data => @graph1, :format => :ttl }
 
       repository = 'delete-data-dawg-delete-data-05'
       expected = [

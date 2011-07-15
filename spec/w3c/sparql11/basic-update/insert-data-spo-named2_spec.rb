@@ -38,7 +38,7 @@ INSERT DATA { GRAPH <http://example.org/g1> { :s :p :o2 } }
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :.ttl }
+      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :ttl }
 
       repository = 'basic-update-insert-data-spo-named2'
       expected = [

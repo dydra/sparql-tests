@@ -48,7 +48,7 @@ WHERE
     example "Simple DELETE 7", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :.ttl}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
 
       repository = 'delete-dawg-delete-07'

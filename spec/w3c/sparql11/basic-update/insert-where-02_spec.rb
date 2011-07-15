@@ -38,7 +38,7 @@ INSERT {
     example "INSERT 02", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :.ttl}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
 
       repository = 'basic-update-insert-where-02'

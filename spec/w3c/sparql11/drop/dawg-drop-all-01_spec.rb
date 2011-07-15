@@ -52,10 +52,10 @@ DROP ALL
     example "DROP ALL", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :.ttl}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
-      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :.ttl }
-      graphs[RDF::URI('http://example.org/g2')] = { :data => @graph1, :format => :.ttl }
+      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example.org/g2')] = { :data => @graph1, :format => :ttl }
 
       repository = 'drop-dawg-drop-all-01'
       expected = [

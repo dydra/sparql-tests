@@ -52,7 +52,7 @@ WHERE
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :.ttl }
+      graphs[RDF::URI('http://example.org/g1')] = { :data => @graph0, :format => :ttl }
 
       repository = 'delete-dawg-delete-02'
       expected = [

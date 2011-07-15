@@ -102,7 +102,7 @@ module SPARQL::Spec
     end
 
     def data_format
-      File.extname data_file
+      File.extname(data_file).sub(/\./,'').to_sym
     end
   end
 
@@ -131,7 +131,7 @@ module SPARQL::Spec
     end
 
     def data_format
-      File.extname data_file
+      File.extname(data_file).sub(/\./,'').to_sym
     end
   end
 

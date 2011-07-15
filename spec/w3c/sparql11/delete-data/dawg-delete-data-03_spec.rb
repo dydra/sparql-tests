@@ -43,7 +43,7 @@ DELETE DATA
     example "Simple DELETE DATA 3", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :.ttl}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
 
       repository = 'delete-data-dawg-delete-data-03'

@@ -43,7 +43,7 @@ DELETE WHERE
     example "Simple DELETE WHERE 1", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :.ttl}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
 
       repository = 'delete-where-dawg-delete-where-01'
