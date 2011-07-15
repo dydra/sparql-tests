@@ -105,7 +105,7 @@ def sparql_query(opts)
    
   log "Result: (query took #{taken} seconds)"
   log result.each_statement.to_a.map {|s| "#{s.subject} #{s.predicate} #{s.object}" }.join("\n")if result.respond_to?(:each_statement)
-  result.map!(&:to_hash) if opts[:form] == :select
+  result.map!(&:to_hash) if opts[:form] == :select || opts[:form] == :update
   result
 end
 
