@@ -47,6 +47,7 @@ INSERT DATA { GRAPH <http://example.org/g1> { :s :p :o2 } }
             :p => RDF::URI('http://example.org/ns#p'),
             :o => RDF::URI('http://example.org/ns#o'),
             
+          },
           { 
             :s => RDF::URI('http://example.org/ns#s'),
             :p => RDF::URI('http://example.org/ns#p'),

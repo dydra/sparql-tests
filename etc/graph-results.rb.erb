@@ -5,6 +5,6 @@
             :p => <%= statement.predicate.to_ruby %>,
             :o => <%= statement.object.to_ruby %>,
             <%= statement.has_context? ? ":g => #{statement.context.to_ruby}" : '' %>
-        <% end %> 
           },
+        <% end %>
       ]

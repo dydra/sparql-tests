@@ -67,21 +67,25 @@ WHERE {
             :p => RDF::URI('http://example.org/b'),
             :o => RDF::URI('http://example.org/c'),
             
+          },
           { 
             :s => RDF::URI('http://example.org/g1'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('q' ),
             
+          },
           { 
             :s => RDF::URI('http://example.org/g1'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('y' ),
             
+          },
           { 
             :s => RDF::URI('http://example.org/g2'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('q' ),
             
+          },
           { 
             :s => RDF::URI('http://example.org/g2'),
             :p => RDF::URI('http://example.org/p'),

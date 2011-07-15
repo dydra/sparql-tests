@@ -59,7 +59,6 @@ DROP ALL
 
       repository = 'drop-dawg-drop-all-01'
       expected = [
-          },
       ]
 
 

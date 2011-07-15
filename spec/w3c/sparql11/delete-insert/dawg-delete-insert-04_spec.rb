@@ -67,31 +67,37 @@ WHERE
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Alan' ),
             
+          },
           { 
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::URI('mailto:alan@example.org'),
             
+          },
           { 
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Bob' ),
             
+          },
           { 
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::URI('mailto:bob@example.org'),
             
+          },
           { 
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
             :o => RDF::URI('http://example.org/c'),
             
+          },
           { 
             :s => RDF::URI('http://example.org/c'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Claire' ),
             
+          },
           { 
             :s => RDF::URI('http://example.org/c'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),

@@ -59,7 +59,6 @@ CLEAR ALL
 
       repository = 'clear-dawg-clear-all-01'
       expected = [
-          },
       ]
 
 

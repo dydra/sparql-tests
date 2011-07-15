@@ -64,11 +64,13 @@ DROP DEFAULT
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('G1' ),
             
+          },
           { 
             :s => RDF::URI('http://example.org/g1'),
             :p => RDF::URI('http://example.org/description'),
             :o => RDF::Literal.new('Graph 1' ),
             
+          },
           { 
             :s => RDF::URI('http://example.org/g2'),
             :p => RDF::URI('http://example.org/name'),
