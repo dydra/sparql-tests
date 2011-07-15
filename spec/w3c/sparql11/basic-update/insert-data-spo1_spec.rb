@@ -37,7 +37,7 @@ INSERT DATA { :s :p :o }
             :s => RDF::URI('http://example.org/ns#s'),
             :p => RDF::URI('http://example.org/ns#p'),
             :o => RDF::URI('http://example.org/ns#o'),
-            
+            :g => nil
           },
       ]
 

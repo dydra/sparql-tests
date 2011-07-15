@@ -63,19 +63,19 @@ DROP DEFAULT
             :s => RDF::URI('http://example.org/g1'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('G1' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/g1'),
             :p => RDF::URI('http://example.org/description'),
             :o => RDF::Literal.new('Graph 1' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/g2'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('G2' ),
-            
+            :g => nil
           },
       ]
 

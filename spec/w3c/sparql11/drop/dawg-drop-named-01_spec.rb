@@ -62,7 +62,7 @@ DROP NAMED
             :s => RDF::URI('/Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/drop/drop-default.ttl'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('Default Graph' ),
-            
+            :g => nil
           },
       ]
 

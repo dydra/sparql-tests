@@ -79,67 +79,67 @@ DELETE WHERE
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Alan' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::Literal.new('alan@example.org' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
             :o => RDF::URI('http://example.org/b'),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Bob' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::Literal.new('bob@example.org' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
             :o => RDF::URI('http://example.org/c'),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/c'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::Literal.new('chris@example.org' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/c'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Chris' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/c'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
             :o => RDF::URI('http://example.org/d'),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/d'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Dan' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/d'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::Literal.new('dan@example.org' ),
-            
+            :g => nil
           },
       ]
 

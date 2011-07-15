@@ -31,6 +31,12 @@ class RDF::Statement
   end
 end
 
+class NilClass
+  def to_ruby
+    "nil"
+  end
+end
+
 def results_snippet_for(test)
   case test.form
     when :ask

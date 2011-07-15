@@ -57,19 +57,19 @@ WHERE {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://example.org/b'),
             :o => RDF::URI('http://example.org/c'),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/s'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('q' ),
-            
+            :g => nil
           },
           { 
             :s => RDF::URI('http://example.org/s'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('o' ),
-            
+            :g => nil
           },
       ]
 

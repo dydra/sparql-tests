@@ -62,7 +62,7 @@ CLEAR NAMED
             :s => RDF::URI('/Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/clear/clear-default.ttl'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('Default Graph' ),
-            
+            :g => nil
           },
       ]
 
