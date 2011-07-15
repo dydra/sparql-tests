@@ -59,7 +59,7 @@ def sparql_query(opts)
     end
   end
 
-  if importing?
+  if importing? || opts[:form] == :update
     base_uri = RDF::URI(Dydra::URI) / account / opts[:repository]
     repository = Dydra::Repository.new(repository_name)
     log "Running dydra clear #{repository_name} #{repository}"
