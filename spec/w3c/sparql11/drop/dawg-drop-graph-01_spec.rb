@@ -58,13 +58,13 @@ DROP GRAPH :g1
 
       repository = 'drop-dawg-drop-graph-01'
       expected = [
-          { 
+          {
             :s => RDF::URI('/Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/drop/drop-default.ttl'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('Default Graph' ),
             :g => nil
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/g2'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('G2' ),

@@ -33,7 +33,7 @@ INSERT DATA { GRAPH <http://example.org/g1> { :s :p :o } }
 
       repository = 'basic-update-insert-data-spo-named1'
       expected = [
-          { 
+          {
             :s => RDF::URI('http://example.org/ns#s'),
             :p => RDF::URI('http://example.org/ns#p'),
             :o => RDF::URI('http://example.org/ns#o'),

@@ -57,19 +57,19 @@ WHERE
 
       repository = 'delete-dawg-delete-with-01'
       expected = [
-          { 
+          {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Alan' ),
             :g => RDF::URI('http://example.org/g1')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::Literal.new('alan@example.org' ),
             :g => RDF::URI('http://example.org/g1')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
             :o => RDF::URI('http://example.org/b'),

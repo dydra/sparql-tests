@@ -71,67 +71,67 @@ WHERE
 
       repository = 'delete-dawg-delete-with-04'
       expected = [
-          { 
+          {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Alan' ),
             :g => RDF::URI('http://example.org/g1')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::Literal.new('alan@example.org' ),
             :g => RDF::URI('http://example.org/g1')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
             :o => RDF::URI('http://example.org/b'),
             :g => RDF::URI('http://example.org/g1')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Bob' ),
             :g => RDF::URI('http://example.org/g1')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::Literal.new('bob@example.org' ),
             :g => RDF::URI('http://example.org/g1')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
             :o => RDF::URI('http://example.org/b'),
             :g => RDF::URI('http://example.org/g2')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Bob' ),
             :g => RDF::URI('http://example.org/g2')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::Literal.new('bob@example.org' ),
             :g => RDF::URI('http://example.org/g2')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/knows'),
             :o => RDF::URI('http://example.org/c'),
             :g => RDF::URI('http://example.org/g2')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/c'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Chris' ),
             :g => RDF::URI('http://example.org/g2')
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/c'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::Literal.new('chris@example.org' ),

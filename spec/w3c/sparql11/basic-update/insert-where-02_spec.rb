@@ -43,13 +43,13 @@ INSERT {
 
       repository = 'basic-update-insert-where-02'
       expected = [
-          { 
+          {
             :s => RDF::URI('http://example.org/s'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('o' ),
             :g => nil
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/s'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('q' ),

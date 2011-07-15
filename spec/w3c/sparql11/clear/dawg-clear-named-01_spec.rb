@@ -58,7 +58,7 @@ CLEAR NAMED
 
       repository = 'clear-dawg-clear-named-01'
       expected = [
-          { 
+          {
             :s => RDF::URI('/Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/clear/clear-default.ttl'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('Default Graph' ),

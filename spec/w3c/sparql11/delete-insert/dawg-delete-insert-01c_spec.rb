@@ -67,37 +67,37 @@ WHERE
 
       repository = 'delete-insert-dawg-delete-insert-01c'
       expected = [
-          { 
+          {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Alan' ),
             :g => nil
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/a'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::URI('mailto:alan@example.org'),
             :g => nil
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Bob' ),
             :g => nil
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/b'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::URI('mailto:bob@example.org'),
             :g => nil
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/c'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/name'),
             :o => RDF::Literal.new('Claire' ),
             :g => nil
           },
-          { 
+          {
             :s => RDF::URI('http://example.org/c'),
             :p => RDF::URI('http://xmlns.com/foaf/0.1/mbox'),
             :o => RDF::URI('mailto:claire@example.org'),
