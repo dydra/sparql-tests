@@ -75,22 +75,22 @@ WHERE {
             :g => nil
           },
           { 
-            :s => RDF::URI('http://example.org/g1'),
-            :p => RDF::URI('http://example.org/p'),
-            :o => RDF::Literal.new('y' ),
-            :g => nil
-          },
-          { 
             :s => RDF::URI('http://example.org/g2'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('q' ),
             :g => nil
           },
           { 
+            :s => RDF::URI('http://example.org/g1'),
+            :p => RDF::URI('http://example.org/p'),
+            :o => RDF::Literal.new('y' ),
+            :g => RDF::URI('http://example.org/g1')
+          },
+          { 
             :s => RDF::URI('http://example.org/g2'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('z' ),
-            :g => nil
+            :g => RDF::URI('http://example.org/g2')
           },
       ]
 

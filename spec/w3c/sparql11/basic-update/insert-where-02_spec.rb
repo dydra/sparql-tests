@@ -53,7 +53,7 @@ INSERT {
             :s => RDF::URI('http://example.org/s'),
             :p => RDF::URI('http://example.org/p'),
             :o => RDF::Literal.new('q' ),
-            :g => nil
+            :g => RDF::URI('http://example.org/g1')
           },
       ]
 

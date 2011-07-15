@@ -95,7 +95,7 @@ def update_results_snippet(test)
   puts "result file: #{test.result.data_file}"
   expected_repo.load(test.result.data_file.to_s) unless test.result.data_file.nil?
   test.result.graphData.each do |graph|
-    expected_repo.load(graph.data_file.to_s)
+    expected_repo.load(graph.data_file.to_s, :context => graph.basename)
   end
   template = Erubis::Eruby.new(File.read(File.join(File.dirname(__FILE__), '..', 'etc', 'graph-results.rb.erb')))
   template.result(binding)

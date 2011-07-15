@@ -119,7 +119,7 @@ module SPARQL::Spec
 
   class UpdateGraphData < Spira::Base
     property :graph, :predicate => UT.graph
-    property :basename, :predicate => RDFS.label
+    property :basename, :predicate => RDFS.label, :type => Spira::Types::URI
 
 
     def data_file

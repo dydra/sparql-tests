@@ -1,6 +1,6 @@
       expected = [
         <% expected_repo.each_statement do |statement| %>
-          { 
+          {
             :s => <%= statement.subject.to_ruby %>,
             :p => <%= statement.predicate.to_ruby %>,
             :o => <%= statement.object.to_ruby %>,

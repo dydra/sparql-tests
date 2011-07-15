@@ -68,7 +68,7 @@ CLEAR GRAPH :g1
             :s => RDF::URI('http://example.org/g2'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('G2' ),
-            :g => nil
+            :g => RDF::URI('http://example.org/g2')
           },
       ]
 
