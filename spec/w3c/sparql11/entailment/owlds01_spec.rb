@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # OWL DS bnodes are not existentials
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/owlds01.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/owlds01.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#owlds01
@@ -22,11 +22,13 @@ describe "W3C test" do
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
- :x rdf:type :c.
- :x rdf:type :d.
- :x rdf:type _:x.
+_:ont a owl:Ontology .
 
- :p rdf:type owl:ObjectProperty .
+:p rdf:type owl:ObjectProperty .
+
+:a rdf:type :c .
+:a rdf:type :d .
+:a rdf:type _:x .
 
 _:x rdf:type owl:Restriction.
 _:x owl:onProperty :p.
@@ -34,21 +36,23 @@ _:x owl:someValuesFrom :c .
 
 }
       @query = %q{
-PREFIX     :  <http://example.org/x/>
+PREFIX   ex:  <http://example.org/x/>
 PREFIX  rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
 
 SELECT ?x ?c
 WHERE { 
 ?x rdf:type ?c . 
-?c rdfs:subClassOf :c . 
-?x :p _:y .
+?c rdfs:subClassOf ex:c . 
+?x ex:p _:y . 
+
 }
 
 }
     end
 
-    example "OWL DS bnodes are not existentials", :unverified => true, :w3c_status => 'unapproved' do
+    example "OWL DS bnodes are not existentials", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

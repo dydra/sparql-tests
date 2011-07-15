@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # RDF test for blank node cardinalities
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdf03.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdf03.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdf03
@@ -19,7 +19,7 @@ describe "W3C test" do
     before :all do
       @data = %q{
 @prefix ex: <http://example.org/ns#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 ex:a1 ex:b1 _:c1 .
 ex:a1 ex:b1 _:c2 .
@@ -37,7 +37,7 @@ WHERE {
 }
     end
 
-    example "RDF test for blank node cardinalities", :unverified => true, :w3c_status => 'unapproved' do
+    example "RDF test for blank node cardinalities", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

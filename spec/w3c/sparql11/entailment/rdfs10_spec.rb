@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # RDFS inference test transitivity of subPropertyOf
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs10.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs10.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdfs10
@@ -40,7 +40,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test transitivity of subPropertyOf", :unverified => true, :w3c_status => 'unapproved' do
+    example "RDFS inference test transitivity of subPropertyOf", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

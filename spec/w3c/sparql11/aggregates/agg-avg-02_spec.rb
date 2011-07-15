@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # AVG with GROUP BY
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/aggregates/agg-avg-02.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/aggregates/agg-avg-02.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#agg-avg-02
@@ -25,7 +25,7 @@ describe "W3C test" do
 :decimals :dec 1.0, 2.2, 3.5 .
 :doubles :double 1.0E2, 2.0E3, 3.0E4 .
 :mixed1 :int 1 ; :dec 2.2 .
-:mixed2 :double 2E-1 ; :dec 2.2 .
+:mixed2 :double 2E-1 ; :dec 0.2 .
 
 }
       @query = %q{
@@ -40,7 +40,7 @@ HAVING (AVG(?o) <= 2.0)
 }
     end
 
-    example "AVG with GROUP BY", :w3c_status => 'unapproved' do
+    example "AVG with GROUP BY", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -53,7 +53,7 @@ HAVING (AVG(?o) <= 2.0)
               :s => RDF::URI('http://www.example.org/mixed1'),
           },
           { 
-              :avg => RDF::Literal.new('1.2000000000000002' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
+              :avg => RDF::Literal.new('2.0E-1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :s => RDF::URI('http://www.example.org/mixed2'),
           },
           { 

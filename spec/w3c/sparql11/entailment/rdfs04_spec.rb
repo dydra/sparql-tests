@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # RDFS inference test subClassOf
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs04.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs04.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdfs04
@@ -20,24 +20,26 @@ describe "W3C test" do
       @data = %q{
 @prefix ex: <http://example.org/ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-ex:a ex:b ex:c1 .
+ex:a rdf:type ex:c1 .
 ex:c1 rdfs:subClassOf ex:c2 .
 
 
 }
       @query = %q{
 PREFIX ex: <http://example.org/ns#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 SELECT ?x
 WHERE {
-  ex:a ex:b ?x .
+  ?x rdf:type ex:c2 .
 }
 
 
 }
     end
 
-    example "RDFS inference test subClassOf", :unverified => true, :w3c_status => 'unapproved' do
+    example "RDFS inference test subClassOf", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -46,10 +48,7 @@ WHERE {
       repository = 'entailment-rdfs04'
       expected = [
           { 
-              :x => RDF::URI('http://example.org/ns#c1'),
-          },
-          { 
-              :x => RDF::URI('http://example.org/ns#c2'),
+              :x => RDF::URI('http://example.org/ns#a'),
           },
       ]
 

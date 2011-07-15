@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # RDFS inference test members of rdfs:ContaierMembershipProperty
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs12.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs12.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdfs12
@@ -19,7 +19,7 @@ describe "W3C test" do
     before :all do
       @data = %q{
 @prefix ex: <http://example.org/ns#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 ex:favourite-fruit a rdf:Seq .
@@ -31,6 +31,7 @@ ex:favourite-fruit rdf:_3 ex:pear .
       @query = %q{
 PREFIX ex: <http://example.org/ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 SELECT ?x
 WHERE {
   ?x rdf:type rdfs:ContainerMembershipProperty .
@@ -40,7 +41,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test members of rdfs:ContaierMembershipProperty", :unverified => true, :w3c_status => 'unapproved' do
+    example "RDFS inference test members of rdfs:ContaierMembershipProperty", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

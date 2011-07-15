@@ -84,20 +84,21 @@ def sparql_query(opts)
   log "Running dydra query #{repository_name} '#{opts[:query]}'"
   result = raw_result = nil
   taken = timer do
-    format = case
-      when opts[:form] == :construct || opts[:form] == :describe
+    format = case opts[:form]
+      when :construct, :describe, :update
         :parsed
-      when ENV['DYDRA_XML']
-        :xml
       else
-        :json
+        ENV['DYDRA_XML'] ? :xml : :json
     end
-    raw_result = Dydra::Repository.new(repository_name).query(opts[:query], :format => format, :user_query_id => opts[:user_id])
+    repository = Dydra::Repository.new(repository_name)
+    raw_result = repository.query(opts[:query], :format => format, :user_query_id => opts[:user_id])
     log raw_result
     if (opts[:form] == :select || opts[:form] == :ask) && comparing?
       result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result)
       result = !!result if opts[:form] == :ask
-    elsif
+    elsif opts[:form] == :update
+      result = repository.query('select * where { { ?s ?p ?o } union { graph ?g { ?s ?p ?o} } }', :format => :parsed)
+    else
       result = raw_result
     end
   end

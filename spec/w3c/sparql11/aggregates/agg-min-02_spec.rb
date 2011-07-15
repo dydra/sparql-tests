@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # MIN with GROUP BY
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/aggregates/agg-min-02.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/aggregates/agg-min-02.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#agg-min-02
@@ -39,7 +39,7 @@ GROUP BY ?s
 }
     end
 
-    example "MIN with GROUP BY", :w3c_status => 'unapproved' do
+    example "MIN with GROUP BY", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -64,7 +64,7 @@ GROUP BY ?s
               :s => RDF::URI('http://www.example.org/mixed1'),
           },
           { 
-              :min => RDF::Literal.new('2E-1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
+              :min => RDF::Literal.new('2.0E-1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :s => RDF::URI('http://www.example.org/mixed2'),
           },
       ]

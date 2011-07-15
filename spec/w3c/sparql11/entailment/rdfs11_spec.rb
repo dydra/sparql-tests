@@ -6,7 +6,7 @@ require 'spec_helper'
 #
 # RDFS inference test subclasses of rdf:Container
 # 
-# /Users/ben/Repos/datagraph/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs11.rq
+# /Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/entailment/rdfs11.rq
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdfs11
@@ -36,7 +36,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test subclasses of rdf:Container", :unverified => true, :w3c_status => 'unapproved' do
+    example "RDFS inference test subclasses of rdf:Container", :status => 'unverified', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -52,6 +52,9 @@ WHERE {
           },
           { 
               :x => RDF::URI('http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq'),
+          },
+          { 
+              :x => RDF::URI('http://www.w3.org/2000/01/rdf-schema#Container'),
           },
       ]
 
