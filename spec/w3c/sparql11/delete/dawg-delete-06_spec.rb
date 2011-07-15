@@ -48,9 +48,9 @@ describe "W3C test" do
 @prefix foaf:       <http://xmlns.com/foaf/0.1/> .
 
 :c foaf:name "Chris" .
-:c foaf:mbox "chris@example.com" .
+:c foaf:mbox "chris@example.org" .
 :d foaf:name "Dan" .
-:d foaf:mbox "dan@example.com" .
+:d foaf:mbox "dan@example.org" .
 :c foaf:knows :d .
 
 }
