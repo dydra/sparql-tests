@@ -13,7 +13,8 @@ require 'spec_helper'
 #
 # This test is approved: 
 # http://www.w3.org/2007/07/17-dawg-minutes
-#
+# 20110714 jaa : simple/typed string disntinction
+
 describe "W3C test" do
   context "distinct" do
     before :all do
@@ -61,7 +62,7 @@ SELECT DISTINCT ?v
 }
     end
 
-    example "Strings: Distinct" do
+    example "Strings: Distinct", :string => 'typed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

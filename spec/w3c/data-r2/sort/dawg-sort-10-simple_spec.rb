@@ -40,7 +40,7 @@ ORDER BY DESC(?name)
 }
     end
 
-    example "sort-10", :string => 'typed' do
+    example "sort-10", :string => 'simple' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -49,16 +49,16 @@ ORDER BY DESC(?name)
       repository = 'sort-dawg-sort-10'
       expected = [
           { 
-              :name => RDF::Literal.new('Fred' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :name => RDF::Literal.new('Fred'),
           },
           { 
-              :name => RDF::Literal.new('Eve' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :name => RDF::Literal.new('Eve'),
           },
           { 
-              :name => RDF::Literal.new('Bob' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :name => RDF::Literal.new('Bob'),
           },
           { 
-              :name => RDF::Literal.new('Alice' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :name => RDF::Literal.new('Alice'),
           },
       ]
 

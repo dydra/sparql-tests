@@ -13,7 +13,8 @@ require 'spec_helper'
 #
 # This test is approved: 
 # http://www.w3.org/2007/06/26-dawg-minutes
-#
+# 20110715 jaa : string=>typed
+
 describe "W3C test" do
   context "sort" do
     before :all do
@@ -39,7 +40,7 @@ ORDER BY ?name
 }
     end
 
-    example "sort-9" do
+    example "sort-9", :string => 'typed'  do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

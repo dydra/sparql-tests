@@ -13,7 +13,7 @@ require 'spec_helper'
 #
 # This test is approved: 
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0118/04-dawg-minutes.html
-# 20110714 jaa : date unsupported
+# 20110714 jaa : date=>supported : permit date/datetime comparison
 
 describe "W3C test" do
   context "open-world" do
@@ -49,7 +49,7 @@ SELECT ?x ?v1 ?v2
 }
     end
 
-    example "open-cmp-02", :date => 'unsupported'  do
+    example "open-cmp-02", :date => 'supported'  do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -72,6 +72,11 @@ SELECT ?x ?v1 ?v2
               :v2 => RDF::Literal.new('v2' ),
               :x => RDF::URI('http://example/x1'),
           },
+          {
+              :v1 => RDF::Literal('2006-08-23T08:00:00Z', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#dateTime')),
+              :v2 => RDF::Literal('2006-08-22Z', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :x => RDF::URI('http://example/x5'),
+           },
       ]
 
 

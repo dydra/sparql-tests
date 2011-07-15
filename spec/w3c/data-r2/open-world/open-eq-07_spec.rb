@@ -18,7 +18,7 @@ require 'spec_helper'
 #  for termEqual &co
 # 20110309 ben : add unverified and language tags
 # 20110315 jaa: the blank nodes were also an issue  
-
+# 20110714 jaa: string=>typed
 describe "W3C test" do
   context "open-world" do
     before :all do
@@ -59,7 +59,7 @@ SELECT *
 }
     end
 
-    example "open-eq-07", :blank_nodes => 'unique', :values => 'literal' do
+    example "open-eq-07", :blank_nodes => 'unique', :values => 'literal', :string => 'typed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

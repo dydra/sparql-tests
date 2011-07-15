@@ -18,6 +18,7 @@ require 'spec_helper'
 #  for termEqual &co
 # 20110309 ben : add unverified and language tags
 # 20110315 jaa: the blank nodes were also an issue  
+# 20110715 jaa: string=>simple
 
 describe "W3C test" do
   context "open-world" do
@@ -59,7 +60,7 @@ SELECT *
 }
     end
 
-    example "open-eq-07 canonical", :blank_nodes => 'canonical', :values => 'canonical'  do
+    example "open-eq-07 canonical", :blank_nodes => 'canonical', :values => 'canonical', :string => 'simple'  do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -75,7 +76,7 @@ SELECT *
           },
           { 
               :v1 => RDF::Literal.new('xyz' ),
-              :v2 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v2 => RDF::Literal.new('xyz' ),
               :x1 => RDF::URI('http://example/x1'),
               :x2 => RDF::URI('http://example/x4'),
           },
@@ -104,14 +105,14 @@ SELECT *
               :x2 => RDF::URI('http://example/x3'),
           },
           { 
-              :v1 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v1 => RDF::Literal.new('xyz' ),
               :v2 => RDF::Literal.new('xyz' ),
               :x1 => RDF::URI('http://example/x4'),
               :x2 => RDF::URI('http://example/x1'),
           },
           { 
-              :v1 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
-              :v2 => RDF::Literal.new('xyz' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v1 => RDF::Literal.new('xyz' ),
+              :v2 => RDF::Literal.new('xyz' ),
               :x1 => RDF::URI('http://example/x4'),
               :x2 => RDF::URI('http://example/x4'),
           },

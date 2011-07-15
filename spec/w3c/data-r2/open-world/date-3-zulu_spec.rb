@@ -16,6 +16,8 @@ require 'spec_helper'
 #
 # This test is modified to expect zulu time in the results.
 # -ben 2/5/11
+# 20110715 jaa : date=>supported : permit date/datetime comparison
+
 describe "W3C test" do
   context "open-world" do
     before :all do
@@ -50,7 +52,7 @@ SELECT *
 }
     end
 
-    example "date-3 zulu", :tz => 'zulu' do
+    example "date-3 zulu", :tz => 'zulu', :date => 'supported' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -69,6 +71,10 @@ SELECT *
           { 
               :v => RDF::Literal.new('2006-08-23Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d1'),
+          },
+          {
+             :v => RDF::Literal.new('2006-08-23T08:00:00Z', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#dateTime')),
+             :x => RDF::URI('http://example/dt1'),
           },
       ]
 

@@ -16,6 +16,7 @@ require 'spec_helper'
 #
 # 20101220 jaa : reduced indicator
 # 20110309 ben : add language tags, mark unverified
+# 20110715 jaa : string=>typed
 
 describe "W3C test" do
   context "reduced" do
@@ -64,7 +65,7 @@ SELECT REDUCED ?v
 }
     end
 
-    example "SELECT REDUCED ?x with strings", :status => 'unverified', :reduced => 'all' do
+    example "SELECT REDUCED ?x with strings", :status => 'unverified', :reduced => 'all', :string => 'typed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

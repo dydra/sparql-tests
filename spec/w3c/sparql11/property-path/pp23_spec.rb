@@ -30,8 +30,8 @@ describe "W3C test" do
       @query = %q{
 prefix : <http://example/> 
 
-select * where {
-    :a :p+ ?z
+select ?z where {
+    ?a :p+ ?z
 } 
 
 }

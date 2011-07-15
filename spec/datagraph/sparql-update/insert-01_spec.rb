@@ -36,7 +36,7 @@ INSERT {
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'aggregates-agg-avg-01'
+      repository = 'basic-update-insert-01'
       expected = [
           { 
               :s => RDF::URI('http://example.org/s'),

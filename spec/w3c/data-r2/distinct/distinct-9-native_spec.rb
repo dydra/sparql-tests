@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://www.w3.org/2007/07/17-dawg-minutes
 #
 # 20101220 jaa : arithmetic indicator : native numbers reduce the solution field
+# 20110714 jaa : simple/typed string distinction
 
 describe "W3C test" do
   context "distinct" do
@@ -108,7 +109,7 @@ SELECT DISTINCT ?v
 }
     end
 
-    example "All: Distinct", :arithmetic => 'native' do
+    example "All: Distinct", :arithmetic => 'native', :string => 'simple' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -117,13 +118,13 @@ SELECT DISTINCT ?v
       repository = 'distinct-distinct-9'
       expected = [
           { 
-              :v => RDF::Literal.new('ABC' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v => RDF::Literal.new('ABC'),
           },
           { 
               :v => RDF::Literal.new('1.3e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#float')),
           },
           { 
-              :v => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v => RDF::Literal.new('abc'),
           },
           { 
               :v => RDF::Literal.new('1.3e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
@@ -135,10 +136,7 @@ SELECT DISTINCT ?v
               :v => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              :v => RDF::Literal.new('ABC' ),
-          },
-          { 
-              :v => RDF::Literal.new('' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :v => RDF::Literal.new(''),
           },
           { 
               :v => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
@@ -154,12 +152,6 @@ SELECT DISTINCT ?v
           },
           { 
               :v => RDF::URI('http://example/z1'),
-          },
-          { 
-              :v => RDF::Literal.new('abc' ),
-          },
-          { 
-              :v => RDF::Literal.new('' ),
           },
       ]
 

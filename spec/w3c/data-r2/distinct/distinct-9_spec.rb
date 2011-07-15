@@ -108,7 +108,7 @@ SELECT DISTINCT ?v
 }
     end
 
-    example "All: Distinct", :arithmetic => 'boxed' do
+    example "All: Distinct", :arithmetic => 'boxed', :string => 'typed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
