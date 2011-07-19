@@ -60,15 +60,15 @@ PLATFORMS
 DEPENDENCIES
   addressable (= 2.2.4)
   dydra!
-  erubis
-  rdf (>= 0.3.0)
-  rdf-isomorphic
-  rdf-json
-  rdf-n3
-  rdf-raptor
-  rspec
-  s3
-  sparql-client (>= 0.0.9)
-  spira
-  syntax
-  uuid
+  erubis (= 2.7.0)
+  rdf (= 0.3.3)
+  rdf-isomorphic (= 0.3.4)
+  rdf-json (= 0.3.0)
+  rdf-n3 (= 0.3.3.1)
+  rdf-raptor (= 0.4.1)
+  rspec (= 2.6.0)
+  s3 (= 0.3.8)
+  sparql-client (= 0.0.9)
+  spira (= 0.0.12)
+  syntax (= 1.0.0)
+  uuid (= 2.3.2)
