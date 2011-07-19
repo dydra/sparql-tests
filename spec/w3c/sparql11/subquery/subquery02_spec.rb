@@ -15,31 +15,21 @@ require 'spec_helper'
 # http://www.w3.org/2009/sparql/meeting/2010-07-13#resolution_3
 # 20110602 : jaa : status bug : graph variable constriant requires propagation or
 #  outer binding rather than bottom-up evaluation
-#
+# 20110719 jaa : status=>bug : import failure, replaced with .ttl version
+
 describe "W3C test" do
   context "subquery" do
     before :all do
        # sq01.rdf
        @graph0 = %q{
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:in="http://www.example.org/instance#"
-    xmlns:ex="http://www.example.org/schema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
-  <rdf:Description rdf:about="http://www.example.org/instance#a">
-    <ex:p rdf:resource="http://www.example.org/instance#b"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.example.org/instance#c">
-    <ex:p rdf:resource=""/>
-  </rdf:Description>
-</rdf:RDF>
+@base <http://example.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix in: <http://www.example.org/instance#> .
+@prefix ex: <http://www.example.org/schema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-
-
-
-
-
-
+in:a ex:p in:b .
+in:c ex:p <sq01.rdf> .
 }
       @query = %q{
 prefix ex:	<http://www.example.org/schema#>
@@ -53,12 +43,12 @@ graph ?g {
 }
     end
 
-    example "sq02 - Subquery within graph pattern, graph variable is bound", :status => 'bug' do
+    example "sq02 - Subquery within graph pattern, graph variable is bound" do
     
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('sq01.rdf')] = { :data => @graph0, :format => :rdf }
+      graphs[RDF::URI('http://example.com/sq01.rdf')] = { :data => @graph0, :format => :ttl }
 
       repository = 'subquery-subquery02'
       expected = [
