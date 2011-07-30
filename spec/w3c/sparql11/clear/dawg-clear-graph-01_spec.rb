@@ -48,7 +48,7 @@ CLEAR GRAPH :g1
 }
     end
 
-    example "CLEAR GRAPH", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "CLEAR GRAPH", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

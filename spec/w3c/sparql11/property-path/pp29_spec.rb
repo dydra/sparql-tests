@@ -37,7 +37,7 @@ select * where {
 }
     end
 
-    example "(pp29) Diamond, with loop -- :p{2,}", :status => 'unverified' do
+    example "(pp29) Diamond, with loop -- :p{2,}", :status => 'unverified', :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

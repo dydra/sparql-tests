@@ -12,7 +12,7 @@ require 'spec_helper'
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#strdt03
 #
 # This test is approved: 
-# 
+#  20110717 jaa : string=>typed
 #
 describe "W3C test" do
   context "functions" do
@@ -54,7 +54,7 @@ SELECT ?s (STRDT(?o,xsd:string) AS ?str1) WHERE {
 }
     end
 
-    example "STRDT() TypeErrors", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "STRDT() TypeErrors", :status => 'unverified', :w3c_status => 'unapproved', :string => 'typed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -79,22 +79,22 @@ SELECT ?s (STRDT(?o,xsd:string) AS ?str1) WHERE {
           },
           { 
               :s => RDF::URI('http://example.org/s1'),
-              :str1 => RDF::Literal.new('foo' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str1 => RDF::Literal.new('foo'),
           },
           { 
               :s => RDF::URI('http://example.org/s2'),
           },
           { 
               :s => RDF::URI('http://example.org/s3'),
-              :str1 => RDF::Literal.new('BAZ' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str1 => RDF::Literal.new('BAZ'),
           },
           { 
               :s => RDF::URI('http://example.org/s4'),
-              :str1 => RDF::Literal.new('食べ物' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str1 => RDF::Literal.new('食べ物'),
           },
           { 
               :s => RDF::URI('http://example.org/s5'),
-              :str1 => RDF::Literal.new('100%' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str1 => RDF::Literal.new('100%'),
           },
           { 
               :s => RDF::URI('http://example.org/s6'),

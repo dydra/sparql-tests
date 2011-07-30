@@ -70,7 +70,7 @@ SELECT ?s (LCASE(?str) AS ?lstr) WHERE {
               :s => RDF::URI('http://example.org/s4'),
           },
           { 
-              :lstr => RDF::Literal.new('def' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :lstr => RDF::Literal.new('def'),
               :s => RDF::URI('http://example.org/s7'),
           },
           { 
@@ -82,7 +82,7 @@ SELECT ?s (LCASE(?str) AS ?lstr) WHERE {
               :s => RDF::URI('http://example.org/s5'),
           },
           { 
-              :lstr => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :lstr => RDF::Literal.new('abc'),
               :s => RDF::URI('http://example.org/s6'),
           },
           { 

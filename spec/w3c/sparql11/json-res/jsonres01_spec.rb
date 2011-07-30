@@ -12,7 +12,7 @@ require 'spec_helper'
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#jsonres01
 #
 # This test is approved: 
-# 
+# 20110717 jaa : blank_nodes=>unique
 #
 describe "W3C test" do
   context "json-res" do
@@ -33,7 +33,7 @@ SELECT * WHERE { ?s ?p ?o} ORDER BY ?s ?p ?o
 }
     end
 
-    example "jsonres01 - JSON Result Format", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "jsonres01 - JSON Result Format", :status => 'unverified', :w3c_status => 'unapproved', :blank_nodes => 'unique' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

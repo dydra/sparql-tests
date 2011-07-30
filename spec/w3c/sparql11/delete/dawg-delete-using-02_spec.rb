@@ -72,7 +72,7 @@ WHERE
 }
     end
 
-    example "Simple DELETE 2 (USING)", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Simple DELETE 2 (USING)", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

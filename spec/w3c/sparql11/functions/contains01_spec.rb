@@ -13,7 +13,8 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+# 20110716 jaa : string=>typed
+
 describe "W3C test" do
   context "functions" do
     before :all do
@@ -55,7 +56,7 @@ SELECT ?s ?str WHERE {
 }
     end
 
-    example "CONTAINS()", :w3c_status => 'unapproved' do
+    example "CONTAINS()", :w3c_status => 'unapproved',:string => 'typed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -69,7 +70,7 @@ SELECT ?s ?str WHERE {
           },
           { 
               :s => RDF::URI('http://example.org/s6'),
-              :str => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('abc'),
           },
       ]
 

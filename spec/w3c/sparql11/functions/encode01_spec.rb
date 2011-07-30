@@ -90,12 +90,12 @@ SELECT ?s ?str (ENCODE_FOR_URI(?str) AS ?encoded) WHERE {
           { 
               :encoded => RDF::Literal.new('abc' ),
               :s => RDF::URI('http://example.org/s6'),
-              :str => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('abc'),
           },
           { 
               :encoded => RDF::Literal.new('DEF' ),
               :s => RDF::URI('http://example.org/s7'),
-              :str => RDF::Literal.new('DEF' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('DEF'),
           },
       ]
 

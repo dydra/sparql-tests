@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007AprJun/0006
 #
 # 20101218 jaa : bug indicator : store response is empty
+# 20110716 jaa : match process canonicalization means the match succeeds
 
 describe "W3C test" do
   context "expr-builtin" do
@@ -47,7 +48,7 @@ SELECT ?x
 }
     end
 
-    example "lang-3 : Graph matching with lang tag being a different case", :status => 'bug' do
+    example "lang-3 : Graph matching with lang tag being a different case" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

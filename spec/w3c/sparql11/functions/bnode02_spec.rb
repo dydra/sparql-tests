@@ -62,8 +62,8 @@ WHERE {}
       repository = 'functions-bnode02'
       expected = [
           { 
-              :b1 => RDF::Node.new('b0'),
-              :b2 => RDF::Node.new('b1'),
+              :b1 => RDF::Node.new('b1'),
+              :b2 => RDF::Node.new('b2'),
           },
       ]
 

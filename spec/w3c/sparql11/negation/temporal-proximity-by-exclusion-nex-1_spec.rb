@@ -12,7 +12,7 @@ require 'spec_helper'
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#temporal-proximity-by-exclusion-nex-1
 #
 # This test is approved: 
-# 
+# 20110725 jaa : tz=>zoned
 #
 describe "W3C test" do
   context "negation" do
@@ -52,7 +52,7 @@ SELECT ?exam ?date {
 }
     end
 
-    example "Medical, temporal proximity by exclusion (NOT EXISTS)", :unverified => true, :w3c_status => 'unapproved' do
+    example "Medical, temporal proximity by exclusion (NOT EXISTS)", :tz => 'zoned', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

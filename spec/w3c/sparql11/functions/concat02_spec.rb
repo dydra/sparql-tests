@@ -52,16 +52,16 @@ SELECT (CONCAT(?str1,?str2) AS ?str) WHERE {
       repository = 'functions-concat02'
       expected = [
           { 
-              :str => RDF::Literal.new('abcabc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('abcabc'),
           },
           { 
-              :str => RDF::Literal.new('abcdef' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('abcdef'),
           },
           { 
-              :str => RDF::Literal.new('defabc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('defabc'),
           },
           { 
-              :str => RDF::Literal.new('defdef' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('defdef'),
           },
           { 
               :str => RDF::Literal.new('englishenglish' , :language => 'en'),

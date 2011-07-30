@@ -45,7 +45,7 @@ ORDER BY ?X ?Y
 }
     end
 
-    example "Duplicate paths and cycles through foaf:knows*", :w3c_status => 'unapproved' do
+    example "Duplicate paths and cycles through foaf:knows*", :w3c_status => 'unapproved', :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

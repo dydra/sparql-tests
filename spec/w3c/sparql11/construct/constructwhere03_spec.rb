@@ -33,16 +33,23 @@ CONSTRUCT WHERE { :s2 :p ?o1, ?o2 }
 }
     end
 
-    example "constructwhere03 - CONSTRUCT WHERE", :status => 'unverified' do
+    example "constructwhere03 - CONSTRUCT WHERE" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
-
-
       repository = 'construct-constructwhere03'
-
-
-        raise NotImplementedError("This test form is not yet implemented")
+      expected = RDF::Graph.new do | graph |
+        graph << RDF::Statement.new(
+            :subject => RDF::URI('http://example.org/s2'),
+            :predicate => RDF::URI('http://example.org/p'),
+            :object => RDF::URI('http://example.org/o1'))
+        graph << RDF::Statement.new(
+            :subject => RDF::URI('http://example.org/s2'),
+            :predicate => RDF::URI('http://example.org/p'),
+            :object => RDF::URI('http://example.org/o2'))
+      end
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :construct).should be_isomorphic_with expected
     end
   end
 end

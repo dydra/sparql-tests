@@ -71,7 +71,7 @@ SELECT ?str (STRLEN(?str) AS ?len) WHERE {
           },
           { 
               :len => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :str => RDF::Literal.new('DEF' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('DEF'),
           },
           { 
               :len => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
@@ -83,7 +83,7 @@ SELECT ?str (STRLEN(?str) AS ?len) WHERE {
           },
           { 
               :len => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-              :str => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('abc'),
           },
           { 
               :len => RDF::Literal.new('3' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),

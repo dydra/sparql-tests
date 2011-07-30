@@ -30,7 +30,7 @@ WHERE { ?x foaf:name "name"@en .
 }
     end
 
-    example "Plain literals with language tag are not the same as the same literal without", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Plain literals with language tag are not the same as the same literal without", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

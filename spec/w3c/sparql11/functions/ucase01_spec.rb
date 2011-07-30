@@ -71,7 +71,7 @@ SELECT ?s (UCASE(?str) AS ?ustr) WHERE {
           },
           { 
               :s => RDF::URI('http://example.org/s7'),
-              :ustr => RDF::Literal.new('DEF' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :ustr => RDF::Literal.new('DEF'),
           },
           { 
               :s => RDF::URI('http://example.org/s3'),
@@ -83,7 +83,7 @@ SELECT ?s (UCASE(?str) AS ?ustr) WHERE {
           },
           { 
               :s => RDF::URI('http://example.org/s6'),
-              :ustr => RDF::Literal.new('ABC' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :ustr => RDF::Literal.new('ABC'),
           },
           { 
               :s => RDF::URI('http://example.org/s1'),

@@ -43,7 +43,7 @@ WHERE {
 }
     end
 
-    example "RDF inference test", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "RDF inference test", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

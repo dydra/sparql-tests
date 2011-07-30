@@ -58,7 +58,7 @@ WHERE
 }
     end
 
-    example "DELETE INSERT 1b", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "DELETE INSERT 1b", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

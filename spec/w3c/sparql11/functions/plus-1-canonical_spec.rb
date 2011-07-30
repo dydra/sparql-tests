@@ -78,11 +78,11 @@ ORDER BY ?x ?y ?sum
               :y => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
-              :x => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :x => RDF::Literal.new('1'),
               :y => RDF::Literal.new('2' ),
           },
           { 
-              :x => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :x => RDF::Literal.new('1'),
               :y => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 

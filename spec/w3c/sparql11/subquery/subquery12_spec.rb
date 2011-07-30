@@ -26,7 +26,7 @@ describe "W3C test" do
       @query = %q{
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-CONSTRUCT{ ?P foaf:name ?FullName }
+CONSTRUCT { ?P foaf:name ?FullName }
 WHERE {
  SELECT ?P ( CONCAT(?F, " ", ?L) AS ?FullName ) 
  WHERE { ?P foaf:firstName ?F ; foaf:lastName ?L. }
@@ -43,9 +43,15 @@ WHERE {
 
 
       repository = 'subquery-subquery12'
+      expected = RDF::Graph.new do | graph |
+        graph << RDF::Statement.new(
+            :subject => RDF::URI('http://p1'),
+            :predicate => RDF::URI('http://xmlns.com/foaf/0.1/name'),
+            :object => RDF::Literal('John Doe'))
+      end
 
-
-        raise NotImplementedError("This test form is not yet implemented")
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :construct).should be_isomorphic_with expected
     end
   end
 end

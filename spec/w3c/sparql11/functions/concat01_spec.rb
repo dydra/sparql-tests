@@ -63,7 +63,7 @@ SELECT (CONCAT(?str1,?str2) AS ?str) WHERE {
       repository = 'functions-concat01'
       expected = [
           { 
-              :str => RDF::Literal.new('abcDEF' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('abcDEF'),
           },
       ]
 

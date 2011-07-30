@@ -17,6 +17,15 @@ require 'spec_helper'
 describe "W3C test" do
   context "construct" do
     before :all do
+      @graph = %q{
+@prefix : <http://example.org/> .
+
+:s1 :p :o1 .
+:s2 :p :o1 .
+:s2 :p :o2 .
+:s3 :p :o3 .
+
+}
       @query = %q{
 PREFIX : <http://example.org/>
 
@@ -26,16 +35,33 @@ WHERE { ?s ?p ?o }
 }
     end
 
-    example "constructwhere04 - CONSTRUCT WHERE", :status => 'unverified' do
+    example "constructwhere04 - CONSTRUCT WHERE" do
     
       graphs = {}
       graphs[:default] = nil
-
+      graphs[RDF::URI('data.ttl')] = { :data => @graph, :format => :ttl }
 
       repository = 'construct-constructwhere04'
-
-
-        raise NotImplementedError("This test form is not yet implemented")
+      expected = RDF::Graph.new do | graph |
+        graph << RDF::Statement.new(
+            :subject => RDF::URI('http://example.org/s2'),
+            :predicate => RDF::URI('http://example.org/p'),
+            :object => RDF::URI('http://example.org/o1'))
+        graph << RDF::Statement.new(
+            :subject => RDF::URI('http://example.org/s2'),
+            :predicate => RDF::URI('http://example.org/p'),
+            :object => RDF::URI('http://example.org/o2'))
+        graph << RDF::Statement.new(
+            :subject => RDF::URI('http://example.org/s1'),
+            :predicate => RDF::URI('http://example.org/p'),
+            :object => RDF::URI('http://example.org/o1'))
+        graph << RDF::Statement.new(
+            :subject => RDF::URI('http://example.org/s3'),
+            :predicate => RDF::URI('http://example.org/p'),
+            :object => RDF::URI('http://example.org/o3'))
+      end
+      sparql_query(:graphs => graphs, :query => @query,
+                   :repository => repository, :form => :construct).should be_isomorphic_with expected
     end
   end
 end

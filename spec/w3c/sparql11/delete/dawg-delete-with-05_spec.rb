@@ -73,7 +73,7 @@ WHERE
 }
     end
 
-    example "Graph-specific DELETE 1 (WITH)", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Graph-specific DELETE 1 (WITH)", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = nil

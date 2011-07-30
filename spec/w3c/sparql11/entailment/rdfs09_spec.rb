@@ -41,7 +41,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test transitivity of subClassOf", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "RDFS inference test transitivity of subClassOf", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

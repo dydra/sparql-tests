@@ -48,7 +48,7 @@ DROP NAMED
 }
     end
 
-    example "DROP NAMED", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "DROP NAMED", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
