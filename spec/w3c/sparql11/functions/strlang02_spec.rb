@@ -12,7 +12,7 @@ require 'spec_helper'
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#strlang02
 #
 # This test is approved: 
-# 
+# 20110717 jaa : values=>lexical
 #
 describe "W3C test" do
   context "functions" do
@@ -54,7 +54,7 @@ SELECT ?s (STRLANG(STR(?str),"en-US") AS ?s2) WHERE {
 }
     end
 
-    example "STRLANG(STR())", :w3c_status => 'unapproved' do
+    example "STRLANG(STR())", :w3c_status => 'unapproved', :values => 'lexical' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

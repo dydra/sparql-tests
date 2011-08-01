@@ -65,7 +65,7 @@ SELECT ?s (STRDT(STR(?str),xsd:string) AS ?str1) WHERE {
       expected = [
           { 
               :s => RDF::URI('http://example.org/s2'),
-              :str1 => RDF::Literal.new('bar' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str1 => RDF::Literal.new('bar'),
           },
       ]
 

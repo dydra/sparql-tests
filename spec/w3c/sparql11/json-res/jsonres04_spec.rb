@@ -40,7 +40,7 @@ ASK WHERE { :s1 :p1 :o1 }
 
 
       repository = 'json-res-jsonres04'
-      expected = 
+      expected = false
 
       sparql_query(:graphs => graphs, :query => @query,
                    :repository => repository, :form => :ask).should == expected

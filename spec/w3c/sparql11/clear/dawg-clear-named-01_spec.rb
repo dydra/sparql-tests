@@ -48,7 +48,7 @@ CLEAR NAMED
 }
     end
 
-    example "CLEAR NAMED", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "CLEAR NAMED", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

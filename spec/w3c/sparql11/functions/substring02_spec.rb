@@ -12,7 +12,7 @@ require 'spec_helper'
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#substring02
 #
 # This test is approved: 
-# 
+# 20110716 jaa : string=>typed
 
 describe "W3C test" do
   context "functions" do
@@ -53,7 +53,7 @@ SELECT ?s ?str (SUBSTR(?str,2) AS ?substr) WHERE {
 }
     end
 
-    example "SUBSTRING() (2-argument)", :w3c_status => 'unapproved' do
+    example "SUBSTRING() (2-argument)", :w3c_status => 'unapproved', :string => 'typed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -73,8 +73,8 @@ SELECT ?s ?str (SUBSTR(?str,2) AS ?substr) WHERE {
           },
           { 
               :s => RDF::URI('http://example.org/s7'),
-              :str => RDF::Literal.new('DEF' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
-              :substr => RDF::Literal.new('EF' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('DEF'),
+              :substr => RDF::Literal.new('EF'),
           },
           { 
               :s => RDF::URI('http://example.org/s3'),
@@ -88,8 +88,8 @@ SELECT ?s ?str (SUBSTR(?str,2) AS ?substr) WHERE {
           },
           { 
               :s => RDF::URI('http://example.org/s6'),
-              :str => RDF::Literal.new('abc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
-              :substr => RDF::Literal.new('bc' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+              :str => RDF::Literal.new('abc'),
+              :substr => RDF::Literal.new('bc'),
           },
           { 
               :s => RDF::URI('http://example.org/s1'),

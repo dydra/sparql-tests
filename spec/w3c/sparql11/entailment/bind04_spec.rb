@@ -45,7 +45,7 @@ SELECT *
 }
     end
 
-    example "bind04 - BIND fixed data for OWL DL", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "bind04 - BIND fixed data for OWL DL", :w3c_status => 'unapproved', :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -49,7 +49,7 @@ DROP ALL
 }
     end
 
-    example "DROP ALL", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "DROP ALL", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

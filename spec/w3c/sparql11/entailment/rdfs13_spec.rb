@@ -39,7 +39,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test to show that newly introduced surrogate blank nodes are not to be returned in query answers", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "RDFS inference test to show that newly introduced surrogate blank nodes are not to be returned in query answers", :status => 'bug', :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

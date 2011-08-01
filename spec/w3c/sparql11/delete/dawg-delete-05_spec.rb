@@ -71,7 +71,7 @@ WHERE
 }
     end
 
-    example "Graph-specific DELETE 1", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "Graph-specific DELETE 1", :w3c_status => 'unapproved', :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

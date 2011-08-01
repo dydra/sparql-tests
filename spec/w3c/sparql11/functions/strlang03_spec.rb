@@ -12,7 +12,7 @@ require 'spec_helper'
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#strlang03
 #
 # This test is approved: 
-# 
+# 20110716 jaa : string=>typed
 #
 describe "W3C test" do
   context "functions" do
@@ -53,7 +53,7 @@ SELECT ?s (STRLANG(?o,"en-US") AS ?str1) WHERE {
 }
     end
 
-    example "STRLANG() TypeErrors", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "STRLANG() TypeErrors", :status => 'unverified', :w3c_status => 'unapproved', :string => 'typed'  do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
