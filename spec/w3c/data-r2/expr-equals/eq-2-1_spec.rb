@@ -68,6 +68,10 @@ WHERE
       repository = 'expr-equals-eq-2-1'
       expected = [
           { 
+              :v1 => RDF::Literal.new('1' ),
+              :v2 => RDF::Literal.new('1' ),
+          },
+          {
               :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
@@ -116,10 +120,6 @@ WHERE
               :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
           { 
-              :v1 => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-              :v2 => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
-          },
-          { 
               :v1 => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
@@ -154,10 +154,6 @@ WHERE
           { 
               :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :v2 => RDF::Literal.new('01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
-          },
-          { 
-              :v1 => RDF::Literal.new('1' ),
-              :v2 => RDF::Literal.new('1' ),
           },
           { 
               :v1 => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
@@ -225,6 +221,10 @@ WHERE
           },
           { 
               :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
+          },
+          {
+              :v1 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
               :v2 => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),
           },
       ]
