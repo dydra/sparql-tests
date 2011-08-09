@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0096/21-dawg-minutes.html
 #
 # 20101219 jaa : bug indicator : graph/quad not yet supported by the store
+# 20110803 jaa : status=>bug removed (once import succeeds)
 
 describe "W3C test" do
   context "algebra" do
