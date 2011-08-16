@@ -21,4 +21,5 @@ WHERE {
     ?inproc bench:abstract ?abstract
   }
 }
-ORDER BY ?yr
+# cannot both order an count as the counted variable is not projected
+# ORDER BY ?yr
