@@ -1,0 +1,6 @@
+PREFIX person: <http://localhost/persons/>
+
+SELECT (count (*) as ?count)
+WHERE {
+  ?subject ?predicate person:Paul_Erdoes
+}
