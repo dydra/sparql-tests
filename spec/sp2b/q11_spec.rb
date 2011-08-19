@@ -30,34 +30,34 @@ OFFSET 50
       expected_length = 10
       expected = [
                   {
-                    :ee => RDF::Literal.new('http://www.advocator.tld/contuses/fricassees.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.advocator.tld/contuses/fricassees.html'),
                   },
                   {
-                    :ee => RDF::Literal.new('http://www.aerates.tld/enhancement/junkmen.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.aerates.tld/enhancement/junkmen.html'),
                   },
                   {
-                    :ee => RDF::Literal.new('http://www.aerophobia.tld/reimbursement/spinout.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.aerophobia.tld/reimbursement/spinout.html'),
                   },
                   {
-                    :ee => RDF::Literal.new('http://www.affecter.tld/asap/succored.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.affecter.tld/asap/succored.html'),
                   },
                   {
-                    :ee => RDF::Literal.new('http://www.affecters.tld/incarnated/participates.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.affecters.tld/incarnated/participates.html'),
                   },
                   {
-                    :ee => RDF::Literal.new('http://www.afferently.tld/retries/jogs.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.afferently.tld/retries/jogs.html'),
                   },
                   {
-                    :ee => RDF::Literal.new('http://www.affinities.tld/trephining/reevaluates.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.affinities.tld/trephining/reevaluates.html'),
                   },
                   {
-                    :ee => RDF::Literal.new('http://www.affirmativeness.tld/pistils/postmasters.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.affirmativeness.tld/pistils/postmasters.html'),
                   },
                   {
-                    :ee => RDF::Literal.new('http://www.affirming.tld/gravelly/bovinely.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.affirming.tld/gravelly/bovinely.html'),
                   },
                   {
-                    :ee => RDF::Literal.new('http://www.afforests.tld/sculptured/photosynthesizing.html', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+                    :ee => RDF::Literal.new('http://www.afforests.tld/sculptured/photosynthesizing.html'),
                   },
                  ]
 
