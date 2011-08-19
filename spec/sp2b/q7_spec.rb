@@ -57,10 +57,10 @@ WHERE {
 
       expected_solutions = [
           {
-           :title => RDF::Literal.new('sissies reprobate rethink', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+           :title => RDF::Literal.new('sissies reprobate rethink'),
           },
           {
-           :title => RDF::Literal.new('doorless chiasma alibiing', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#string')),
+           :title => RDF::Literal.new('doorless chiasma alibiing'),
           },
       ]
 

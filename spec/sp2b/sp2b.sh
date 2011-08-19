@@ -14,13 +14,19 @@ else
   QUERY="${2}"
 fi
 
-echo ">$QUERY<"
-echo ">$REPOSITORY<"
+if [[ ("${3}NO" == "NO") ]]
+then
+  COUNT=1
+else
+  COUNT="${3}"
+fi
+
+echo  repository ">$REPOSITORY<" query ">$QUERY<" count ">$COUNT<"
 
 for query in  $QUERY ; do
   for repository in $REPOSITORY; do
-    for ((count = 1; count <= 5; count = count +1)); do
-      echo "${query}@${repository} pass ${count}/4"
+    for ((count = 1; count <= ${COUNT}; count = count +1)); do
+      echo "${query}@${repository} pass ${count}/${COUNT}"
       ( REPOSITORY=$repository NOCOMPARE=1 rspec -cfn sp2b/${query}_spec.rb) ;
       #echo "wait for cache quiesence? (return to continue)... "
       #read

@@ -8,7 +8,7 @@ repository = ENV['REPOSITORY'] || 'sp2b-50k'
 describe "SP2B" do
   context "query 1" do
     before :all do
-      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + repository + '.nt'
+      @url = 'http://public.datagraph.org.s3.amazonaws.com/' + repository + '.n3'
 
       @query = %q(
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -29,7 +29,7 @@ WHERE {
     example "for #{repository}" do
     
       graphs = {}
-      graphs[:default] = { :url => @url, :format => :ttl}
+      graphs[:default] = { :url => @url, :format => :n3}
       expected = [
          {
            :yr => RDF::Literal.new('1940', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
