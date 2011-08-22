@@ -76,8 +76,8 @@ _:x :q "2"^^xsd:integer .
 PREFIX : <http://example/> 
 
 SELECT * 
-FROM <data-g3-dup.ttl>
-FROM NAMED <data-g3.ttl>{ 
+FROM <http://example/data-g3-dup.ttl>
+FROM NAMED <http://example/data-g3.ttl>{ 
    ?s ?p ?o
    GRAPH ?g { ?s ?q ?v }
 }
@@ -90,10 +90,10 @@ FROM NAMED <data-g3.ttl>{
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
-      graphs[RDF::URI('data-g1.ttl')] = { :data => @graph0, :format => :ttl }
-      graphs[RDF::URI('data-g2.ttl')] = { :data => @graph1, :format => :ttl }
-      graphs[RDF::URI('data-g3.ttl')] = { :data => @graph2, :format => :ttl }
-      graphs[RDF::URI('data-g4.ttl')] = { :data => @graph3, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g1.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g2.ttl')] = { :data => @graph1, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g3.ttl')] = { :data => @graph2, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g4.ttl')] = { :data => @graph3, :format => :ttl }
 
       repository = 'dataset-dawg-dataset-09b'
       expected = [

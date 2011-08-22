@@ -79,33 +79,33 @@ SELECT *
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
-      graphs[RDF::URI('data-g1.ttl')] = { :data => @graph0, :format => :ttl }
-      graphs[RDF::URI('data-g2.ttl')] = { :data => @graph1, :format => :ttl }
-      graphs[RDF::URI('data-g3.ttl')] = { :data => @graph2, :format => :ttl }
-      graphs[RDF::URI('data-g4.ttl')] = { :data => @graph3, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g1.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g2.ttl')] = { :data => @graph1, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g3.ttl')] = { :data => @graph2, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g4.ttl')] = { :data => @graph3, :format => :ttl }
 
       repository = 'graph-dawg-graph-11'
       expected = [
           { 
-              :g => RDF::URI('data-g3.ttl'),
+              :g => RDF::URI('http://example/data-g3.ttl'),
               :o => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::Node.new('x'),
           },
           { 
-              :g => RDF::URI('data-g1.ttl'),
+              :g => RDF::URI('http://example/data-g1.ttl'),
               :o => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('data-g1.ttl'),
+              :g => RDF::URI('http://example/data-g1.ttl'),
               :o => RDF::Literal.new('9.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/a'),
           },
           { 
-              :g => RDF::URI('data-g2.ttl'),
+              :g => RDF::URI('http://example/data-g2.ttl'),
               :o => RDF::Literal.new('2.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
               :p => RDF::URI('http://example/q'),
               :s => RDF::URI('http://example/x'),
@@ -116,13 +116,13 @@ SELECT *
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('data-g4.ttl'),
+              :g => RDF::URI('http://example/data-g4.ttl'),
               :o => RDF::Literal.new('2.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
               :p => RDF::URI('http://example/q'),
               :s => RDF::Node.new('x'),
           },
           { 
-              :g => RDF::URI('data-g3.ttl'),
+              :g => RDF::URI('http://example/data-g3.ttl'),
               :o => RDF::Literal.new('9.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::Node.new('a'),
