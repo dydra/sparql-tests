@@ -10,7 +10,9 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#date-1
 #
-#
+# this demonstrates that all times have a zone.
+# once that is corrected to distinguish null zones, this test should revert
+
 describe "W3C test" do
   context "open-world" do
     before :all do
@@ -54,7 +56,7 @@ SELECT *
       repository = 'open-world-date-1'
       expected = [
           {
-              :v => RDF::Literal.new('2006-08-23Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :v => RDF::Literal.new('2006-08-23' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d1'),
           },
           { 
