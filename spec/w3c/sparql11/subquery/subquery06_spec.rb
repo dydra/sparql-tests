@@ -18,25 +18,15 @@ describe "W3C test" do
   context "subquery" do
     before :all do
       @data = %q{
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:in="http://www.example.org/instance#"
-    xmlns:ex="http://www.example.org/schema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
-  <rdf:Description rdf:about="http://www.example.org/instance#a">
-    <ex:p rdf:resource="http://www.example.org/instance#b"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.example.org/instance#c">
-    <ex:p rdf:resource=""/>
-  </rdf:Description>
-</rdf:RDF>
+@base <http://example.com/sq01.rdf> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix in: <http://www.example.org/instance#> .
+@prefix ex: <http://www.example.org/schema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
+in:a ex:p in:b .
 
-
-
-
-
-
+in:c ex:p <> .
 }
       @query = %q{
 prefix ex:	<http://www.example.org/schema#>
@@ -52,7 +42,7 @@ where {
     example "sq06 - Subquery with graph pattern, from named applies" do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :rdf}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
 
       repository = 'subquery-subquery06'
