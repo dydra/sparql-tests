@@ -43,7 +43,7 @@ filter(exists {?x ex:q ?y})
     example "sq10 - Subquery with exists", :status => 'bug' do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :rdf}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
 
       repository = 'subquery-subquery10'
