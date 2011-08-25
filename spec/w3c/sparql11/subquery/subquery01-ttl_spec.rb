@@ -25,11 +25,8 @@ describe "W3C test" do
 @prefix ex: <http://www.example.org/schema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-in:a
-    ex:p in:b .
-
-in:c
-    ex:p <> .
+in:a ex:p in:b .
+in:c ex:p <> .
 }
       @query = %q{
 prefix ex:	<http://www.example.org/schema#>

@@ -17,9 +17,9 @@ require 'spec_helper'
 describe "W3C test" do
   context "subquery" do
     before :all do
-       # sq01.rdf
+       # sq01.rdf -> .ttl
        @graph0 = %q{
-@base <http://example.com/sq01.rdf> .
+@base <http://example.com/sq03.rdf> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix in: <http://www.example.org/instance#> .
 @prefix ex: <http://www.example.org/schema#> .
@@ -45,7 +45,7 @@ graph ?g {
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('sq01.rdf')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example.com/sq03.rdf')] = { :data => @graph0, :format => :ttl }
 
       repository = 'subquery-subquery03'
       expected = [
