@@ -48,7 +48,7 @@ graph ?g {
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('sq01.rdf')] = { :data => @graph0, :format => :rdf }
+      graphs[RDF::URI('sq01.rdf')] = { :data => @graph0, :format => :ttl }
 
       repository = 'subquery-subquery01'
       expected = [
