@@ -51,7 +51,7 @@ graph ?g {
 }
     end
 
-    example "sq01 - Subquery within graph pattern" do
+    example "sq01 - Subquery within graph pattern", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = nil

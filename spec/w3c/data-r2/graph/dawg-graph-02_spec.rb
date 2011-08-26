@@ -39,7 +39,7 @@ SELECT * { ?s ?p ?o }
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('data-g1.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example.com/data-g1.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'graph-dawg-graph-02'
       expected = [

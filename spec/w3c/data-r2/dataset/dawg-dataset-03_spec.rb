@@ -76,7 +76,7 @@ _:x :q "2"^^xsd:integer .
 PREFIX : <http://example/> 
 
 SELECT * 
-FROM NAMED <data-g1.ttl>
+FROM NAMED <http://example/data-g1.ttl>
 { 
     GRAPH ?g { ?s ?p ?o }
 }
@@ -90,21 +90,21 @@ FROM NAMED <data-g1.ttl>
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
-      graphs[RDF::URI('data-g1.ttl')] = { :data => @graph0, :format => :ttl }
-      graphs[RDF::URI('data-g2.ttl')] = { :data => @graph1, :format => :ttl }
-      graphs[RDF::URI('data-g3.ttl')] = { :data => @graph2, :format => :ttl }
-      graphs[RDF::URI('data-g4.ttl')] = { :data => @graph3, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g1.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g2.ttl')] = { :data => @graph1, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g3.ttl')] = { :data => @graph2, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g4.ttl')] = { :data => @graph3, :format => :ttl }
 
       repository = 'dataset-dawg-dataset-03'
       expected = [
           { 
-              :g => RDF::URI('data-g1.ttl'),
+              :g => RDF::URI('http://example/data-g1.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('data-g1.ttl'),
+              :g => RDF::URI('http://example/data-g1.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/a'),

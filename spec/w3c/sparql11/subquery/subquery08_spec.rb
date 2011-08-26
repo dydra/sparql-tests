@@ -50,7 +50,7 @@ select ?x ?max where {
 }
     end
 
-    example "sq08 - Subquery with aggregate" do
+    example "sq08 - Subquery with aggregate", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :rdf}

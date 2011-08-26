@@ -42,18 +42,18 @@ SELECT * {
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('data-g1.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g1.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'graph-dawg-graph-03'
       expected = [
           { 
-              :g => RDF::URI('data-g1.ttl'),
+              :g => RDF::URI('http://example/data-g1.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('data-g1.ttl'),
+              :g => RDF::URI('http://example/data-g1.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/a'),

@@ -13,6 +13,7 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 20110725 jaa : tz=>zoned
+# 20110825 jaa : removed tag, correct canonicalization
 #
 describe "W3C test" do
   context "negation" do
@@ -52,7 +53,7 @@ SELECT ?exam ?date {
 }
     end
 
-    example "Medical, temporal proximity by exclusion (NOT EXISTS)", :tz => 'zoned', :w3c_status => 'unapproved' do
+    example "Medical, temporal proximity by exclusion (NOT EXISTS)", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
