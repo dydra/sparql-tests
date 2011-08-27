@@ -30,7 +30,7 @@ describe "W3C test" do
 PREFIX : <http://example.org/>
 
 CONSTRUCT 
-FROM <data.ttl>
+FROM <http://example.org/data.ttl>
 WHERE { ?s ?p ?o }
 }
     end
@@ -39,7 +39,7 @@ WHERE { ?s ?p ?o }
     
       graphs = {}
       graphs[:default] = nil
-      graphs[RDF::URI('data.ttl')] = { :data => @graph, :format => :ttl }
+      graphs[RDF::URI('http://example.org/data.ttl')] = { :data => @graph, :format => :ttl }
 
       repository = 'construct-constructwhere04'
       expected = RDF::Graph.new do | graph |
