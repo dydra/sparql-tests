@@ -79,7 +79,7 @@ def sparql_query(opts)
     base_uri = RDF::URI(Dydra::URI) / account / opts[:repository]
     repository = Dydra::Repository.new(repository_name)
     log "Running dydra clear #{repository_name} #{repository}"
-    repository.clear!.wait!
+    repository.clear!
     import_repo = RDF::Repository.new
     opts[:graphs].each do | graph, options |
       next if options.nil?
