@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:/dydra/dydra.git
-  revision: da88261aba58650c8b98c87dc3c539c383396c1e
+  revision: 8f9148fa8514322e01b47bc7bd1a9a58b83f0a03
   specs:
-    dydra (0.0.9)
+    dydra (0.0.10)
       rdf (>= 0.3.0)
       rest-client (>= 1.6.1)
       sparql-client (>= 0.0.9)
@@ -66,6 +66,7 @@ DEPENDENCIES
   rdf-json (= 0.3.0)
   rdf-n3 (= 0.3.3.1)
   rdf-raptor (= 0.4.1)
+  rest-client (= 1.6.3)
   rspec (= 2.6.0)
   s3 (= 0.3.8)
   sparql-client (= 0.0.9)
