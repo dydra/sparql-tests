@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s ?:p ?:o))
+  (notin ?:o (COMMON-LISP:LIST)))
+ (?:s ?:p ?:o))

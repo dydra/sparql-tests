@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s ?:p ?::str))
+  (strends ?::str "bc"))
+ (?:s ?::str))

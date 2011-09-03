@@ -1,0 +1,14 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s ?:p ?:o))
+  (&&
+   #S(SPOCQ:BOOLEAN
+      :ID COMMON-LISP:NIL
+      :LEXICAL-FORM "true"
+      :VALUE COMMON-LISP:T)
+   (!
+    (exists
+     (bgp
+       (triple ?:s ?:p ?:o))))))
+ (?:s ?:p ?:o))

@@ -1,0 +1,9 @@
+(select
+ (join
+  (extend
+   (bgp
+     (triple ?:s ?:p ?:o))
+   ?:z (+ ?:o 1))
+  (bgp
+    (triple ?::s1 ?::p1 ?:z)))
+ (?:z ?::s1))

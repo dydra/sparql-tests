@@ -1,0 +1,5 @@
+(select
+ (bgp
+   (triple <http://example.org/#> <http://example.org/#>
+           <http://example.org/#>))
+ COMMON-LISP:NIL)

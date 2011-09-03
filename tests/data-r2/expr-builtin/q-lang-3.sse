@@ -1,4 +1,8 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example/>))
-  (project (?x)
-    (bgp (triple ?x :p "string"@EN))))
+(select
+ (bgp
+   (triple ?:x <http://example/p>
+           #S(SPOCQ:PLAIN-LITERAL
+              :ID COMMON-LISP:NIL
+              :LEXICAL-FORM "string"
+              :LANGUAGE-TAG "EN")))
+ (?:x))

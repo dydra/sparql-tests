@@ -1,0 +1,8 @@
+(select
+ (join (bindings (?::o2) ((<http://example.org/b>)))
+       (leftjoin
+        (bgp
+          (triple ?:s ?::p1 ?::o1))
+        (bgp
+          (triple ?:s <http://xmlns.com/foaf/0.1/knows> ?::o2))))
+ (?:s ?::o1 ?::o2))

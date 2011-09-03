@@ -1,8 +1,8 @@
-(prefix ((foaf: <http://xmlns.com/foaf/0.1/>))
-  (project (?mbox ?name)
-    (union
-      (bgp (triple ?x foaf:mbox ?mbox))
-      (bgp
-        (triple ?x foaf:mbox ?mbox)
-        (triple ?x foaf:name ?name)
-      ))))
+(select
+ (union
+  (bgp
+    (triple ?:x <http://xmlns.com/foaf/0.1/mbox> ?:mbox))
+  (bgp
+    (triple ?:x <http://xmlns.com/foaf/0.1/mbox> ?:mbox)
+    (triple ?:x <http://xmlns.com/foaf/0.1/name> ?:name)))
+ (?:mbox ?:name))

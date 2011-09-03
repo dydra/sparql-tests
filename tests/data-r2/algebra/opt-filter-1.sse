@@ -1,5 +1,8 @@
-(prefix ((: <http://example/>))
-  (leftjoin
-    (bgp (triple ?x :p ?v))
-    (bgp (triple ?y :q ?w))
-    (= ?v 2)))
+(select
+ (leftjoin
+  (bgp
+    (triple ?:x <http://example/p> ?:v))
+  (bgp
+    (triple ?:y <http://example/q> ?:w))
+  :TEST (= ?:v 2))
+ (?:x ?:v ?:y ?:w))

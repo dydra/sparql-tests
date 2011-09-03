@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple <http://example.org/s1> <http://example.org/str> ?:l))
+ ((?::hash (sha224 ?:l))))

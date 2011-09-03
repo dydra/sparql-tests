@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s ?:p ?:o))
+  (> ?:o 5))
+ (?:o ?:s ?:p))

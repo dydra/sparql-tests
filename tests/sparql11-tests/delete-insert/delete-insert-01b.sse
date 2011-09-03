@@ -1,0 +1,9 @@
+(update
+ (modify
+  (bgp
+    (triple ?:a <http://xmlns.com/foaf/0.1/knows> ?:b))
+  :DELETE ((triple ?:a <http://xmlns.com/foaf/0.1/knows> ?:b)))
+ (modify
+  (bgp
+    (triple ?:a <http://xmlns.com/foaf/0.1/knows> ?:b))
+  :INSERT ((triple ?:b <http://xmlns.com/foaf/0.1/knows> ?:a))))

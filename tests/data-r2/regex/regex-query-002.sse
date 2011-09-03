@@ -1,5 +1,7 @@
-(prefix ((ex: <http://example.com/#>)
-         (rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>))
-  (project (?val)
-    (filter (regex ?val "DeFghI" "i")
-      (bgp (triple ex:foo rdf:value ?val)))))
+(select
+ (filter
+  (bgp
+    (triple <http://example.com/#foo>
+            |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:value ?:val))
+  (regex ?:val "DeFghI" "i"))
+ (?:val))

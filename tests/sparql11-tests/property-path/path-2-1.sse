@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple <http://example/a> ^<http://example/p>{2,2} ?:z))
+ (?:z))

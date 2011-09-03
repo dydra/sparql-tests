@@ -1,0 +1,5 @@
+(select
+ (graph ?::g
+        (bgp
+          (triple <http://example.org/x> <http://example.org/b> ?:a)))
+ (?::g ?:a))

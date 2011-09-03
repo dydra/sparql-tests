@@ -1,0 +1,7 @@
+(order
+ (select
+  (bgp
+    (triple ?:s <http://example/p> ?:x)
+    (triple ?:s <http://example/q> ?:y))
+  (?:x ?:y (?::sum (+ ?:x ?:y))))
+ (?:x ?:y ?::sum))

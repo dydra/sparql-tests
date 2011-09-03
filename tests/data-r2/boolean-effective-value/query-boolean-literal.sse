@@ -1,4 +1,9 @@
-(prefix ((: <http://example.org/ns#>))
-  (project (?x)
-    (filter true
-      (bgp (triple ?x :p "foo")))))
+(select
+ (filter
+  (bgp
+    (triple ?:x <http://example.org/ns#p> "foo"))
+  #S(SPOCQ:BOOLEAN
+     :ID COMMON-LISP:NIL
+     :LEXICAL-FORM "true"
+     :VALUE COMMON-LISP:T))
+ (?:x))

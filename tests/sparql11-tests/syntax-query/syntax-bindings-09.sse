@@ -1,0 +1,2 @@
+(select (join (bindings (?:x ?:y) ((1 2) (3 :UNDEF))) (table unit))
+        COMMON-LISP:NIL)

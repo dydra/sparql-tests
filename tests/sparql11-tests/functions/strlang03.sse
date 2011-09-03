@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s ?:p ?:o))
+ (?:s (?::str1 (strlang ?:o "en-US"))))

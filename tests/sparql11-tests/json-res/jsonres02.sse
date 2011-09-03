@@ -1,0 +1,9 @@
+(select
+ (order
+  (leftjoin
+   (bgp
+     (triple ?:s ?:p ?:o))
+   (bgp
+     (triple ?:o ?::p2 ?::o2)))
+  (?:s ?:p ?:o ?::p2 ?::o2))
+ (?:s ?:p ?:o ?::p2 ?::o2))

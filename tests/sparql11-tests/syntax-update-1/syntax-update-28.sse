@@ -1,0 +1,1 @@
+(update (insertData ((graph <G> COMMON-LISP:NIL))))

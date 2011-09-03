@@ -1,4 +1,15 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example/>))
-  (filter (!= ?v "2006-08-23"^^xsd:date)
-    (bgp (triple ?x :r ?v))))
+(select
+ (filter
+  (bgp
+    (triple ?:x <http://example/r> ?:v))
+  (!= ?:v
+      #S(SPOCQ:DATE
+         :ID COMMON-LISP:NIL
+         :LEXICAL-FORM "2006-08-23"
+         :YEAR 2005
+         :MONTH 8
+         :DAY 23
+         :HOUR 0
+         :MINUTE 0
+         :UNIVERSAL-TIME COMMON-LISP:NIL)))
+ (?:x ?:v))

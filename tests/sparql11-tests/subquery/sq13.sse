@@ -1,0 +1,14 @@
+(distinct
+ (select
+  (order
+   (join
+    (bgp
+      (triple ?::O1 <http://www.example.orghasItem> ?::?81)
+      (triple ?::?81 |http://www.w3.org/2000/01/rdf-schema#|:label ?::L))
+    (select
+     (bgp
+       (triple ?::O2 <http://www.example.orghasItem> ?::?82)
+       (triple ?::?82 |http://www.w3.org/2000/01/rdf-schema#|:label ?::L))
+     (?::O2)))
+   (?::O1 ?::O2))
+  (?::O1 ?::O2)))

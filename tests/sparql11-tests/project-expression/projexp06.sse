@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:x <http://www.example.org/schema#p> ?:l))
+ (?:x ?:l (?::dt (datatype ?:m))))

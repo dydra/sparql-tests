@@ -1,0 +1,6 @@
+(construct
+ (bgp
+   (triple <http://example.org/s1> <http://example.org/p> ?:o)
+   (triple ?::s2 <http://example.org/p> ?:o))
+ ((triple <http://example.org/s1> <http://example.org/p> ?:o)
+  (triple ?::s2 <http://example.org/p> ?:o)))

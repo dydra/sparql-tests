@@ -1,0 +1,11 @@
+(select
+ (join
+  (select
+   (select
+    (bgp
+      (triple ?:x <http://www.example.org/schema#q> ?:t))
+    (?:x))
+   (?:x ?:t))
+  (bgp
+    (triple ?:x <http://www.example.org/schema#p> ?:y)))
+ (?:x ?:t ?:y))

@@ -1,0 +1,4 @@
+(construct
+ (bgp
+   (triple ?:s ?:p ?:o))
+ ((triple ?:s <p1> <o>) (triple ?:s <p2> ?:o)))

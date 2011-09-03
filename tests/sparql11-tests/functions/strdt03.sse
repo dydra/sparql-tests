@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s ?:p ?:o))
+ (?:s (?::str1 (strdt ?:o |http://www.w3.org/2001/XMLSchema|:string))))

@@ -1,0 +1,9 @@
+(select
+ (join
+  (bgp
+    (triple ?:s ?:p ?:o)
+    (triple ?:p |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+            <http://www.w3.org/2002/07/owl#DatatypeProperty>))
+  (union (extend COMMON-LISP:NIL ?:z (+ ?:o 1))
+         (extend COMMON-LISP:NIL ?:z (+ ?:o 2))))
+ (?:s ?:p ?:o ?:z))

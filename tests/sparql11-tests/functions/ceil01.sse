@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s <http://example.org/num> ?::num))
+ (?:s ?::num (?::ceil (ceil ?::num))))

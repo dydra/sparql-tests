@@ -1,0 +1,8 @@
+(select
+ (bgp
+   (triple ?:x <http://xmlns.com/foaf/0.1/name>
+           #S(SPOCQ:PLAIN-LITERAL
+              :ID COMMON-LISP:NIL
+              :LEXICAL-FORM "name"
+              :LANGUAGE-TAG "EN")))
+ (?:x))

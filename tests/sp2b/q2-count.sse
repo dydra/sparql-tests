@@ -1,0 +1,18 @@
+(select
+ (leftjoin
+  (bgp
+    (triple ?::inproc |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+            <http://localhost/vocabulary/bench/Inproceedings>)
+    (triple ?::inproc <http://purl.org/dc/elements/1.1/creator> ?::author)
+    (triple ?::inproc <http://localhost/vocabulary/bench/booktitle>
+            ?::booktitle)
+    (triple ?::inproc <http://purl.org/dc/elements/1.1/title> ?:title)
+    (triple ?::inproc <http://purl.org/dc/terms/partOf> ?::proc)
+    (triple ?::inproc |http://www.w3.org/2000/01/rdf-schema#|:seeAlso ?::ee)
+    (triple ?::inproc <http://swrc.ontoware.org/ontology#pages> ?:page)
+    (triple ?::inproc <http://xmlns.com/foaf/0.1/homepage> ?::url)
+    (triple ?::inproc <http://purl.org/dc/terms/issued> ?::yr))
+  (bgp
+    (triple ?::inproc <http://localhost/vocabulary/bench/abstract>
+            ?::abstract)))
+ ((?::count (count SPOCQ.S:*))))

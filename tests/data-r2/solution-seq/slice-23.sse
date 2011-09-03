@@ -1,5 +1,8 @@
-(prefix ((: <http://example.org/ns#>))
-  (slice 2 5
-    (project (?v)
-      (order (?v)
-        (bgp (triple ??0 :num ?v))))))
+(slice
+ (select
+  (order
+   (bgp
+     (triple ?::?40 <http://example.org/ns#num> ?:v))
+   (?:v))
+  (?:v))
+ :OFFSET 2 :COUNT 5)

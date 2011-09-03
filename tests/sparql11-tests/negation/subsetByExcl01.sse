@@ -1,0 +1,11 @@
+(select
+ (filter
+  (bgp
+    (triple ?::animal |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+            <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#Animal>))
+  (!
+   (exists
+    (bgp
+      (triple ?::animal |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+              <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#Insect>)))))
+ (?::animal))

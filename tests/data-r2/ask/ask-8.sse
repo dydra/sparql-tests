@@ -1,4 +1,5 @@
-(prefix ((: <http://example/>))
-  (ask
-    (filter (= ?x 99)
-      (bgp (triple :x :p ?x)))))
+(ask
+ (filter
+  (bgp
+    (triple <http://example/x> <http://example/p> ?:x))
+  (= ?:x 99)))

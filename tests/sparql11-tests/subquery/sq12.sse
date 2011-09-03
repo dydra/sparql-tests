@@ -1,0 +1,7 @@
+(construct
+ (select
+  (bgp
+    (triple ?::P <http://xmlns.com/foaf/0.1/firstName> ?::F)
+    (triple ?::P <http://xmlns.com/foaf/0.1/lastName> ?::L))
+  (?::P (?::FullName (concat ?::F " " ?::L))))
+ ((triple ?::P <http://xmlns.com/foaf/0.1/name> ?::FullName)))

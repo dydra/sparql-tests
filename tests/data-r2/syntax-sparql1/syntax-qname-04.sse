@@ -1,0 +1,7 @@
+(select
+ (bgp
+   (triple <http://example.org/ns#> <http://example.org/ns2#>
+           <http://example.org/ns#a>)
+   (triple <http://example.org/ns#> <http://example.org/ns#>
+           <http://example.org/ns#>))
+ COMMON-LISP:NIL)

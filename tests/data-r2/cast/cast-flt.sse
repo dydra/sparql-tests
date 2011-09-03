@@ -1,6 +1,7 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
-         (: <http://example.org/>))
-  (project (?s)
-    (filter (= (datatype (xsd:float ?v)) xsd:float)
-      (bgp (triple ?s :p ?v)))))
+(select
+ (filter
+  (bgp
+    (triple ?:s <http://example.org/p> ?:v))
+  (= (datatype (|http://www.w3.org/2001/XMLSchema|:float ?:v))
+     |http://www.w3.org/2001/XMLSchema|:float))
+ (?:s))

@@ -1,0 +1,1 @@
+(select (table unit) ((?::count (count SPOCQ.S:* :DISTINCT distinct))))

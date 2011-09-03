@@ -1,0 +1,24 @@
+(select
+ (filter
+  (bgp
+    (triple ?::exam |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+            <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#PhysicalExamination>)
+    (triple ?::exam <http://purl.org/dc/elements/1.1/date> ?:date)
+    (triple ?::exam
+            <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#precedes>
+            <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#operation1>)
+    (triple ?::op |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+            <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#SurgicalProcedure>)
+    (triple ?::op <http://purl.org/dc/elements/1.1/date> ?::opDT))
+  (!
+   (exists
+    (bgp
+      (triple ?::otherExam |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+              <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#PhysicalExamination>)
+      (triple ?::otherExam
+              <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#follows>
+              ?::exam)
+      (triple ?::otherExam
+              <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#precedes>
+              <http://www.w3.org/2009/sparql/docs/tests/data-sparql11/negation#operation1>)))))
+ (?::exam ?:date))

@@ -1,0 +1,5 @@
+(select
+ (bgp
+   (triple ?::?44 <http://example.org/ns#p> ?::?45)
+   (triple ?::?45 ?::pa ?:b))
+ (?:x ?:y ?::pa ?:b))

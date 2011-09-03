@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:S ?::P ?::O))
+ (:GROUP-BY (?::P) ?::P (?:C (count SPOCQ.S:*))))

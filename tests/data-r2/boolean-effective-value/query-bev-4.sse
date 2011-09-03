@@ -1,5 +1,11 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example.org/ns#>))
-  (project (?a)
-    (filter (|| false ?v)
-      (bgp (triple ?a :p ?v)))))
+(select
+ (filter
+  (bgp
+    (triple ?:a <http://example.org/ns#p> ?:v))
+  (|\|\||
+   #S(SPOCQ:BOOLEAN
+      :ID COMMON-LISP:NIL
+      :LEXICAL-FORM "false"
+      :VALUE COMMON-LISP:NIL)
+   ?:v))
+ (?:a))

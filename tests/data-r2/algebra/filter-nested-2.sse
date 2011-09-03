@@ -1,6 +1,6 @@
-(prefix ((: <http://example/>))
-  (project (?v)
-    (join
-      (bgp (triple :x :p ?v))
-      (filter (= ?v 1)
-        (table unit)))))
+(select
+ (join
+  (bgp
+    (triple <http://example/x> <http://example/p> ?:v))
+  (filter (table unit) (= ?:v 1)))
+ (?:v))

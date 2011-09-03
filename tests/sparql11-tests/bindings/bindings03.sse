@@ -1,0 +1,6 @@
+(select
+ (join (bindings (?::o1 ?::o2) (("Alan" "alan@example.org")))
+       (bgp
+         (triple ?:s ?::p1 ?::o1)
+         (triple ?:s ?::p2 ?::o2)))
+ (?:s ?::o1 ?::o2))

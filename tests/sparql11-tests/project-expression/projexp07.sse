@@ -1,0 +1,7 @@
+(select
+ (leftjoin
+  (bgp
+    (triple ?:x <http://www.example.org/schema#p> ?:y))
+  (bgp
+    (triple ?:x <http://www.example.org/schema#q> ?:l)))
+ (?:x (?::dt (datatype ?:l))))

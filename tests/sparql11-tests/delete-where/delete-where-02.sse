@@ -1,0 +1,5 @@
+(update
+ (deleteWhere
+  ((graph <http://example.org/g1>
+          ((triple <http://example.org/a> <http://xmlns.com/foaf/0.1/knows>
+                   ?:b))))))

@@ -1,0 +1,7 @@
+(select
+ (select
+  (graph ?::g
+         (bgp
+           (triple ?:x ?:p ?:y)))
+  (?:x ?::g ?:p ?:y))
+ (?:x))

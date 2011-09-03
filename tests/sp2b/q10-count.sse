@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?::subject ?::predicate <http://localhost/persons/Paul_Erdoes>))
+ ((?::count (count SPOCQ.S:*))))

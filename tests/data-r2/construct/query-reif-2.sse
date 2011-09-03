@@ -1,4 +1,9 @@
-(prefix ((rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
-         (foaf: <http://xmlns.com/foaf/0.1/>))
-  (project (?s ?p ?o)
-    (bgp (triple ?s ?p ?o))))
+(construct
+ (bgp
+   (triple ?:s ?:p ?:o))
+ ((triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "a")
+          |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:subject ?:s)
+  (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "a")
+          |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:predicate ?:p)
+  (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "a")
+          |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:object ?:o)))

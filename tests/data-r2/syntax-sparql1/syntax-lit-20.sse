@@ -1,0 +1,5 @@
+(select
+ (bgp
+   (triple <http://example.org/#x> <http://example.org/#p>
+           "Long\"\"\\Literal with \"\\ single quotes"))
+ COMMON-LISP:NIL)

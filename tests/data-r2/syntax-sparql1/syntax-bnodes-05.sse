@@ -1,0 +1,7 @@
+(select
+ (bgp
+   (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "a")
+           <http://example.org/ns#p1> <http://example.org/ns#q1>)
+   (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "a")
+           <http://example.org/ns#p2> <http://example.org/ns#q2>))
+ COMMON-LISP:NIL)

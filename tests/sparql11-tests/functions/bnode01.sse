@@ -1,0 +1,9 @@
+(select
+ (filter
+  (bgp
+    (triple ?:a <http://example.org/str> ?::s1)
+    (triple ?:b <http://example.org/str> ?::s2))
+  (exprlist
+   (|\|\|| (= ?:a <http://example.org/s1>) (= ?:a <http://example.org/s3>))
+   (|\|\|| (= ?:b <http://example.org/s1>) (= ?:b <http://example.org/s3>))))
+ (?::s1 ?::s2 (?::b1 (bnode ?::s1)) (?::b2 (bnode ?::s2))))

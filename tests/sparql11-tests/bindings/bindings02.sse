@@ -1,0 +1,5 @@
+(select
+ (join (bindings (?:o) ((<http://example.org/b>)))
+       (bgp
+         (triple ?:s ?:p ?:o)))
+ (?:s ?:o))

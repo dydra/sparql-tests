@@ -1,0 +1,8 @@
+(select
+ (extend
+  (extend
+   (bgp
+     (triple ?:s ?:p ?:o))
+   ?:Z (+ ?:o 1))
+  ?::Zby2 (/ ?:Z 2))
+ (?:Z))

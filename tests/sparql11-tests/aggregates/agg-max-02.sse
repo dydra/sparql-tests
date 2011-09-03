@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s ?:p ?:o))
+ (:GROUP-BY (?:s) ?:s (?::max (max ?:o))))

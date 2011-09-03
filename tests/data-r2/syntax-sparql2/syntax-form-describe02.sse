@@ -1,0 +1,4 @@
+(describe
+ (bgp
+   (triple <x> <q> ?:u))
+ (?:u <u>))

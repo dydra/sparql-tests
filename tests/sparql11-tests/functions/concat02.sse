@@ -1,0 +1,5 @@
+(select
+ (bgp
+   (triple ?::s1 <http://example.org/str> ?::str1)
+   (triple ?::s2 <http://example.org/str> ?::str2))
+ ((?::str (concat ?::str1 ?::str2))))

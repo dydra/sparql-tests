@@ -1,0 +1,1 @@
+(update (clear <graph> :VERBOSE COMMON-LISP:T))

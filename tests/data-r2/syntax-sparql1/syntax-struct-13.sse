@@ -1,0 +1,17 @@
+(select
+ (leftjoin
+  (join
+   (leftjoin
+    (bgp
+      (triple <http://example.org/ns#p> <http://example.org/ns#q>
+              <http://example.org/ns#r>))
+    (bgp
+      (triple <http://example.org/ns#a> <http://example.org/ns#b>
+              <http://example.org/ns#c>)))
+   (bgp
+     (triple <http://example.org/ns#p> <http://example.org/ns#q>
+             <http://example.org/ns#r>)))
+  (bgp
+    (triple <http://example.org/ns#a> <http://example.org/ns#b>
+            <http://example.org/ns#c>)))
+ COMMON-LISP:NIL)

@@ -1,0 +1,14 @@
+(ask
+ (join
+  (join
+   (bgp
+     (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "who")
+             <http://xmlns.com/foaf/0.1/homepage> ?::homepage))
+   (union
+    (bgp
+      (triple ?::someone <http://xmlns.com/foaf/0.1/made> ?::homepage))
+    (bgp
+      (triple ?::homepage <http://xmlns.com/foaf/0.1/maker> ?::someone))))
+  (bgp
+    (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "who")
+            <http://xmlns.com/foaf/0.1/schoolHomepage> ?::schoolPage))))

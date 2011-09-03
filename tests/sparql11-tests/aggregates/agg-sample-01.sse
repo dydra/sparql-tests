@@ -1,0 +1,7 @@
+(ask
+ (filter
+  (select
+   (bgp
+     (triple ?:s <http://www.example.org/dec> ?:o))
+   ((?::sample (sample ?:o))))
+  (|\|\|| (= ?::sample 1) (|\|\|| (= ?::sample 7/2) (= ?::sample 11/5)))))

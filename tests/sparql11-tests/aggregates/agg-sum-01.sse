@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s <http://www.example.org/dec> ?:o))
+ ((?::sum (sum ?:o))))

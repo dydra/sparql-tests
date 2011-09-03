@@ -1,0 +1,7 @@
+(update
+ (modify
+  (bgp
+    (triple ?:s <http://xmlns.com/foaf/0.1/knows> <http://example.org/b>)
+    (triple ?:s ?:p ?:o))
+  :DELETE ((graph <http://example.org/g1> ((triple ?:s ?:p ?:o)))) :GRAPHS
+  (<http://example.org/g1>)))

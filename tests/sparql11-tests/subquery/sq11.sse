@@ -1,0 +1,18 @@
+(select
+ (order
+  (join
+   (bgp
+     (triple ?::O <http://www.example.orghasItem> ?::?80)
+     (triple ?::?80 |http://www.w3.org/2000/01/rdf-schema#|:label ?::L))
+   (slice
+    (distinct
+     (select
+      (order
+       (bgp
+         (triple ?::O |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+                 <http://www.example.orgOrder>))
+       (?::O))
+      (?::O)))
+    :COUNT 2))
+  (?::L))
+ (?::L))

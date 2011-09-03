@@ -1,0 +1,5 @@
+(select
+ (bgp
+   (triple ?:x <http://example.org/ns#b1>
+           #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "c")))
+ (?:x))

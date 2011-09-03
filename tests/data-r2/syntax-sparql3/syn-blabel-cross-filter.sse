@@ -1,0 +1,10 @@
+(ask
+ (filter
+  (join
+   (bgp
+     (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "who")
+             <http://xmlns.com/foaf/0.1/homepage> ?::homepage))
+   (bgp
+     (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "who")
+             <http://xmlns.com/foaf/0.1/schoolHomepage> ?::schoolPage)))
+  (regex ?::homepage "^http://example.org/")))

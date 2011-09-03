@@ -1,0 +1,5 @@
+(select
+ (bgp
+   (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "a") ?:p ?:v)
+   (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "a") ?:q 1))
+ (?:p ?:v ?:q))

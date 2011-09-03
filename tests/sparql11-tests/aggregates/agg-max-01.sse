@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s ?:p ?:o))
+ ((?::max (max ?:o))))

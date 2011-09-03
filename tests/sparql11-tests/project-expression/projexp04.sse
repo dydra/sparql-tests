@@ -1,0 +1,6 @@
+(order
+ (select
+  (bgp
+    (triple ?:x <http://www.example.org/schema#p> ?:y))
+  (?:x ?:y (?::sum (+ ?:y ?:y))))
+ (?::sum))

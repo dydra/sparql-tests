@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s ?:p ?:o))
+  (regex ?:o "foo"))
+ (?:s ?:p ?:o))

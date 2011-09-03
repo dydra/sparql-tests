@@ -1,0 +1,6 @@
+(construct
+ (bgp
+   (triple ?:s ?:p ?:o))
+ ((triple ?::?67 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:subject ?:s)
+  (triple ?::?67 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:predicate ?:p)
+  (triple ?::?67 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:object ?:o)))

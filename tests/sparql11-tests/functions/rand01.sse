@@ -1,0 +1,4 @@
+(ask
+ (filter (extend COMMON-LISP:NIL ?:r (rand))
+         (&& (= (datatype ?:r) |http://www.w3.org/2001/XMLSchema|:double)
+             (&& (:< ?:r 1) (>= ?:r 0)))))

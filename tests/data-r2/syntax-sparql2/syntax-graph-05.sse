@@ -1,0 +1,14 @@
+(select
+ (join
+  (bgp
+    (triple <http://example.org/x> <http://example.org/p>
+            <http://example.org/z>))
+  (graph ?::g
+         (join
+          (bgp
+            (triple <http://example.org/x> <http://example.org/b> ?:a))
+          (graph ?::g2
+                 (bgp
+                   (triple <http://example.org/x> <http://example.org/p>
+                           ?:x))))))
+ (?::g ?:a ?::g2 ?:x))

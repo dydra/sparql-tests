@@ -1,0 +1,9 @@
+(select
+ (join
+  (select
+   (bgp
+     (triple ?:x <http://www.example.org/schema#p> ?:y))
+   ((?::max (max ?:y))))
+  (bgp
+    (triple ?:x <http://www.example.org/schema#p> ?::max)))
+ (?:x ?::max))

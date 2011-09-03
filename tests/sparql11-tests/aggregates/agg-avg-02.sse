@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s ?:p ?:o))
+ (:HAVING (<= (avg ?:o) 2) :GROUP-BY (?:s) ?:s (?::avg (avg ?:o))))

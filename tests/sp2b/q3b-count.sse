@@ -1,0 +1,8 @@
+(select
+ (filter
+  (bgp
+    (triple ?::article |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+            <http://localhost/vocabulary/bench/Article>)
+    (triple ?::article ?::property ?::value))
+  (= ?::property <http://swrc.ontoware.org/ontology#month>))
+ ((?::count (count ?::article))))

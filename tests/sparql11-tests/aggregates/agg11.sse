@@ -1,0 +1,5 @@
+(select
+ (bgp
+   (triple ?:S <http://www.example.org/p> ?::O1)
+   (triple ?:S <http://www.example.org/q> ?::O2))
+ (:GROUP-BY (?:S) (?::O12 (+ ?::O1 ?::O2)) (?:C (count ?::O1))))

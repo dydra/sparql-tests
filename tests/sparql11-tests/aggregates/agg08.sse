@@ -1,0 +1,8 @@
+(order
+ (select
+  (bgp
+    (triple ?:S <http://www.example.org/p> ?::O1)
+    (triple ?:S <http://www.example.org/q> ?::O2))
+  (:GROUP-BY ((?::?KEY-78 (+ ?::O1 ?::O2))) (?::O12 (+ ?::O1 ?::O2))
+   (?:C (count ?::O1))))
+ (?::O12))

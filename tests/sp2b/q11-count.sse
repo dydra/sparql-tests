@@ -1,0 +1,7 @@
+(slice
+ (select
+  (bgp
+    (triple ?::publication |http://www.w3.org/2000/01/rdf-schema#|:seeAlso
+            ?::ee))
+  ((?::count (count ?::ee))))
+ :OFFSET 50 :COUNT 10)

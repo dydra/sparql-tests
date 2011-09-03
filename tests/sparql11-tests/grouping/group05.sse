@@ -1,0 +1,7 @@
+(select
+ (leftjoin
+  (bgp
+    (triple ?:s <http://example/p> ?:v))
+  (bgp
+    (triple ?:s <http://example/q> ?:w)))
+ (:GROUP-BY (?:s ?:w) ?:s ?:w))

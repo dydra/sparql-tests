@@ -1,0 +1,17 @@
+(select
+ (join
+  (join
+   (leftjoin (table unit)
+             (bgp
+               (triple <http://example.org/ns#x> <http://example.org/ns#y>
+                       <http://example.org/ns#z>)))
+   (bgp
+     (triple ?:a <http://example.org/ns#b> <http://example.org/ns#c>)))
+  (union
+   (bgp
+     (triple <http://example.org/ns#x1> <http://example.org/ns#y1>
+             <http://example.org/ns#z1>))
+   (bgp
+     (triple <http://example.org/ns#x2> <http://example.org/ns#y2>
+             <http://example.org/ns#z2>))))
+ (?:a))

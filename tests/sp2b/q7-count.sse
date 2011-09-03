@@ -1,0 +1,28 @@
+(select
+ (filter
+  (leftjoin
+   (bgp
+     (triple ?::class |http://www.w3.org/2000/01/rdf-schema#|:subClassOf
+             <http://xmlns.com/foaf/0.1/Document>)
+     (triple ?::doc |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type ?::class)
+     (triple ?::doc <http://purl.org/dc/elements/1.1/title> ?:title)
+     (triple ?::bag2 ?::member2 ?::doc)
+     (triple ?::doc2 <http://purl.org/dc/terms/references> ?::bag2))
+   (leftjoin
+    (bgp
+      (triple ?::class3 |http://www.w3.org/2000/01/rdf-schema#|:subClassOf
+              <http://xmlns.com/foaf/0.1/Document>)
+      (triple ?::doc3 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+              ?::class3)
+      (triple ?::doc3 <http://purl.org/dc/terms/references> ?::bag3)
+      (triple ?::bag3 ?::member3 ?::doc))
+    (bgp
+      (triple ?::class4 |http://www.w3.org/2000/01/rdf-schema#|:subClassOf
+              <http://xmlns.com/foaf/0.1/Document>)
+      (triple ?::doc4 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+              ?::class4)
+      (triple ?::doc4 <http://purl.org/dc/terms/references> ?::bag4)
+      (triple ?::bag4 ?::member4 ?::doc3)))
+   :TEST (! (bound ?::doc4)))
+  (! (bound ?::doc3)))
+ ((?::count (count ?:title :DISTINCT distinct))))

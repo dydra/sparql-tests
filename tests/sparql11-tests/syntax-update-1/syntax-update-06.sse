@@ -1,0 +1,1 @@
+(update (drop :DEFAULT :VERBOSE COMMON-LISP:T))

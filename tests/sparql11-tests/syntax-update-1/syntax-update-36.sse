@@ -1,0 +1,2 @@
+(update
+ (deleteWhere ((graph <G> ((triple <s> <p> 123) (triple <s> <q> 4567))))))

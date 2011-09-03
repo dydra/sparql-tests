@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s <http://example.org/date> ?:date))
+ (?:s (?:x (tz ?:date))))

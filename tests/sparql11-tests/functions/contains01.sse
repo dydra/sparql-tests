@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s <http://example.org/str> ?::str))
+  (contains ?::str "a"))
+ (?:s ?::str))

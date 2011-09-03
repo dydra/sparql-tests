@@ -1,0 +1,8 @@
+(select
+ (filter
+  (extend
+   (bgp
+     (triple ?:s ?:p ?:o))
+   ?:z (+ ?:o 1))
+  (= ?:z 3))
+ (?:s ?:p ?:o ?:z))

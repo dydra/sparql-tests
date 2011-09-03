@@ -1,0 +1,7 @@
+(ask
+ (filter
+  (select
+   (bgp
+     (triple ?::?77 <http://www.example.org/p1> ?:o))
+   ((?::g (group_concat ?:o :SEPARATOR ":"))))
+  (|\|\|| (= ?::g "1:22") (= ?::g "22:1"))))

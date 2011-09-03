@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple <a> <b> 11))
+ COMMON-LISP:NIL)

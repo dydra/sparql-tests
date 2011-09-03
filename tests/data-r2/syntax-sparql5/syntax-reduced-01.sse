@@ -1,0 +1,5 @@
+(reduced
+ (select
+  (bgp
+    (triple ?:x ?:y ?:z))
+  (?:x ?:y ?:z)))

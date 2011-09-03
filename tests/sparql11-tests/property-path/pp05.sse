@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:x ^|http://www.w3.org/1999/02/22-rdf-syntax-ns#|:rest{0,1} ?:y))
+ (?:x ?:y))

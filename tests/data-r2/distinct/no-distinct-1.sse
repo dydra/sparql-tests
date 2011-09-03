@@ -1,2 +1,4 @@
-(project (?v)
-  (bgp (triple ?x ?p ?v)))
+(select
+ (bgp
+   (triple ?:x ?:p ?:v))
+ (?:v))

@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple <http://example/a> <http://example/b> <http://example/page.html#x>))
+ COMMON-LISP:NIL)

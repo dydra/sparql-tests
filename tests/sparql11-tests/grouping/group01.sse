@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s <http://example/p> ?:v))
+ (:GROUP-BY (?:s) ?:s))

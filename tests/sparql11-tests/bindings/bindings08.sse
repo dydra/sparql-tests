@@ -1,0 +1,9 @@
+(select
+ (join
+  (bindings (?:book ?:title)
+            ((:UNDEF "SPARQL Tutorial")
+             (<http://example.org/book/book2> :UNDEF)))
+  (bgp
+    (triple ?:book <http://purl.org/dc/elements/1.1/title> ?:title)
+    (triple ?:book <http://example.org/ns#price> ?:price)))
+ (?:book ?:title ?:price))

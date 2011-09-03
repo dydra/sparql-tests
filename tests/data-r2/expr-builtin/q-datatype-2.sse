@@ -1,5 +1,6 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example/>))
-  (project (?x)
-    (filter (!= (datatype ?v) :NotADataTypeIRI)
-      (bgp (triple ?x :p ?v)))))
+(select
+ (filter
+  (bgp
+    (triple ?:x <http://example/p> ?:v))
+  (!= (datatype ?:v) <http://example/NotADataTypeIRI>))
+ (?:x))

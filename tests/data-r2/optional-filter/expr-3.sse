@@ -1,7 +1,9 @@
-(prefix ((dc: <http://purl.org/dc/elements/1.1/>)
-         (x: <http://example.org/ns#>))
-  (project (?title ?price)
-    (filter (|| (! (bound ?price)) (< ?price 15))
-      (leftjoin
-        (bgp (triple ?book dc:title ?title))
-        (bgp (triple ?book x:price ?price))))))
+(select
+ (filter
+  (leftjoin
+   (bgp
+     (triple ?:book <http://purl.org/dc/elements/1.1/title> ?:title))
+   (bgp
+     (triple ?:book <http://example.org/ns#price> ?:price)))
+  (|\|\|| (! (bound ?:price)) (:< ?:price 15)))
+ (?:title ?:price))

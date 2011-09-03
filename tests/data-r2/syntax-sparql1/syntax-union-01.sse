@@ -1,0 +1,7 @@
+(select
+ (union
+  (bgp
+    (triple ?:s ?:p ?:o))
+  (bgp
+    (triple ?:a ?:b ?:c)))
+ (?:s ?:p ?:o ?:a ?:b ?:c))

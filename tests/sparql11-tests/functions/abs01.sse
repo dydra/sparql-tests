@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s <http://example.org/num> ?::num))
+  (>= (abs ?::num) 2))
+ (?:s ?::num))

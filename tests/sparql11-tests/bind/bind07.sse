@@ -1,0 +1,7 @@
+(select
+ (join
+  (bgp
+    (triple ?:s ?:p ?:o))
+  (union (extend COMMON-LISP:NIL ?:z (+ ?:o 1))
+         (extend COMMON-LISP:NIL ?:z (+ ?:o 2))))
+ (?:s ?:p ?:o ?:z))

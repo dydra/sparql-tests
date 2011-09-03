@@ -1,3 +1,9 @@
-(prefix ((t: <http://example/t#>)
-         (: <http://example/ns#>))
-  (bgp (triple ?x :p "a"^^t:type1)))
+(select
+ (bgp
+   (triple ?:x <http://example/ns#p>
+           #S(SPOCQ:UNSUPPORTED-TYPED-LITERAL
+              :ID COMMON-LISP:NIL
+              :LEXICAL-FORM "a"
+              :DATATYPE-URI <http://example/t#type1>
+              :CONDITION COMMON-LISP:NIL)))
+ (?:x))

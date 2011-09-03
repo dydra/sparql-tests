@@ -1,0 +1,6 @@
+(select
+ (order
+  (bgp
+    (triple ?:s ?:p ?:o))
+  ((str ?:o)))
+ (?:s ?:p ?:o))

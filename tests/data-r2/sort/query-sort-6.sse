@@ -1,4 +1,6 @@
-(prefix ((ex: <http://example.org/things#>))
-  (project (?address)
-    (order ((asc ?address))
-      (bgp (triple ?x ex:address ?address)))))
+(select
+ (order
+  (bgp
+    (triple ?:x <http://example.org/things#address> ?:address))
+  ((asc ?:address)))
+ (?:address))

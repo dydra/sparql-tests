@@ -1,0 +1,4 @@
+(update
+ (insertData
+  ((triple <http://example.org/ns#s> <http://example.org/ns#p>
+           <http://example.org/ns#o>))))

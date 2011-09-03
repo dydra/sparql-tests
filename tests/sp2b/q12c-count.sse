@@ -1,0 +1,5 @@
+(ask
+ (bgp
+   (triple <http://localhost/persons/John_Q_Public>
+           |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+           <http://xmlns.com/foaf/0.1/Person>)))

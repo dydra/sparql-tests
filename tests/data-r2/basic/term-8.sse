@@ -1,3 +1,4 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example.org/ns#>))
-  (bgp (triple :x ?p +5)))
+(select
+ (bgp
+   (triple <http://example.org/ns#x> ?:p 5))
+ (?:p))

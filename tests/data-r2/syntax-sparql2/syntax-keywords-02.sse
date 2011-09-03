@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:x <http://example.org/ns#FILTER> ?:z))
+  ?:z)
+ (?:x ?:z))

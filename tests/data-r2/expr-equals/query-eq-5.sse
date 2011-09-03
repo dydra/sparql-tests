@@ -1,5 +1,6 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example.org/things#>))
-  (project (?x)
-    (filter (= ?v :z)
-      (bgp (triple ?x :p ?v)))))
+(select
+ (filter
+  (bgp
+    (triple ?:x <http://example.org/things#p> ?:v))
+  (= ?:v <http://example.org/things#z>))
+ (?:x))

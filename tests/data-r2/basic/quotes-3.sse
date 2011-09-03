@@ -1,3 +1,5 @@
-(prefix ((: <http://example.org/ns#>))
-  (project (?x)
-    (bgp (triple ?x ?p "x\ny"))))
+(select
+ (bgp
+   (triple ?:x ?:p "x
+y"))
+ (?:x))

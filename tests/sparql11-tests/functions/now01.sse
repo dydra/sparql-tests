@@ -1,0 +1,3 @@
+(ask
+ (filter (extend COMMON-LISP:NIL ?:n (now))
+         (= (datatype ?:n) |http://www.w3.org/2001/XMLSchema|:dateTime)))

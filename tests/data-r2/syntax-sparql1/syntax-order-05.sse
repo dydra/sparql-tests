@@ -1,0 +1,6 @@
+(select
+ (order
+  (bgp
+    (triple ?:s ?:p ?:o))
+  ((desc (<http://example.org/ns#func> ?:s ?:o))))
+ (?:s ?:p ?:o))

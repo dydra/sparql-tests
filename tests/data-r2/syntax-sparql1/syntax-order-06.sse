@@ -1,0 +1,6 @@
+(select
+ (order
+  (bgp
+    (triple ?:s ?:p ?:o))
+  ((desc (+ ?:o 57)) (<http://example.org/ns#func2> ?:o) (asc ?:s)))
+ (?:s ?:p ?:o))

@@ -1,0 +1,4 @@
+(ask
+ (bgp
+   (triple <http://example.org/s1> <http://example.org/p1>
+           <http://example.org/o1>)))

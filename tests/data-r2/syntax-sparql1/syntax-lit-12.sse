@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple <http://example.org/#x> <http://example.org/#p> "Long'''Literal"))
+ COMMON-LISP:NIL)

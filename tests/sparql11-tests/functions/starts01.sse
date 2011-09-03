@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s ?:p ?::str))
+  (strstarts (str ?::str) "1"))
+ (?:s ?::str))

@@ -1,1 +1,4 @@
-(bgp (triple ?a ?a ?b))
+(select
+ (bgp
+   (triple ?:a ?:a ?:b))
+ (?:a ?:b))

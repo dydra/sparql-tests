@@ -1,0 +1,5 @@
+(select
+ (join (bindings (?::p1) ((<http://xmlns.com/foaf/0.1/knows>)))
+       (bgp
+         (triple ?:s ?::p1 ?::o1)))
+ (?:s ?::p1 ?::o1))

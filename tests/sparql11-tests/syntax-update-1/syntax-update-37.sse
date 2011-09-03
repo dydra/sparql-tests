@@ -1,0 +1,1 @@
+(update (create <g> :VERBOSE COMMON-LISP:T) (load <remote> <g>))

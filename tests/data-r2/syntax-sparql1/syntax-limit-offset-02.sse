@@ -1,0 +1,8 @@
+(slice
+ (select
+  (order
+   (bgp
+     (triple ?:s ?:p ?:o))
+   (?:o))
+  (?:s ?:p ?:o))
+ :OFFSET 3 :COUNT 5)

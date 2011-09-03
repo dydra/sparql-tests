@@ -1,9 +1,8 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example/>))
-  (project (?x ?v1 ?v2)
-    (filter (|| (< ?v1 ?v2) (> ?v1 ?v2))
-      (bgp
-        (triple ?x :p ??0)
-        (triple ??0 :v1 ?v1)
-        (triple ??0 :v2 ?v2)
-      ))))
+(select
+ (filter
+  (bgp
+    (triple ?:x <http://example/p> ?::?24)
+    (triple ?::?24 <http://example/v1> ?:v1)
+    (triple ?::?24 <http://example/v2> ?:v2))
+  (|\|\|| (:< ?:v1 ?:v2) (> ?:v1 ?:v2)))
+ (?:x ?:v1 ?:v2))

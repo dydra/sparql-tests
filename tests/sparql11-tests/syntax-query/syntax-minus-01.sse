@@ -1,0 +1,7 @@
+(select
+ (minus
+  (bgp
+    (triple ?:s ?:p ?:o))
+  (bgp
+    (triple ?:s ?:q ?:v)))
+ (?:s ?:p ?:o ?:q ?:v))

@@ -1,2 +1,4 @@
-(prefix ((: <http://example.org/x/#>))
-  (bgp (triple :x ?p ?v)))
+(select
+ (bgp
+   (triple <http://example.org/x/#x> ?:p ?:v))
+ (?:p ?:v))

@@ -1,0 +1,7 @@
+(update
+ (modify
+  (bgp
+    (triple ?:s ?:p ?:o))
+  :DELETE ((triple <base:/s> ?:p ?:o)) :INSERT ((triple ?:s ?:p <base:/#o>))
+  :WITH <http://example/g> :GRAPHS (<base:g1> <base:g2>) :NAMED-GRAPHS
+  (<http://example/gn1> <http://example/gn2>)))

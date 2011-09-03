@@ -1,11 +1,11 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example/>))
-  (project (?x ?v1 ?y ?v2)
-    (filter (! (bound ?v3))
-      (leftjoin
-        (bgp
-          (triple ?x :p ?v1)
-          (triple ?y :p ?v2)
-        )
-        (bgp (triple ?y :p ?v3))
-        (|| (!= ?v1 ?v3) (= ?v1 ?v3))))))
+(select
+ (filter
+  (leftjoin
+   (bgp
+     (triple ?:x <http://example/p> ?:v1)
+     (triple ?:y <http://example/p> ?:v2))
+   (bgp
+     (triple ?:y <http://example/p> ?:v3))
+   :TEST (|\|\|| (!= ?:v1 ?:v3) (= ?:v1 ?:v3)))
+  (! (bound ?:v3)))
+ (?:x ?:v1 ?:y ?:v2))

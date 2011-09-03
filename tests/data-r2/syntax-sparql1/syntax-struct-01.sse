@@ -1,0 +1,1 @@
+(select (leftjoin (table unit) (table unit)) COMMON-LISP:NIL)

@@ -1,0 +1,11 @@
+(select
+ (join
+  (leftjoin
+   (bgp
+     (triple ?:a <http://example.org/ns#b> <http://example.org/ns#c>))
+   (bgp
+     (triple <http://example.org/ns#x> <http://example.org/ns#y>
+             <http://example.org/ns#z>)))
+  (bgp
+    (triple <http://example.org/ns#x> ?:y ?:z)))
+ (?:a ?:y ?:z))

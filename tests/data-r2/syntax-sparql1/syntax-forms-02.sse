@@ -1,0 +1,8 @@
+(select
+ (bgp
+   (triple ?::?55 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:first ?::?52)
+   (triple ?::?55 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:rest ?::?54)
+   (triple ?::?54 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:first ?::?53)
+   (triple ?::?54 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:rest
+           |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:nil))
+ COMMON-LISP:NIL)

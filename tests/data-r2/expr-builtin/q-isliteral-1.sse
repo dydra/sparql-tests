@@ -1,5 +1,6 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example/>))
-  (project (?x)
-    (filter (isLiteral ?v)
-      (bgp (triple ?x :p ?v)))))
+(select
+ (filter
+  (bgp
+    (triple ?:x <http://example/p> ?:v))
+  (isLiteral ?:v))
+ (?:x))

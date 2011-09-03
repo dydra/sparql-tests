@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s <http://example.org/str> ?::str))
+  (langmatches (lang ?::str) "en"))
+ (?:s (?::s2 (strlang (str ?::str) "en-US"))))

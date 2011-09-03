@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:s <http://example.org/str> ?::str))
+ (?:s ?::str (?::encoded (encode_for_uri ?::str))))

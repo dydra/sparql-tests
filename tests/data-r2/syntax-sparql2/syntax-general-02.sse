@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple <a> <b> #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "x")))
+ COMMON-LISP:NIL)

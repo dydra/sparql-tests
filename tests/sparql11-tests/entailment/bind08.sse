@@ -1,0 +1,10 @@
+(select
+ (filter
+  (extend
+   (bgp
+     (triple ?:s ?:p ?:o)
+     (triple ?:p |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+             <http://www.w3.org/2002/07/owl#DatatypeProperty>))
+   ?:z (+ ?:o 1))
+  (= ?:z 3))
+ (?:s ?:p ?:o ?:z))

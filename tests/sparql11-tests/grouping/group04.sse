@@ -1,0 +1,19 @@
+(select
+ (leftjoin
+  (bgp
+    (triple ?:s <http://example/p> ?:v))
+  (bgp
+    (triple ?:s <http://example/q> ?:w)))
+ (:GROUP-BY
+  ((?:X
+    (coalesce ?:w
+              #S(SPOCQ:DATE
+                 :ID COMMON-LISP:NIL
+                 :LEXICAL-FORM "1605-11-05"
+                 :YEAR 1604
+                 :MONTH 11
+                 :DAY 5
+                 :HOUR 0
+                 :MINUTE 0
+                 :UNIVERSAL-TIME COMMON-LISP:NIL))))
+  ?:X (?:S (sample ?:v))))

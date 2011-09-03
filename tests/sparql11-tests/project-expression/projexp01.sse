@@ -1,0 +1,5 @@
+(select
+ (bgp
+   (triple ?:x <http://www.example.org/schema#p> ?:y)
+   (triple ?:x <http://www.example.org/schema#q> ?:z))
+ (?:x ?:y ?:z (?::eq (= ?:y ?:z))))

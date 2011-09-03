@@ -1,0 +1,36 @@
+(select
+ (minus
+  (minus
+   (bgp
+     (triple ?::s2 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+             <http://example/Set>)
+     (triple ?::s1 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+             <http://example/Set>))
+   (filter
+    (bgp
+      (triple ?::s1 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+              <http://example/Set>)
+      (triple ?::s2 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+              <http://example/Set>)
+      (triple ?::s1 <http://example/member> ?:x))
+    (|\|\|| (= ?::s1 ?::s2)
+            (!
+             (exists
+              (bgp
+                (triple ?::s2 <http://example/member> ?:x)))))))
+  (filter
+   (bgp
+     (triple ?::s1 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+             <http://example/Set>)
+     (triple ?::s2 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:type
+             <http://example/Set>))
+   (exprlist
+    (!
+     (exists
+      (bgp
+        (triple ?::s1 <http://example/member> ?:y))))
+    (!
+     (exists
+      (bgp
+        (triple ?::s2 <http://example/member> ?:y)))))))
+ ((?::subset ?::s1) (?::superset ?::s2)))

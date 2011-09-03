@@ -1,0 +1,6 @@
+(select
+ (select
+  (bgp
+    (triple ?:x ?:p ?:y))
+  (?:x ?:p ?:y))
+ (?:x))

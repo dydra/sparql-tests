@@ -1,0 +1,12 @@
+(select
+ (filter
+  (join
+   (bgp
+     (triple #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "a") ?:p ?:v))
+   (bgp
+     (triple ?::?74 ?:q #S(SPOCQ:BLANK-NODE :ID COMMON-LISP:NIL :LABEL "a"))))
+  #S(SPOCQ:BOOLEAN
+     :ID COMMON-LISP:NIL
+     :LEXICAL-FORM "true"
+     :VALUE COMMON-LISP:T))
+ (?:p ?:v ?:q))

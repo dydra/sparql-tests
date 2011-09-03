@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:S ?::P ?::O))
+ (:HAVING (> (count SPOCQ.S:*) 0) (?:C (count SPOCQ.S:*))))

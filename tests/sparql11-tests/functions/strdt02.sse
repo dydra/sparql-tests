@@ -1,0 +1,6 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s <http://example.org/str> ?::str))
+  (langmatches (lang ?::str) "en"))
+ (?:s (?::str1 (strdt (str ?::str) |http://www.w3.org/2001/XMLSchema|:string))))

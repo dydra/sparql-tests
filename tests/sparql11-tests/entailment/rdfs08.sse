@@ -1,0 +1,5 @@
+(select
+ (bgp
+   (triple <http://example.org/ns#d>
+           |http://www.w3.org/2000/01/rdf-schema#|:range ?:x))
+ (?:x))

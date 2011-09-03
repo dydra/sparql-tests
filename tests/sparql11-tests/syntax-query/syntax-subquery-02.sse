@@ -1,0 +1,7 @@
+(select
+ (join (table unit)
+       (select
+        (bgp
+          (triple ?:s ?:p ?:o))
+        (?:s ?:p ?:o)))
+ (?:s ?:p ?:o))

@@ -1,0 +1,10 @@
+(select
+ (bgp
+   (triple ?::?48 <http://example.org/ns#p> ?::?51)
+   (triple ?::?51 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:first ?::?49)
+   (triple ?::?51 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:rest ?::?50)
+   (triple ?::?49 ?::pa ?:b)
+   (triple ?::?50 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:first 57)
+   (triple ?::?50 |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:rest
+           |http://www.w3.org/1999/02/22-rdf-syntax-ns#|:nil))
+ (?:x ?:y ?::pa ?:b))

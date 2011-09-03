@@ -1,3 +1,8 @@
-(prefix ((xsd: <http://www.w3.org/2001/XMLSchema#>)
-         (: <http://example.org/ns#>))
-  (bgp (triple :x ?p false)))
+(select
+ (bgp
+   (triple <http://example.org/ns#x> ?:p
+           #S(SPOCQ:BOOLEAN
+              :ID COMMON-LISP:NIL
+              :LEXICAL-FORM "false"
+              :VALUE COMMON-LISP:NIL)))
+ (?:p))

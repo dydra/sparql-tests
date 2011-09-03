@@ -1,0 +1,8 @@
+(select
+ (filter
+  (bgp
+    (triple ?:s ?:p ?:o))
+  (exists
+   (bgp
+     (triple ?:s ?:p ?:o))))
+ (?:s ?:p ?:o))

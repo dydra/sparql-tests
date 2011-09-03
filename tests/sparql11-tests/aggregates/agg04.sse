@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?:S ?::P ?::O))
+ ((?:C (count SPOCQ.S:*))))

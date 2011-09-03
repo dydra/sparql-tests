@@ -1,0 +1,10 @@
+(select
+ (filter
+  (select
+   (bgp
+     (triple ?:x <http://www.example.org/schema#p> ?:y))
+   (?:x ?:y))
+  (exists
+   (bgp
+     (triple ?:x <http://www.example.org/schema#q> ?:y))))
+ (?:x))

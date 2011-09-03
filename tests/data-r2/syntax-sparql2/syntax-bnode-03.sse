@@ -1,0 +1,4 @@
+(select
+ (bgp
+   (triple ?::?66 <http://example.org/p> <http://example.org/q>))
+ COMMON-LISP:NIL)
