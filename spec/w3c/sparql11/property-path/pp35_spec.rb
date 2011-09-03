@@ -42,7 +42,7 @@ select ?t
 where {
   GRAPH ?g {
     ?s :p1* ?t }
-  FILTER (?g = <ng-01.ttl>)
+  FILTER (?g = <http://example.org/ng-01.ttl>)
 }
 }
     end
@@ -52,9 +52,9 @@ where {
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('ng-01.ttl')] = { :data => @graph0, :format => :ttl }
-      graphs[RDF::URI('ng-02.ttl')] = { :data => @graph1, :format => :ttl }
-      graphs[RDF::URI('ng-03.ttl')] = { :data => @graph2, :format => :ttl }
+      graphs[RDF::URI('http://example.org/ng-01.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example.org/ng-02.ttl')] = { :data => @graph1, :format => :ttl }
+      graphs[RDF::URI('http://example.org/ng-03.ttl')] = { :data => @graph2, :format => :ttl }
 
       repository = 'property-path-pp35'
       expected = [

@@ -48,7 +48,7 @@ SELECT ?x ?date
 }
     end
 
-    example "date-4", :tz => 'zoned' do
+    example "date-4" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

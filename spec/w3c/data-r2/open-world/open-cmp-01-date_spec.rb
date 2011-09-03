@@ -64,7 +64,7 @@ SELECT ?x ?v1 ?v2
           },
           {
               :v1 => RDF::Literal('2006-08-23T08:00:00Z', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#dateTime')),
-              :v2 => RDF::Literal('2006-08-22Z', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :v2 => RDF::Literal('2006-08-22', :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/x5'),
           },
       ]

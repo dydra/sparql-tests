@@ -78,14 +78,14 @@ _:x :q "2"^^xsd:integer .
 PREFIX : <http://example/> 
 
 SELECT * 
-FROM <data-g1-dup.ttl>
-FROM <data-g2-dup.ttl>
-FROM <data-g3-dup.ttl>
-FROM <data-g4-dup.ttl>
-FROM NAMED <data-g1.ttl>
-FROM NAMED <data-g2.ttl>
-FROM NAMED <data-g3.ttl>
-FROM NAMED <data-g4.ttl>
+FROM <http://example/data-g1-dup.ttl>
+FROM <http://example/data-g2-dup.ttl>
+FROM <http://example/data-g3-dup.ttl>
+FROM <http://example/data-g4-dup.ttl>
+FROM NAMED <http://example/data-g1.ttl>
+FROM NAMED <http://example/data-g2.ttl>
+FROM NAMED <http://example/data-g3.ttl>
+FROM NAMED <http://example/data-g4.ttl>
 { 
    { ?s ?p ?o }
   UNION
@@ -100,19 +100,19 @@ FROM NAMED <data-g4.ttl>
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
-      graphs[RDF::URI('data-g1.ttl')] = { :data => @graph0, :format => :ttl }
-      graphs[RDF::URI('data-g2.ttl')] = { :data => @graph1, :format => :ttl }
-      graphs[RDF::URI('data-g3.ttl')] = { :data => @graph2, :format => :ttl }
-      graphs[RDF::URI('data-g4.ttl')] = { :data => @graph3, :format => :ttl }
-      graphs[RDF::URI('data-g1-dup.ttl')] = { :data => @graph0, :format => :ttl }
-      graphs[RDF::URI('data-g2-dup.ttl')] = { :data => @graph1, :format => :ttl }
-      graphs[RDF::URI('data-g3-dup.ttl')] = { :data => @graph2, :format => :ttl }
-      graphs[RDF::URI('data-g4-dup.ttl')] = { :data => @graph3, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g1.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g2.ttl')] = { :data => @graph1, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g3.ttl')] = { :data => @graph2, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g4.ttl')] = { :data => @graph3, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g1-dup.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g2-dup.ttl')] = { :data => @graph1, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g3-dup.ttl')] = { :data => @graph2, :format => :ttl }
+      graphs[RDF::URI('http://example/data-g4-dup.ttl')] = { :data => @graph3, :format => :ttl }
 
       repository = 'dataset-dawg-dataset-12b'
       expected = [
           { 
-              :g => RDF::URI('data-g2.ttl'),
+              :g => RDF::URI('http://example/data-g2.ttl'),
               :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/q'),
               :s => RDF::URI('http://example/x'),
@@ -123,13 +123,13 @@ FROM NAMED <data-g4.ttl>
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('data-g1.ttl'),
+              :g => RDF::URI('http://example/data-g1.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('data-g3.ttl'),
+              :g => RDF::URI('http://example/data-g3.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::Node.new('a'),
@@ -145,7 +145,7 @@ FROM NAMED <data-g4.ttl>
               :s => RDF::Node.new('x'),
           },
           { 
-              :g => RDF::URI('data-g4.ttl'),
+              :g => RDF::URI('http://example/data-g4.ttl'),
               :o => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/q'),
               :s => RDF::Node.new('x'),
@@ -156,7 +156,7 @@ FROM NAMED <data-g4.ttl>
               :s => RDF::URI('http://example/x'),
           },
           { 
-              :g => RDF::URI('data-g1.ttl'),
+              :g => RDF::URI('http://example/data-g1.ttl'),
               :o => RDF::Literal.new('9' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::URI('http://example/a'),
@@ -167,7 +167,7 @@ FROM NAMED <data-g4.ttl>
               :s => RDF::Node.new('a'),
           },
           { 
-              :g => RDF::URI('data-g3.ttl'),
+              :g => RDF::URI('http://example/data-g3.ttl'),
               :o => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
               :p => RDF::URI('http://example/p'),
               :s => RDF::Node.new('x'),

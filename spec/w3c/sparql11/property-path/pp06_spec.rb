@@ -58,8 +58,8 @@ graph ?g {in:a ex:p1/ex:p2 ?x}
       graphs = {}
       graphs[:default] = nil
 
-      graphs[RDF::URI('pp061.ttl')] = { :data => @graph0, :format => :ttl }
-      graphs[RDF::URI('pp062.ttl')] = { :data => @graph1, :format => :ttl }
+      graphs[RDF::URI('http://example.org/pp061.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example.org/pp062.ttl')] = { :data => @graph1, :format => :ttl }
 
       repository = 'property-path-pp06'
       expected = [

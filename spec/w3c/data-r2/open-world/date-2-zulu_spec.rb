@@ -64,7 +64,7 @@ SELECT *
               :x => RDF::URI('http://example/d5'),
           },
           { 
-              :v => RDF::Literal.new('2001-01-01Z' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
+              :v => RDF::Literal.new('2001-01-01' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#date')),
               :x => RDF::URI('http://example/d4'),
           },
           { 

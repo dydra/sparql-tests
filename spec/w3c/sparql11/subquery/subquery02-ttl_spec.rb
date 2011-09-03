@@ -20,7 +20,7 @@ require 'spec_helper'
 describe "W3C test" do
   context "subquery" do
     before :all do
-       # sq01.rdf
+       # sq01.rdf -> .ttl
        @graph0 = %q{
 @base <http://example.com/sq01.rdf> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .

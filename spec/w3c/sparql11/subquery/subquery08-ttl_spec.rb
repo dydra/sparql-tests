@@ -18,25 +18,17 @@ describe "W3C test" do
   context "subquery" do
     before :all do
       @data = %q{
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:in="http://www.example.org/instance#"
-    xmlns:ex="http://www.example.org/schema#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
-    
-  <rdf:Description rdf:about="http://www.example.org/instance#a">
-    <ex:p rdf:datatype='http://www.w3.org/2001/XMLSchema#integer'>1</ex:p>
-    <ex:p rdf:datatype='http://www.w3.org/2001/XMLSchema#integer'>2</ex:p>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.example.org/instance#b">
-    <ex:p rdf:datatype='http://www.w3.org/2001/XMLSchema#integer'>3</ex:p>
-  </rdf:Description>
-</rdf:RDF>
+@base <http://example.com/sq08.rdf> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix in: <http://www.example.org/instance#> .
+@prefix ex: <http://www.example.org/schema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
+in:a
+    ex:p 1, 2 .
 
-
-
-
+in:b
+    ex:p 3 .
 }
       @query = %q{
 prefix ex:	<http://www.example.org/schema#>
@@ -50,10 +42,10 @@ select ?x ?max where {
 }
     end
 
-    example "sq08 - Subquery with aggregate", :status => 'bug' do
+    example "sq08 - Subquery with aggregate" do
     
       graphs = {}
-      graphs[:default] = { :data => @data, :format => :rdf}
+      graphs[:default] = { :data => @data, :format => :ttl}
 
 
       repository = 'subquery-subquery08'

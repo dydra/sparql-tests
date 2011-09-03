@@ -13,6 +13,7 @@ gem 'dydra', :git => 'git@github.com:/dydra/dydra.git'
   gem 's3', "0.3.8"
   gem 'uuid', "2.3.2"
   gem 'rdf-json', "0.3.0", :require => 'rdf/json'
+  gem 'rest-client', '1.6.3'
 
 group :build do
   gem 'erubis', "2.7.0"

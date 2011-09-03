@@ -43,7 +43,7 @@ graph ?g {
 }
     end
 
-    example "sq02 - Subquery within graph pattern, graph variable is bound" do
+    example "sq02 - Subquery within graph pattern, graph variable is bound", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = nil
