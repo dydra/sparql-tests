@@ -18,6 +18,7 @@ describe "W3C test" do
   context "drop" do
     before :all do
       @data = %q{
+@base   <http://example.org/drop-default.ttl> .
 @prefix : <http://example.org/> .
 
 <> :name "Default Graph" .
@@ -48,7 +49,7 @@ DROP NAMED
 }
     end
 
-    example "DROP NAMED", :status => 'bug', :w3c_status => 'unapproved' do
+    example "DROP NAMED", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -59,7 +60,7 @@ DROP NAMED
       repository = 'drop-dawg-drop-named-01'
       expected = [
           {
-            :s => RDF::URI('/Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/drop/drop-default.ttl'),
+            :s => RDF::URI('http://example.org/drop-default.ttl'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('Default Graph' ),
             :g => nil

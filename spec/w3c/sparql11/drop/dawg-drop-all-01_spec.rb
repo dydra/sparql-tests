@@ -18,6 +18,7 @@ describe "W3C test" do
   context "drop" do
     before :all do
       @data = %q{
+@base   <http://example.org/drop-default.ttl> .
 @prefix : <http://example.org/> .
 
 <> :name "Default Graph" .
@@ -49,7 +50,7 @@ DROP ALL
 }
     end
 
-    example "DROP ALL", :status => 'bug', :w3c_status => 'unapproved' do
+    example "DROP ALL", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
