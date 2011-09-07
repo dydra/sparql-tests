@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # 
 # 20110211 : jaa : status bug as the semantics are not bottom-up reduction, but top-to-bottom propagation.
+# 20110907 : jaa ; bug removed, extend operator for integer fields recognizes and propagates first-class
+#   unbound value and the result actually does not expect the binding to have succeeded
 
 describe "W3C test" do
   context "bind" do
@@ -39,7 +41,7 @@ SELECT ?s ?p ?o ?z
 }
     end
 
-    example "bind07 - BIND", :status => 'bug', :w3c_status => 'unapproved' do
+    example "bind07 - BIND", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

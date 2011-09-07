@@ -15,7 +15,8 @@ require 'spec_helper'
 # 
 # 20110206 jaa : canonical blank node indicator
 # 20110602 jaa : native arithmetic indicator
-#   bug : result failes to match 
+#   bug : result fails to match
+# 20110907 jaa : now succeeded 
 
 describe "W3C test" do
   context "functions" do

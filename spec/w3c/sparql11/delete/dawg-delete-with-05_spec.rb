@@ -13,7 +13,8 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+# 20110907 : jaa : status bug removed, but note front-end still fails sporadically (see #314)
+
 describe "W3C test" do
   context "delete" do
     before :all do
@@ -73,7 +74,7 @@ WHERE
 }
     end
 
-    example "Graph-specific DELETE 1 (WITH)", :status => 'bug', :w3c_status => 'unapproved' do
+    example "Graph-specific DELETE 1 (WITH)", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = nil

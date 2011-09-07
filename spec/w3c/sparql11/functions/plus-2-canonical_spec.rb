@@ -14,7 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # 
 # 20110206 jaa : canonical blank node indicator
-#   bug : result failes to match 
+#   bug : result fails to match 
+# 20110907 jaa : now succeeded
 
 describe "W3C test" do
   context "functions" do
@@ -52,7 +53,7 @@ ORDER BY ?x ?y ?sum
 }
     end
 
-    example "plus-2", :status => 'bug', :w3c_status => 'unapproved', :blank_nodes => 'canonical', :arithmetic => 'native' do
+    example "plus-2", :w3c_status => 'unapproved', :blank_nodes => 'canonical', :arithmetic => 'native' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
