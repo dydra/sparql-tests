@@ -18,6 +18,7 @@ describe "W3C test" do
   context "clear" do
     before :all do
       @data = %q{
+@base   <http://example.org/clear-default.ttl> .
 @prefix : <http://example.org/> .
 
 <> :name "Default Graph" .
@@ -48,7 +49,7 @@ CLEAR GRAPH :g1
 }
     end
 
-    example "CLEAR GRAPH", :status => 'bug', :w3c_status => 'unapproved' do
+    example "CLEAR GRAPH", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -59,7 +60,7 @@ CLEAR GRAPH :g1
       repository = 'clear-dawg-clear-graph-01'
       expected = [
           {
-            :s => RDF::URI('/Users/ben/Repos/dydra/tests/tests/sparql11-tests/data-sparql11/clear/clear-default.ttl'),
+            :s => RDF::URI('http://example.org/clear-default.ttl'),
             :p => RDF::URI('http://example.org/name'),
             :o => RDF::Literal.new('Default Graph' ),
             :g => nil

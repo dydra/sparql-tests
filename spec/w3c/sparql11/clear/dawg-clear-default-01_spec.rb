@@ -18,6 +18,7 @@ describe "W3C test" do
   context "clear" do
     before :all do
       @data = %q{
+@base   <http://example.org/clear-default.ttl> .
 @prefix : <http://example.org/> .
 
 <> :name "Default Graph" .
@@ -49,7 +50,7 @@ CLEAR DEFAULT
 }
     end
 
-    example "CLEAR DEFAULT", :status => 'bug', :w3c_status => 'unapproved' do
+    example "CLEAR DEFAULT", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
