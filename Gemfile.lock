@@ -1,6 +1,6 @@
 GIT
-  remote: git@github.com:/dydra/dydra.git
-  revision: 8f9148fa8514322e01b47bc7bd1a9a58b83f0a03
+  remote: git://github.com/dydra/dydra.git
+  revision: 7d376b560b7039b9113fc4826e061ae412b8fe9d
   specs:
     dydra (0.0.10)
       rdf (>= 0.3.0)
