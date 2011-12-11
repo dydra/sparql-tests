@@ -16,6 +16,7 @@ require 'spec_helper'
 #
 # 20101219 jaa : bug indicator : graph/quad not yet supported by the store
 # 20110803 jaa : status=>bug removed (once import succeeds)
+# 20111212 jaa : replace graph designator with absolute uri and remove 'bug'
 
 describe "W3C test" do
   context "algebra" do
@@ -58,12 +59,12 @@ SELECT ?x ?y ?z
 }
     end
 
-    example "Join operator with Graph and Union", :status => 'bug' do
+    example "Join operator with Graph and Union" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
-      graphs[RDF::URI('join-combo-graph-1.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example/join-combo-graph-1.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'algebra-join-combo-2'
       expected = [
