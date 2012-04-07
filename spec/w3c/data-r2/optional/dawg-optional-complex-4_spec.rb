@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0096/21-dawg-minutes.html
 #
 # 20101218 jaa : bug indicator : graph is not supported
+# 20111212 jaa : remove 'bug'
 
 describe "W3C test" do
   context "optional" do
@@ -98,12 +99,12 @@ WHERE
 }
     end
 
-    example "Complex optional semantics: 4", :status => 'bug' do
+    example "Complex optional semantics: 4" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
-      graphs[RDF::URI('complex-data-1.ttl')] = { :data => @graph0, :format => :ttl }
+      graphs[RDF::URI('http://example/complex-data-1.ttl')] = { :data => @graph0, :format => :ttl }
 
       repository = 'optional-dawg-optional-complex-4'
       expected = [
