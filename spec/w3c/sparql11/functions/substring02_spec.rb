@@ -53,7 +53,7 @@ SELECT ?s ?str (SUBSTR(?str,2) AS ?substr) WHERE {
 }
     end
 
-    example "SUBSTRING() (2-argument)", :w3c_status => 'unapproved', :string => 'typed' do
+    example "SUBSTRING() (2-argument)", :w3c_status => 'approved', :string => 'typed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

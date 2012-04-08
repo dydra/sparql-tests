@@ -17,16 +17,16 @@ describe "W3C test" do
       @query = IO.read(File.dirname(__FILE__) + "/strbefore01.rq");
     end
 
-    example "strbefore01", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "strbefore01", :status => 'unverified', :w3c_status => 'approved', :string => 'typed' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
-      repository = 'subquery-subquery14'
+      repository = 'functions-strbefore01'
       expected = SPARQL::Client.parse_xml_bindings(IO.read(File.dirname(__FILE__) + "/strbefore01.srx")).map{|each| each.to_hash}
 
       sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :construct).should be_isomorphic_with expected
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end

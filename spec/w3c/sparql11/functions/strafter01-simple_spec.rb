@@ -17,16 +17,16 @@ describe "W3C test" do
       @query = IO.read(File.dirname(__FILE__) + "/strafter01.rq");
     end
 
-    example "strafter01", :status => 'unverified', :w3c_status => 'unapproved' do
+    example "strafter01", :status => 'unverified', :w3c_status => 'approved', :string => 'simple' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
-      repository = 'subquery-subquery14'
-      expected = SPARQL::Client.parse_xml_bindings(IO.read(File.dirname(__FILE__) + "/strafter01.srx")).map{|each| each.to_hash}
+      repository = 'functions-strafter01'
+      expected = SPARQL::Client.parse_xml_bindings(IO.read(File.dirname(__FILE__) + "/strafter01-simple.srx")).map{|each| each.to_hash}
 
       sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :construct).should be_isomorphic_with expected
+                   :repository => repository, :form => :select).should =~ expected
     end
   end
 end
