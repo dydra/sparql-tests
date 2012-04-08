@@ -10,13 +10,13 @@ require 'spec_helper'
 # http://www.w3.org/2009/sparql/docs/tests/data-sparql11/bindings/
 #
 describe "W3C test" do
-  context "bind" do
+  context "bindings" do
     before :all do
       @data = IO.read(File.dirname(__FILE__) + "/data04.ttl");
       @query = IO.read(File.dirname(__FILE__) + "/bindings04.rq");
     end
 
-    example "bindings04", :w3c_status => 'approved' do
+    example "bindings04", :w3c_status => 'approved', :join => 'full' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
