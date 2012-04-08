@@ -10,13 +10,13 @@ require 'spec_helper'
 # http://www.w3.org/2009/sparql/docs/tests/data-sparql11/construct
 #
 describe "W3C test" do
-  context "bind" do
+  context "construct" do
     before :all do
       @query = IO.read(File.dirname(__FILE__) + "/constructwhere05.rq");
       @data = ""; 
     end
 
-    example "constructwhere05", :w3c_status => 'approved' do
+    example "constructwhere05 - CONSTRUCT WHERE", :w3c_status => 'approved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

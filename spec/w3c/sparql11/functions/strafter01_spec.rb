@@ -11,7 +11,7 @@ require 'spec_helper'
 # 
 #
 describe "W3C test" do
-  context "subquery" do
+  context "functions" do
     before :all do
       @data = IO.read(File.dirname(__FILE__) + "/data2.ttl");
       @query = IO.read(File.dirname(__FILE__) + "/strafter01.rq");

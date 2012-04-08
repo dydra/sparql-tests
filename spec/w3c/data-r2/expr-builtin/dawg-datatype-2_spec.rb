@@ -7,6 +7,7 @@ require 'spec_helper'
 # datatype-2 : Literals with a datatype
 # updated from original test case: eliminated ordering from test
 # /Users/ben/repos/datagraph/tests/tests/data-r2/expr-builtin/q-datatype-2.rq
+# 20120408 modified to conform to WD-sparql11-query-20120105, which specifies a type for litreals with a language tag
 #
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#dawg-datatype-2
@@ -61,6 +62,9 @@ SELECT ?x
           },
           { 
               :x => RDF::URI('http://example/x2'),
+          },
+          { 
+              :x => RDF::URI('http://example/x3'),
           },
           { 
               :x => RDF::URI('http://example/x4'),

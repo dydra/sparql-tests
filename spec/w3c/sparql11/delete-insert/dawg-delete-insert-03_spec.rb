@@ -10,13 +10,13 @@ require 'spec_helper'
 # http://www.w3.org/2009/sparql/docs/tests/data-sparql11/construct
 #
 describe "W3C test" do
-  context "bind" do
+  context "delete-insert" do
     before :all do
       @query = IO.read(File.dirname(__FILE__) + "/delete-insert-03.ru");
       @data = ""; 
     end
 
-    example "delete-insert-03", :w3c_status => 'approved' do
+    example "DELETE INSERT 3", :w3c_status => 'approved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -39,7 +39,7 @@ SELECT ?z ?s1
 }
     end
 
-    example "bind03 - BIND", :w3c_status => 'unapproved' do
+    example "bind03 - BIND", :w3c_status => 'approved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
