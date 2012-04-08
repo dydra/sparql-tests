@@ -60,7 +60,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 ASK
  WHERE { t:short1 rdf:value ?l .
          t:decimal1 rdf:value ?r .
-         FILTER ( datatype(?l + ?r) = xsd:integer ) }
+         FILTER ( datatype(?l + ?r) = xsd:decimal ) }
 
 }
     end

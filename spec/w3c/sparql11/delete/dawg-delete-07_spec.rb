@@ -13,7 +13,8 @@ require 'spec_helper'
 #
 # This test is approved: 
 # 
-#
+# 20120219 : jaa : no longer a bug, just specified as raising an error.
+
 describe "W3C test" do
   context "delete" do
     before :all do
@@ -45,7 +46,7 @@ WHERE
 }
     end
 
-    example "Simple DELETE 7", :status => 'bug', :w3c_status => 'unapproved' do
+    example "Simple DELETE 7", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -86,8 +87,8 @@ WHERE
       ]
 
 
-      sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
-                   :repository => repository, :form => :update).should =~ expected
+      lambda {sparql_query(:graphs => graphs, :query => @query,
+                           :repository => repository, :form => :update) }.should raise_error
     end
   end
 end

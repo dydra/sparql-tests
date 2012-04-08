@@ -54,7 +54,7 @@ WHERE
 }
     end
 
-    example "str-2", :arithmetic => 'boxed' do
+    example "str-2", :arithmetic => 'literal' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

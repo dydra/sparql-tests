@@ -16,6 +16,7 @@ require 'spec_helper'
 # 20110602 : jaa : status bug : graph variable constriant requires propagation or
 #  outer binding rather than bottom-up evaluation
 # 20110719 jaa : status=>bug : import failure, replaced with .ttl version
+# 20120220 jaa : subselects now work
 
 describe "W3C test" do
   context "subquery" do

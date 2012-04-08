@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2009/sparql/meeting/2010-07-13#resolution_2
 #
+# 20110719 jaa : status=>bug : import failure, replaced with .ttl version
+
 describe "W3C test" do
   context "subquery" do
     before :all do
@@ -51,7 +53,7 @@ graph ?g {
 }
     end
 
-    example "sq01 - Subquery within graph pattern" do
+    example "sq01 - Subquery within graph pattern", :status => 'bug' do
     
       graphs = {}
       graphs[:default] = nil

@@ -18,15 +18,14 @@ describe "W3C test" do
 @prefix : <http://example.org/> .
 
 :s1 :str "123" .
-:s2 :str "¾Ñ´¾ÏÂ»ì"@ja .
+:s2 :str "æ—¥æœ¬èª"@ja .
 :s3 :str "English"@en .
-:s4 :str "FranÌ¤ais"@fr .
+:s4 :str "FranÃ§ais"@fr .
 :s5 :str "abc"^^xsd:string .
 :s6 :str "def"^^xsd:string .
 :s7 :str 7 .
 :s8 :str "banana" .
 :s9 :str "abcd" .
-
 }
       @query = %q{
 PREFIX : <http://example.org/>
@@ -50,15 +49,15 @@ SELECT ?s (REPLACE(?str,"[^a-z0-9]", "-") AS ?new) WHERE {
               :s => RDF::URI('http://example.org/s1'),
           },
           { 
-              :new => RDF::Literal.new('---'),
+              :new => RDF::Literal.new('---' , :language => 'ja'),
               :s => RDF::URI('http://example.org/s2'),
           },
           { 
-              :new => RDF::Literal.new('-nglish'),
+              :new => RDF::Literal.new('-nglish' , :language => 'en'),
               :s => RDF::URI('http://example.org/s3'),
           },
           { 
-              :new => RDF::Literal.new('-ran-ais'),
+              :new => RDF::Literal.new('-ran-ais' , :language => 'fr'),
               :s => RDF::URI('http://example.org/s4'),
           },
           { 

@@ -16,6 +16,9 @@ require 'spec_helper'
 # 20110206 jaa : canonical blank node indicator
 #   bug : result fails to match 
 # 20110907 jaa : now succeeded
+# 20120108 jaa : the match fails because decimal/integer equivalence causes the array difference
+#  operator to delete the wrong element and leave behind the intended, which then fails to match
+#  the candidate from the deleted element
 
 describe "W3C test" do
   context "functions" do
@@ -53,7 +56,7 @@ ORDER BY ?x ?y ?sum
 }
     end
 
-    example "plus-2", :w3c_status => 'unapproved', :blank_nodes => 'canonical', :arithmetic => 'native' do
+    example "plus-2", :w3c_status => 'unapproved', :blank_nodes => 'canonical', :arithmetic => 'native', :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -74,8 +77,8 @@ ORDER BY ?x ?y ?sum
               :y => RDF::Literal.new('2' ),
           },
           { 
-              :x => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
-              :y => RDF::Literal.new('2.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+              :x => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+              :y => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
               :x => RDF::Literal.new('1'),
@@ -83,16 +86,49 @@ ORDER BY ?x ?y ?sum
           },
           { 
               :x => RDF::Literal.new('1'),
-              :y => RDF::Literal.new('2.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+              :y => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
               :x => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
-              :y => RDF::Literal.new('2.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+              :y => RDF::Literal.new('2' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
           { 
               :x => RDF::Literal.new('a' ),
               :y => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
           },
+
+          # { 
+          #     :x => RDF::Node.new('b'),
+          #     :y => RDF::Literal.new('1' ),
+          # },
+          # { 
+          #     :x => RDF::URI('http://example/a'),
+          #     :y => RDF::Literal.new('1' ),
+          # },
+          # { 
+          #     :x => RDF::Literal.new('1' ),
+          #     :y => RDF::Literal.new('2' ),
+          # },
+          # { 
+          #     :x => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+          #     :y => RDF::Literal.new('2.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+          # },
+          # { 
+          #     :x => RDF::Literal.new('1'),
+          #     :y => RDF::Literal.new('2' ),
+          # },
+          # { 
+          #     :x => RDF::Literal.new('1'),
+          #     :y => RDF::Literal.new('2.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+          # },
+          # { 
+          #     :x => RDF::Literal.new('1.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+          #     :y => RDF::Literal.new('2.0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#decimal')),
+          # },
+          # { 
+          #     :x => RDF::Literal.new('a' ),
+          #     :y => RDF::Literal.new('1' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#integer')),
+          # },
       ]
 
 

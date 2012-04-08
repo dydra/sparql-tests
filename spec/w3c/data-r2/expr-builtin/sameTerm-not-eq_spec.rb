@@ -58,7 +58,7 @@ SELECT *
 }
     end
 
-    example "sameTerm-not-eq", :arithmetic => 'boxed' do
+    example "sameTerm-not-eq", :arithmetic => 'literal' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

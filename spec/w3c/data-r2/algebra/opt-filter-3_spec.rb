@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2007/06/19-dawg-minutes.html
 #
+# 20120217 jaa : added undefined:unbound/error
+
 describe "W3C test" do
   context "algebra" do
     before :all do
@@ -44,7 +46,7 @@ SELECT *
 }
     end
 
-    example "Optional-filter - scope of variable" do
+    example "Optional-filter - scope of variable", :undefined => 'unbound' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

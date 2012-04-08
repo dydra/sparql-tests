@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://www.w3.org/2007/07/17-dawg-minutes
 #
 # 20101220 jaa : arithmetic indicator : decimal 1 is natively represented as an integer
+# 20120217 jaa : native whole ration representation now passes standard test
 
 describe "W3C test" do
   context "type-promotion" do
@@ -65,7 +66,7 @@ ASK
 }
     end
 
-    example "tP-decimal-decimal", :arithmetic => 'boxed' do
+    example "tP-decimal-decimal" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

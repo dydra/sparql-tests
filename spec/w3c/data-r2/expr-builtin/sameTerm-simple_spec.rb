@@ -58,7 +58,7 @@ SELECT *
 }
     end
 
-    example "sameTerm-simple", :arithmetic => 'boxed' do
+    example "sameTerm-simple", :arithmetic => 'literal' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

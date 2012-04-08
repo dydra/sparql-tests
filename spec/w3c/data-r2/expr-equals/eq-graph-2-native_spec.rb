@@ -56,7 +56,7 @@ WHERE
 }
     end
 
-    example "Equality 1-2 -- graph", :arithmetic => 'boxed' do
+    example "Equality 1-2 -- graph", :arithmetic => 'native', :status => 'bug' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

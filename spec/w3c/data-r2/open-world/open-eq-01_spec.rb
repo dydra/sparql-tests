@@ -56,7 +56,7 @@ SELECT *
 }
     end
 
-    example "open-eq-01", :arithmetic => 'boxed'  do
+    example "open-eq-01", :arithmetic => 'literal'  do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

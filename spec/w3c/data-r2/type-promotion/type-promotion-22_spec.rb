@@ -65,7 +65,7 @@ ASK
 }
     end
 
-    example "tP-short-decimal", :arithmetic => 'boxed' do
+    example "tP-short-decimal", :arithmetic => 'literal' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

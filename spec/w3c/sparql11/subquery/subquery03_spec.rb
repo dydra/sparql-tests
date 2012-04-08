@@ -14,6 +14,8 @@ require 'spec_helper'
 # This test is approved: 
 # http://www.w3.org/2009/sparql/meeting/2010-07-13#resolution_4
 #
+# 20120220 jaa : subselects now work
+
 describe "W3C test" do
   context "subquery" do
     before :all do
@@ -51,7 +53,7 @@ graph ?g {
 }
     end
 
-    example "sq03 - Subquery within graph pattern, graph variable is not bound", :status => 'bug' do
+    example "sq03 - Subquery within graph pattern, graph variable is not bound" do
     
       graphs = {}
       graphs[:default] = nil

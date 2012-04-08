@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://example.org/ns#">
+  <rdf:Description rdf:about="http://example.org/ns#a">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#a">
+    <foaf:name>Alan</foaf:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#a">
+    <foaf:homepage rdf:resource="http://example.org/alan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#c">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#c">
+    <foaf:name>Chris</foaf:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#c">
+    <foaf:homepage rdf:resource="http://example.org/chris"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#b">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#b">
+    <foaf:homepage rdf:resource="http://example.com/ben"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#b">
+    <foaf:homepage rdf:resource="http://example.org/ben"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#b">
+    <foaf:name>Ben</foaf:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ns#b">
+    <foaf:mbox rdf:resource="mailto:ben@example.org"/>
+  </rdf:Description>
+</rdf:RDF>

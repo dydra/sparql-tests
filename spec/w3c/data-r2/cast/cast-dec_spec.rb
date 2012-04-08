@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://lists.w3.org/Archives/Public/public-rdf-dawg/2007JulSep/att-0087/14-dawg-minutes.html
 #
 # 20101220 jaa : arithmetic indicator
+# 20120217 jaa : native whole ratio allows standard test
 
 describe "W3C test" do
   context "cast" do
@@ -43,7 +44,7 @@ SELECT ?s WHERE {
 }
     end
 
-    example "Cast to xsd:decimal", :arithmetic => 'boxed' do
+    example "Cast to xsd:decimal" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

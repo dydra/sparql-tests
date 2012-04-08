@@ -49,7 +49,7 @@ ORDER BY ASC(?emp)
 }
     end
 
-    example "sort-8", :blank_nodes => 'canonical' do
+    example "sort-8-canoncal", :blank_nodes => 'canonical' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
