@@ -37,7 +37,7 @@ WHERE {
 }
     end
 
-    example "RDF test for blank node cardinalities", :status => 'bug',:w3c_status => 'unapproved' do
+    example "RDF test for blank node cardinalities", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -22,7 +22,7 @@ describe "W3C test" do
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
-_:1 a owl:Ontology .
+_:a a owl:Ontology .
 :p a owl:DatatypeProperty .
 :s1 :p 1 .
 :s2 :p 2 .
@@ -47,7 +47,7 @@ SELECT ?z ?s1
 }
     end
 
-    example "bind03 - BIND fixed data for OWL DL", :w3c_status => 'unapproved', :status => 'bug' do
+    example "bind03 - BIND fixed data for OWL DL", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

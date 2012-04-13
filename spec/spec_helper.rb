@@ -57,6 +57,9 @@ end
 #     An SSF query, as a string #TODO
 #   :form
 #     :ask, :construct, :select or :describe
+#   :rule_set <uri>
+#     an entailment rule set designator
+
 def sparql_query(opts)
 
   raise "Cannot run query without data" if (opts[:graphs].nil? || opts[:graphs].empty?) && !opts[:allow_empty]
@@ -107,7 +110,8 @@ def sparql_query(opts)
         ENV['DYDRA_XML'] ? :xml : :json
     end
     repository = Dydra::Repository.new(repository_name)
-    raw_result = repository.query(opts[:query], :format => format, :user_query_id => opts[:user_id])
+    raw_result = repository.query(opts[:query], :format => format, :user_query_id => opts[:user_id],
+                                                :ruleset => opts[:ruleset])
     log raw_result
     if (opts[:form] == :select || opts[:form] == :ask) && comparing?
       result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result)

@@ -37,7 +37,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test rdfs:subPropertyOf", :status => 'bug', :w3c_status => 'unapproved' do
+    example "RDFS inference test rdfs:subPropertyOf", :w3c_status => 'unapproved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -55,6 +55,7 @@ WHERE {
 
 
       sparql_query(:graphs => graphs, :query => @query,       # unordered comparison in rspec is =~
+                   :ruleset => "http://semanticweb.org/OWLLD/owl-ld.xml#prp",
                    :repository => repository, :form => :select).should =~ expected
     end
   end
