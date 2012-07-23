@@ -36,10 +36,10 @@ PREFIX :    <http://example/>
 
 SELECT *
 { 
-    :x :p ?v . 
-    { :x :q ?w 
+    :x1 :p ?v . 
+    { :x3 :q ?w 
       # ?v is not in scope so ?v2 never set
-      OPTIONAL {  :x :p ?v2 FILTER(?v = 1) }
+      OPTIONAL {  :x1 :p ?v2 FILTER(?v = 1) }
     }
 }
 
