@@ -37,6 +37,10 @@ where { ?s <http://www.example.org/schema#p> ?o }
           :subject => RDF::URI('http://www.example.org/instance#a'),
           :predicate => RDF::URI('http://www.example.org/schema#q'),
           :object => RDF::Literal.new(2))
+        graph << RDF::Statement.new(
+          :subject => RDF::URI('http://www.example.org/instance#b'),
+          :predicate => RDF::URI('http://www.example.org/schema#p'),
+          :object => RDF::Literal.new(3))
 
       end
 
