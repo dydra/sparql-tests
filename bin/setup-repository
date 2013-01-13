@@ -1,0 +1,35 @@
+#! /bin/bash
+
+# set up a repository with possible initial content
+
+INPUT="$1"
+if [ "$INPUT" = "" ]
+then
+  echo "no INPUT value specified"
+  exit 1
+fi
+REPOSITORY=`basename ${INPUT%.*}`
+if [ "$DYDRA_ACCOUNT" = "" ]
+then
+  echo "no DYDRA_ACCOUNT value specified"
+  exit 1
+fi
+
+set +e
+COUNT=`dydra count $DYDRA_ACCOUNT/$REPOSITORY`
+# echo "count '$COUNT'"
+
+if [ "$COUNT" == "$DYDRA_ACCOUNT/$REPOSITORY not found" ]
+then
+  set -e
+  dydra create $DYDRA_ACCOUNT/$REPOSITORY
+  if [ "$DYDRA_VERBOSE" != "" ]
+  then
+    echo "created $DYDRA_ACCOUNT/$REPOSITORY"
+  fi
+  dydra import --base_uri http://dydra.com $DYDRA_ACCOUNT/$REPOSITORY $INPUT
+  if [ "$DYDRA_VERBOSE" != "" ]
+  then
+    echo "imported $INPUT"
+  fi
+fi

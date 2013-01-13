@@ -1,0 +1,41 @@
+#! /bin/bash
+
+# run a single test.
+
+REPO="$1"
+DIR="./"
+
+if [ "$2" != "" ]
+then
+  DIR="$2"
+fi
+
+if [ .exists. $DIR/run.sh ]
+ then
+   (cd $DIR; sh run.sh)
+ else
+   (cd $DIR; roqet -p $SPARQL_HOST -s query.rq | sort > result.srj; diff result.srj expected.srj)
+ endif
+fi
+STATUS = $?
+
+if [ $STATUS != 0 ]
+then
+  if [ "$SPARQL_VERBOSE" == "quiet" ]
+  then
+  elif [ "$SPARQL_VERBOSE" == "" ]
+    echo -n "-"
+  else
+    echo "$TEST failed"
+  fi
+else
+  if [ "$SPARQL_VERBOSE" == "quiet" ]
+  then
+  elif [ "$SPARQL_VERBOSE" == "" ]
+    echo -n "-"
+  else
+    echo "$TEST failed"
+  fi
+fi
+
+exit ($STATUS)
