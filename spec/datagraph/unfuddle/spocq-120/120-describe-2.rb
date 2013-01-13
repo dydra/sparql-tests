@@ -9,11 +9,12 @@ describe "unfuddle" do
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 <http://www.example.org/instance#a>
-    <http://www.example.org/schema#p> 1 ;
+    <http://www.example.org/schema#p> ( 1.1 1.2 ) ;
     <http://www.example.org/schema#q> 2 .
 
-<http://www.example.org/instance#b>
-    <http://www.example.org/schema#p> 3 .
+<http://www.example.org/instance#b> <http://www.example.org/instance#m> _:node1 .
+_:node1 <http://www.example.org/schema#p> 3 .
+_:node1 <http://www.example.org/schema#q> 4 .
 }
       @query = %q{
 describe ?s
@@ -21,13 +22,13 @@ where { ?s <http://www.example.org/schema#p> ?o }
 }
     end
 
-    example "describe subject with blank nodes" do
+    example "describe subject 2" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = '120-describe-1'
+      repository = '120-describe-2'
       expected = RDF::Graph.new do |graph|
         graph << RDF::Statement.new(
           :subject => RDF::URI('http://www.example.org/instance#a'),
