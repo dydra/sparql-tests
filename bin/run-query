@@ -1,9 +1,40 @@
 #! /bin/sh
 
+# run-query <REPOSITORY-ID> <QUERY-PATHNAME>
+#
+# post a curl request with constructed content and emit the result to standard out
+#
+# environment :
+# DYDRA_TOKEN : account authentication token
+# DYDRA_URL : host http url 
+
 REPO="$1"
 QUERY="$2"
+
+if [ "$REPO" = "" ]
+then
+  echo "no repository was specified."
+  exit 1
+fi
+if [ "$QUERY" = "" ]
+then
+  echo "no query was specified."
+  exit 1
+fi
+if [ "$DYDRA_URL" = "" ]
+then
+  echo "no host url was specified."
+  exit 1
+fi
+if [ "$DYDRA_TOKEN" ]
+then
+  AUTHENTICATION="${DYDRA_TOKEN}:@"
+fi
+
+
+# (cd $DIR; roqet -h "http://${DYDRA_TOKEN}:@${DYDRA_URL:7}/$DYDRA_ACCOUNT/${QUERY_REPOSITORY}/sparql" -s $QUERY_FILENAME > $RESULT; cmp -s $RESULT expected.srj)
 
 (echo -n "query=" ; cat $QUERY) | \
 curl -s -L -X POST -H "Accept: application/sparql-results+json" --data-urlencode @- \
   -H "Content-Type: application/x-www-form-urlencoded" \
- "http://${DYDRA_TOKEN}:@${DYDRA_URL:7}/${REPO}/sparql"
+ "http://${AUTHENTICATION}${DYDRA_URL:7}/${REPO}/sparql"

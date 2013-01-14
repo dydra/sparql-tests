@@ -1,34 +1,49 @@
 #! /bin/bash
 
+# setup-repository [-v] <ACCOUNT> <INPUT>
 # set up a repository with possible initial content
 
-INPUT="$1"
+TEMP=`getopt -o "v" -- "$@"`
+eval set -- "$TEMP"
+while true; do
+  case "$1" in
+    -v) MODE_VERBOSE="true"; shift ;;
+    --) shift; break;;
+    *)
+      echo >&2 "usage: $0 [-v] account input"
+      exit 1;;
+  esac
+done
+
+ACCOUNT="$1"
+if [ "$ACCOUNT" = "" ]
+then
+  echo "no ACCOUNT value specified"
+  exit 1
+fi
+
+INPUT="$2"
 if [ "$INPUT" = "" ]
 then
   echo "no INPUT value specified"
   exit 1
 fi
 REPOSITORY=`basename ${INPUT%.*}`
-if [ "$DYDRA_ACCOUNT" = "" ]
-then
-  echo "no DYDRA_ACCOUNT value specified"
-  exit 1
-fi
 
 set +e
-COUNT=`dydra count $DYDRA_ACCOUNT/$REPOSITORY`
+COUNT=`dydra count $ACCOUNT/$REPOSITORY`
 # echo "count '$COUNT'"
 
-if [ "$COUNT" == "$DYDRA_ACCOUNT/$REPOSITORY not found" ]
+if [ "$COUNT" == "$ACCOUNT/$REPOSITORY not found" ]
 then
   set -e
-  dydra create $DYDRA_ACCOUNT/$REPOSITORY
-  if [ "$DYDRA_VERBOSE" != "" ]
+  dydra create $ACCOUNT/$REPOSITORY
+  if [ "$MODE_VERBOSE" ]
   then
-    echo "created $DYDRA_ACCOUNT/$REPOSITORY"
+    echo "created $ACCOUNT/$REPOSITORY"
   fi
-  dydra import --base_uri http://dydra.com $DYDRA_ACCOUNT/$REPOSITORY $INPUT
-  if [ "$DYDRA_VERBOSE" != "" ]
+  dydra import --base_uri http://dydra.com $ACCOUNT/$REPOSITORY $INPUT
+  if [ "$MODE_VERBOSE" ]
   then
     echo "imported $INPUT"
   fi

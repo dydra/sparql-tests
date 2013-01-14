@@ -1,36 +1,52 @@
 #! /bin/sh
 
-# run a single test in its own directory. the output is captures and compared byte-wise with the expected
-#   result. success requires identity.
+# run-test <QUERY-PATHNAME>
+#
+# run a single test in its own directory.
+# optionally set up repositories prior to testing
+# the output is captured and compared byte-wise with the expected result. success requires identity.
 #
 # return 0 for success, otherwise 1
-
+#
+# environment :
+# DYDRA_ACCOUNT : account name
+# DYDRA_URL : host http url 
+#
+# in order to accommodate tests from outside sources, the validation should distinguish xml from json and
+# perform a deep object diff on the respective enitities. one would think, that is easy to find, but, no:
+# xml:
+# - http://stackoverflow.com/questions/1871076/are-there-any-free-xml-diff-merge-tools-available
+# - https://community.emc.com/docs/DOC-5042
+# json:
+# - https://fedorahosted.org/json_diff
+# - https://github.com/apache/shindig/blob/trunk/java/social-api/src/test/java/org/apache/shindig/social/dataservice/integration/TestUtils.java
+# - https://github.com/visionmedia/should.js/tree/#eql
+# - http://stackoverflow.com/questions/1068834/object-comparison-in-javascript
 
 if [ "$DYDRA_ACCOUNT" = "" ]
 then
   echo "no value present for DYDRA_ACCOUNT"
   exit 
 fi
-TEMP=`getopt -o "vq" -- "$@"`
+TEMP=`getopt -o "cqv" -- "$@"`
 eval set -- "$TEMP"
 while true; do
   case "$1" in
+    -c) MODE_CREATE="true"; shift;;
     -q) MODE_QUIET="true"; shift ;;
     -v) MODE_VERBOSE="true"; shift ;;
     --) shift; break;;
     *)
-      echo >&2 "usage: $0 [-q] [-v]"
+      echo >&2 "usage: $0 [-q] [-v] "
       exit 1;;
   esac
 done
 
-
-if [ "$1" == "" ]
+QUERY="$1"
+if [ "$QUERY" = "" ]
 then
   echo "no query was specified."
   exit 1
-else
-  QUERY="$1"
 fi
 
 DIR=`dirname $QUERY`
@@ -43,9 +59,12 @@ then
   echo -n "$TEST ... "
 fi
 
-# take each rdf file as the initial repository content
-# and set up the respective dataset
-find $DIR -name '*.nq' -or -name '*.nt' -or -name '*.rdf' -or -name '*.ttl' | while read INPUT; do setup-repository $INPUT; done;
+if [ "$MODE_CREATE" ]
+then
+  # take each rdf file as the initial repository content
+  # and set up the respective dataset
+  find $DIR -name '*.nq' -or -name '*.nt' -or -name '*.rdf' -or -name '*.ttl' | while read INPUT; do setup-repository $MODE_VERBOSE $DYDRA_ACCOUNT $INPUT; done;
+fi
 
 # then either run a specific test script or run the query
 if [ -e $DIR/run.sh ]
@@ -53,7 +72,6 @@ then
   (cd $DIR; sh run.sh > $RESULT ; cmp -s $RESULT expected.srj)
 else
   RESULT="result_$$.srj";  # per process to permit parallel test runs
-  # (cd $DIR; roqet -h "http://${DYDRA_TOKEN}:@${DYDRA_URL:7}/$DYDRA_ACCOUNT/${QUERY_REPOSITORY}/sparql" -s $QUERY_FILENAME > $RESULT; cmp -s $RESULT expected.srj)
   (cd $DIR;
    run-query $DYDRA_ACCOUNT/$QUERY_REPOSITORY $QUERY_FILENAME > $RESULT;
    if [ -e expected.srj ]

@@ -1,5 +1,7 @@
 #! /bin/sh
 
+# run-suite [ <ROOT-PATHNAME> ]
+#
 # run all test suites which are visible from the given root, or if none is specified, from the working directory.
 #
 # visibility is determined by the presence of a '.rq' query file in a directory. when that is true, 
@@ -17,10 +19,11 @@ then
   exit 
 fi
 
-TEMP=`getopt -o "vq" -- "$@"`
+TEMP=`getopt -o "cqv" -- "$@"`
 eval set -- "$TEMP"
 while true; do
   case "$1" in
+    -c) MODE_CREATE="true"; shift;;
     -q) MODE_QUIET="-q"; shift ;;
     -v) MODE_VERBOSE="-v"; shift ;;
     --) shift; break;;
@@ -42,7 +45,7 @@ cat /dev/null > tests-failed
 cat /dev/null > tests-succeeded
 
 # for each query.rq present, run a test in the respective directory
-find $ROOT -name '*.rq' | while read QUERY; do run-test $MODE_QUIET $MODE_VERBOSE $QUERY ; done
+find $ROOT -name '*.rq' | while read QUERY; do run-test $MODE_QUIET $MODE_VERBOSE $MODE_CREATE $QUERY ; done
 
 FAILED=(`wc -l tests-failed`)
 SUCCEEDED=(`wc -l tests-succeeded`)
@@ -52,3 +55,17 @@ then
 fi
 
 exit $FAILED 
+
+#
+# in order to use this with w3c suites, they need to be arranged in the proper way as those quites
+# lack one directory level, and place all queries together with shared input datasets and result
+# documents in a single directory. the steps to rearrange a w3c suite are
+# - start with the manifest
+# - for manifest create a directory for the  topic label
+# - for each entry in  the manifest, create a sub-directory for the entry's name.
+#   use the action and result aspects to generate the directory content
+# -- copy the query to that directory
+# -- copy any data to the directory - renaming it to correspond to the test
+# -- copy the result file - if it is xml, c14n ir and renaming to expected.srx. if it is 
+#    json, just rename it
+#! should change the test script to use any srx/srj file present
