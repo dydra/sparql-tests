@@ -1,0 +1,92 @@
+#! /bin/sh
+
+# run a single test in its own directory. the output is captures and compared byte-wise with the expected
+#   result. success requires identity.
+#
+# return 0 for success, otherwise 1
+
+
+if [ "$DYDRA_ACCOUNT" = "" ]
+then
+  echo "no value present for DYDRA_ACCOUNT"
+  exit 
+fi
+TEMP=`getopt -o "vq" -- "$@"`
+eval set -- "$TEMP"
+while true; do
+  case "$1" in
+    -q) MODE_QUIET="true"; shift ;;
+    -v) MODE_VERBOSE="true"; shift ;;
+    --) shift; break;;
+    *)
+      echo >&2 "usage: $0 [-q] [-v]"
+      exit 1;;
+  esac
+done
+
+
+if [ "$1" == "" ]
+then
+  echo "no query was specified."
+  exit 1
+else
+  QUERY="$1"
+fi
+
+DIR=`dirname $QUERY`
+TEST=`basename $DIR`
+QUERY_FILENAME=`basename $QUERY`
+QUERY_REPOSITORY=${QUERY_FILENAME%.*}
+
+if [ "$MODE_VERBOSE" ]
+then
+  echo -n "$TEST ... "
+fi
+
+# take each rdf file as the initial repository content
+# and set up the respective dataset
+find $DIR -name '*.nq' -or -name '*.nt' -or -name '*.rdf' -or -name '*.ttl' | while read INPUT; do setup-repository $INPUT; done;
+
+# then either run a specific test script or run the query
+if [ -e $DIR/run.sh ]
+then
+  (cd $DIR; sh run.sh > $RESULT ; cmp -s $RESULT expected.srj)
+else
+  RESULT="result_$$.srj";  # per process to permit parallel test runs
+  # (cd $DIR; roqet -h "http://${DYDRA_TOKEN}:@${DYDRA_URL:7}/$DYDRA_ACCOUNT/${QUERY_REPOSITORY}/sparql" -s $QUERY_FILENAME > $RESULT; cmp -s $RESULT expected.srj)
+  (cd $DIR;
+   run-query $DYDRA_ACCOUNT/$QUERY_REPOSITORY $QUERY_FILENAME > $RESULT;
+   if [ -e expected.srj ]
+   then
+     cmp -s $RESULT expected.srj
+   else
+     cp $RESULT expected.srj
+   fi;
+   )
+fi
+
+SUCCESS=$?
+(cd $DIR; mv $RESULT result.srj) # save the last result
+
+if [ $SUCCESS == 0 ]
+then
+  echo $DIR >> tests-succeeded
+  if [ "$MODE_VERBOSE" ]
+  then
+    echo "$TEST succeeded"
+  elif [ ! "$MODE_QUIET" ]
+  then
+    echo -n "+"
+  fi
+else
+  echo $DIR >> tests-failed 
+  if [ "$MODE_VERBOSE" ]
+  then
+    echo "$QUERY failed"
+  elif [ ! "$MODE_QUIET" ]
+  then
+    echo -n "-"
+  fi
+fi
+exit $SUCCESS
+

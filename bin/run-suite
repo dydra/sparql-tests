@@ -1,0 +1,54 @@
+#! /bin/sh
+
+# run all test suites which are visible from the given root, or if none is specified, from the working directory.
+#
+# visibility is determined by the presence of a '.rq' query file in a directory. when that is true, 
+# - the setup-repository script runs for each rdf document in the respective directory. this
+#   uses the respective filename stem, ensures that a repository exits of that name with that content.
+# - the run-query script runs for the query file. the output is captures and compared byte-wise with the expected
+#   result. success requires identity.
+#
+# a test suite run returns 0 for success, otherwise the count of failures
+
+
+if [ "$DYDRA_ACCOUNT" = "" ]
+then
+  echo "no value present for DYDRA_ACCOUNT"
+  exit 
+fi
+
+TEMP=`getopt -o "vq" -- "$@"`
+eval set -- "$TEMP"
+while true; do
+  case "$1" in
+    -q) MODE_QUIET="-q"; shift ;;
+    -v) MODE_VERBOSE="-v"; shift ;;
+    --) shift; break;;
+    *)
+      echo >&2 "usage: $0 [-q] [-v]"
+      exit 1;;
+  esac
+done
+
+if [ "$1" != "" ]
+then
+  ROOT="$1"
+else
+  ROOT=.
+fi
+
+# count externally to cope with shell's incapacity
+cat /dev/null > tests-failed
+cat /dev/null > tests-succeeded
+
+# for each query.rq present, run a test in the respective directory
+find $ROOT -name '*.rq' | while read QUERY; do run-test $MODE_QUIET $MODE_VERBOSE $QUERY ; done
+
+FAILED=(`wc -l tests-failed`)
+SUCCEEDED=(`wc -l tests-succeeded`)
+if [ ! "$MODE_QUIET" ]
+then
+  echo " succeeded ${SUCCEEDED[0]}, failed ${FAILED[0]}"
+fi
+
+exit $FAILED 
