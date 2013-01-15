@@ -1,0 +1,3 @@
+{ "head": { "vars": [ "COUNT1" ] },
+   "results": {
+   "bindings": [ { "COUNT1": {"type":"typed-literal", "datatype":"http://www.w3.org/2001/XMLSchema#integer", "value":"422"} } ] } }
