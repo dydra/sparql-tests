@@ -49,16 +49,10 @@ select * where {
               :z => RDF::URI('http://example/c'),
           },
           { 
-              :z => RDF::URI('http://example/c'),
-          },
-          { 
               :z => RDF::URI('http://example/z'),
           },
           { 
               :z => RDF::URI('http://example/b'),
-          },
-          { 
-              :z => RDF::URI('http://example/z'),
           },
       ]
 
