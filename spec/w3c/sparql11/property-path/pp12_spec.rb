@@ -53,9 +53,6 @@ in:a (ex:p1/ex:p2)+ ?x
           { 
               :x => RDF::URI('http://www.example.org/instance#c'),
           },
-          { 
-              :x => RDF::URI('http://www.example.org/instance#c'),
-          },
       ]
 
 
