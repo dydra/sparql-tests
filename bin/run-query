@@ -31,8 +31,12 @@ then
   AUTHENTICATION="${DYDRA_TOKEN}:@"
 fi
 
+# echo DYDRA_URL $DYDRA_URL
+# echo DYDRA_ACCOUNT $DYDRA_ACCOUNT
+# echo REPO $REPO
+# echo QUERY $QUERY
 
-# (cd $DIR; roqet -p "http://${DYDRA_TOKEN}:@${DYDRA_URL:7}/$DYDRA_ACCOUNT/${QUERY_REPOSITORY}/sparql" "file://$QUERY" > $RESULT; cmp -s $RESULT expected.srj)
+# (cd $DIR; roqet -p "http://${DYDRA_TOKEN}:@${DYDRA_URL:7}/$DYDRA_ACCOUNT/${REP}/sparql" "file://$QUERY" > $RESULT; cmp -s $RESULT expected.srj)
 
 (echo -n "query=" ; cat $QUERY) | \
 curl -s -L -X POST -H "Accept: application/sparql-results+json" --data-urlencode @- \

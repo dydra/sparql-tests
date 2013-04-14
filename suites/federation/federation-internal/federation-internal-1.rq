@@ -1,5 +1,5 @@
 select (count(*) as ?count)
-where { ?s ?p ?o .
+where {
  service <http://localhost/jhacker/basic-term-1> {
   ?s ?p ?o .
  }

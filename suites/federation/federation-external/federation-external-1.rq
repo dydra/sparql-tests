@@ -1,0 +1,8 @@
+prefix federationMode: <urn:dydra:external>
+
+select (count(*) as ?count)
+where {
+ service <http://dydra.com/jhacker/foaf/sparql> {
+  select * where { ?s ?p ?o } limit 10
+ }
+}
