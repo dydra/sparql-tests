@@ -70,7 +70,7 @@ then
   echo " succeeded ${SUCCEEDED[0]}, failed ${FAILED[0]}"
 fi
 
-exit ${FAILED[0]
+exit ${FAILED[0]}
 
 #
 # in order to use this with w3c suites, they need to be arranged in the proper way as those quites
