@@ -32,9 +32,9 @@ TEMP=`getopt -o "cqv" -- "$@"`
 eval set -- "$TEMP"
 while true; do
   case "$1" in
-    -c) MODE_CREATE="true"; shift;;
-    -q) MODE_QUIET="true"; shift ;;
-    -v) MODE_VERBOSE="true"; shift ;;
+    -c) MODE_CREATE="-c"; shift;;
+    -q) MODE_QUIET="-q"; shift ;;
+    -v) MODE_VERBOSE="-v"; shift ;;
     --) shift; break;;
     *)
       echo >&2 "usage: $0 [-q] [-v] "
@@ -56,7 +56,10 @@ QUERY_REPOSITORY=${QUERY_FILENAME%.*}
 
 if [ "$MODE_VERBOSE" ]
 then
-  echo -n "$TEST ... "
+  echo "$TEST ... "
+  echo "-------"
+  cat $QUERY_FILENAME
+  echo "-------"
 fi
 
 if [ "$MODE_CREATE" ]

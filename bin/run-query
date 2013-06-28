@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # run-query <REPOSITORY-ID> <QUERY-PATHNAME>
 #
@@ -7,6 +7,19 @@
 # environment :
 # DYDRA_TOKEN : account authentication token
 # DYDRA_URL : host http url 
+
+TEMP=`getopt -o "cqv" -- "$@"`
+eval set -- "$TEMP"
+while true; do
+  case "$1" in
+    -q) MODE_QUIET="-q"; shift ;;
+    -v) MODE_VERBOSE="-v"; shift ;;
+    --) shift; break;;
+    *)
+      echo >&2 "usage: $0 [-q] [-v] "
+      exit 1;;
+  esac
+done
 
 REPO="$1"
 QUERY="$2"
@@ -25,16 +38,26 @@ if [ "$DYDRA_URL" = "" ]
 then
   echo "no host url was specified."
   exit 1
+else
+  DYDRA_HOSTNAME="${DYDRA_URL:7}"
 fi
 if [ "$DYDRA_TOKEN" ]
 then
   AUTHENTICATION="${DYDRA_TOKEN}:@"
 fi
 
+if [ "$MODE_VERBOSE" ]
+then
+  echo " --- " $QUERY
+  cat $QUERY
+  echo " ---"
+fi
 
 # (cd $DIR; roqet -p "http://${DYDRA_TOKEN}:@${DYDRA_URL:7}/$DYDRA_ACCOUNT/${QUERY_REPOSITORY}/sparql" "file://$QUERY" > $RESULT; cmp -s $RESULT expected.srj)
 
-(echo -n "query=" ; cat $QUERY) | \
-curl -s -L -X POST -H "Accept: application/sparql-results+json" --data-urlencode @- \
-  -H "Content-Type: application/x-www-form-urlencoded" \
- "http://${AUTHENTICATION}${DYDRA_URL:7}/${REPO}/sparql"
+# (echo -n "query=" ; cat $QUERY) | tee /dev/tty | \
+ curl -v  -s -L -X POST -H "Accept: application/sparql-results+json" --data @${QUERY} \
+ -H "Content-Type: application/sparql-update"\
+ "http://${AUTHENTICATION}${DYDRA_HOSTNAME}/${REPO}/sparql"
+
+#   -H "Content-Type: application/x-www-form-urlencoded" \

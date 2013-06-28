@@ -23,7 +23,7 @@ TEMP=`getopt -o "cqv" -- "$@"`
 eval set -- "$TEMP"
 while true; do
   case "$1" in
-    -c) MODE_CREATE="true"; shift;;
+    -c) MODE_CREATE="-c"; shift;;
     -q) MODE_QUIET="-q"; shift ;;
     -v) MODE_VERBOSE="-v"; shift ;;
     --) shift; break;;
