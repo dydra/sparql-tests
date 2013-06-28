@@ -1,0 +1,10 @@
+_:a <http://xmlns.com/foaf/0.1/mbox>   <mailto:alice@example.net> .
+_:a <http://xmlns.com/foaf/0.1/name>   "Alice" .
+_:a <http://xmlns.com/foaf/0.1/nick>   "WhoMe?" .
+
+_:b <http://xmlns.com/foaf/0.1/mbox>   <mailto:bert@example.net> .
+_:b <http://xmlns.com/foaf/0.1/name>   "Bert" .
+
+_:e <http://xmlns.com/foaf/0.1/mbox>   <mailto:eve@example.net> .
+_:e <http://xmlns.com/foaf/0.1/nick>   "DuckSoup" .
+<mailto:eve@example.net> <http://example.org/provider> "NSA" .

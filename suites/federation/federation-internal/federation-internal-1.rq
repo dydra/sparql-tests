@@ -1,0 +1,6 @@
+select (count(*) as ?count)
+where {
+ service <http://localhost/jhacker/basic-term-1> {
+  ?s ?p ?o .
+ }
+}

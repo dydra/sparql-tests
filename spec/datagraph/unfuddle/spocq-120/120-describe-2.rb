@@ -22,7 +22,7 @@ where { ?s <http://www.example.org/schema#p> ?o }
 }
     end
 
-    example "describe subject 2" do
+    example "describe subject 2 with blank nodes" do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

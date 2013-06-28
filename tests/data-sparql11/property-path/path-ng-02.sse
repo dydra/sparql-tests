@@ -1,7 +1,0 @@
-(select
- (filter
-  (graph ?::g
-         (bgp
-           (triple ?:s ^<http://www.example.org/p1>{0,} ?:t)))
-  (= ?::g <ng-01.ttl>))
- (?:t))

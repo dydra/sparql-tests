@@ -37,7 +37,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test rdfs:subPropertyOf", :w3c_status => 'unapproved' do
+    example "RDFS inference test rdfs:subPropertyOf", :w3c_status => 'unapproved', :implementation => 'nyi' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

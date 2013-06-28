@@ -54,7 +54,7 @@ WHERE
 }
     end
 
-    example "str-2", :arithmetic => 'native' do
+    example "str-2 native", :arithmetic => 'native' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

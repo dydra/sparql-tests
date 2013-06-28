@@ -1,5 +1,0 @@
-(ask
- (bgp
-   (triple <http://www.example.org/instance#b>
-           ^^<http://www.example.org/schema#p>
-           <http://www.example.org/instance#a>)))

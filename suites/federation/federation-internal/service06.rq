@@ -1,0 +1,12 @@
+#  optional join through two federated sub-queries, but the second fails silently
+
+select * # (count(*) as ?count)
+where {
+  service <http://localhost/jhacker/basic-term-1> {
+    ?s ?p1 ?o1 . }
+  optional {
+    service silent <http://localhost/jhacker/basic-term-1-invalid> {
+      ?s ?p2 ?o2 .
+    }
+  }
+}

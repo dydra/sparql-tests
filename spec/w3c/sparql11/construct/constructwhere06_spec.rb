@@ -16,7 +16,7 @@ describe "W3C test" do
       @data = "" 
     end
 
-    example "constructwhere06 - CONSTRUCT WHERE", :w3c_status => 'approved' do
+    example "constructwhere06 - CONSTRUCT WHERE negative syntax", :w3c_status => 'approved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}
@@ -24,7 +24,7 @@ describe "W3C test" do
       repository = 'construct-constructwhere06'
 
       sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :select).should raise_error
+                   :repository => repository, :form => :construct).should raise_error
     end
   end
 end

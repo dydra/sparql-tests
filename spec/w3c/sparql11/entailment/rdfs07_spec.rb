@@ -38,7 +38,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test range", :status => 'bug', :w3c_status => 'unapproved' do
+    example "RDFS inference test range",:w3c_status => 'unapproved', :implementation => 'nyi' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

@@ -40,7 +40,7 @@ WHERE {
 }
     end
 
-    example "RDFS inference test transitivity of subPropertyOf", :status => 'bug', :w3c_status => 'unapproved' do
+    example "RDFS inference test transitivity of subPropertyOf", :w3c_status => 'unapproved', :implementation => 'nyi' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

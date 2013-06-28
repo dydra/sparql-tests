@@ -16,7 +16,7 @@ describe "W3C test" do
       @data = ""; 
     end
 
-    example "DELETE INSERT 3", :w3c_status => 'approved' do
+    example "DELETE INSERT 3 negative syntax", :w3c_status => 'approved' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

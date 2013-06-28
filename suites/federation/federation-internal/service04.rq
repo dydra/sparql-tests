@@ -1,0 +1,11 @@
+#  optional join through two federated sub-queries
+
+select (count(*) as ?count)
+where {
+  ?s ?p1 ?o1 .
+  optional {
+    service <http://localhost/jhacker/basic-term-1> {
+      ?s ?p2 ?o2 .
+    }
+  }  BINDINGS ?o2 { (5) }
+}

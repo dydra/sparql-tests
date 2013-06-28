@@ -44,8 +44,34 @@ fi
 cat /dev/null > tests-failed
 cat /dev/null > tests-succeeded
 
-# for each query.rq present, run a test in the respective directory
-find $ROOT -name '*.rq' | while read QUERY; do run-test $MODE_QUIET $MODE_VERBOSE $MODE_CREATE $QUERY ; done
+# for each .sh present, run a test in the respective directory
+find $ROOT -name '*.sh' | while read TEST_SCRIPT; do
+ pushd `dirname $TEST_SCRIPT`
+ bash $MODE_QUIET $MODE_VERBOSE $MODE_CREATE $TEST_SCRIPT ;
+ RESULT=$?
+
+ if [ $RESULT == 0 ]
+ then
+   echo $TEST_SCRIPT >> tests-succeeded
+   if [ "$MODE_VERBOSE" ]
+   then
+     echo "$TEST_SCRIPT succeeded"
+   elif [ ! "$MODE_QUIET" ]
+   then
+     echo -n "+"
+   fi
+  else
+    echo $TEST_SCRIPT >> tests-failed 
+    if [ "$MODE_VERBOSE" ]
+    then
+      echo "$TEST_SCRIPT failed"
+    elif [ ! "$MODE_QUIET" ]
+    then
+      echo -n "-"
+    fi
+  fi
+  popd
+done
 
 FAILED=(`wc -l tests-failed`)
 SUCCEEDED=(`wc -l tests-succeeded`)
@@ -54,7 +80,7 @@ then
   echo " succeeded ${SUCCEEDED[0]}, failed ${FAILED[0]}"
 fi
 
-exit $FAILED 
+exit ${FAILED[0]}
 
 #
 # in order to use this with w3c suites, they need to be arranged in the proper way as those quites

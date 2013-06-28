@@ -1,0 +1,6 @@
+select *
+where {
+  ?s ?p ?o .
+}
+offset 2
+

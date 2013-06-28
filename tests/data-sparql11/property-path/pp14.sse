@@ -1,6 +1,0 @@
-(select
- (order
-  (bgp
-    (triple ?:X ^<http://xmlns.com/foaf/0.1/knows>{0,} ?:Y))
-  (?:X ?:Y))
- (?:X ?:Y))

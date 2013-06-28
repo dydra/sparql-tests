@@ -1,6 +1,0 @@
-(select
- (bgp
-   (triple ?:X ^<http://www.example.org/p>{0,0} "o")
-   (triple ?:Y ^<http://www.example.org/p>{0,0} <http://www.example.org/o>)
-   (triple <http://www.example.org/s> ^<http://www.example.org/p>{0,0} ?:Z))
- (?:X ?:Y ?:Z))

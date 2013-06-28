@@ -11,7 +11,7 @@ require 'spec_helper'
 # This is a W3C test from the DAWG test suite:
 # http://www.w3.org/2001/sw/DataAccess/tests/r2#rdfs05
 #
-# This test is approved: 
+# 2012-04-20: added requisite rdfs axiom
 # 
 #
 describe "W3C test" do
@@ -26,6 +26,8 @@ describe "W3C test" do
  :x rdf:type :c .
  :c rdfs:subClassOf :d .
 
+ rdf:type rdfs:range rdfs:Class .
+ rdfs:subClassOf rdfs:range rdfs:Class .
 }
       @query = %q{
 PREFIX     :  <http://example.org/x/>
@@ -38,7 +40,7 @@ WHERE { ?x rdf:type ?c . ?c rdfs:subClassOf :d }
 }
     end
 
-    example "RDFS inference test subClassOf", :status => 'bug', :w3c_status => 'unapproved' do
+    example "RDFS inference test subClassOf", :w3c_status => 'unapproved', :implementation => 'nyi' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

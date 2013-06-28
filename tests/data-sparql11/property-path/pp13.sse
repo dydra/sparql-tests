@@ -1,6 +1,0 @@
-(select
- (order
-  (bgp
-    (triple ?:X ^<http://ex.org/p>{0,0} ?:Y))
-  (?:X))
- (?:X ?:Y))

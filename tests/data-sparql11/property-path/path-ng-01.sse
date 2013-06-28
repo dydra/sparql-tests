@@ -1,5 +1,0 @@
-(select
- (graph <ng-01.ttl>
-        (bgp
-          (triple ?:s ^<http://www.example.org/p1>{0,} ?:t)))
- (?:t))

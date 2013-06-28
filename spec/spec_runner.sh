@@ -3,7 +3,7 @@
 PASSES=1
 CLIENTS=1
 FORMATTER=""
-TAGS='--tag ~reduced:all --tag ~arithmetic:literal  --tag ~blank_nodes:unique  --tag ~values:lexical --tag ~status:bug --tag ~tz:zoned --tag ~string:typed --tag ~date:unsupported --tag ~undefined:unbound --tag ~join:full'
+TAGS='--tag ~reduced:all --tag ~arithmetic:literal  --tag ~blank_nodes:unique  --tag ~values:lexical --tag ~status:bug --tag ~tz:zoned --tag ~string:typed --tag ~date:unsupported --tag ~undefined:unbound --tag ~join:full --tag ~implementation:nyi'
 ARGUMENTS=`getopt -o "c:p:f:t:" -- "$@"`
 eval set -- "$ARGUMENTS"
 while true; do

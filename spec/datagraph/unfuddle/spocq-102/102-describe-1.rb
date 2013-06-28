@@ -26,7 +26,7 @@ describe <http://www.example.org/instance#a>
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = '102-describe'
+      repository = '102-describe-1'
       expected = RDF::Graph.new do |graph|
         graph << RDF::Statement.new(
           :subject => RDF::URI('http://www.example.org/instance#a'),
