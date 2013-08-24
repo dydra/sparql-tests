@@ -42,7 +42,7 @@ then
   then
     echo "created $ACCOUNT/$REPOSITORY"
   fi
-  dydra import --base_uri http://dydra.com $ACCOUNT/$REPOSITORY $INPUT
+  dydra import --base-uri http://dydra.com $ACCOUNT/$REPOSITORY $INPUT
   if [ "$MODE_VERBOSE" ]
   then
     echo "imported $INPUT"
