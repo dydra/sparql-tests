@@ -6,6 +6,6 @@
 # DYDRA_REPOSITORY : individual repository
 
 curl -f -s -S -X DELETE \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/${DYDRA_REPOSITORY}?graph=default \
+     $DYDRA_URL/${DYDRA_ACCOUNT}/${DYDRA_REPOSITORY}?default \
  | diff -q - DELETE-response.txt > /dev/null
 

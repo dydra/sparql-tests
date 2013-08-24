@@ -5,9 +5,9 @@
 # DYDRA_URL : host http url 
 # DYDRA_REPOSITORY : individual repository
 
-curl -f -s -S -X POST \
+curl -f -s -S -X PUT \
      -H "Content-Type: application/n-quads" \
-     -d POST-nquads.nq \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/statements \
- | diff -q - POST-nquads-response.txt > /dev/null
+     -d PUT-nquads.nq \
+     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY} \
+ | diff -q - PUT-response.txt > /dev/null
 

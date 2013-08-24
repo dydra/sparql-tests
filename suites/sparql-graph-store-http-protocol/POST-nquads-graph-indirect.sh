@@ -8,6 +8,6 @@
 curl -f -s -S -X POST \
      -H "Content-Type: application/n-quads" \
      -d POST-nquads.nq \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/statements \
- | diff -q - POST-nquads-response.txt > /dev/null
+     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}'?graph='$DYDRA_URL/${DYDRA_ACCOUNT}/${DYDRA_REPOSITORY}/example \
+ | diff -q - POST-response.nq > /dev/null
 
