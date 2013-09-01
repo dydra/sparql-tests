@@ -1,0 +1,17 @@
+{
+    "head": {
+        "vars": [
+            "contextID"
+        ]
+    },
+    "results": {
+        "bindings": [
+            {
+                "contextID": {
+                    "type": "uri",
+                    "value": "http://dydra.com/graph-name"
+                }
+            }
+        ]
+    }
+}

@@ -7,6 +7,6 @@
 
 curl -f -s -S -X GET\
      -H "Accept: application/nquads" \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/example \
+     $DYDRA_URL/${DYDRA_ACCOUNT}/${DYDRA_REPOSITORY}/example \
  | diff -q - GET-nquads-graph-response.nq > /dev/null
 

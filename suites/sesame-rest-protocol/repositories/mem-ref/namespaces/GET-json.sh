@@ -6,7 +6,8 @@
 # DYDRA_REPOSITORY : individual repository
 
 curl -f -s -S -X GET\
-     -H "Accept: application/json" \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/namespaces \
- | diff -q - GET-json-response.json > /dev/null
+     -H "Accept: application/sparql-results+json" \
+     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/namespaces?auth_token=${DYDRA_TOKEN} \
+ | json_reformat -m \
+ | diff -q - GET-response.json > /dev/null
 

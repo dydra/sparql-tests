@@ -7,5 +7,5 @@
 curl -f -s -S -X GET\
      -H "Accept: text/plain" \
      $DYDRA_URL/${DYDRA_ACCOUNT}/protocol \
- | diff -q - GET-plain.json > /dev/null
+ | diff -q - GET-response.txt > /dev/null
 

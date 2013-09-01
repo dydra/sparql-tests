@@ -7,6 +7,6 @@
 
 curl -f -s -S -X GET\
      -H "Accept: application/sparql-results+xml" \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/namespaces/rdf \
+     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/namespaces/rdf?auth_token=${DYDRA_TOKEN} \
  | diff -q - GET-xml-response.mxl > /dev/null
 
