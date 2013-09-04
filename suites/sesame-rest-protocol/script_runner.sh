@@ -1,13 +1,17 @@
 #! /bin/bash
 
 
-# test sesame rest interface
+# http api tests
 #
 # environment :
 # DYDRA_URL : host http url
 # DYDRA_ACCOUNT : account name
 # DYDRA_REPOSITORY : individual repository
-
+# DYDRA_TOKEN : the authentication token
+if [[ "" == "${DYDRA_URL}" ]]
+then
+  export DYDRA_URL="http://localhost"
+if
 export DYDRA_HOST=${DYDRA_URL:7}
 export DYDRA_ACCOUNT="openrdf-sesame"
 export DYDRA_REPOSITORY="mem-rdf"
@@ -19,15 +23,23 @@ then
   export DYDRA_IS_LOCAL=true
 fi
 DYDRA_ERRORS=0
-WD=`pwd`
 
+cat > /tmp/PUT.nq <<EOF
+<http://example.com/default-subject> <http://example.com/default-predicate> "default object" .
+<http://example.com/named-subject> <http://example.com/named-predicate> "named object" <http://dydra.com/graph-name> .
+EOF
 
+# provide an operator to restore the store to a known state
+# it presumes, that the statements PUT operator works
 initialize_repository () {
-    curl -f -s -S -X PUT \
-     -H "Content-Type: application/n-quads" --data-binary @${WD}/PUT.nq \
-     ${DYDRA_URL}/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/statements?auth_token=${DYDRA_TOKEN} 
+    curl -L -f -s -S -X PUT \
+     -H "Content-Type: application/n-quads" --data-binary @/tmp/PUT.nq \
+     ${DYDRA_URL}/${DYDRA_ACCOUNT}/${DYDRA_REPOSITORY}?auth_token=${DYDRA_TOKEN} 
 }
 
+# iterate over all '.sh' scripts in the current wd tree, run each, record if it succeeds
+# report and total failures.
+#
 # nb. the outer binding scope includes the loop for the "for in do" form,
 # but not the "while read do" due to the pipe
 #   find ./*/ -name '*.sh*' | while read file; do

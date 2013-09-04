@@ -6,6 +6,6 @@
 # DYDRA_REPOSITORY : individual repository
 
 curl -f -s -S -X DELETE \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/rdf-graphs/default \
+     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/rdf-graphs/sesame?auth_token=${DYDRA_TOKEN} \
  | diff -q - DELETE-response.txt > /dev/null
 

@@ -6,6 +6,6 @@
 
 curl -f -s -S -X GET\
      -H "Accept: text/plain" \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/size'?context=<http://example.org>' \
- | diff -q - GET-plain-context.json > /dev/null
+     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/size?auth_token=${DYDRA_TOKEN}'&context=http://dydra.com/graph-name' \
+ | diff -q - GET-response-context.txt > /dev/null
 
