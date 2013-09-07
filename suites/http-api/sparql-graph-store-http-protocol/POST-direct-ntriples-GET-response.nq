@@ -1,0 +1,3 @@
+<http://example.com/default-subject> <http://example.com/default-predicate> "default object" .
+<http://example.com/named-subject> <http://example.com/named-predicate> "named object" <http://dydra.com/graph-name> .
+<http://example.com/default-subject> <http://example.com/default-predicate> "default object . PUT.nt" <urn:uuid:8ef4329e-b3b3-4748-be56-27cf04c8f01e> .

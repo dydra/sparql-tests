@@ -4,25 +4,29 @@
 # http api tests
 #
 # environment :
-# DYDRA_URL : host http url
-# DYDRA_ACCOUNT : account name
-# DYDRA_REPOSITORY : individual repository
-# DYDRA_TOKEN : the authentication token
-if [[ "" == "${DYDRA_URL}" ]]
+# STORE_URL : host http url
+# STORE_ACCOUNT : account name
+# STORE_REPOSITORY : individual repository
+# STORE_TOKEN : the authentication token
+
+if [[ "" == "${STORE_URL}" ]]
 then
-  export DYDRA_URL="http://localhost"
-if
-export DYDRA_HOST=${DYDRA_URL:7}
-export DYDRA_ACCOUNT="openrdf-sesame"
-export DYDRA_REPOSITORY="mem-rdf"
-export DYDRA_TOKEN=`cat ~/.dydra/token-$(DYDRA_ACCOUNT}`
-export DYDRA_IS_LOCAL=false
-fgrep 127.0.0.1 /etc/hosts | fgrep -q ${DYDRA_HOST}
+  export STORE_URL="http://localhost"
+fi
+export STORE_HOST=${STORE_URL:7}
+export STORE_ACCOUNT="openrdf-sesame"
+export STORE_REPOSITORY="mem-rdf"
+export STORE_TOKEN=`cat ~/.dydra/token-${STORE_ACCOUNT}`
+export STORE_PREFIX="rdf"
+export STORE_DGRAPH="sesame"
+export STORE_IGRAPH="http://example.org"
+export STORE_IS_LOCAL=false
+fgrep 127.0.0.1 /etc/hosts | fgrep -q ${STORE_HOST}
 if [[ "$?" == "0" ]]
 then
-  export DYDRA_IS_LOCAL=true
+  export STORE_IS_LOCAL=true
 fi
-DYDRA_ERRORS=0
+STORE_ERRORS=0
 
 cat > /tmp/PUT.nq <<EOF
 <http://example.com/default-subject> <http://example.com/default-predicate> "default object" .
@@ -34,7 +38,7 @@ EOF
 initialize_repository () {
     curl -L -f -s -S -X PUT \
      -H "Content-Type: application/n-quads" --data-binary @/tmp/PUT.nq \
-     ${DYDRA_URL}/${DYDRA_ACCOUNT}/${DYDRA_REPOSITORY}?auth_token=${DYDRA_TOKEN} 
+     ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY}?auth_token=${STORE_TOKEN} 
 }
 
 # iterate over all '.sh' scripts in the current wd tree, run each, record if it succeeds
@@ -64,8 +68,8 @@ do
     echo "   ok"
   else
     echo "   failed";
-    (( DYDRA_ERRORS = $DYDRA_ERRORS + 1))
-    echo $DYDRA_ERRORS
+    (( STORE_ERRORS = $STORE_ERRORS + 1))
+    echo $STORE_ERRORS
   fi
   if [[ ! "${script_filename:0:4}" == "GET-" ]]
   then
@@ -73,9 +77,9 @@ do
   fi
 done
 
-if [[ "${DYDRA_ERRORS}" == "0" ]]
+if [[ "${STORE_ERRORS}" == "0" ]]
 then
-  echo "${DYDRA_ERRORS} errors"
+  echo "${STORE_ERRORS} errors"
 fi
 
-exit ${DYDRA_ERRORS}
+exit ${STORE_ERRORS}

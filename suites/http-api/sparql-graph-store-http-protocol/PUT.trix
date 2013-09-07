@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<graph>
+  <uri>http://dydra.com/put-graph-name</uri>
+  <triple>
+   <uri>http://example.com/default-subject</uri>
+   <uri>http://example.com/default-predicate</uri>
+   <plainLiteral>default object . PUT.nt</plainLiteral>
+  </triple>
+</graph>

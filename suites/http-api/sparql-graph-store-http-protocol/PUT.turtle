@@ -1,0 +1,4 @@
+<http://example.com/default-subject>
+    <http://example.com/default-predicate> "default object . PUT.nt" .
+
+
