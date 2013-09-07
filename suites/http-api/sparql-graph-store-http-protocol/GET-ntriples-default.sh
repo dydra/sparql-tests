@@ -6,7 +6,7 @@
 # DYDRA_REPOSITORY : individual repository
 
 curl -f -s -S -X GET\
-     -H "Accept: application/n-quads" \
+     -H "Accept: application/n-triples" \
      ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY}?auth_token=${STORE_TOKEN}\&default \
- | diff -q - GET-response.nt > /dev/null
+ | diff -q - GET-default--response.nt > /dev/null
 

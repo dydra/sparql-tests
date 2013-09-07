@@ -5,9 +5,8 @@
 # DYDRA_URL : host http url 
 # DYDRA_REPOSITORY : individual repository
 
-curl -f -s -S -X HEAD \
-     -H "Content-Type: application/nquads" \
-     -d PUT-nquads.nquads
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/rdf-graphs/default \
- | diff -q - HEAD-nquads-response.txt > /dev/null
+curl -f -s -S --head\
+     -H "Accept: application/n-quads" \
+     $STORE_URL/${STORE_ACCOUNT}/${STORE_REPOSITORY}?auth_token=${STORE_TOKEN} \
+ | fgrep -q "200 OK"
 

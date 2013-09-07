@@ -6,7 +6,7 @@
 # DYDRA_REPOSITORY : individual repository
 
 curl -f -s -S -X GET\
-     -H "Accept: application/n-quads" \
+     -H "Accept: application/n-triples" \
      $DYDRA_URL/${DYDRA_ACCOUNT}/${DYDRA_REPOSITORY}?auth_token=${STORE_TOKEN}\&graph=http://dydra.com/graph-name \
- | diff -q - GET-nquads-graph-response.nq > /dev/null
+ | diff -q - GET-triples-graph.nt > /dev/null
 

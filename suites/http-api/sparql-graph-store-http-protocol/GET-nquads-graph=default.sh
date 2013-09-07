@@ -7,6 +7,6 @@
 
 curl -f -s -S -X GET\
      -H "Accept: application/n-quads" \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/${DYDRA_REPOSITORY}?auth_token=${STORE_TOKEN}\&graph=http://dydra.com/graph-name \
- | diff -q - GET-nquads-graph-response.nq > /dev/null
+     ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY}?auth_token=${STORE_TOKEN}\&graph=default \
+ | diff -q - GET-response.nt > /dev/null
 
