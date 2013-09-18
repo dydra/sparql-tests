@@ -1,11 +1,11 @@
 #! /bin/bash
 
 # environment :
-# DYDRA_ACCOUNT : account name
-# DYDRA_URL : host http url 
+# STORE_ACCOUNT : account name
+# STORE_URL : host http url 
 
 curl -f -s -S -X GET\
      -H "Accept: text/plain" \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/size \
+     $STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/size?auth_token=${STORE_TOKEN} \
  | diff -q - GET-plain.json > /dev/null
 

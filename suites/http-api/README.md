@@ -116,6 +116,15 @@ and an indirect graph reference takes the form
 
     <HTTP-HOST>/<ACCOUNT-NAME>/<REPOSITORY-NAME>?graph=<graph>
 
+### graph store content types
+
+The `multipart/form-data` request content type described in the graph store
+[protocol](http://www.w3.org/TR/2013/REC-sparql11-http-rdf-update-20130321/#graph-management)
+is not supported. Each request must target an individual graph.
+
+The `application/x-www-form-url-encoded` request type is supported for `GET` requests only, as described in the sparql
+protocol for [query](http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321/#query-via-post-urlencoded)
+ and [update](http://www.w3.org/TR/2013/REC-sparql11-protocol-20130321/#update-via-post-urlencoded) operations. 
 
 ## triples, quads and named graph in import requests
 

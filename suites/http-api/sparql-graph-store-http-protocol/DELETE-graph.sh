@@ -1,11 +1,24 @@
 #! /bin/bash
 
+# test that delete with a graph removes just that content and leaves the default graph intact
+
 # environment :
-# DYDRA_ACCOUNT : account name
-# DYDRA_URL : host http url 
-# DYDRA_REPOSITORY : individual repository
+# STORE_ACCOUNT : account name
+# STORE_URL : host http url 
+# STORE_REPOSITORY : individual repository
 
-curl -f -s -S -X DELETE \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/${DYDRA_REPOSITORY}/example \
- | diff -q - DELETE-graph-response.txt > /dev/null
+curl -w "%{http_code}\n" -f -s -S -X DELETE\
+     -H "Accept: application/n-quads" \
+     $STORE_URL/${STORE_ACCOUNT}/${STORE_REPOSITORY}?auth_token=${STORE_TOKEN}\&graph=${STORE_NAMED_GRAPH} \
+ | fgrep -q "204 OK"
 
+if [[ "0" == "$rc" ]]
+then
+  curl -f -s -S -X GET\
+       -H "Accept: application/n-quads" \
+       ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY}?auth_token=${STORE_TOKEN} \
+   | diff -q - GET-response.nt > /dev/null ;
+  rc=$?
+fi
+
+exit  $rc 
