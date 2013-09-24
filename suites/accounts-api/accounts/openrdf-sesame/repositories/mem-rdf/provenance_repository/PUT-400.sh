@@ -12,6 +12,6 @@ curl -X PUT \
      --data-binary @- \
      ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/provenance_repository?auth_token=${STORE_TOKEN} <<EOF \
  | fgrep -q 400
-{"undefined_variable_behaviour":"urn:dydra:error-not"}
+{"provenance_repository":"urn:dydra:error-not"}
 EOF
 

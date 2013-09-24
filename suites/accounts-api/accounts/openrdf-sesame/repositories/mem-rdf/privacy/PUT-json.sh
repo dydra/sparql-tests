@@ -14,38 +14,15 @@ curl -w "%{http_code}\n" -f -s -X PUT \
 {"permissable_ip_addresses":["192.168.1.1", "192.168.1.2"],"privacy_setting": 5}
 EOF
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -f -s -S -X GET\
      -H "Accept: application/json" \
      ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN} \
  | json_reformat -m | fgrep '"privacy_setting":5' | fgrep -q '192.168.1.2'
-rc=$?
 
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
-curl -w "%{http_code}\n" -f -s -X PUT \
-     -H "Content-Type: application/json" \
-     --data-binary @- \
-     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN} <<EOF \
- | fgrep -q "204"
-{"permissable_ip_addresses":["192.168.1.1"],"privacy_setting":1}
-EOF
+initialize_privacy | fgrep -q "204"
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -f -s -S -X GET\
      -H "Accept: application/json" \

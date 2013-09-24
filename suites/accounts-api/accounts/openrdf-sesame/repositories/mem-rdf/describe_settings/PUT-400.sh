@@ -15,12 +15,6 @@ curl -X PUT \
 {"describe_form":"urn:rdfcache:simple-symmetric-concise-bounded-description-not","describe_object_depth":1,"describe_subject_depth":"1"}
 EOF
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -X PUT \
      -w "%{http_code}\n" -f -s \
@@ -31,12 +25,6 @@ curl -X PUT \
 {"describe_form":"urn:rdfcache:simple-concise-bounded-description","describe_object_depth":"a","describe_subject_depth":"1"}
 EOF
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -X PUT \
      -w "%{http_code}\n" -f -s \
@@ -47,10 +35,6 @@ curl -X PUT \
 {"describe_form":"urn:rdfcache:simple-inverse-concise-bounded-description","describe_object_depth":1,"describe_subject_depth":"a"}
 EOF
 
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -w "%{http_code}\n" -f -s -X DELETE \
      ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/describe_settings?auth_token=${STORE_TOKEN} \

@@ -14,13 +14,6 @@ curl -w "%{http_code}\n" -f -s -X PUT \
 {"permissable_ip_addresses":["192.168.1.1", "192..168.1.2"],"privacy_setting": 5}
 EOF
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
-
 
 curl -w "%{http_code}\n" -f -s -X PUT \
      -H "Content-Type: application/json" \

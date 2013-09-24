@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# cycle the privacy setting to test success
+# cycle various about setting and test success
 # environment :
 # STORE_ACCOUNT : account name
 # STORE_URL : host http url 
@@ -9,43 +9,27 @@
 curl -w "%{http_code}\n" -f -s -X PUT \
      -H "Content-Type: application/x-www-form-urlencoded" \
      --data-urlencode @- \
-     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN}<<EOF \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/about?auth_token=${STORE_TOKEN}<<EOF \
  | fgrep -q "204"
-_method=PUT&repository[summary]=three word summary&repository[licene_url]=http://unlicense.org
+_method=PUT&repository[summary]=three word summary&repository[license_url]=http://creativecommons.org/publicdomain/zero/1.0
 EOF
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -f -s -S -X GET\
      -H "Accept: application/json" \
-     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN} \
- | json_reformat -m | fgrep -q '{"privacy":5}'
-rc=$?
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/about?auth_token=${STORE_TOKEN} \
+ | json_reformat -m | fgrep mem-rdf | fgrep commons | fgrep -q three
 
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
-curl -w "%{http_code}\n" -f -s -X PUT \
-     -H "Content-Type: application/json" \
-     --data-binary @PUT-1.json \
-     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN} \
- | fgrep -q "204"
+initialize_about | fgrep -q 204
 
-rc=$?
 
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
-
-curl -f -s -S -X GET\
+curl -f -s -S -X GET \
      -H "Accept: application/json" \
-     ${STORE_URL}/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN} \
- | json_reformat -m | fgrep -q '{"privacy":1}'
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/about?auth_token=${STORE_TOKEN} \
+   | json_reformat -m \
+   | fgrep '"name":"mem-rdf"' \
+   | fgrep '"homepage":"http://example.org/test"' \
+   | fgrep '"summary":"a summary"' \
+   | fgrep '"description":"a description"' \
+   | fgrep -q '"license_url":"http://unlicense.org"'

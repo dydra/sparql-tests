@@ -48,6 +48,63 @@ initialize_repository_public () {
      -H "Content-Type: application/n-quads" --data-binary @/tmp/PUT.nq \
      ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY_PUBLIC}?auth_token=${STORE_TOKEN} 
 }
+function initialize_about () {
+curl -w "%{http_code}\n" -f -s -X PUT \
+     -H "Content-Type: application/json" \
+     -H "Accept: " \
+     --data-binary @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/about?auth_token=${STORE_TOKEN} <<EOF 
+{
+    "name": "mem-rdf",
+    "homepage": "http://example.org/test",
+    "summary": "a summary",
+    "description": "a description",
+    "license_url": "http://unlicense.org"
+ }
+EOF
+}
+
+function initialize_collaboration () {
+curl -w "%{http_code}\n" -f -s -X POST \
+     -H "Content-Type: application/json" \
+     -H "Accept: " \
+     --data-binary @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/collaborations?auth_token=${STORE_TOKEN} <<EOF
+{"collaborator": "jhacker",
+ "read": true,
+ "write": false
+ }
+EOF
+}
+
+function initialize_prefixes () {
+curl -w "%{http_code}\n" -f -s -X PUT \
+     -H "Content-Type: application/json" \
+     -H "Accept: " \
+     --data-binary @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/prefixes?auth_token=${STORE_TOKEN} <<EOF
+{"default_repository_prefixes":{"cc":"http://creativecommons.org/ns#","cert":"http://www.w3.org/ns/auth/cert#","dbp":"http://dbpedia.org/property/","dc":"http://purl.org/dc/terms/","dc11":"http://purl.org/dc/elements/1.1/","dcterms":"http://purl.org/dc/terms/","doap":"http://usefulinc.com/ns/doap#","exif":"http://www.w3.org/2003/12/exif/ns#","fn":"http://www.w3.org/2005/xpath-functions#","foaf":"http://xmlns.com/foaf/0.1/","geo":"http://www.w3.org/2003/01/geo/wgs84_pos#","geonames":"http://www.geonames.org/ontology#","gr":"http://purl.org/goodrelations/v1#","http":"http://www.w3.org/2006/http#","log":"http://www.w3.org/2000/10/swap/log#","owl":"http://www.w3.org/2002/07/owl#","rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#","rdfs":"http://www.w3.org/2000/01/rdf-schema#","rei":"http://www.w3.org/2004/06/rei#","rsa":"http://www.w3.org/ns/auth/rsa#","rss":"http://purl.org/rss/1.0/","sfn":"http://www.w3.org/ns/sparql#","sioc":"http://rdfs.org/sioc/ns#","skos":"http://www.w3.org/2004/02/skos/core#","swrc":"http://swrc.ontoware.org/ontology#","types":"http://rdfs.org/sioc/types#","wot":"http://xmlns.com/wot/0.1/","xhtml":"http://www.w3.org/1999/xhtml#","xsd":"http://www.w3.org/2001/XMLSchema#"}
+}
+EOF
+}
+
+function initialize_privacy () {
+curl -w "%{http_code}\n" -f -s -X PUT \
+     -H "Content-Type: application/json" \
+     --data-binary @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN} <<EOF
+{"permissable_ip_addresses":["192.168.1.1"],"privacy_setting":1}
+EOF
+}
+
+
+export -f initialize_repository
+export -f initialize_repository_public
+export -f initialize_about
+export -f initialize_collaboration
+export -f initialize_prefixes
+export -f initialize_privacy
+
 
 initialize_repository
 initialize_repository_public
@@ -74,7 +131,7 @@ do
   script_filename=`basename $script_pathname`
   script_directory=`dirname $script_pathname`
   ( cd $script_directory;
-    bash $script_filename;
+    bash -e $script_filename;
   )
   if [[ $? == "0" ]]
   then
@@ -82,10 +139,6 @@ do
   else
     echo "   failed";
     (( STORE_ERRORS = $STORE_ERRORS + 1))
-  fi
-  if [[ ! "${script_filename:0:4}" == "GET-" ]]
-  then
-    initialize_repository
   fi
 done
 

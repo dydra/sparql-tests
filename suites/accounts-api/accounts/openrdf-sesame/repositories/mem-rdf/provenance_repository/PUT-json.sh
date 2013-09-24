@@ -15,12 +15,6 @@ curl -f -s -S -X PUT \
 {"provenance_repository":"openrdf-sesame/public"}
 EOF
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -f -s -S -X GET\
      -H "Accept: application/json" \
@@ -29,10 +23,6 @@ curl -f -s -S -X GET\
 
 rc=$?
 
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -w "%{http_code}\n" -f -s -X DELETE \
      ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/provenance_repository?auth_token=${STORE_TOKEN} \

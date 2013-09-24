@@ -20,12 +20,6 @@ curl -f -s -S -X PUT \
 {"describe_form":"urn:rdfcache:simple-symmetric-concise-bounded-description","describe_object_depth":1,"describe_subject_depth":"1"}
 EOF
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -f -s -S -X GET\
      -H "Accept: application/json" \
@@ -35,23 +29,11 @@ curl -f -s -S -X GET\
  | fgrep '"describe_object_depth":1' \
  | fgrep -q '"describe_subject_depth":1'
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -w "%{http_code}\n" -f -s -X DELETE \
      ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/describe_settings?auth_token=${STORE_TOKEN} \
  | fgrep -q "204"
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 curl -X GET \
      -w "%{http_code}\n" -f -s \

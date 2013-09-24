@@ -1,1 +1,0 @@
-{"head":["account_name","read","write"],"results":{"bindings":[{"account_name":{"type":"literal","value":"jhacker"},"read":{"type":"literal","value":true},"write":{"type":"literal","value":false}}]}}

@@ -9,6 +9,7 @@
 # test reserved name
 curl -w "%{http_code}\n" -f -s -X PUT \
      -H "Content-Type: application/json" \
+     -H "Accept: " \
      --data-binary @- \
      ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/about?auth_token=${STORE_TOKEN} <<EOF \
    | fgrep -q "400"
@@ -17,12 +18,6 @@ curl -w "%{http_code}\n" -f -s -X PUT \
 }
 EOF
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 # test invlaid homepage syntax
 curl -w "%{http_code}\n" -f -s -X PUT \
@@ -35,12 +30,6 @@ curl -w "%{http_code}\n" -f -s -X PUT \
 }
 EOF
 
-rc=$?
-
-if [[ "0" != "$rc" ]]
-then
-  exit  $rc 
-fi
 
 # test invalid license
 curl -w "%{http_code}\n" -f -s -X PUT \
