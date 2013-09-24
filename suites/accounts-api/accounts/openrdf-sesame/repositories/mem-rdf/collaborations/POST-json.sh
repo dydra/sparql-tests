@@ -9,9 +9,13 @@
 curl -f -s -X POST \
      -H "Content-Type: application/json" \
      -H "Accept: application/json" \
-     --data-binary @POST-write.json \
-     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/collaborations?auth_token=${STORE_TOKEN} \
- | json_reformat -m | diff -q - POST-write-response.json > /dev/null
+     --data-binary @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/collaborations?auth_token=${STORE_TOKEN} <<EOF \
+ | json_reformat -m | fgrep '"account_name":"jhacker"' | fgrep -q '"write":true'
+{"collaborator": "jhacker",
+ "read": false,
+ "write": true }
+EOF
 
 rc=$?
 
@@ -23,7 +27,11 @@ fi
 curl -f -s -X POST \
      -H "Content-Type: application/json" \
      -H "Accept: application/json" \
-     --data-binary @POST-read.json \
-     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/collaborations?auth_token=${STORE_TOKEN} \
- | json_reformat -m | diff -q - POST-read-response.json > /dev/null
+     --data-binary @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/collaborations?auth_token=${STORE_TOKEN} <<EOF \
+ | json_reformat -m | fgrep '"account_name":"jhacker"' | fgrep -q '"write":false'
+{"collaborator": "jhacker",
+ "read": true,
+ "write": false }
+EOF
 

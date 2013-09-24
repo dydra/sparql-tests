@@ -7,5 +7,5 @@
 curl -f -s -S -X GET \
      -H "Accept: application/sparql-results+json" \
      $STORE_URL/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/collaborations?auth_token=${STORE_TOKEN} \
-  | json_reformat -m | diff -q - GET-response.srj > /dev/null
+  | json_reformat -m | diff -q - GET-response.srj
 

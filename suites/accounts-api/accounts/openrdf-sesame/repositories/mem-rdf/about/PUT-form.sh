@@ -8,9 +8,11 @@
 
 curl -w "%{http_code}\n" -f -s -X PUT \
      -H "Content-Type: application/x-www-form-urlencoded" \
-     --data-binary @PUT-5.www \
-     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN} \
+     --data-urlencode @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN}<<EOF \
  | fgrep -q "204"
+_method=PUT&repository[summary]=three word summary&repository[licene_url]=http://unlicense.org
+EOF
 
 rc=$?
 

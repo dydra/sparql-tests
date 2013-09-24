@@ -61,8 +61,10 @@ initialize_repository_public
 # this limits the test complement to the number of arguments the shell permits
 
 SCRIPTS="$1"
-if [[ "${SCRIPTS}" == "" ]]
+if [[ "${SCRIPTS}" != "" ]]
 then
+  SCRIPTS=`ls ${SCRIPTS}`
+else
   SCRIPTS=`find ./*/ -name '*.sh*'`
 fi
 
@@ -80,7 +82,6 @@ do
   else
     echo "   failed";
     (( STORE_ERRORS = $STORE_ERRORS + 1))
-    echo $STORE_ERRORS
   fi
   if [[ ! "${script_filename:0:4}" == "GET-" ]]
   then

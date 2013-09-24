@@ -1,4 +1,44 @@
-{
+#! /bin/bash
+
+# write privacy settings and test the immediate response;
+# test the get response and then cycle back to the original state
+#
+# STORE_ACCOUNT : account name
+# STORE_URL : host http url 
+# STORE_REPOSITORY : individual repository
+
+curl -w "%{http_code}\n" -f -s -X PUT \
+     -H "Content-Type: application/x-www-form-urlencoded" \
+     --data-urlencode @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN} <<EOF \
+ | fgrep -q "204"
+_method=PUT&repository[default_repository_prefixes]=PREFIX xx: <http://xx.com> PREFIX yy: <http://zz.com> PREFIX zz2: <http://zz2.com>
+EOF
+
+rc=$?
+
+if [[ "0" != "$rc" ]]
+then
+  exit  $rc 
+fi
+
+curl -f -s -S -X GET \
+     -H "Accept: application/json" \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/privacy?auth_token=${STORE_TOKEN} \
+ | json_reformat -m | fgrep 'PREFIX xx' 
+rc=$?
+
+if [[ "0" != "$rc" ]]
+then
+  exit  $rc 
+fi
+
+curl -w "%{http_code}\n" -f -s -X PUT \
+     -H "Content-Type: application/json" \
+     --data-binary @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/prefixes?auth_token=${STORE_TOKEN} <<EOF \
+ | fgrep -q "204"
+{"default_repository_prefixes":{
     "cc": "http:\/\/creativecommons.org\/ns#",
     "cert": "http:\/\/www.w3.org\/ns\/auth\/cert#",
     "dbp": "http:\/\/dbpedia.org\/property\/",
@@ -28,4 +68,5 @@
     "wot": "http:\/\/xmlns.com\/wot\/0.1\/",
     "xhtml": "http:\/\/www.w3.org\/1999\/xhtml#",
     "xsd": "http:\/\/www.w3.org\/2001\/XMLSchema#"
-}
+}}
+EOF

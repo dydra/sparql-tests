@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# cycle the privacy setting to test success
+# delete collaboarations 
 # environment :
 # STORE_ACCOUNT : account name
 # STORE_URL : host http url 
@@ -11,7 +11,7 @@ curl -f -s -X DELETE \
      -H "Accept: application/json" \
      --data-binary @DELETE.json \
      ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/collaborations?auth_token=${STORE_TOKEN}\&collaborator=jhacker \
-  | json_reformat -m | diff -q - DELETE-response.json > /dev/null
+  | json_reformat -m | fgrep -v -q '"account_name":"jhacker"'
 
 rc=$?
 
@@ -23,7 +23,10 @@ fi
 curl -f -s -X POST \
      -H "Content-Type: application/json" \
      -H "Accept: application/json" \
-     --data-binary @POST-read.json \
-     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/collaborations?auth_token=${STORE_TOKEN} \
- | json_reformat -m | diff -q - POST-read-response.json > /dev/null
-
+     --data-binary @- \
+     ${STORE_URL}/accounts/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/collaborations?auth_token=${STORE_TOKEN} <<EOF \
+ | json_reformat -m | fgrep '"account_name":"jhacker"' | fgrep -q '"write":false'
+{"collaborator": "jhacker",
+ "read": true,
+ "write": false }
+EOF
