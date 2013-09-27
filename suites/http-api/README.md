@@ -3,6 +3,7 @@
 
 These tests exercise the sesame rest api, as per the openrdf "http communication protocol"
 [description](http://www.openrdf.org/doc/sesame2/system/ch08.html)
+[or](http://openrdf.callimachus.net/sesame/2.7/docs/system.docbook?view#chapter-http-protocol)
 and the "sparlq 1.1 graph store http protocol", as per the
 [specification](http://www.w3.org/TR/sparql11-http-rdf-update/).
 
@@ -14,7 +15,7 @@ for the sesame protocol tests, the openrdf documentation examples should
 apply, as given in its documentation.
 
 For the v2.0 sesame protocol, the concrete resources, with reference to
-the described overview, are
+the described overview:
 
         ${STORE_URL}/${STORE_ACCOUNT}
         /protocol                : protocol version (GET)
@@ -32,6 +33,32 @@ the described overview, are
                                    in repository (GET/PUT/POST/DELETE)
             /namespaces          : overview of namespace definitions (GET/DELETE)
                 /${STORE_PREFIX} : namespace-prefix definition (GET/PUT/DELETE)
+
+The compact graph store patterns provide and alternative, less encumbered means
+to address the resource and its content:
+
+        ${STORE_URL}/${STORE_ACCOUNT}
+          /${STORE_REPOSITORY}
+          /${STORE_REPOSITORY}?default
+          /${STORE_REPOSITORY}?graph=${STORE_IGRAPH}
+          /${STORE_REPOSITORY}/${STORE_RGRAPH}
+
+
+In addition to these paths, the account and repository metadata is located along a path
+distinct from possible repository linked-data resources:
+
+        ${STORE_URL}/accounts/${STORE_ACCOUNT}
+        /repositories
+          /${STORE_REPOSITORY}
+            /settings            : name, homepage, summary, description, and license url
+            /collaborations      : enumerated collaborator account read/write privliges
+            /context_terms       : respective extent of the default and named graps
+            /describe_settings   : description mode and navigation depth
+            /prefixes            : default namespace prefix bindings (cf. sesame namespaces)
+            /privacy             : repository privacy setting
+            /provenance_repository : respective provenanace repository identifier
+            /undefined_variable_behaviour : disposition for queries with unbound variables
+
 
 The scripts test a subset of the accept formats
 - for repository content
@@ -86,7 +113,7 @@ user account and the repository name
     <HTTP-HOST>/<ACCOUNT-NAME>/repositories/<REPOSITORY-NAME>/service
     <HTTP-HOST>/<ACCOUNT-NAME>/repositories/<REPOSITORY-NAME>/<NAME>
 
-the consequence is that, in order to designate the repository as a whole, the request url must take a form
+the consequence is that, in order to designate the repository as a whole, the sesame request url must take a form
 
     <HTTP-HOST>/<ACCOUNT-NAME>/repositories/<REPOSITORY-NAME>/service?graph=<HTTP-HOST>/<ACCOUNT-NAME>/<REPOSITORY-NAME>
 
@@ -116,6 +143,14 @@ and an indirect graph reference takes the form
 
     <HTTP-HOST>/<ACCOUNT-NAME>/<REPOSITORY-NAME>?graph=<graph>
 
+## linked data designators
+
+In addition to the root repository graph, it is also possible to link directly to
+an arbitrary directly designated graph which extends beyon the root
+
+    <HTTP-HOST>/<ACCOUNT-NAME>/<REPOSITORY-NAME>/<FURTHER>/<PATH>/<STEPS>
+
+
 ### graph store content types
 
 The `multipart/form-data` request content type described in the graph store
@@ -132,68 +167,70 @@ The graph store management operations which involve an RDF payload - `PATCH`, `P
 permit a request to target a specific graph as described above, as well as to transfer graph content
 as trix or nquads in order to stipulate the target graph for statements in the payload document itself.
 The protocol and document specifications are not exclusive.
-When both appear, the graph encoded in the document supersedes that specified in the protocol request.
+When both appear, the graph encoded in the document supersedes that specified in the protocol request
+with respect to the destination graph, while the protocol graph specifies which graph ist to be cleared by a put
 The combinations yield the following effects:
 
 <table  border=0 cellpadding=2px cellspacing=0 >
 
 <td class=hd>
-<td >protocol graph designator<td  >statement graph designator<td  >content type<td  >effective graph</tr>
+<td >protocol graph designator<td  >content type<td  >statement graph designator<td  >effective graph</tr>
 <tr >
 <td class=hd>
-<td >-<td >-<td>n-triple, rdf<td >-</tr>
+<td >-<td>n-triple, rdf<td >-<td >-</tr>
 <tr >
 <td class=hd>
-<td >-<td >-<td>n-quad, trix<td >-</tr>
+<td >-<td>n-quad, trix<td >-<td >-</tr>
 <tr >
 <td class=hd>
-<td >-<td>&lt;statement&gt; : invalid<td>n-triple, rdf<td><i>skipped</i></tr>
+<td >-<td>n-triple, rdf<td>&lt;statement&gt; : invalid<td><i>skipped</i></tr>
 <tr >
 <td class=hd>
-<td >-<td>&lt;statement&gt;<td>n-quad, trix<td>&lt;statement&gt;</tr>
+<td >-<td>n-quad, trix<td>&lt;statement&gt;<td>&lt;statement&gt;</tr>
 <tr >
 <td class=hd>
-<td  >?default<td >-<td>n-triple, rdf<td >-</tr>
+<td  >?default<td>n-triple, rdf<td >-<td >-</tr>
 <tr >
 <td class=hd>
-<td  >?default<td >-<td>n-quad, trix<td >-</tr>
+<td  >?default<td>n-quad, trix<td >-<td >-</tr>
 <tr >
 <td class=hd>
-<td  >?default<td>&lt;statement&gt; : invalid<td>n-triple, rdf<td><i>skipped</i></tr>
+<td  >?default<td>n-triple, rdf<td>&lt;statement&gt; : invalid<td><i>skipped</i></tr>
 <tr >
 <td class=hd>
-<td  >?default<td>&lt;statement&gt;<td>n-quad, trix<td>&lt;statement&gt;</tr>
+<td  >?default<td>n-quad, trix<td>&lt;statement&gt;<td>&lt;statement&gt;</tr>
 <tr >
 <td class=hd>
-<td  >?graph=&lt;protocol&gt;<td >-<td>n-triple, rdf<td>&lt;protocol&gt;</tr>
+<td  >?graph=&lt;protocol&gt;<td>n-triple, rdf<td >-<td>&lt;protocol&gt;</tr>
 <tr >
 <td class=hd>
-<td  >?graph=&lt;protocol&gt;<td >-<td>n-quad, trix<td>&lt;protocol&gt;</tr>
+<td  >?graph=&lt;protocol&gt;<td>n-quad, trix<td >-<td>&lt;statement&gt;</tr>
 <tr >
 <td class=hd>
-<td  >?graph=&lt;protocol&gt;<td>&lt;statement&gt; : invalid<td>n-triple, rdf<td><i>skipped</i></tr>
+<td  >?graph=&lt;protocol&gt;<td>n-triple, rdf<td>&lt;statement&gt; : invalid<td><i>skipped</i></tr>
 <tr >
 <td class=hd>
-<td  >?graph=&lt;protocol&gt;<td>&lt;statement&gt;<td>n-quad, trix<td>&lt;statement&gt;</tr>
+<td  >?graph=&lt;protocol&gt;<td>n-quad, trix<td>&lt;statement&gt;<td>&lt;statement&gt;</tr>
 </table>
 
 
 In order to validate the results, one script exists for the PUT operations for
 each of the combinations, named according to the pattern
 
-  PUT-<protocolGraph>-<statementGraph>-<contentType>.sh
+  PUT-<protocolGraph>-<contentType>.sh
 
-which performs a PUT request of the respective graph and content combination
+which performs a PUT request of the respective graph and content type combination
 and validates the content of a subsequent GET
 against the expected store content. The combination features are indicated as
 
  - protocolGraph : direct, default, graph (indirect)
- - statementGraph : default, context
  - contentType : n-triples, n-quads, rdf, turtle, trix
 
 whereby, just the combinations for `PUT-direct` validate the full content type complement and,
 among these, the cases like `PUT-default-nquads` intend to demonstrate the
-effect when the payload content type does not correspond to the target graph.
+effect when the payload or request content type does not correspond to the protocol target graph.
+In addition, for ntriples and nguads content types, the acutual document contains both triples and quads
+in order to demonstrate the consequence of the statement's given content on its destination.
 
 <table>
 <tr><th>script</th><th>result</th><th>test</th></tr>

@@ -28,26 +28,50 @@ if [[ "$?" == "0" ]]
 then
   export STORE_IS_LOCAL=true
 fi
+
+export PUT_SUCCESS=201
+export POST_SUCCESS=201
+export DELETE_SUCCESS=204
+export STATUS_BAD_REQUEST=400
+export STATUS_UNAUTHORIZED=401
+export STATUS_NOT_ACCEPTABLE=406
+export STATUS_UNSUPPORTED_MEDIA=415
 STORE_ERRORS=0
 
-cat > /tmp/PUT.nq <<EOF
+
+# provide operators to restore aspects of the store to a known state
+# they presumes, that the various PUT operators work
+
+function initialize_repository () {
+curl -w "%{http_code}\n" -L -f -s -X PUT \
+     -H "Accept: application/n-quads" \
+     -H "Content-Type: application/n-quads" --data-binary @- \
+     ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY}?auth_token=${STORE_TOKEN} <<EOF
 <http://example.com/default-subject> <http://example.com/default-predicate> "default object" .
 <http://example.com/named-subject> <http://example.com/named-predicate> "named object" <${STORE_NAMED_GRAPH}> .
 EOF
+}
 
-# provide an operator to restore the store to a known state
-# it presumes, that the statements PUT operator works
-initialize_repository () {
-    curl -L -f -s -S -X PUT \
+function initialize_repository_public () {
+curl -w "%{http_code}\n" -L -f -s -X PUT \
+     -H "Content-Type: application/n-quads" --data-binary @- \
+     ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY_PUBLIC}?auth_token=${STORE_TOKEN} <<EOF
+<http://example.com/default-subject> <http://example.com/default-predicate> "default object" .
+<http://example.com/named-subject> <http://example.com/named-predicate> "named object" <${STORE_NAMED_GRAPH}> .
+EOF
+}
+
+function initialize_repository_rdf_graphs () {
+curl -w "%{http_code}\n" -L -f -s -X PUT \
      -H "Accept: application/n-quads" \
-     -H "Content-Type: application/n-quads" --data-binary @/tmp/PUT.nq \
-     ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY}?auth_token=${STORE_TOKEN} 
+     -H "Content-Type: application/n-quads" --data-binary @- \
+     ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY}?auth_token=${STORE_TOKEN} <<EOF
+<http://example.com/default-subject> <http://example.com/default-predicate> "default object" .
+<http://example.com/named-subject> <http://example.com/named-predicate> "named object" <${STORE_NAMED_GRAPH}> .
+<http://example.com/named-subject> <http://example.com/named-predicate> "rdf-graphs named object" <$STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/rdf-graphs/sesame> .
+EOF
 }
-initialize_repository_public () {
-    curl -L -f -s -S -X PUT \
-     -H "Content-Type: application/n-quads" --data-binary @/tmp/PUT.nq \
-     ${STORE_URL}/${STORE_ACCOUNT}/${STORE_REPOSITORY_PUBLIC}?auth_token=${STORE_TOKEN} 
-}
+
 function initialize_about () {
 curl -w "%{http_code}\n" -f -s -X PUT \
      -H "Content-Type: application/json" \
@@ -100,14 +124,15 @@ EOF
 
 export -f initialize_repository
 export -f initialize_repository_public
+export -f initialize_repository_rdf_graphs
 export -f initialize_about
 export -f initialize_collaboration
 export -f initialize_prefixes
 export -f initialize_privacy
 
 
-initialize_repository
-initialize_repository_public
+initialize_repository | fgrep -q "${PUT_SUCCESS}"
+initialize_repository_public | fgrep -q "${PUT_SUCCESS}"
 
 # iterate over all '.sh' scripts in the current wd tree, run each, record if it succeeds
 # report and total failures.
@@ -142,7 +167,7 @@ do
   fi
 done
 
-if [[ "${STORE_ERRORS}" == "0" ]]
+if [[ "${STORE_ERRORS}" != "0" ]]
 then
   echo "${STORE_ERRORS} errors"
 fi

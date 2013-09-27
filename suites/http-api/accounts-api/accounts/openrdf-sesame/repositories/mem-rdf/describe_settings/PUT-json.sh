@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # write describe settings with value coercion;
-# test the get response and then cycle back to the original state
+# test the get response and then cycle back to the original empty state
 #
 # environment :
 # STORE_ACCOUNT : account name

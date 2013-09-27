@@ -1,2 +1,0 @@
-<http://example.com/default-subject> <http://example.com/default-predicate> "default object" .
-<http://example.com/named-subject> <http://example.com/named-predicate> "named object" <http://dydra.com/graph-name> .

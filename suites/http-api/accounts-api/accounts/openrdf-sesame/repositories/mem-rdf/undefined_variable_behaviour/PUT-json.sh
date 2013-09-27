@@ -1,10 +1,6 @@
 #! /bin/bash
 
 # write settings and test the immediate response, test the get response and then delete
-# environment :
-# STORE_ACCOUNT : account name
-# STORE_URL : host http url 
-# STORE_REPOSITORY : individual repository
 
 curl -f -s -S -X PUT \
      -H "Content-Type: application/json" \

@@ -1,11 +1,9 @@
 #! /bin/bash
 
-# environment :
-# STORE_ACCOUNT : account name
-# STORE_URL : host http url 
+# verify the two statement count of the initialized repository
 
-curl -f -s -S -X GET\
-     -H "Accept: text/plain" \
+curl -f -s -S -X GET \
      $STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/size?auth_token=${STORE_TOKEN} \
- | diff -q - GET-plain.json > /dev/null
+ | fgrep -q '2'
+
 

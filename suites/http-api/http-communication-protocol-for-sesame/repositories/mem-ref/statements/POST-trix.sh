@@ -1,13 +1,20 @@
 #! /bin/bash
 
-# environment :
-# DYDRA_ACCOUNT : account name
-# DYDRA_URL : host http url 
-# DYDRA_REPOSITORY : individual repository
 
-curl -f -s -S -X POST \
+curl -w "%{http_code}\n" -f -s -S -X POST \
      -H "Content-Type: application/trix" \
-     -d POST-trix.trix
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/statements \
- | diff -q - POST-trix-response.txt > /dev/null
+     --data-binary @- \
+     $STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/statements <<EOF\
+   | fgrep -q "${STATUS_UNSUPPORTED_MEDIA}"
+<?xml version="1.0" encoding="utf-8"?>
+<graph>
+  <uri>http://dydra.com/put-graph-name</uri>
+  <triple>
+   <uri>http://example.com/default-subject</uri>
+   <uri>http://example.com/default-predicate</uri>
+   <plainLiteral>default object . PUT.nt</plainLiteral>
+  </triple>
+</graph>
+EOF
 
+echo -n " NYI "

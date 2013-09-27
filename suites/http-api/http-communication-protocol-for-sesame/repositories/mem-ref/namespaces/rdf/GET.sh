@@ -1,11 +1,9 @@
 #! /bin/bash
 
-# environment :
-# DYDRA_ACCOUNT : account name
-# DYDRA_URL : host http url 
-# DYDRA_REPOSITORY : individual repository
+# verify default response content type
 
 curl -f -s -S -X GET \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/namespaces/rdf?auth_token=${DYDRA_TOKEN} \
- | diff -q - GET-response.txt > /dev/null
+     $STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/namespaces/rdf?auth_token=${STORE_TOKEN} \
+   | fgrep -q 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+
 

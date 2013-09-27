@@ -1,11 +1,8 @@
 #! /bin/bash
 
-# environment :
-# DYDRA_ACCOUNT : account name
-# DYDRA_URL : host http url 
-# DYDRA_REPOSITORY : individual repository
 
-curl -f -s -S -X DELETE \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/rdf-graphs/service'?graph=http://example.org' \
- | diff -q - DELETE-response.txt > /dev/null
+curl -w "%{http_code}\n" -f -s -X DELETE \
+     $STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/rdf-graphs/service?graph=${STORE_NAMED_GRAPH}\&auth_token=${STORE_TOKEN} \
+   | fgrep -q "${DELETE_SUCCESS}"
 
+initialize_repository | fgrep -q "${PUT_SUCCESS}"

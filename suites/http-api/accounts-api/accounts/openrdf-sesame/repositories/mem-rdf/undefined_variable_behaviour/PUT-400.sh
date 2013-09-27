@@ -1,10 +1,6 @@
 #! /bin/bash
 
 # test validity constraint
-# environment :
-# STORE_ACCOUNT : account name
-# STORE_URL : host http url 
-# STORE_REPOSITORY : individual repository
 
 curl -X PUT \
      -w "%{http_code}\n" -f -s \

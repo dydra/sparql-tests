@@ -1,13 +1,16 @@
 #! /bin/bash
 
-# environment :
-# DYDRA_ACCOUNT : account name
-# DYDRA_URL : host http url 
-# DYDRA_REPOSITORY : individual repository
 
-curl -f -s -S -X PUT \
-     -H "Content-Type: application/json" \
-     -d PUT-json.json
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/statements \
- | diff -q - PUT-json-response.txt > /dev/null
+curl -w "%{http_code}\n" -f -s -S -X PUT \
+     -H "Content-Type: application/rdf+json" \
+     -data-binary @-
+     $STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/statements <<EOF \
+ | fgrep -q "${STATUS_UNSUPPORTED_MEDIA}"
+{ "http://example.com/default-subject" : {
+  "http://example.com/default-predicate" : [ { "value" : "default object . sesame rdf-graphs PUT.rj",
+                                               "type" : "literal" } ]
+  }
+}
+EOF
 
+echo " NYI"

@@ -1,11 +1,22 @@
 #! /bin/bash
 
-# environment :
-# DYDRA_ACCOUNT : account name
-# DYDRA_URL : host http url 
-# DYDRA_REPOSITORY : individual repository
+# add a direct sesame graph and then delete it
 
-curl -f -s -S -X DELETE \
-     $DYDRA_URL/${DYDRA_ACCOUNT}/repositories/${DYDRA_REPOSITORY}/rdf-graphs/sesame?auth_token=${DYDRA_TOKEN} \
- | diff -q - DELETE-response.txt > /dev/null
+initialize_repository_rdf_graphs | fgrep -q "${PUT_SUCCESS}"
+
+curl -f -s -S -X GET \
+     $STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/size?auth_token=${STORE_TOKEN} \
+ | fgrep -q '3'
+
+
+curl -w "%{http_code}\n" -f -s -X DELETE \
+     $STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/rdf-graphs/sesame?auth_token=${STORE_TOKEN} \
+ | fgrep -q 204
+
+
+curl -f -s -S -X GET \
+     $STORE_URL/${STORE_ACCOUNT}/repositories/${STORE_REPOSITORY}/size?auth_token=${STORE_TOKEN} \
+ | fgrep -q '2'
+
+initialize_repository | fgrep -q "${PUT_SUCCESS}"
 

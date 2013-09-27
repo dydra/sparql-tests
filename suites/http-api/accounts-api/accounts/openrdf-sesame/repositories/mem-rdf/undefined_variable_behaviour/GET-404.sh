@@ -1,9 +1,6 @@
 #! /bin/bash
 
 # the repository has no setting unless supplied here. thus the 404
-# environment :
-# STORE_ACCOUNT : account name
-# STORE_URL : host http url 
 
 curl -X GET \
      -w "%{http_code}\n" -f -s \
