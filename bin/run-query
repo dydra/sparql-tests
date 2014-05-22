@@ -21,6 +21,10 @@ while true; do
   esac
 done
 
+# export TEST_LIBRARY=`dirname $0`
+# source ${TEST_LIBRARY}/setup-script
+
+
 REPO="$1"
 QUERY="$2"
 QUERY_STRING=$3
@@ -41,11 +45,6 @@ then
   exit 1
 else
   DYDRA_HOSTNAME="${DYDRA_URL:7}"
-fi
-if [ -e ~/.dydra/token ]
-then
-  DYDRA_TOKEN=`cat ~/.dydra/token`
-  AUTHENTICATION="${DYDRA_TOKEN}:@"
 fi
 
 if [ "$MODE_VERBOSE" ]

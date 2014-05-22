@@ -1,2 +1,11 @@
-./count
-./federation/federation-internal-1
+./federation/external/federation-external-1.sh
+./federation/internal/federation-internal-1.sh
+./federation/internal/service01.sh
+./federation/internal/service02.sh
+./federation/internal/service04.sh
+./federation/internal/service06.sh
+./federation/internal/service07.sh
+./provenance/provenance-1.sh
+./slice/slice-limit-offset.sh
+./slice/slice-limit.sh
+./slice/slice-offset.sh

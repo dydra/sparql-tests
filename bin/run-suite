@@ -4,12 +4,6 @@
 #
 # run all test suites which are visible from the given root, or if none is specified, from the working directory.
 #
-# visibility is determined by the presence of a '.rq' query file in a directory. when that is true, 
-# - the setup-repository script runs for each rdf document in the respective directory. this
-#   uses the respective filename stem, ensures that a repository exits of that name with that content.
-# - the run-query script runs for the query file. the output is captures and compared byte-wise with the expected
-#   result. success requires identity.
-#
 # a test suite run returns 0 for success, otherwise the count of failures
 
 
@@ -33,6 +27,10 @@ while true; do
   esac
 done
 
+# export TEST_LIBRARY=`dirname $0`
+# source ${TEST_LIBRARY}/setup-script
+
+
 if [ "$1" != "" ]
 then
   ROOT="$1"
@@ -46,8 +44,7 @@ cat /dev/null > tests-succeeded
 
 # for each .sh present, run a test in the respective directory
 find $ROOT -name '*.sh' | while read TEST_SCRIPT; do
- pushd `dirname $TEST_SCRIPT`
- bash $MODE_QUIET $MODE_VERBOSE $MODE_CREATE $TEST_SCRIPT ;
+ (cd `dirname $TEST_SCRIPT` ; bash -- `basename $TEST_SCRIPT` $MODE_QUIET $MODE_VERBOSE $MODE_CREATE)
  RESULT=$?
 
  if [ $RESULT == 0 ]
@@ -70,20 +67,22 @@ find $ROOT -name '*.sh' | while read TEST_SCRIPT; do
       echo -n "-"
     fi
   fi
-  popd
 done
 
 FAILED=(`wc -l tests-failed`)
 SUCCEEDED=(`wc -l tests-succeeded`)
 if [ ! "$MODE_QUIET" ]
 then
+   if [ "$MODE_VERBOSE" ]
+   then echo ""
+   fi
   echo " succeeded ${SUCCEEDED[0]}, failed ${FAILED[0]}"
 fi
 
 exit ${FAILED[0]}
 
 #
-# in order to use this with w3c suites, they need to be arranged in the proper way as those quites
+# in order to use this with w3c suites, they need to be arranged in the proper way as those suites
 # lack one directory level, and place all queries together with shared input datasets and result
 # documents in a single directory. the steps to rearrange a w3c suite are
 # - start with the manifest
