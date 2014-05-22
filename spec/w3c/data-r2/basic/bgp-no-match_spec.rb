@@ -40,7 +40,7 @@ WHERE {
 }
     end
 
-    example "Non-matching triple pattern" do
+    example "Non-matching triple pattern", :vocabulary => 'lenient' do
     
       graphs = {}
       graphs[:default] = { :data => @data, :format => :ttl}

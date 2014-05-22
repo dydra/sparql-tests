@@ -23,8 +23,8 @@ describe "W3C test" do
 
       repository = 'delete-insert-03'
 
-      sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :select).should raise_error
+      expect { sparql_query(:graphs => graphs, :query => @query,
+                            :repository => repository, :form => :select)}. to raise_error
     end
   end
 end

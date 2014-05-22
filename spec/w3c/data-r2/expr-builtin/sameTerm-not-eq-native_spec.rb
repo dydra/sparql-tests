@@ -64,7 +64,7 @@ SELECT *
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'expr-builtin-sameTerm-not-eq'
+      repository = 'expr-builtin-sameterm-not-eq'
       expected = [
           { 
               :v1 => RDF::Literal.new('1.0e0' , :datatype => RDF::URI('http://www.w3.org/2001/XMLSchema#double')),

@@ -23,8 +23,8 @@ describe "W3C test" do
 
       repository = 'construct-constructwhere06'
 
-      sparql_query(:graphs => graphs, :query => @query,
-                   :repository => repository, :form => :construct).should raise_error
+      expect { sparql_query(:graphs => graphs, :query => @query,
+                            :repository => repository, :form => :construct) }.to raise_error
     end
   end
 end

@@ -64,7 +64,7 @@ SELECT *
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'expr-builtin-sameTerm-simple'
+      repository = 'expr-builtin-sameterm-simple'
       expected = [
           { 
               :v1 => RDF::URI('http://example.org/things#z'),

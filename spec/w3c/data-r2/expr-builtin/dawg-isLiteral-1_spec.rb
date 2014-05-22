@@ -52,7 +52,7 @@ WHERE
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'expr-builtin-dawg-isLiteral-1'
+      repository = 'expr-builtin-dawg-isliteral-1'
       expected = [
           { 
               :x => RDF::URI('http://example/x1'),

@@ -47,7 +47,7 @@ SELECT ?s WHERE {
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'cast-cast-dT'
+      repository = 'cast-cast-dt'
       expected = [
           { 
               :s => RDF::URI('http://example.org/dT'),

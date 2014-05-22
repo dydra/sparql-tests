@@ -3,7 +3,7 @@
 PASSES=1
 CLIENTS=1
 FORMATTER=""
-TAGS='--tag ~reduced:all --tag ~arithmetic:literal  --tag ~blank_nodes:unique  --tag ~values:lexical --tag ~status:bug --tag ~tz:zoned --tag ~string:typed --tag ~date:unsupported --tag ~undefined:unbound --tag ~join:full --tag ~implementation:nyi'
+TAGS='--tag ~reduced:all --tag ~arithmetic:literal  --tag ~blank_nodes:unique  --tag ~values:lexical --tag ~status:bug --tag ~tz:zoned --tag ~string:typed --tag ~date:unsupported --tag ~undefined:unbound --tag ~join:full --tag ~implementation:nyi --tag ~vocabulary:lenient'
 ARGUMENTS=`getopt -o "c:p:f:t:" -- "$@"`
 eval set -- "$ARGUMENTS"
 while true; do
@@ -36,6 +36,7 @@ done
 for ((pass = 1; pass <= $PASSES; pass = pass + 1)); do
   echo ""
   for ((client = 1; client <= $CLIENTS; client = client + 1)); do
+    date
     echo "run ${pass}.${client}: $TAGS $FORMATTER $*"
     (nice bundle exec rspec ${TAGS}  $FORMATTER $* )&
   done;

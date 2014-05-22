@@ -58,7 +58,7 @@ WHERE
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'expr-builtin-dawg-isIRI-1'
+      repository = 'expr-builtin-dawg-isiri-1'
       expected = [
           { 
               :v => RDF::URI('http://example.org/things#z'),

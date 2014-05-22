@@ -42,7 +42,7 @@ SELECT *
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'expr-builtin-dawg-langMatches-1'
+      repository = 'expr-builtin-dawg-langmatches-1'
       expected = [
           { 
               :p => RDF::URI('http://example.org/#p4'),

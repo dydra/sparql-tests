@@ -60,7 +60,7 @@ WHERE
       graphs[:default] = { :data => @data, :format => :ttl}
 
 
-      repository = 'expr-builtin-dawg-isBlank-1'
+      repository = 'expr-builtin-dawg-isblank-1'
       expected = [
           { 
               :v => RDF::Node.new('a'),

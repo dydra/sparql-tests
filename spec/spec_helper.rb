@@ -2,6 +2,7 @@ require 'bundler'
 Bundler.setup
 Bundler.require(:default)
 require 'rdf/cli'
+require 'yaml'
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f}
 
 if ENV['DYDRA_URL']
@@ -112,18 +113,19 @@ def sparql_query(opts)
     repository = Dydra::Repository.new(repository_name)
     raw_result = repository.query(opts[:query], :format => format, :user_query_id => opts[:user_id],
                                                 :ruleset => opts[:ruleset])
-    log raw_result
+    log "raw rsesult: '#{raw_result}'"
     if (opts[:form] == :select || opts[:form] == :ask) && comparing?
       result = SPARQL::Client.send("parse_#{format}_bindings".to_sym, raw_result)
       result = !!result if opts[:form] == :ask
     elsif opts[:form] == :update
+      log "Running update result query"
       result = repository.query('select * where { { ?s ?p ?o } union { graph ?g { ?s ?p ?o} } }', :format => :parsed)
     else
       result = raw_result
     end
   end
    
-  log "Result: (query took #{taken} seconds)"
+  log "Result: (query took #{taken} seconds.)"
   log result.each_statement.to_a.map {|s| "#{s.subject} #{s.predicate} #{s.object}" }.join("\n")if result.respond_to?(:each_statement)
   result.map!(&:to_hash) if opts[:form] == :select || opts[:form] == :update
   result

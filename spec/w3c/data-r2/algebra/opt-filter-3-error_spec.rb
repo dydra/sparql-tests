@@ -15,6 +15,7 @@ require 'spec_helper'
 # http://www.w3.org/2007/06/19-dawg-minutes.html
 #
 # 20120217 jaa : added undefined:unbound/error
+# 20140129 jaa : added pragma
 
 describe "W3C test" do
   context "algebra" do
@@ -33,6 +34,7 @@ describe "W3C test" do
 }
       @query = %q{
 PREFIX :    <http://example/>
+PREFIX undefinedVariableBehavior: <urn:dydra:error>
 
 SELECT *
 { 
