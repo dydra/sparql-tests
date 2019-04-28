@@ -1,3 +1,6 @@
+# this repository is obsolete.
+# see https://github.com/dydra/http-api-tests
+
 Dydra.com SPARQL tests
 =====================
 
